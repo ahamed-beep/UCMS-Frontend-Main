@@ -35,7 +35,7 @@ const Navbar = () => {
                                 <button onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</button>
                             </nav>
 
-                            <Link to='/student-portal' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">
+                            <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">
                                 Student Portal
                             </Link>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
                 <div className="px-5 mt-6 mb-8 flex flex-col gap-3">
 
                     <Link
-                        to="/signup"
+                        to="/login"
                         onClick={() => setSidebarOpen(false)}
                         className="font-inter font-medium leading-[20px] bg-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] text-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition"
                     >
