@@ -11,8 +11,8 @@ const Signup = () => {
     return (
         <section>
             <Navbar />
-            <div className='flex'>
-                <div className='w-[50%]'>
+            <div className='flex flex-col md:flex-row gap-3'>
+                <div className='w-full md:w-[50%]'>
                     <div className='flex flex-col gap-5 px-20 py-10'>
                         <div className='flex'>
                             <div className='bg-[#0F4C8A] p-3 text-white rounded-xl'><GraduationCap width={30} height={30} /></div>
@@ -81,7 +81,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <div
-                    className="w-[50%] bg-center bg-cover bg-no-repeat"
+                    className="w-full md:w-[50%] bg-center bg-cover bg-no-repeat"
                     style={{
                         backgroundImage: "linear-gradient(rgba(37, 99, 235, 0.8), rgba(37, 99, 235, 0.8)), url('/Images/login.webp')"
                     }}
