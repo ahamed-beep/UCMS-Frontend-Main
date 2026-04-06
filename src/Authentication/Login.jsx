@@ -52,7 +52,7 @@ const Login = () => {
                                 <input type="checkbox" name="checkin" id="checkin" className='scale-125' />
                                 Remember me
                             </label>
-                            <a href="/forget-password" className='font-inter text-[#364153] text-[14px] text-blue-800'>Forget Password?</a>
+                            <a href="/verify" className='font-inter text-[#364153] text-[14px] text-blue-800'>Forget Password?</a>
                         </div>
                         <button
                             className="w-full py-3 bg-[#FF6B35] rounded-[10px] text-white font-inter font-semibold text-[16px] leading-[24px] tracking-wide"

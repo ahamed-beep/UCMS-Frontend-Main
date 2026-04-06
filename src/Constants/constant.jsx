@@ -1,3 +1,6 @@
+import { FiMapPin } from "react-icons/fi";
+import { MdOutlineMail, MdOutlinePhone } from "react-icons/md";
+
 export const heroData = {
   badge: "Trusted by 5,000+ Students",
   title: "Your Journey to Study Abroad Starts Here",
