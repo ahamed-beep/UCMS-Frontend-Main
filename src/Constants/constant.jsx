@@ -1,5 +1,4 @@
-import { FiMapPin } from "react-icons/fi";
-import { MdOutlineMail, MdOutlinePhone } from "react-icons/md";
+
 
 export const heroData = {
   badge: "Trusted by 5,000+ Students",
@@ -61,15 +60,20 @@ export const footerData = [
 
 export const contactData = [
   {
-    icon: <FiMapPin className="text-[#2B7FFF]" size={20} />,
+   img: "/Images/MapPin.webp",
     text: "123 Main Street, Business District, City, Country",
   },
   {
-    icon: <MdOutlinePhone className="text-[#2B7FFF]" size={20} />,
+   img: "/Images/phone.webp",
     text: "+1 234 567 8900",
   },
   {
-    icon: <MdOutlineMail className="text-[#2B7FFF]" size={20} />,
+   img: "/Images/Mail.webp",
     text: "info@upskills.com",
   },
 ];
+
+export const ROLES = {
+  STUDENT: 'student',
+  ADMIN: 'admin',
+};

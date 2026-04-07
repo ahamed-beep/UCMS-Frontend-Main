@@ -1,27 +1,41 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './Componenets/Home/Home'
-import Login from './Authentication/Login'
-import Signup from './Authentication/Signup'
-import EmailVerification from './Authentication/EmailVerification'
-import VerifyCode from './Authentication/VerifyCode'
-import ResetPassword from './Authentication/ResetPassword'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import Login from './Authentication/Login';
+import EmailVerification from './Authentication/EmailVerification';
+import VerifyCode from './Authentication/VerifyCode';
+import ResetPassword from './Authentication/ResetPassword';
+import ProtectedRoute from './Protection/Protectedroute';
 
 const App = () => {
   return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/verify' element={<EmailVerification />} />
-          <Route path='/codeverification' element={<VerifyCode />} />
-          <Route path='/resetpassword' element={<ResetPassword />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verify" element={<EmailVerification />} />
+        <Route path="/codeverification" element={<VerifyCode />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
 
-export default App
+        <Route
+          path="/student/dashboard"
+          element={
+            <ProtectedRoute>
+              <div>Student Dashboard</div>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <div>Admin Dashboard</div>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;
