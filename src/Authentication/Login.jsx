@@ -2,7 +2,7 @@ import { CircleCheck, Eye, EyeOff, GraduationCap, Lock, Mail } from 'lucide-reac
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Componenets/Home/Sections/Navbar';
-import { heroData } from '../Constants/constant';
+import { heroData, ROLES } from '../Constants/constant';
 import { AUTH_ENDPOINTS } from '../Constants/Endpoints';
 import axiosInstance from '../Api/axiosInstance';
 import { saveAuthData } from '../Utils/Auth';
@@ -29,10 +29,18 @@ const Login = () => {
         password,
       });
 
-      if (data.success) {
-        saveAuthData(data.token, data.data);
-        navigate( '/student/dashboard');
-      }
+     if (data.success) {
+  saveAuthData(data.token, data.data);
+  const role = data.data.role;
+
+  if (role === ROLES.ADMIN) {
+    navigate('/admin/dashboard');
+  } else if (role === ROLES.STUDENT) {
+    navigate('/student/dashboard');
+  } else {
+    setError('Unauthorized role. Contact support.');
+  }
+}
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
