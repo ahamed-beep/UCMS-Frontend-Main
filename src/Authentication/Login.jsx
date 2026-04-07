@@ -10,9 +10,9 @@ const Login = () => {
     return (
         <section>
             <Navbar />
-            <div className='flex'>
-                <div className='w-[50%]'>
-                    <div className='flex flex-col gap-5 px-20 py-10'>
+            <div className='flex flex-col md:flex-row gap-3'>
+                <div className='w-full md:w-[50%] px-20 py-10'>
+                    <div className='flex flex-col gap-5'>
                         <div className='flex'>
                             <div className='bg-[#0F4C8A] p-3 text-white rounded-xl'><GraduationCap width={30} height={30} /></div>
                             <div className='ms-3'>
@@ -52,7 +52,7 @@ const Login = () => {
                                 <input type="checkbox" name="checkin" id="checkin" className='scale-125' />
                                 Remember me
                             </label>
-                            <a href="/forget-password" className='font-inter text-[#364153] text-[14px] text-blue-800'>Forget Password?</a>
+                            <a href="/verify" className='font-inter text-[#364153] text-[14px] text-blue-800'>Forget Password?</a>
                         </div>
                         <button
                             className="w-full py-3 bg-[#FF6B35] rounded-[10px] text-white font-inter font-semibold text-[16px] leading-[24px] tracking-wide"
@@ -69,7 +69,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div
-                    className="w-[50%] bg-center bg-cover bg-no-repeat"
+                    className="w-full md:w-[50%] bg-center bg-cover bg-no-repeat"
                     style={{
                         backgroundImage: "linear-gradient(rgba(37, 99, 235, 0.8), rgba(37, 99, 235, 0.8)), url('/Images/login.webp')"
                     }}

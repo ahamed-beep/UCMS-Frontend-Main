@@ -1,3 +1,6 @@
+import { FiMapPin } from "react-icons/fi";
+import { MdOutlineMail, MdOutlinePhone } from "react-icons/md";
+
 export const heroData = {
   badge: "Trusted by 5,000+ Students",
   title: "Your Journey to Study Abroad Starts Here",
@@ -25,3 +28,48 @@ export const heroData = {
     role: "Sarah Ahmed, Student at University of Manchester"
   },
 };
+
+export const statistic = [
+  { number: "10K+", label: "Students Placed" },
+  { number: "50+", label: "Universities" },
+  { number: "98%", label: "Success Rate" }
+];
+
+export const footerData = [
+  {
+    title: "Quick Links",
+    links: [
+      { name: "About Us", url: "/" },
+      { name: "Services", url: "/" },
+      { name: "Study Destination", url: "/" },
+      { name: "Success Stories", url: "/" },
+      { name: "Blog", url: "/" },
+      { name: "Gallery", url: "/" },
+    ],
+  },
+  {
+    title: "Our Services",
+    links: [
+      { name: "Career Counseling", url: "/" },
+      { name: "Student Admissions", url: "/" },
+      { name: "Visa Support", url: "/" },
+      { name: "IELTS/PTE Preparation", url: "/" },
+      { name: "Financial Advice", url: "/" },
+    ],
+  },
+];
+
+export const contactData = [
+  {
+    icon: <FiMapPin className="text-[#2B7FFF]" size={20} />,
+    text: "123 Main Street, Business District, City, Country",
+  },
+  {
+    icon: <MdOutlinePhone className="text-[#2B7FFF]" size={20} />,
+    text: "+1 234 567 8900",
+  },
+  {
+    icon: <MdOutlineMail className="text-[#2B7FFF]" size={20} />,
+    text: "info@upskills.com",
+  },
+];
