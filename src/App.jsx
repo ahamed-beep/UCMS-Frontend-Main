@@ -5,12 +5,13 @@ import EmailVerification from './Authentication/EmailVerification';
 import VerifyCode from './Authentication/VerifyCode';
 import ResetPassword from './Authentication/ResetPassword';
 import ProtectedRoute from './Protection/Protectedroute';
+import Home from './Componenets/Home/Home';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<EmailVerification />} />
         <Route path="/codeverification" element={<VerifyCode />} />

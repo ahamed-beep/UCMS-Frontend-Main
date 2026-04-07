@@ -23,7 +23,7 @@ const Herosection = () => {
           </div>
         </div>
         <div className='w-full md:w-[50%] sm:px-10 sm:py-7 px-0 py-0 lg:px-15 lg:py-10'>
-          <img src="/Images/heroimg.webp" alt="Girl Image" className='object-fit' />
+          <img src="/Images/heroimg.webp" alt="Girl Image" className='w-[450px] md:w-[580px] object-fit' />
         </div>
       </div>
     </section>

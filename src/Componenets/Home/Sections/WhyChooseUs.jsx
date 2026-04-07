@@ -1,8 +1,12 @@
 import React from 'react'
+import ServiceBar from '../../../ResuableUi/ServiceBar'
+import { upskills } from '../Constants/SkillConstants'
 
 const WhyChooseUs = () => {
   return (
-    <div>WhyChooseUs</div>
+    <div>
+      <ServiceBar title='Why Choose Upskills?' bgColor='bg-white' services={upskills}/>
+    </div>
   )
 }
 
