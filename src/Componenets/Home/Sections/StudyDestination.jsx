@@ -3,7 +3,7 @@ import ServiceBar from '../../../ResuableUi/ServiceBar'
 import { countries } from '../Constants/DestinationConstants'
 
 
-const StudentDestination = () => {
+const StudyDestination = () => {
   return (
     <div>
       <ServiceBar services={countries} title='Study Destinations' subtitle='Choose from top universities worldwide' bgColor='bg-[#F9FAFB]'/>
@@ -11,4 +11,4 @@ const StudentDestination = () => {
   )
 }
 
-export default StudentDestination
+export default StudyDestination
