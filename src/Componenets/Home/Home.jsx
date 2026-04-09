@@ -1,7 +1,5 @@
 import React from 'react'
-import Navbar from './Sections/Navbar'
 import Herosection from './Sections/Herosection'
-import Footer from './Sections/Footer'
 import Inquiry from './Sections/Inquiry'
 import OurServices from './Sections/OurServices'
 import StudyDestination from './Sections/StudyDestination'
@@ -10,6 +8,8 @@ import StudentSuccessStories from './Sections/StudentSuccessStories'
 import UpcomingClasses from './Sections/UpcomingClasses'
 import Welcome from './Sections/Welcome'
 import Subcribe from './Sections/Subcribe'
+import Navbar from '../../ResuableUi/Navbar'
+import Footer from '../../ResuableUi/Footer'
 
 const Home = () => {
   return (

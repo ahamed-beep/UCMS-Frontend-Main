@@ -6,6 +6,7 @@ import VerifyCode from './Authentication/VerifyCode';
 import ResetPassword from './Authentication/ResetPassword';
 import ProtectedRoute from './Protection/Protectedroute';
 import Home from './Componenets/Home/Home';
+import Service from './Componenets/Services/Page1/Service';
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
         <Route path="/verify" element={<EmailVerification />} />
         <Route path="/codeverification" element={<VerifyCode />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
+
+        <Route path="/services" element={<Service />} />
 
         <Route
           path="/student/dashboard"

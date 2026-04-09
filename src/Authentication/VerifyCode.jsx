@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Navbar from '../Componenets/Home/Sections/Navbar'
-import Footer from '../Componenets/Home/Sections/Footer'
 import { Link } from 'react-router-dom';
+import Navbar from '../ResuableUi/Navbar';
+import Footer from '../ResuableUi/Footer';
 
 const VerifyCode = () => {
     const [code, setCode] = useState(["", "", "", "", "", ""]);

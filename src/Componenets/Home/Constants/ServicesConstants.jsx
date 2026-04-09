@@ -1,37 +1,41 @@
+import { LuFileCheck, LuUsers, LuGraduationCap, LuPlane, LuDollarSign } from "react-icons/lu";
+import { GoBook } from "react-icons/go";
+import { FiUserCheck } from "react-icons/fi";
+
 export const services = [
   {
     title: "Student File Assessment",
     desc: "Comprehensive evaluation of your academic profile",
-    icon: "/Images/service.icon.png",
+    icon: LuFileCheck,
   },
   {
     title: "Career Counseling",
     desc: "Expert guidance for your career path abroad",
-    icon: "/Images/service.icon2.png",
+    icon: LuUsers,
   },
   {
     title: "Student Admissions",
     desc: "Assistance with university applications",
-    icon: "/Images/service.icon3.png",
+    icon: LuGraduationCap,
   },
   {
     title: "Visa Support",
     desc: "Complete visa acquisition assistance",
-    icon: "/Images/service.icon4.png",
+    icon: LuPlane,
   },
   {
     title: "Financial Advice",
     desc: "Scholarship and funding guidance",
-    icon: "/Images/service.icon5.png",
+    icon: LuDollarSign,
   },
   {
     title: "IELTS/PTE Preparation",
     desc: "Comprehensive test preparation courses",
-    icon: "/Images/service.icon6.png",
+    icon: GoBook,
   },
   {
     title: "Interview Preparation",
     desc: "Visa interview coaching and mock sessions",
-    icon: "/Images/service.icon7.png",
+    icon: FiUserCheck,
   },
 ];

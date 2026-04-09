@@ -1,5 +1,5 @@
 import React from 'react'
-import { contactData, footerData } from '../../../Constants/constant'
+import { contactData, footerData } from '../Constants/constant'
 // import { LuFacebook, LuLinkedin, LuTwitter } from 'react-icons/lu'
 // import { BsInstagram } from 'react-icons/bs'
 
