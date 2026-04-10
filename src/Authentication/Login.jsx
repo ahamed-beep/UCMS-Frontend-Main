@@ -1,11 +1,11 @@
 import { CircleCheck, Eye, EyeOff, GraduationCap, Lock, Mail } from 'lucide-react';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../Componenets/Home/Sections/Navbar';
 import { heroData, ROLES } from '../Constants/constant';
 import { AUTH_ENDPOINTS } from '../Constants/Endpoints';
 import axiosInstance from '../Api/axiosInstance';
 import { saveAuthData } from '../Utils/Auth';
+import Navbar from '../ResuableUi/Navbar';
 
 const Login = () => {
   const [email, setEmail] = useState('');

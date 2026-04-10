@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import useScrollToSection from "../hooks/useScrollToSection";
 import { Link } from 'react-router-dom'
-import useScrollToSection from '../../../Hooks/UseScrollToSection';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -24,15 +24,15 @@ const Navbar = () => {
 
                             <nav className="hidden md:flex justify-center items-center font-medium  font-inter text-sm leading-[20px] text-[#0F4C8A] gap-x-5 xl:gap-[30px] flex-wrap">
                                 <Link to="/" className="hover:text-gray-800">Home</Link>
-                                <button onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</button>
-                                <button onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</button>
-                                <button onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</button>
-                                <button onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</button>
-                                <button onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</button>
-                                <button onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</button>
-                                <button onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</button>
-                                <button onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</button>
-                                <button onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</button>
+                                <Link to="/" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
+                                <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
+                                <Link to="/" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
+                                <Link to="/" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</Link>
+                                <Link to="/" onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</Link>
+                                <Link to="/" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
+                                <Link to="/" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
+                                <Link to="/" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
+                                <Link to="/" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
                             </nav>
 
                             <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">

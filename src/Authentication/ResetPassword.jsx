@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../Componenets/Home/Sections/Navbar';
-import Footer from '../Componenets/Home/Sections/Footer';
 import { Eye, EyeClosed } from 'lucide-react';
 import { AUTH_ENDPOINTS } from '../Constants/Endpoints';
 import axiosInstance from '../Api/axiosInstance';
+import Navbar from '../ResuableUi/Navbar';
+import Footer from '../ResuableUi/Footer';
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
