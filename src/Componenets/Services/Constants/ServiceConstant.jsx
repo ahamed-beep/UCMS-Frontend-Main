@@ -1,10 +1,8 @@
-import { LuFileCheck, LuUsers, LuGraduationCap, LuPlane, LuDollarSign } from "react-icons/lu";
-import { GoBook } from "react-icons/go";
-import { FiUserCheck } from "react-icons/fi";
 
 export const servicesData = [
   {
-    icon: LuFileCheck,
+    id: 1,
+    icon: "/Images/service.icon.webp",
     title: "Student File Assessment",
     price: 99,
     description:
@@ -17,7 +15,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: LuUsers,
+    id: 2,
+    icon: "/Images/service.icon2.webp",
     title: "Career Counseling",
     price: 199,
     description:
@@ -30,7 +29,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: LuGraduationCap,
+    id: 3,
+    icon: "/Images/service.icon3.webp",
     title: "Student Admissions",
     price: 400,
     description:
@@ -43,7 +43,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: LuPlane,
+    id: 4,
+    icon: "/Images/service.icon4.webp",
     title: "Visa Acquisition Support",
     price: 299,
     description:
@@ -56,7 +57,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: LuDollarSign,
+    id: 5,
+    icon: "/Images/service.icon5.webp",
     title: "Financial Advice",
     price: 149,
     description:
@@ -69,7 +71,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: GoBook,
+    id: 6,
+    icon: "/Images/service.icon6.webp",
     title: "IELTS / PTE Preparation",
     price: 399,
     description:
@@ -82,7 +85,8 @@ export const servicesData = [
     ],
   },
   {
-    icon: FiUserCheck,
+    id: 7,
+    icon: "/Images/service.icon7.webp",
     title: "Visa Interview Preparation",
     price: 179,
     description:

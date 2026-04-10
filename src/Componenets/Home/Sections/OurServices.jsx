@@ -1,5 +1,6 @@
 import React from 'react'
 import { services } from '../Constants/ServicesConstants'
+import { Link } from 'react-router-dom'
 
 const OurServices = () => {
   return (
@@ -10,18 +11,17 @@ const OurServices = () => {
         <div className='w-[90%] md:w-[85%] mx-auto my-6 md:my-10 lg:my-15'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5'>
             {
-              services.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <div key={index} className='flex flex-col gap-2 p-5 border border-[0.8px] border-[#F3F4F6] shadow-xl rounded-[14px]'>
+              services.map((service, index) => (
+                <Link to={`/services/${service.id}`} key={index}>
+                  <div className='flex flex-col gap-2 p-5 border border-[0.8px] border-[#F3F4F6] shadow-xl rounded-[14px] transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'>
                     <div className='flex justify-center items-center w-[48px] h-[48px] rounded-[10px] bg-[#DBEAFE]'>
-                      <Icon className='text-[#FF6B35]' width={24} height={24} />
+                      <img src={service.icon} alt={service.title} width={24} height={24} />
                     </div>
                     <h4 className='font-inter font-semibold text-[15px] md:text-[18px] text-[#0A0A0A]'>{service.title}</h4>
                     <p className='font-inter font-normal text-[12px] md:text-[14px] text-[#4A5565]'>{service.desc}</p>
                   </div>
-                );
-              })
+                </Link>
+              ))
             }
           </div>
         </div>
