@@ -7,6 +7,9 @@ import ResetPassword from './Authentication/ResetPassword';
 import ProtectedRoute from './Protection/Protectedroute';
 import Home from './Componenets/Home/Home';
 import Service from './Componenets/Services/Page1/Service';
+import Dashboard from './Componenets/AdminDashboard/AdminDashboard';
+import { ROLES } from './Constants/constant';
+import StudentDashboard from './Componenets/StudentDashboard/StudentDashboard';
 
 const App = () => {
   return (
@@ -22,18 +25,20 @@ const App = () => {
 
         <Route
           path="/student/dashboard"
+        
           element={
-            <ProtectedRoute>
-              <div>Student Dashboard</div>
+            <ProtectedRoute allowedRoles={[ROLES.STUDENT]} >
+              <StudentDashboard/>
             </ProtectedRoute>
           }
         />
 
         <Route
           path="/admin/dashboard"
+   
           element={
-            <ProtectedRoute>
-              <div>Admin Dashboard</div>
+            <ProtectedRoute        allowedRoles={[ROLES.ADMIN]} >
+             <Dashboard/>
             </ProtectedRoute>
           }
         />
