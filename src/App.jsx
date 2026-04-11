@@ -6,10 +6,11 @@ import VerifyCode from './Authentication/VerifyCode';
 import ResetPassword from './Authentication/ResetPassword';
 import ProtectedRoute from './Protection/Protectedroute';
 import Home from './Componenets/Home/Home';
-import Service from './Componenets/Services/Page1/Service';
 import Dashboard from './Componenets/AdminDashboard/AdminDashboard';
 import { ROLES } from './Constants/constant';
 import StudentDashboard from './Componenets/StudentDashboard/StudentDashboard';
+import ServicesPage from './Componenets/Services/ServicePage';
+import Index from './Componenets/Checkout/CheckoutPage';
 
 const App = () => {
   return (
@@ -20,9 +21,11 @@ const App = () => {
         <Route path="/verify" element={<EmailVerification />} />
         <Route path="/codeverification" element={<VerifyCode />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/Checkout" element={<Index />} />
 
-        <Route path="services" element={<Home />} />
-        <Route path="services/:id" element={<Service />} />
+
+
 
         <Route
           path="/student/dashboard"

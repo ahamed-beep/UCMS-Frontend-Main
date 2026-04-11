@@ -1,0 +1,98 @@
+import { useState } from "react";
+import axiosInstance from "../../../Api/axiosInstance";
+
+const EditModal = ({ user, onClose, onSave }) => {
+  const [form, setForm] = useState({
+    firstName: user.firstName || "",
+    lastName: user.lastName || "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    if (error) setError("");
+  };
+
+  const handleSave = async () => {
+    if (!form.firstName.trim() || !form.lastName.trim()) {
+      setError("Both fields are required.");
+      return;
+    }
+    setLoading(true);
+    try {
+      await axiosInstance.patch(`/admin/users/${user._id}`, {
+        firstName: form.firstName,
+        lastName: form.lastName,
+      });
+      onSave(user._id, form);
+      onClose();
+    } catch (err) {
+      setError(err?.response?.data?.message || "Failed to update. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputClass =
+    "w-full px-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]";
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 w-[380px] shadow-sm">
+        <div className="flex items-center justify-between mb-5">
+          <h3 className="text-[16px] font-semibold text-[#0A0A0A]">Edit user</h3>
+          <button onClick={onClose} className="text-[#64748b] hover:text-[#0A0A0A] text-xl leading-none">
+            &times;
+          </button>
+        </div>
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 rounded-lg px-3 py-2 text-sm mb-4">
+            {error}
+          </div>
+        )}
+
+        <div className="bg-[#f8fafc] rounded-lg px-4 py-3 mb-4 space-y-1.5">
+          <div className="flex justify-between text-[13px]">
+            <span className="text-[#64748b]">Email</span>
+            <span className="text-[#0A0A0A] font-medium">{user.email || user.emailId}</span>
+          </div>
+          <div className="flex justify-between text-[13px]">
+            <span className="text-[#64748b]">Role</span>
+            <span className="text-[#0A0A0A] font-medium capitalize">{user.role}</span>
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <label className="block text-xs font-medium text-[#64748b] mb-1">First name</label>
+            <input type="text" name="firstName" value={form.firstName} onChange={handleChange} className={inputClass} />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-[#64748b] mb-1">Last name</label>
+            <input type="text" name="lastName" value={form.lastName} onChange={handleChange} className={inputClass} />
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-3 mt-5">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm text-[#64748b] border border-gray-200 rounded-lg hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSave}
+            disabled={loading}
+            className="px-4 py-2 text-sm font-semibold text-white bg-[#0F4C8A] rounded-lg hover:bg-[#0d3f73] disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loading ? "Saving..." : "Save changes"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EditModal;
