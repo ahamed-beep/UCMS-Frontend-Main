@@ -5,7 +5,7 @@ import Footer from "../../ResuableUi/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../../Api/axiosInstance";
 
-const Index = () => {
+const Checkout = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -360,4 +360,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Checkout;

@@ -10,7 +10,7 @@ import Dashboard from './Componenets/AdminDashboard/AdminDashboard';
 import { ROLES } from './Constants/constant';
 import StudentDashboard from './Componenets/StudentDashboard/StudentDashboard';
 import ServicesPage from './Componenets/Services/ServicePage';
-import Index from './Componenets/Checkout/CheckoutPage';
+import Checkout from './Componenets/Checkout/CheckoutPage';
 
 const App = () => {
   return (
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/codeverification" element={<VerifyCode />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/Checkout" element={<Index />} />
+        <Route path="/Checkout" element={<Checkout />} />
 
 
 
