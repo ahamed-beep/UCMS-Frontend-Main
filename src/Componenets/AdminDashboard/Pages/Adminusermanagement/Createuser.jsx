@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axiosInstance from "../../../Api/axiosInstance";
+import axiosInstance from "../../../../Api/axiosInstance";
 
 const CreateUser = () => {
   const [form, setForm] = useState({

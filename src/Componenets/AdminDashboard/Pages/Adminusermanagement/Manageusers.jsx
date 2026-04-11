@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axiosInstance from "../../../Api/axiosInstance";
 import EditModal from "./Editmodal";
+import axiosInstance from "../../../../Api/axiosInstance";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);

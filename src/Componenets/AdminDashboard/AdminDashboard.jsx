@@ -2,7 +2,7 @@ import React from "react";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
 import { useLogout } from "../../Hooks/useLogout";
-import AdminUserManagement from "./Pages/UserManagement";
+import AdminUserManagement from "./Pages/Adminusermanagement/Adminusermanagement";
 
 
 const OverviewPage = () => (

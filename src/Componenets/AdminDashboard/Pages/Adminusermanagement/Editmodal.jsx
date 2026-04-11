@@ -1,10 +1,12 @@
 import { useState } from "react";
-import axiosInstance from "../../../Api/axiosInstance";
+import axiosInstance from "../../../../Api/axiosInstance";
 
 const EditModal = ({ user, onClose, onSave }) => {
   const [form, setForm] = useState({
     firstName: user.firstName || "",
     lastName: user.lastName || "",
+    emailId: user.email || user.emailId || "",
+    password: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -16,16 +18,29 @@ const EditModal = ({ user, onClose, onSave }) => {
 
   const handleSave = async () => {
     if (!form.firstName.trim() || !form.lastName.trim()) {
-      setError("Both fields are required.");
+      setError("First name and last name are required.");
       return;
     }
+    if (form.emailId && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.emailId)) {
+      setError("Invalid email address.");
+      return;
+    }
+    if (form.password && form.password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
+
+    const payload = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      ...(form.emailId && { emailId: form.emailId }),
+      ...(form.password && { password: form.password }),
+    };
+
     setLoading(true);
     try {
-      await axiosInstance.patch(`/admin/users/${user._id}`, {
-        firstName: form.firstName,
-        lastName: form.lastName,
-      });
-      onSave(user._id, form);
+      await axiosInstance.patch(`/admin/users/${user._id}`, payload);
+      onSave(user._id, { firstName: form.firstName, lastName: form.lastName, emailId: form.emailId });
       onClose();
     } catch (err) {
       setError(err?.response?.data?.message || "Failed to update. Try again.");
@@ -53,25 +68,35 @@ const EditModal = ({ user, onClose, onSave }) => {
           </div>
         )}
 
-        <div className="bg-[#f8fafc] rounded-lg px-4 py-3 mb-4 space-y-1.5">
-          <div className="flex justify-between text-[13px]">
-            <span className="text-[#64748b]">Email</span>
-            <span className="text-[#0A0A0A] font-medium">{user.email || user.emailId}</span>
-          </div>
-          <div className="flex justify-between text-[13px]">
+        <div className="bg-[#f8fafc] rounded-lg px-4 py-3 mb-4 text-[13px]">
+          <div className="flex justify-between">
             <span className="text-[#64748b]">Role</span>
             <span className="text-[#0A0A0A] font-medium capitalize">{user.role}</span>
           </div>
         </div>
 
         <div className="space-y-3">
-          <div>
-            <label className="block text-xs font-medium text-[#64748b] mb-1">First name</label>
-            <input type="text" name="firstName" value={form.firstName} onChange={handleChange} className={inputClass} />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-medium text-[#64748b] mb-1">First name</label>
+              <input type="text" name="firstName" value={form.firstName} onChange={handleChange} className={inputClass} />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-[#64748b] mb-1">Last name</label>
+              <input type="text" name="lastName" value={form.lastName} onChange={handleChange} className={inputClass} />
+            </div>
           </div>
+
           <div>
-            <label className="block text-xs font-medium text-[#64748b] mb-1">Last name</label>
-            <input type="text" name="lastName" value={form.lastName} onChange={handleChange} className={inputClass} />
+            <label className="block text-xs font-medium text-[#64748b] mb-1">Email address</label>
+            <input type="email" name="emailId" value={form.emailId} onChange={handleChange} className={inputClass} />
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-[#64748b] mb-1">
+              New password <span className="text-[#94a3b8] font-normal">(leave blank to keep current)</span>
+            </label>
+            <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Min 8 characters" className={inputClass} />
           </div>
         </div>
 
