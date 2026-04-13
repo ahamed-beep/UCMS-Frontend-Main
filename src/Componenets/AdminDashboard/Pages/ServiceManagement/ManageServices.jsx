@@ -99,7 +99,7 @@ const ManageServices = () => {
       label: "Price",
       width: "12%",
       render: (s) => (
-        <span className="text-[13px] font-semibold text-[#0F4C8A]">PKR {Number(s.price).toLocaleString()}</span>
+        <span className="text-[13px] font-semibold text-[#0F4C8A]">&#36; {Number(s.price).toLocaleString()}</span>
       ),
     },
     {

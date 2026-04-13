@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../../../Api/axiosInstance'
+import { IoMdArrowForward } from 'react-icons/io'
 
 const OurServices = () => {
   const [services, setServices] = useState([])
@@ -37,6 +38,7 @@ const OurServices = () => {
               </div>
             ))}
           </div>
+          <a href='/services' className='flex justify-center items-center font-inter font-semibold text-[14px] md:text-[16px] text-[#0F4C8A] mt-10'>View All Services<IoMdArrowForward className=' ml-2' size={20} /></a>
         </div>
       </div>
     </section>
