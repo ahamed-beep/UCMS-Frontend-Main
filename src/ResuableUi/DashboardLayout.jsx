@@ -30,11 +30,8 @@ export default function DashboardLayout({ menuItems, pages, user, onLogout }) {
         >
           <div className="flex h-[68px] items-center justify-between border-b border-[#e2e8f0] px-6">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1f5a99] text-white">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-                  <path d="M3 8.5 12 4l9 4.5L12 13 3 8.5Z" />
-                  <path d="M7 10.5V14c0 1.3 2.2 2.5 5 2.5s5-1.2 5-2.5v-3.5" />
-                </svg>
+              <div className="">
+                <img src="/Images/Logo.webp" className="h-9 w-9"/>
               </div>
               <div>
                 <div className="text-[14px] font-bold leading-none text-[#0f172a]">Upskills</div>
