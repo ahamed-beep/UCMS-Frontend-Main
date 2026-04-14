@@ -39,8 +39,8 @@ const EditModal = ({ user, onClose, onSave }) => {
 
     setLoading(true);
     try {
-      await axiosInstance.patch(`/admin/users/${user._id}`, payload);
-      onSave(user._id, { firstName: form.firstName, lastName: form.lastName, emailId: form.emailId });
+      await axiosInstance.patch(`/admin/users/${user.id}`, payload);
+      onSave(user.id , { firstName: form.firstName, lastName: form.lastName, emailId: form.emailId });
       onClose();
     } catch (err) {
       setError(err?.response?.data?.message || "Failed to update. Try again.");

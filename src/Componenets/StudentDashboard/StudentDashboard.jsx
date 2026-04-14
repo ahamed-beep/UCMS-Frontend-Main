@@ -2,20 +2,27 @@ import React from "react";
 import { useLogout } from "../../Hooks/useLogout";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
+import Dashboardsection from "./pages/Dashboardsection";
+import CoursesSection from "./pages/CoursesSection";
 
 
 const DashboardPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Welcome Back, John!</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Here's what's happening with your applications and classes</p>
-    {/* apna dashboard content yahan */}
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Welcome Back, John!</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Here's what's happening with your applications and classes</p>
+    </div>
+    <Dashboardsection />
   </div>
 );
 
 const MyCoursesPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">My Courses</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Access your enrolled courses and learning materials</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">My Courses</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Access your enrolled courses and learning materials</p>
+    </div>
+    <CoursesSection/>
   </div>
 );
 
