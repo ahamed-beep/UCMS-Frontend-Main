@@ -2,26 +2,26 @@ import React from "react";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
 import { useLogout } from "../../Hooks/useLogout";
+import AdminUserManagement from "./Pages/Adminusermanagement/Adminusermanagement";
+import ManageServices from "./Pages/ServiceManagement/ManageServices";
 
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Admin Overview</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Manage the entire platform from here</p>
+   <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Admin Overview</h1>
+    <p className="mt-2 text-[16px] text-[#64748b]">Manage the entire platform from here</p> 
   </div>
 );
 
 const UsersPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a]">Users</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Manage all registered users</p>
+   <AdminUserManagement/> 
   </div>
 );
 
 const ReportsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a]">Reports</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">View platform analytics and reports</p>
+ <ManageServices/>
   </div>
 );
 
