@@ -86,8 +86,8 @@ const ServiceDetail = ({ service }) => (
 
           <Link
             to="/Checkout"
-            state={{
-              servicePageId: service._id,
+           state={{
+  servicePageId: service.id, 
               title: service.title,
               tags: service.highlightPoints,
               price: service.price,
@@ -188,11 +188,11 @@ const ServicesPage = () => {
           {!loading && !error && (
             <div className="flex flex-col gap-3.5">
               {services.map((s) => {
-                const isOpen = expandedId === s._id;
+               const isOpen = expandedId === s.id; 
                 return (
                   <div
-                    key={s._id}
-                    ref={(el) => (cardRefs.current[s._id] = el)}
+              key={s.id}
+                  ref={(el) => (cardRefs.current[s.id] = el)}
                     className={`bg-white md:rounded-xl overflow-hidden transition-colors ${
                       isOpen
                         ? "border-[1.5px] border-[#F3F4F6]"
@@ -226,7 +226,7 @@ const ServicesPage = () => {
                             ))}
                           </div>
                           <button
-                            onClick={() => toggle(s._id)}
+                          onClick={() => toggle(s.id)}
                             className="bg-transparent border-none text-[#0F4C8A] font-inter text-[13.5px] font-semibold cursor-pointer p-0 flex items-center gap-1"
                           >
                             Learn More{" "}
