@@ -13,9 +13,9 @@ const OurServices = () => {
       .catch(() => {})
   }, [])
 
-  const handleServiceClick = (serviceId) => {
-    navigate(`/services?open=${serviceId}`)
-  }
+  const handleServiceClick = (service) => {
+  navigate(`/services?open=${service.id}`) 
+}
 
   return (
     <section>
@@ -27,7 +27,7 @@ const OurServices = () => {
             {services.map((service) => (
               <div
                 key={service._id}
-                onClick={() => handleServiceClick(service._id)}
+             onClick={() => handleServiceClick(service)}
                 className='flex flex-col gap-2 p-5 border border-[0.8px] border-[#F3F4F6] shadow-xl rounded-[14px] transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'
               >
                 <div className='flex justify-center items-center w-[48px] h-[48px] rounded-[10px] bg-[#DBEAFE]'>

@@ -32,7 +32,7 @@ const Navbar = () => {
                                 <Link to="/" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
                                 <Link to="/" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
                                 <Link to="/" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
-                                <Link to="/" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
+                                <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
                             </nav>
 
                             <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">

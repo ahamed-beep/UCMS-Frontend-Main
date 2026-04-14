@@ -23,22 +23,23 @@ const ManageUsers = () => {
     }
   };
 
-  const handleToggle = async (user) => {
-    setTogglingId(user._id);
-    try {
-      await axiosInstance.patch(`/admin/users/${user._id}/status`);
-      setUsers((prev) =>
-        prev.map((u) => (u._id === user._id ? { ...u, isDisabled: !u.isDisabled } : u))
-      );
-    } catch {
-    } finally {
-      setTogglingId(null);
-    }
-  };
+ const handleToggle = async (user) => {
+  const userId = user.id || user._id;  
+  setTogglingId(userId);
+  try {
+    await axiosInstance.patch(`/admin/users/${userId}/status`);
+    setUsers((prev) =>
+      prev.map((u) => ((u.id || u._id) === userId ? { ...u, isDisabled: !u.isDisabled } : u))
+    );
+  } catch {
+  } finally {
+    setTogglingId(null);
+  }
+};
 
-  const handleSaveEdit = (id, updatedFields) => {
-    setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, ...updatedFields } : u)));
-  };
+ const handleSaveEdit = (id, updatedFields) => {
+  setUsers((prev) => prev.map((u) => ((u.id || u._id) === id ? { ...u, ...updatedFields } : u)));
+}
 
   const initials = (u) =>
     `${u.firstName?.[0] || ""}${u.lastName?.[0] || ""}`.toUpperCase();
