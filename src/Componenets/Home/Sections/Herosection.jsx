@@ -43,7 +43,7 @@ const Herosection = () => {
             <div className='w-full flex-shrink-0'
               style={{ background: slide.bg }}>
               <div key={index} className='flex flex-col justify-center items-center md:flex-row'>
-                <div className='w-full flex flex-col gap-2 sm:gap-3 lg:gap-6 md:w-[50%] px-10 py-7 md:px-8 md:py-10 lg:px-15 lg:py-10'>
+                <div className='w-full flex flex-col gap-2 sm:gap-3 lg:gap-6 md:w-[50%] px-8 py-5 md:px-10 md:py-7 lg:px-15 lg:py-10'>
                   <h1 className='font-libre font-medium text-[40px] md:text-[55px] leading-[50px] lg:leading-[75px] text-white tracking-[3px]'>{slide.heading.split(" ").slice(0, 3).join(" ")} <span className='font-praise text-[40px] md:text-[54px] lg:text-[64px] text-[#FF6B35]'>{slide.heading.split(" ").slice(3, 5).join(" ")}</span> Starts Here</h1>
                   <p className='font-arimo font-medium text-[15px] md:text-[18px] md:leading-[28px] leading-[20px] text-white'>{slide.sub}</p>
                   <div className='flex gap-3 mt-2'>
