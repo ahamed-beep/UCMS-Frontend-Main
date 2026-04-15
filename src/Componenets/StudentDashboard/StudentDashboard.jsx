@@ -4,6 +4,7 @@ import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
 import Dashboardsection from "./pages/Dashboardsection";
 import CoursesSection from "./pages/CoursesSection";
+import AssignmentSection from "./pages/AssignmentSection";
 
 
 const DashboardPage = () => (
@@ -22,15 +23,19 @@ const MyCoursesPage = () => (
       <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">My Courses</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Access your enrolled courses and learning materials</p>
     </div>
-    <CoursesSection/>
+    <CoursesSection />
   </div>
 );
 
 const AssignmentsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Assignments</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload assignments and track submission status</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Assignments</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload assignments and track submission status</p>
+    </div>
+    <AssignmentSection/>
   </div>
+
 );
 
 const QuizzesPage = () => (
