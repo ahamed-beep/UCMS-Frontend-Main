@@ -101,10 +101,10 @@ const ServiceDetail = ({ service }) => (
           </button>
         </div>
       </div>
-
-      <button className="w-full py-3.5 rounded-xl border-none bg-[#FF6B35] text-[#FFFFFF] font-inter text-[15px] font-bold cursor-pointer mt-6">
-        Book Consultation
-      </button>
+<Link to="/consultation" className="w-full py-3.5 rounded-xl border-none bg-[#FF6B35] text-[#FFFFFF] font-inter text-[15px] font-bold cursor-pointer mt-6 flex items-center justify-center gap-2">
+        Book Free Consultation <ArrowRight size={18} />
+      </Link>
+    
     </div>
   </div>
 );

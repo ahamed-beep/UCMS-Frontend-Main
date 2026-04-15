@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import CreateService from "./CreateService";
 import EditService from "./EditService";
-import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
+import axiosInstance from "../../../../Api/axiosInstance";
 
 const ManageServices = () => {
   const [tab, setTab] = useState("list");

@@ -15,11 +15,11 @@ const AdminTable = ({ columns, rows, loading, emptyText = "No data found." }) =>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse min-w-[600px]" style={{ tableLayout: "fixed" }}>
           <thead>
-            <tr className="bg-[#f8fafc]">
+            <tr className="bg-[#f8fafc] ">
               {columns.map((col) => (
                 <th
                   key={col.key}
-                  className="text-left text-xs font-medium text-[#64748b] px-4 py-3 whitespace-nowrap"
+                  className="text-left  text-xs font-medium text-[#64748b] px-4 py-3 whitespace-nowrap"
                   style={{ width: col.width }}
                 >
                   {col.label}

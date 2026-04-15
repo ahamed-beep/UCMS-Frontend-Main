@@ -53,10 +53,8 @@ const Herosection = () => {
     >
       <div className='flex flex-col justify-center items-center md:flex-row'>
 
-        {/* Text Side */}
         <div className='w-full flex flex-col gap-2 sm:gap-3 lg:gap-6 md:w-[50%] px-10 py-7 md:px-8 md:py-10 lg:px-15 lg:py-10'>
           
-          {/* Sirf yeh dono fade honge */}
           <h1
             className='font-libre font-medium text-[40px] md:text-[55px] leading-[50px] lg:leading-[75px] text-white tracking-[3px]'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
@@ -75,7 +73,6 @@ const Herosection = () => {
             {slide.sub}
           </p>
 
-          {/* Yeh fixed rehte hain — fade nahi honge */}
           <div className='flex gap-3 mt-2'>
             <button className='font-arimo text-[14px] md:text-[16px] bg-[#FF6B35] px-3 py-2 md:px-5 md:py-4 text-white rounded-[10px]'>Apply Now</button>
             <button className='font-arimo text-[14px] md:text-[16px] text-[#FF6B35] px-3 py-2 md:px-5 md:py-4 border border-[#FF6B35] rounded-[10px]'>Free Consultation</button>
@@ -91,7 +88,6 @@ const Herosection = () => {
           </div>
         </div>
 
-        {/* Image — yeh bhi fade hogi */}
         <div className='w-full md:w-[50%] sm:px-10 sm:py-7 px-0 py-0 lg:px-15 lg:py-10'>
           <img
             src={slide.img}
@@ -103,7 +99,6 @@ const Herosection = () => {
 
       </div>
 
-      {/* Dots */}
       <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2">
         {slides.map((_, i) => (
           <button
