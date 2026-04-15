@@ -13,6 +13,7 @@ import ServicesPage from './Componenets/Services/ServicePage';
 import Checkout from './Componenets/Checkout/CheckoutPage';
 import Contact from './Componenets/Contact/Contact';
 import GalleryPage from './Componenets/Gallery/GalleryPage';
+import Booking from './Componenets/ConsultationPage/ConsultationPage';
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/consultation" element={<Booking />} />
+
 
 
 
