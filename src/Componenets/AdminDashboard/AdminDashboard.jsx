@@ -5,6 +5,7 @@ import { useLogout } from "../../Hooks/useLogout";
 import AdminUserManagement from "./Pages/Adminusermanagement/Adminusermanagement";
 import ManageServices from "./Pages/ServiceManagement/ManageServices";
 import ContactMessages from "./Pages/MessageCenter/MessageCenter";
+import GalleryManagePage from "./Pages/AdminGalleryPage/GalleryManagePage";
 
 
 const OverviewPage = () => (
@@ -28,8 +29,7 @@ const ServicesPage = () => (
 
 const AnalyticsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Analytics</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Platform ki performance yahan dekhein</p>
+   <GalleryManagePage/>
   </div>
 );
 
