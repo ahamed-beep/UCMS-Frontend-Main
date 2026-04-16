@@ -31,9 +31,9 @@ const Dashboardpage = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-5">
                 {/* Applications */}
-                <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm">
+                <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm pb-5">
                     <div className="mx-5 space-y-4">
-                        <h2 className="text-lg font-semibold border-b-[0.89px] py-5 ps-5 border-[#E5E7EB] -mx-5">Recent Applications</h2>
+                        <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] border-b-[0.89px] py-5 ps-5 border-[#E5E7EB] -mx-5">Recent Applications</h2>
 
                         {[
                             { name: "University of Manchester", status: "In Progress", color: "bg-blue-100 text-blue-600" },
@@ -56,7 +56,7 @@ const Dashboardpage = () => {
                 {/* Classes */}
                 <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm">
                     <div className="mx-5 space-y-4">
-                        <h2 className="text-lg font-semibold border-b-[0.89px] py-5 ps-5 border-[#E5E7EB] -mx-5">Upcoming Classes</h2>
+                        <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]  border-b-[0.89px] py-5 ps-5 border-[#E5E7EB] -mx-5">Upcoming Classes</h2>
 
                         {[
                             { title: "IELTS Speaking Practice", teacher: "Dr. Sarah Johnson", time: "Tomorrow, 2:00 PM", duration: "2 hours" },
