@@ -14,6 +14,10 @@ import Checkout from './Componenets/Checkout/CheckoutPage';
 import Contact from './Componenets/Contact/Contact';
 import GalleryPage from './Componenets/Gallery/GalleryPage';
 import Booking from './Componenets/ConsultationPage/ConsultationPage';
+import PaymentSuccess from './Componenets/Payment/PaymentSuccess';
+import PaymentCancelled from './Componenets/Payment/PaymentCancelled';
+import PaymentFailed from './Componenets/Payment/PaymentFailed';
+import Index from './Componenets/FacultyPage/FacultyPage';
 
 const App = () => {
   return (
@@ -29,6 +33,12 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/consultation" element={<Booking />} />
+        <Route path="/career" element={<Index />} />
+
+
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/payment-failed" element={<PaymentFailed />} />
+        <Route path="/payment-cancelled" element={<PaymentCancelled   />} /> 
 
 
 
