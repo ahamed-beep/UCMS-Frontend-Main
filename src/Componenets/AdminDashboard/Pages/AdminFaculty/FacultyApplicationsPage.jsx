@@ -42,14 +42,20 @@ const fetchApplications = async () => {
   setLoading(true);
   try {
     const res = await axiosInstance.get("/faculty-applications");
-    const applicationsData = res.data?.data?.data ?? [];
+    
+    // Log the full response to confirm actual shape
+    console.log("Full response:", res.data);
+    
+    // Adjust this based on what you see in the log above
+    const applicationsData = res.data?.data?.data    // if double-wrapped
+      ?? res.data?.data                              // if single-wrapped
+      ?? [];
 
     const formattedData = applicationsData.map(app => ({
       ...app,
-      _id: app.id, // backend sends `id`, so mirror it to `_id` for delete/status handlers
+      _id: app.id ?? app._id,
     }));
 
-    console.log("Applications:", formattedData);
     setApplications(formattedData);
   } catch (error) {
     console.error("Failed to load applications:", error);
@@ -132,8 +138,8 @@ const handleDelete = async () => {
         <div className="relative">
           <select
             value={row.status}
-            disabled={!!statusLoading[row._id]} 
-            onChange={(e) => handleStatusChange(row.id, e.target.value)}
+        disabled={!!statusLoading[row.id]}   
+        onChange={(e) => handleStatusChange(row.id, e.target.value)}
             className="appearance-none text-xs font-semibold rounded-full pl-3 pr-7 py-1 border-0 cursor-pointer focus:ring-2 focus:ring-blue-200 focus:outline-none disabled:opacity-60"
             style={{
               background: STATUS_STYLES[row.status]?.bg ?? "#f1f5f9",
@@ -146,7 +152,7 @@ const handleDelete = async () => {
               </option>
             ))}
           </select>
-          {statusLoading[row.id] && (
+         {statusLoading[row.id]  && (
             <span className="absolute right-2 top-1/2 -translate-y-1/2">
               <svg className="animate-spin w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
@@ -240,7 +246,7 @@ const handleDelete = async () => {
 
       <AdminTable
         columns={columns}
-        rows={applications.map((a) => ({ ...a, _key: a.id }))}
+    rows={applications.map((a) => ({ ...a, _key: a.id }))}
         loading={loading}
         emptyText="No faculty applications found."
       />
