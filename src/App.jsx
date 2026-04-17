@@ -17,7 +17,10 @@ import Booking from './Componenets/ConsultationPage/ConsultationPage';
 import PaymentSuccess from './Componenets/Payment/PaymentSuccess';
 import PaymentCancelled from './Componenets/Payment/PaymentCancelled';
 import PaymentFailed from './Componenets/Payment/PaymentFailed';
-import Index from './Componenets/FacultyPage/FacultyPage';
+import FacultyPage from './Componenets/FacultyPage/FacultyPage';
+import Index from './Componenets/Event&Annoucementpage/Event&Annoucementpage';
+import Register from './Componenets/Event&Annoucementpage/EventRegisterFrom';
+import Confirmation from './Componenets/Event&Annoucementpage/EventConfirmation';
 
 const App = () => {
   return (
@@ -33,7 +36,13 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/consultation" element={<Booking />} />
-        <Route path="/career" element={<Index />} />
+        <Route path="/career" element={<FacultyPage />} />
+        <Route path="/event&announcements" element={<Index />} />
+        <Route path="/event/Register" element={<Register />} />
+        <Route path="/event/confirmation" element={<Confirmation />} />
+
+
+
 
 
         <Route path="/payment-success" element={<PaymentSuccess />} />

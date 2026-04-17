@@ -17,9 +17,9 @@ const Navbar = () => {
 
                 <div>
                     <div className="mx-auto px-6 md:px-8 flex items-center justify-between py-3">
-
+<Link to="/">
                         <img src="/Images/Logo.webp" className="w-[130px] md:w-[145px]" alt="UCMS Logo" />
-
+</Link>
                         <div className="hidden md:flex items-center gap-[15px] lg:gap-[10px] text-sm text-gray-600">
 
                             <nav className="hidden md:flex justify-center items-center font-medium  font-inter text-sm leading-[20px] text-[#0F4C8A] gap-x-5 xl:gap-[30px] flex-wrap">
@@ -31,7 +31,7 @@ const Navbar = () => {
                                 <Link to="/" onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</Link>
                                 <Link to="/" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
                                 <Link to="/gallery" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
-                                <Link to="/" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
+                                <Link to="/event&announcements" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
                                 <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
                             </nav>
 
