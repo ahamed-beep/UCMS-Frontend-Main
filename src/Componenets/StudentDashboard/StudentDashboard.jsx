@@ -7,6 +7,8 @@ import CoursesSection from "./pages/CoursesSection";
 import AssignmentSection from "./pages/AssignmentSection";
 import QuizzesSection from "./pages/QuizzesSection";
 import ProgressSection from "./pages/ProgressSection";
+import ApplicationSection from "./pages/ApplicationSection";
+import DocumnetSection from "./pages/DocumentSection";
 
 
 const DashboardPage = () => (
@@ -56,21 +58,27 @@ const ProgressPage = () => (
       <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Progress Tracking</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Monitor your learning progress</p>
     </div>
-    <ProgressSection/>
+    <ProgressSection />
   </div>
 );
 
 const ApplicationsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Application Status</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Track your university applications and visa processing</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Application Status</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Track your university applications and visa processing</p>
+    </div>
+    <ApplicationSection />
   </div>
 );
 
 const DocumentsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Documents</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload and manage your application documents</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Documents</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload and manage your application documents</p>
+    </div>
+    <DocumnetSection/>
   </div>
 );
 

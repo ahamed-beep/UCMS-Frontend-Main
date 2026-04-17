@@ -7,7 +7,8 @@ import ManageServices from "./Pages/ServiceManagement/ManageServices";
 import ContactMessages from "./Pages/MessageCenter/MessageCenter";
 import GalleryManagePage from "./Pages/AdminGalleryPage/GalleryManagePage";
 import ConsultationsPage from "./Pages/AdminConsultation/AdminConsultation";
-
+import AdminPayments from "./Pages/AdminPayments/AdminPayment";
+import FacultyApplicationsPage from "./Pages/AdminFaculty/FacultyApplicationsPage";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -43,6 +44,12 @@ const ContactUsPage = () => (
 const ConsultationsWrapper = () => (
   <div className="px-5 py-7 sm:px-8">
     <ConsultationsPage />
+  </div>
+);
+
+const PaymentsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminPayments />
   </div>
 );
 
@@ -88,6 +95,12 @@ const SettingsPage = () => (
   </div>
 );
 
+const FacultyPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+  <FacultyApplicationsPage/>
+  </div>
+);
+
 const adminMenuItems = [
   {
     label: "Overview",
@@ -112,10 +125,29 @@ const adminMenuItems = [
     ),
   },
   {
+    label: "Faculty",  
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5" />
+        <path d="M2 12l10 5 10-5" />
+      </svg>
+    ),
+  },
+  {
     label: "Consultations",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
         <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+      </svg>
+    ),
+  },
+  {
+    label: "Payments",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+        <line x1="1" y1="10" x2="23" y2="10" />
       </svg>
     ),
   },
@@ -210,7 +242,9 @@ const adminMenuItems = [
 const adminPages = {
   "Overview":      OverviewPage,
   "Users":         UsersPage,
+  "Faculty":       FacultyPage,  
   "Consultations": ConsultationsWrapper,
+  "Payments":      PaymentsPage,
   "Applications":  ApplicationsPage,
   "Services":      ServicesPage,
   "Blog & News":   BlogPage,
