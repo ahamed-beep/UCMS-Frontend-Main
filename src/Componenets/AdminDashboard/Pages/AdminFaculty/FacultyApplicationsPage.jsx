@@ -42,14 +42,20 @@ const fetchApplications = async () => {
   setLoading(true);
   try {
     const res = await axiosInstance.get("/faculty-applications");
-    const applicationsData = res.data?.data?.data ?? [];
+    
+    // Log the full response to confirm actual shape
+    console.log("Full response:", res.data);
+    
+    // Adjust this based on what you see in the log above
+    const applicationsData = res.data?.data?.data    // if double-wrapped
+      ?? res.data?.data                              // if single-wrapped
+      ?? [];
 
     const formattedData = applicationsData.map(app => ({
       ...app,
-      _id: app.id, // backend sends `id`, so mirror it to `_id` for delete/status handlers
+      _id: app.id ?? app._id,
     }));
 
-    console.log("Applications:", formattedData);
     setApplications(formattedData);
   } catch (error) {
     console.error("Failed to load applications:", error);
@@ -97,8 +103,8 @@ const handleDelete = async () => {
       width: "22%",
       render: (row) => (
         <div>
-          <p className="text-sm font-medium text-[#0f172a] truncate">{row.fullName}</p>
-          <p className="text-xs text-[#94a3b8] truncate">{row.email}</p>
+          <p className="text-sm font-medium flex-wrap text-[#0f172a] ">{row.fullName}</p>
+          <p className="text-xs flex-wrap wrap-break-word text-[#94a3b8] ">{row.email}</p>
         </div>
       ),
     },
@@ -108,8 +114,8 @@ const handleDelete = async () => {
       width: "22%",
       render: (row) => (
         <div>
-          <p className="text-sm text-[#334155] truncate">{row.currentJobPosition}</p>
-          <p className="text-xs text-[#94a3b8] truncate">{row.institutionAffiliation}</p>
+          <p className="text-sm text-[#334155] ">{row.currentJobPosition}</p>
+          <p className="text-xs text-[#94a3b8] ">{row.institutionAffiliation}</p>
         </div>
       ),
     },
@@ -119,7 +125,7 @@ const handleDelete = async () => {
       width: "15%",
       render: (row) => (
         <div>
-          <p className="text-sm text-[#334155] truncate">{row.highestQualification}</p>
+          <p className="text-sm text-[#334155] ">{row.highestQualification}</p>
           <p className="text-xs text-[#94a3b8]">{row.yearsOfExperience} yrs exp</p>
         </div>
       ),
@@ -132,9 +138,9 @@ const handleDelete = async () => {
         <div className="relative">
           <select
             value={row.status}
-            disabled={!!statusLoading[row._id]} 
-            onChange={(e) => handleStatusChange(row.id, e.target.value)}
-            className="appearance-none text-xs font-semibold rounded-full pl-3 pr-7 py-1 border-0 cursor-pointer focus:ring-2 focus:ring-blue-200 focus:outline-none disabled:opacity-60"
+        disabled={!!statusLoading[row.id]}   
+        onChange={(e) => handleStatusChange(row.id, e.target.value)}
+            className="appearance-none  flex text-xs font-semibold rounded-full pl-3  py-1 border-0 cursor-pointer focus:ring-2 focus:ring-blue-200 focus:outline-none disabled:opacity-60"
             style={{
               background: STATUS_STYLES[row.status]?.bg ?? "#f1f5f9",
               color: STATUS_STYLES[row.status]?.color ?? "#475569",
@@ -146,7 +152,7 @@ const handleDelete = async () => {
               </option>
             ))}
           </select>
-          {statusLoading[row.id] && (
+         {statusLoading[row.id]  && (
             <span className="absolute right-2 top-1/2 -translate-y-1/2">
               <svg className="animate-spin w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
@@ -215,20 +221,22 @@ const handleDelete = async () => {
         </div>
       )}
 
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold text-[#0f172a]">Faculty Applications</h1>
+      <div className="mb-6 flex flex-col md:flex-row items-start justify-between">
+        <div >
+          <h1 className="text-xl whitespace-nowrap md:mr-4 font-semibold text-[#0f172a]">Faculty Applications</h1>
           <p className="text-sm text-[#94a3b8] mt-0.5">
             {applications.length} total application{applications.length !== 1 ? "s" : ""}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div>
+           
+        <div className="flex flex-col w-full md:mt-0 mt-5 md:flex-row gap-2">
           {STATUS_OPTIONS.map((s) => {
             const count = applications.filter((a) => a.status === s).length;
             return (
               <div
                 key={s}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium"
+                className="px-3 py-3 rounded-lg text-xs font-medium"
                 style={{ background: STATUS_STYLES[s]?.bg, color: STATUS_STYLES[s]?.color }}
               >
                 {STATUS_STYLES[s]?.label}: {count}
@@ -236,11 +244,12 @@ const handleDelete = async () => {
             );
           })}
         </div>
+         </div>
       </div>
 
       <AdminTable
         columns={columns}
-        rows={applications.map((a) => ({ ...a, _key: a.id }))}
+    rows={applications.map((a) => ({ ...a, _key: a.id }))}
         loading={loading}
         emptyText="No faculty applications found."
       />

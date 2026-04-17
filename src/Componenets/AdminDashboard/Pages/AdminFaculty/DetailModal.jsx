@@ -70,7 +70,7 @@ const DetailModal = ({ open, application, onClose }) => {
         </div>
 
         <div className="overflow-y-auto px-6 py-4 space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 wrap-break-word gap-4">
             {fields.map((f) => (
               <div key={f.label}>
                 <p className="text-xs font-medium text-[#94a3b8] mb-0.5">{f.label}</p>
