@@ -61,26 +61,38 @@ const Confirmation = () => {
           </div>
         </div>
 
-        <div className="p-6">
-          <div className="bg-[#EFF6FF] rounded-lg p-5">
+        <div className="md:p-6">
+          <div className="bg-[#EFF6FF]  rounded-lg p-5">
             <div className="font-semibold text-[#101828] font-inter mb-3">What Happens Next?</div>
             <ul className="space-y-2 text-sm text-[#364153] font-inter">
-              <li className="flex items-start gap-1.5">
-              <CircleCheckBig className=" text-[#00A63E] w-5  h-5" />
+                <div className="flex gap-1" >
+
+                   <CircleCheckBig className="  hidden md:block  text-[#00A63E] w-5  h-5" />
+              <li className="flex flex-col md:flex-row items-start gap-1.5">
+           
                 You'll receive a confirmation email at <span className="font-semibold font-inter ml-1">{attendee.email}</span> within the next few minutes
               </li>
+                </div>
+                <div className="flex  gap-1" >
+
+<CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
               <li className="flex items-start gap-1.5">
-              <CircleCheckBig className=" text-[#00A63E] w-5  h-5" />
+              
                 Event details, location map, and any preparation materials will be included
               </li>
-              <li className="flex items-start gap-1.5">
-                <CircleCheckBig className=" text-[#00A63E] w-5  h-5" />
+                </div>
+              <li className="flex md:flex-row items-start gap-1.5">
+                <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
                 You'll receive a reminder 24 hours before the event
               </li>
-              <li className="flex items-start gap-1.5">
-             <CircleCheckBig className=" text-[#00A63E] w-5  h-5" />
+              <div className=" flex  gap-1" >
+
+                  <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
+              <li className="flex md:flex-row  flex-col items-start gap-1.5">
+         
                 If you have questions, our team will contact you at <span className="font-semibold font-inter ml-1">{attendee.phone}</span>
               </li>
+              </div>
             </ul>
           </div>
 
