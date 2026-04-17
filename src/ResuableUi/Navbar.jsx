@@ -20,10 +20,10 @@ const Navbar = () => {
 
                         <img src="/Images/Logo.webp" className="w-[130px] md:w-[145px]" alt="UCMS Logo" />
 
-                        <div className="hidden md:flex items-center gap-[15px] lg:gap-[30px] text-sm text-gray-600">
+                        <div className="hidden md:flex items-center gap-[15px] lg:gap-[10px] text-sm text-gray-600">
 
                             <nav className="hidden md:flex justify-center items-center font-medium  font-inter text-sm leading-[20px] text-[#0F4C8A] gap-x-5 xl:gap-[30px] flex-wrap">
-                                <Link to="/" className="hover:text-gray-800">Home</Link>
+                                <Link to="/career" className="hover:text-gray-800 cursor-pointer">Career</Link>
                                 <Link to="/" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
                                 <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
                                 <Link to="/" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
@@ -35,7 +35,7 @@ const Navbar = () => {
                                 <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
                             </nav>
 
-                            <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[18px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">
+                            <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[15px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">
                                 Student Portal
                             </Link>
 
@@ -69,8 +69,8 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                <nav className="flex flex-col gap-3 px-4 py-6 font-medium  font-inter text-sm leading-[20px] text-white">
-                    <Link to="/" className="text-center hover:text-gray-800 cursor-pointer">Home</Link>
+                <nav className="flex flex-col gap-3= px-4 py-6 font-medium  font-inter text-sm leading-[20px] text-white">
+                    <Link to="/career" onClick={() => setSidebarOpen(false)} className="text-center hover:text-gray-800 cursor-pointer">Career</Link>
                     <button onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</button>
                     <button onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</button>
                     <button onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</button>
