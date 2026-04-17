@@ -47,11 +47,6 @@ const getStatusStyle = (status) => {
 const AssignmentSection = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Header */}
-      <h1 className="text-2xl font-bold text-gray-800">Assignments</h1>
-      <p className="text-gray-500 mb-6">
-        Upload assignments and track submission status
-      </p>
 
       {/* Upload Section */}
       <div className="bg-white rounded-xl shadow p-6 mb-6">
