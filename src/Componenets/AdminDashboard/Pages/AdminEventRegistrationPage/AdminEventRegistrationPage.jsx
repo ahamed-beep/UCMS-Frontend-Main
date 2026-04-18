@@ -97,7 +97,7 @@ const AdminRegistrationsPage = () => {
   ];
 
   return (
-    <div className="p-6">
+    <div className="md:p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-xl font-bold text-[#0f172a]">Registrations</h1>
