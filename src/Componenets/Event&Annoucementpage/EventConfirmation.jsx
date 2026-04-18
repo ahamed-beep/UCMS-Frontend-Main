@@ -46,7 +46,7 @@ const Confirmation = () => {
               <div className="text-xs text-[#4A5565] font-inter">Name</div>
               <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.name}</div>
             </div>
-            <div>
+            <div  >
               <div className="text-xs text-[#4A5565] font-inter">Email</div>
               <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.email}</div>
             </div>
@@ -65,12 +65,12 @@ const Confirmation = () => {
           <div className="bg-[#EFF6FF]  rounded-lg p-5">
             <div className="font-semibold text-[#101828] font-inter mb-3">What Happens Next?</div>
             <ul className="space-y-2 text-sm text-[#364153] font-inter">
-                <div className="flex gap-1" >
+                <div className="flex gap-1  " >
 
                    <CircleCheckBig className="  hidden md:block  text-[#00A63E] w-5  h-5" />
-              <li className="flex flex-col md:flex-row items-start gap-1.5">
+              <li className="flex flex-col  md:flex-row items-start gap-1.5">
            
-                You'll receive a confirmation email at <span className="font-semibold font-inter ml-1">{attendee.email}</span> within the next few minutes
+                 You'll receive a confirmation email at {attendee.email} within the next few minutes
               </li>
                 </div>
                 <div className="flex  gap-1" >
@@ -90,7 +90,7 @@ const Confirmation = () => {
                   <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
               <li className="flex md:flex-row  flex-col items-start gap-1.5">
          
-                If you have questions, our team will contact you at <span className="font-semibold font-inter ml-1">{attendee.phone}</span>
+                If you have questions, our team will contact you at {attendee.phone}
               </li>
               </div>
             </ul>
