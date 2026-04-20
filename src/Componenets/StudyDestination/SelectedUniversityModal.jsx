@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { DollarSign, Calendar, GraduationCap, X, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const SelectedUniversityModal = ({ selected, setSelected }) => {
 
@@ -61,9 +62,12 @@ const SelectedUniversityModal = ({ selected, setSelected }) => {
                   </div>
                 </div>
               </div>
+              <Link to="/consultation" >
+
                <button className="w-full mt-3 bg-[#FF6B35] hover:bg-orange-600 transition-colors text-[#FFFFFF] font-inter text-sm font-semibold py-3 rounded-lg">
               Book Consultation
             </button>
+              </Link>
             </div>
            
           </div>

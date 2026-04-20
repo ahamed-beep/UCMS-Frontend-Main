@@ -4,27 +4,10 @@ import Navbar from "../../ResuableUi/Navbar";
 import Head from "../../ResuableUi/Head";
 import Footer from "../../ResuableUi/Footer";
 import axiosInstance from "../../Api/axiosInstance";
+import { afterItems, beforeItems, stats } from "./Constant/SuccessStoriesConstant";
+import { Link } from "react-router-dom";
 
-const beforeItems = [
-  "Confused about university options",
-  "No guidance on application process",
-  "Worried about visa rejection",
-  "Limited IELTS preparation",
-];
 
-const afterItems = [
-  "Clear university and program selection",
-  "Smooth application with expert guidance",
-  "Visa approved on first attempt",
-  "IELTS score improved by 1.5 bands",
-];
-
-const stats = [
-  { value: "5000+", label: "Students Placed" },
-  { value: "95%", label: "Visa Success" },
-  { value: "500+", label: "Universities" },
-  { value: "50+", label: "Countries" },
-];
 
 const fmt = (s) => {
   if (!s || isNaN(s)) return "0:00";
@@ -195,7 +178,7 @@ const TestimonialCard = ({ t }) => (
   </div>
 );
 
-const Index = () => {
+const SuccessStories = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [videoTestimonials, setVideoTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -342,9 +325,9 @@ const Index = () => {
             Join thousands of successful students who achieved their dreams with our guidance
           </p>
           <div className="text-center">
-            <button className="bg-[#FFFFFF] p-3 mt-2 mb-15 rounded-lg font-semibold text-[#FF6B35] font-inter text-xs">
+            <Link to="/contact" className="bg-[#FFFFFF]  p-3 mt-2 mb-15 rounded-lg font-semibold text-[#FF6B35] font-inter text-xs">
               Start Your Journey Today
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -354,4 +337,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default SuccessStories;

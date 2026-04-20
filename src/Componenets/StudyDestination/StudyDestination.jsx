@@ -5,6 +5,7 @@ import Footer from "../../ResuableUi/Footer";
 import Head from "../../ResuableUi/Head";
 import SelectedUniversityModal from "./SelectedUniversityModal";
 import axiosInstance from "../../Api/axiosInstance";
+import { Link } from "react-router-dom";
 
 const StudyDestinationPage = () => {
   const [destinations, setDestinations] = useState([]);
@@ -108,10 +109,10 @@ setDestinations(data);
             <p className="text-[#4A5565] font-inter mb-5">
               Our expert counselors can help you find the perfect match
             </p>
-            <button className="bg-[#FF6B35] flex font-inter text-sm hover:bg-orange-600 transition-colors text-white font-semibold gap-2 px-6 py-3 rounded-lg">
+            <Link to="/consultation" className="bg-[#FF6B35] flex font-inter text-sm hover:bg-orange-600 transition-colors text-white font-semibold gap-2 px-6 py-3 rounded-lg">
               Book Free Consultation
               <ArrowRight className="w-5 h-5" />
-            </button>
+            </Link>
           </div>
         </div>
 

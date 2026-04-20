@@ -22,7 +22,7 @@ import Register from './Componenets/Event&Annoucementpage/EventRegisterFrom';
 import Confirmation from './Componenets/Event&Annoucementpage/EventConfirmation';
 import EventPage from './Componenets/Event&Annoucementpage/Event&Annoucementpage';
 import StudyDestinationPage from './Componenets/StudyDestination/StudyDestination';
-import Index from './Componenets/SuccessStories/SuccessStories';
+import SuccessStories from './Componenets/SuccessStories/SuccessStories';
 
 const App = () => {
   return (
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="/event/Register" element={<Register />} />
         <Route path="/event/confirmation" element={<Confirmation />} />
         <Route path="/studydestination" element={<StudyDestinationPage />} />
-        <Route path="/success/stories" element={<Index />} />
+        <Route path="/success/stories" element={<SuccessStories />} />
 
 
 
