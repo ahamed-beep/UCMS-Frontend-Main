@@ -26,10 +26,10 @@ const Navbar = () => {
                                 <Link to="/career" className="hover:text-gray-800 cursor-pointer">Career</Link>
                                 <Link to="/" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
                                 <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
-                                <Link to="/" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
+                                <Link to="/studydestination" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
                                 <Link to="/" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</Link>
                                 <Link to="/" onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</Link>
-                                <Link to="/" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
+                                <Link to="/success/stories" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
                                 <Link to="/gallery" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
                                 <Link to="/event&announcements" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
                                 <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>

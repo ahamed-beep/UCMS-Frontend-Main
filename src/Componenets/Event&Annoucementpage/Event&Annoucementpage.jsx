@@ -16,7 +16,7 @@ const statusColorMap = {
   "Completed": "bg-blue-100 text-blue-700",
 };
 
-const Index = () => {
+const EventPage = () => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -121,4 +121,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default EventPage;
