@@ -1,35 +1,6 @@
 import React from "react";
-
-const assignments = [
-  {
-    title: "IELTS Writing Task 2 - Essay Submission",
-    course: "IELTS Preparation",
-    date: "3/10/2026",
-    status: "Pending",
-    score: "-",
-  },
-  {
-    title: "PTE Speaking Response Assignment",
-    course: "PTE Writing Masterclass",
-    date: "3/12/2026",
-    status: "Pending",
-    score: "-",
-  },
-  {
-    title: "Reading Comprehension Analysis",
-    course: "IELTS Preparation",
-    date: "3/5/2026",
-    status: "Graded",
-    score: "85%",
-  },
-  {
-    title: "Vocabulary Building Exercise Set 3",
-    course: "English Communication",
-    date: "3/1/2026",
-    status: "Submitted",
-    score: "-",
-  },
-];
+import Table from "./Table";
+import { stats } from "../constants/Constant";
 
 const getStatusStyle = (status) => {
   switch (status) {
@@ -46,112 +17,66 @@ const getStatusStyle = (status) => {
 
 const AssignmentSection = () => {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="py-2 md:py-4 space-y-2 md:space-y-4">
 
       {/* Upload Section */}
-      <div className="bg-white rounded-xl shadow p-6 mb-6">
-        <h2 className="font-semibold text-lg mb-4">Upload Assignment</h2>
+      <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-2">
+        <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] mb-4">Upload Assignment</h2>
 
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-10 text-center">
-          <p className="text-gray-600 mb-2">
+        <div className="flex flex-col justify-center items-center gap-2 md:gap-4 border-[1.78px] border-dashed border-[#D1D5DC] bg-[#F9FAFB] rounded-[10px] p-6 md:p-10 text-center">
+          <img src="/Images/download.webp" alt="download" width={48} height={48} />
+          <p className="font-inter font-medium text-[16px] md:text-[18px] text-[#101828]">
             Drag and drop your assignment here
           </p>
-          <p className="text-sm text-gray-400 mb-4">
+          <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">
             or click to browse from your computer
           </p>
 
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+          <button className="font-inter font-medium text-sm md:text-[16px] bg-[#155DFC] text-white px-5 py-2 rounded-[10px]">
             Choose Files
           </button>
 
-          <p className="text-xs text-gray-400 mt-3">
+          <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">
             Supported formats: PDF, DOC, DOCX, TXT (Max size: 10MB)
           </p>
         </div>
 
-        <input
-          type="text"
-          placeholder="Select Assignment"
-          className="w-full border rounded-lg mt-4 p-2"
-        />
+        <div>
+          <label htmlFor="assignment" className="font-inter font-medium text-[12px] md:text-sm text-[#364153]">
+            Select Assignment
+            <input
+              type="text"
+              className="w-full border-[0.89px] border-[#D1D5DC] rounded-[10px] py-3 px-2 mt-1"
+            />
+          </label>
+        </div>
 
-        <button className="mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg">
+        <button className=" font-inter font-medium text-sm md:text-[16px] bg-[#155DFC] text-white px-5 py-2 rounded-[10px]">
           Submit Assignment
         </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl shadow p-6">
-        <h2 className="font-semibold text-lg mb-4">All Assignments</h2>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="text-gray-500 border-b">
-              <tr>
-                <th className="text-left py-2">Assignment</th>
-                <th className="text-left py-2">Course</th>
-                <th className="text-left py-2">Due Date</th>
-                <th className="text-left py-2">Status</th>
-                <th className="text-left py-2">Score</th>
-                <th className="text-left py-2">Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {assignments.map((item, index) => (
-                <tr key={index} className="border-b">
-                  <td className="py-3">{item.title}</td>
-                  <td>{item.course}</td>
-                  <td>{item.date}</td>
-                  <td>
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs ${getStatusStyle(
-                        item.status
-                      )}`}
-                    >
-                      {item.status}
-                    </span>
-                  </td>
-                  <td>{item.score}</td>
-                  <td className="text-blue-600 cursor-pointer">
-                    {item.status === "Graded"
-                      ? "View Feedback"
-                      : item.status === "Submitted"
-                      ? "View"
-                      : "Upload"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div>
+        <Table />
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-        <div className="bg-orange-50 p-4 rounded-xl flex justify-between items-center">
-          <div>
-            <p className="text-orange-600 text-sm">Pending</p>
-            <h2 className="text-2xl font-bold">2</h2>
+        {stats.map((item, index) => (
+          <div
+            key={index}
+            className={`${item.bg} ${item.border || ""} p-4 md:p-6 rounded-xl flex justify-between items-center`}
+          >
+            <div>
+              <p className={`font-inter font-medium text-[12px] md:text-sm ${item.textColor}`}>
+                {item.label}
+              </p>
+              <h2 className={`font-inter font-bold text-[25px] md:text-[30px] ${item.countColor}`}>
+                {item.count}
+              </h2>
+            </div>
+            <img src={item.icon} alt="icon" width={40} height={40}/>
           </div>
-          <span className="text-orange-500 text-2xl">⏰</span>
-        </div>
-
-        <div className="bg-blue-50 p-4 rounded-xl flex justify-between items-center">
-          <div>
-            <p className="text-blue-600 text-sm">Submitted</p>
-            <h2 className="text-2xl font-bold">1</h2>
-          </div>
-          <span className="text-blue-500 text-2xl">✔️</span>
-        </div>
-
-        <div className="bg-green-50 p-4 rounded-xl flex justify-between items-center">
-          <div>
-            <p className="text-green-600 text-sm">Graded</p>
-            <h2 className="text-2xl font-bold">1</h2>
-          </div>
-          <span className="text-green-500 text-2xl">✅</span>
-        </div>
+        ))}
       </div>
     </div>
   );
