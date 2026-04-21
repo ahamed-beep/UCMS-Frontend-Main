@@ -13,6 +13,10 @@ import AdminEventsPage from "./Pages/AdminEventsPage/AdminEventsPage";
 import AdminRegistrationsPage from "./Pages/AdminEventRegistrationPage/AdminEventRegistrationPage";
 import AdminAdmissionDeadlinePage from "./Pages/AdminAdmissionDeadlinePage/AdminAdmissionDeadlinePage";
 import AdminInquiries from "./Pages/AdminInquiries/AdminInquiries";
+import AdminDestinations from "./Pages/AdminDestination/AdminDestination";
+import AdminVideoTestimonials from "./Pages/AdminVideoTestimonials/AdminVideoTestimonials";
+import AdminTestimonials from "./Pages/AdminStudentTestimonials/AdminTestimonials";
+import BlogsTable from "./Pages/AdminBlog/BlogsTable";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -79,18 +83,27 @@ const InquiriesPage = () => (
     <AdminInquiries />
   </div>
 );
+const DestinationsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminDestinations />
+  </div>
+);
 
 const TestimonialsPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Testimonials</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Student reviews aur feedback manage karein</p>
+    <AdminTestimonials />
+  </div>
+);
+
+const VideoTestimonialsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminVideoTestimonials />
   </div>
 );
 
 const BlogPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Blog & News</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Articles aur announcements publish karein</p>
+    <BlogsTable />
   </div>
 );
 
@@ -238,6 +251,34 @@ const adminMenuItems = [
     </svg>
   ),
 },
+{
+  label: "Destinations",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <circle cx="12" cy="10" r="3" />
+      <path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z" />
+    </svg>
+  ),
+},
+{
+  label: "Testimonials",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <path d="M8 10h.01M12 10h.01M16 10h.01" />
+    </svg>
+  ),
+},
+{
+  label: "Video Testimonials",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <rect x="2" y="7" width="15" height="10" rx="2" ry="2" />
+      <polygon points="22 12 17 7 17 17 22 12" />
+      <circle cx="9.5" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+},
   {
     label: "Blog & News",
     icon: (
@@ -247,15 +288,7 @@ const adminMenuItems = [
       </svg>
     ),
   },
-  {
-    label: "Testimonials",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        <path d="M8 10h.01M12 10h.01M16 10h.01" />
-      </svg>
-    ),
-  },
+
   {
     label: "FAQs",
     icon: (
@@ -317,6 +350,9 @@ const adminPages = {
   "Registrations":        RegistrationsPage,
   "Admission Deadlines":  AdmissionDeadlinePage,
   "Inquiries": InquiriesPage,
+  "Destinations": DestinationsPage,
+  "Testimonials":         TestimonialsPage,
+"Video Testimonials":   VideoTestimonialsPage,
   "Blog & News":          BlogPage,
   "Testimonials":         TestimonialsPage,
   "FAQs":                 FAQsPage,
