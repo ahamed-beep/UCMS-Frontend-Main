@@ -17,7 +17,12 @@ import Booking from './Componenets/ConsultationPage/ConsultationPage';
 import PaymentSuccess from './Componenets/Payment/PaymentSuccess';
 import PaymentCancelled from './Componenets/Payment/PaymentCancelled';
 import PaymentFailed from './Componenets/Payment/PaymentFailed';
-import Index from './Componenets/FacultyPage/FacultyPage';
+import FacultyPage from './Componenets/FacultyPage/FacultyPage';
+import Register from './Componenets/Event&Annoucementpage/EventRegisterFrom';
+import Confirmation from './Componenets/Event&Annoucementpage/EventConfirmation';
+import EventPage from './Componenets/Event&Annoucementpage/Event&Annoucementpage';
+import StudyDestinationPage from './Componenets/StudyDestination/StudyDestination';
+import SuccessStories from './Componenets/SuccessStories/SuccessStories';
 
 const App = () => {
   return (
@@ -33,7 +38,17 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/consultation" element={<Booking />} />
-        <Route path="/career" element={<Index />} />
+        <Route path="/career" element={<FacultyPage />} />
+        <Route path="/event&announcements" element={<EventPage />} />
+        <Route path="/event/Register" element={<Register />} />
+        <Route path="/event/confirmation" element={<Confirmation />} />
+        <Route path="/studydestination" element={<StudyDestinationPage />} />
+        <Route path="/success/stories" element={<SuccessStories />} />
+
+
+
+
+
 
 
         <Route path="/payment-success" element={<PaymentSuccess />} />

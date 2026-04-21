@@ -20,7 +20,7 @@ const INITIAL_FORM = {
   coverLetter: "",
 };
 
-const Index = () => {
+const FacultyPage = () => {
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [cvFile, setCvFile] = useState(null);
   const [fileName, setFileName] = useState("");
@@ -323,4 +323,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default FacultyPage;
