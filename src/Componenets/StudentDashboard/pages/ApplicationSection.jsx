@@ -71,26 +71,25 @@ const ApplicationSection = () => {
   };
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold">Application Status</h1>
+    <div className="py-4 md:py-6 min-h-screen space-y-6">
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white border rounded-xl p-4 text-center">
-          <p className="text-sm text-gray-500">Total</p>
-          <p className="text-xl font-semibold">{stats.total}</p>
+        <div className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm text-start">
+          <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Total Application</p>
+          <p className="font-inter font-bold text-[22px] md:text-[24px] text-[#101828]">{stats.total}</p>
         </div>
-        <div className="bg-white border rounded-xl p-4 text-center">
-          <p className="text-sm text-gray-500">In Progress</p>
-          <p className="text-xl font-semibold">{stats.inProgress}</p>
+        <div className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm text-start">
+          <p className="font-inter font-normal text-[12px] md:text-sm text-[rgb(74,85,101)]">In Progress</p>
+          <p className="font-inter font-bold text-[22px] md:text-[24px] text-[#155DFC]">{stats.inProgress}</p>
         </div>
-        <div className="bg-white border rounded-xl p-4 text-center">
-          <p className="text-sm text-gray-500">Accepted</p>
-          <p className="text-xl font-semibold">{stats.accepted}</p>
+        <div className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm text-start">
+          <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Accepted</p>
+          <p className="font-inter font-bold text-[22px] md:text-[24px] text-[#00A63E]">{stats.accepted}</p>
         </div>
-        <div className="bg-white border rounded-xl p-4 text-center">
+        <div className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm text-start">
           <p className="text-sm text-gray-500">Rejected</p>
-          <p className="text-xl font-semibold">{stats.rejected}</p>
+          <p className="font-inter font-bold text-[22px] md:text-[24px] text-[#E7000B]">{stats.rejected}</p>
         </div>
       </div>
 

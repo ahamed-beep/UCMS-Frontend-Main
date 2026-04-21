@@ -9,6 +9,9 @@ import QuizzesSection from "./pages/QuizzesSection";
 import ProgressSection from "./pages/ProgressSection";
 import ApplicationSection from "./pages/ApplicationSection";
 import DocumnetSection from "./pages/DocumentSection";
+import ClassScheduleSection from "./pages/ClassScheduleSection";
+import SupportSection from "./pages/SupportSection";
+import PurchaseSection from "./pages/PurchaseSection";
 
 
 const DashboardPage = () => (
@@ -78,35 +81,49 @@ const DocumentsPage = () => (
       <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Documents</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload and manage your application documents</p>
     </div>
-    <DocumnetSection/>
+    <DocumnetSection />
   </div>
 );
 
 const AppointmentPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Class Schedule</h1>
+    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Appointment</h1>
     <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">View your IELTS/PTE classes and study materials</p>
   </div>
 );
 
 const ClassSchedulePage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Class Schedule</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">View your IELTS/PTE classes and study materials</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Class Schedule</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">View your IELTS/PTE classes and study materials</p>
+    </div>
+    <ClassScheduleSection />
   </div>
 );
 
 const SupportPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Support & Help</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Get assistance and find answers to common questions</p>
+    <div>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Support & Help</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Get assistance and find answers to common questions</p>
+    </div>
+    <SupportSection />
   </div>
 );
 
 const PurchasesPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
+    <div className="flex justify-between items-center">
+      <div>
+        <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
+        <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
+      </div>
+      <button className="bg-orange-500 text-white px-4 py-2 rounded-lg ">
+        Browse Courses
+      </button>
+    </div>
+    <PurchaseSection />
   </div>
 );
 
