@@ -16,6 +16,7 @@ import AdminInquiries from "./Pages/AdminInquiries/AdminInquiries";
 import AdminDestinations from "./Pages/AdminDestination/AdminDestination";
 import AdminVideoTestimonials from "./Pages/AdminVideoTestimonials/AdminVideoTestimonials";
 import AdminTestimonials from "./Pages/AdminStudentTestimonials/AdminTestimonials";
+import BlogsTable from "./Pages/AdminBlog/BlogsTable";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -102,8 +103,7 @@ const VideoTestimonialsPage = () => (
 
 const BlogPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px]">Blog & News</h1>
-    <p className="mt-2 text-[16px] text-[#64748b]">Articles aur announcements publish karein</p>
+    <BlogsTable />
   </div>
 );
 
