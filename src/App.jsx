@@ -23,7 +23,8 @@ import Confirmation from './Componenets/Event&Annoucementpage/EventConfirmation'
 import EventPage from './Componenets/Event&Annoucementpage/Event&Annoucementpage';
 import StudyDestinationPage from './Componenets/StudyDestination/StudyDestination';
 import SuccessStories from './Componenets/SuccessStories/SuccessStories';
-import Index from './Componenets/Blog/Blog';
+import Blog from './Componenets/Blog/Blog';
+import Index from './Componenets/LearningHub/LearningHub';
 
 const App = () => {
   return (
@@ -45,7 +46,10 @@ const App = () => {
         <Route path="/event/confirmation" element={<Confirmation />} />
         <Route path="/studydestination" element={<StudyDestinationPage />} />
         <Route path="/success/stories" element={<SuccessStories />} />
-        <Route path="/blog" element={<Index />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/learninghub" element={<Index />} />
+
+
 
 
 

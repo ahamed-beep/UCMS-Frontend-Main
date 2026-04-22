@@ -17,7 +17,7 @@ const categories = [
 
 
 
-const Index = () => {
+const Blog = () => {
   const [activeCategory, setActiveCategory] = useState("All Posts");
   const [showMore, setShowMore] = useState(false);
   const [expandedCards, setExpandedCards] = useState({});
@@ -236,4 +236,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Blog;
