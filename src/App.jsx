@@ -24,7 +24,8 @@ import EventPage from './Componenets/Event&Annoucementpage/Event&Annoucementpage
 import StudyDestinationPage from './Componenets/StudyDestination/StudyDestination';
 import SuccessStories from './Componenets/SuccessStories/SuccessStories';
 import Blog from './Componenets/Blog/Blog';
-import Index from './Componenets/LearningHub/LearningHub';
+import LearningHub from './Componenets/LearningHub/LearningHub';
+import Index from './Componenets/LearningHub/QuizzesSection';
 
 const App = () => {
   return (
@@ -47,7 +48,9 @@ const App = () => {
         <Route path="/studydestination" element={<StudyDestinationPage />} />
         <Route path="/success/stories" element={<SuccessStories />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/learninghub" element={<Index />} />
+        <Route path="/learninghub/" element={<LearningHub />} />
+        <Route path="/learninghub/Quiz/:id" element={<Index />} />
+
 
 
 
