@@ -41,7 +41,7 @@ const ProgressSection = () => {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-gray-50 min-h-screen space-y-6 font-sans">
+    <div className="max-w-5xl mx-auto py-4 md:py-6 min-h-screen space-y-6 ">
 
       {/* Top Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -101,7 +101,7 @@ const ProgressSection = () => {
         <div className="space-y-3 pt-3 md:pt-6">
           {recentScores.map((score, idx) => (
             <div key={idx} className="flex items-center justify-between p-3 bg-[#F9FAFB] rounded-[10px] hover:bg-gray-100 transition-colors">
-              <div className="flex flex-col md:flex-row items-center gap-3">
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-3">
                 <span className={`font-inter font-medium text-[10px] md:text-xs px-2 py-1 rounded ${score.bg} ${score.color} uppercase`}>
                   {score.type}
                 </span>
