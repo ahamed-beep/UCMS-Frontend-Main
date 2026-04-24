@@ -25,7 +25,8 @@ import StudyDestinationPage from './Componenets/StudyDestination/StudyDestinatio
 import SuccessStories from './Componenets/SuccessStories/SuccessStories';
 import Blog from './Componenets/Blog/Blog';
 import LearningHub from './Componenets/LearningHub/LearningHub';
-import Index from './Componenets/LearningHub/QuizzesSection';
+import QuizSection from './Componenets/LearningHub/QuizzesSection';
+import CoursePage from './Componenets/StudentDashboard/pages/CourseModulePage/CourseModuleSection';
 
 const App = () => {
   return (
@@ -49,7 +50,9 @@ const App = () => {
         <Route path="/success/stories" element={<SuccessStories />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/learninghub/" element={<LearningHub />} />
-        <Route path="/learninghub/Quiz/:id" element={<Index />} />
+        <Route path="/learninghub/Quiz/:id" element={<QuizSection />} />
+  <Route path="/course/:slug" element={<CoursePage />} />
+
 
 
 

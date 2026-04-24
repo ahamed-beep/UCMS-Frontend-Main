@@ -3,7 +3,7 @@ import { useLogout } from "../../Hooks/useLogout";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
 import Dashboardsection from "./pages/Dashboardsection";
-import CoursesSection from "./pages/CoursesSection";
+import CoursesSection from "./pages/CourseSection/CoursesSection";
 import AssignmentSection from "./pages/AssignmentSection";
 import QuizzesSection from "./pages/QuizzesSection";
 import ProgressSection from "./pages/ProgressSection";
