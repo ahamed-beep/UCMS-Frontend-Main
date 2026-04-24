@@ -26,6 +26,7 @@ import SuccessStories from './Componenets/SuccessStories/SuccessStories';
 import Blog from './Componenets/Blog/Blog';
 import LearningHub from './Componenets/LearningHub/LearningHub';
 import Index from './Componenets/LearningHub/QuizzesSection';
+import About from './Componenets/About/About';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/consultation" element={<Booking />} />
         <Route path="/career" element={<FacultyPage />} />

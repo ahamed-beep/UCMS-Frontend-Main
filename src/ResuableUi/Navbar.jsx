@@ -24,7 +24,7 @@ const Navbar = () => {
 
                             <nav className="hidden md:flex justify-center items-center font-medium  font-inter text-sm leading-[20px] text-[#0F4C8A] gap-x-5 xl:gap-[30px] flex-wrap">
                                 <Link to="/career" className="hover:text-gray-800 cursor-pointer">Career</Link>
-                                <Link to="/" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
+                                <Link to="/about" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
                                 <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
                                 <Link to="/studydestination" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
                                 <Link to="/learninghub" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</Link>
