@@ -27,6 +27,7 @@ import Blog from './Componenets/Blog/Blog';
 import LearningHub from './Componenets/LearningHub/LearningHub';
 import QuizSection from './Componenets/LearningHub/QuizzesSection';
 import CoursePage from './Componenets/StudentDashboard/pages/CourseModulePage/CourseModuleSection';
+import About from './Componenets/About/About';
 
 const App = () => {
   return (
@@ -53,6 +54,8 @@ const App = () => {
         <Route path="/learninghub/" element={<LearningHub />} />
         <Route path="/learninghub/Quiz/:id" element={<QuizSection />} />
   <Route path="/course/:slug" element={<CoursePage />} />
+  <Route path="/about" element={<About />} />
+
 
 
 
