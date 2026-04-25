@@ -6,7 +6,7 @@ import { CircleCheckBig, Flag } from "lucide-react";
 import QuizSubmitted from "./QuizSubmitted";
 import axiosInstance from "../../Api/axiosInstance";
 
-const Index = () => {
+const QuizSection = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -369,4 +369,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default QuizSection;

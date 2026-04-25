@@ -1,48 +1,9 @@
 import React from 'react'
 import { BookOpen, Clock, Download } from 'lucide-react'
+import { courses, exercises, materials } from './CourseConstant';
+import { Link } from 'react-router-dom';
 
-const courses = [
-    {
-        title: "IELTS Preparation - Academic",
-        teacher: "Dr. Sarah Johnson",
-        progress: 65,
-        lectures: "16/24 lectures",
-        time: "Tomorrow, 2:00 PM",
-        status: "In Progress",
-    },
-    {
-        title: "PTE Writing Masterclass",
-        teacher: "Prof. Michael Chen",
-        progress: 40,
-        lectures: "8/20 lectures",
-        time: "March 8, 10:00 AM",
-        status: "In Progress",
-    },
-    {
-        title: "English Communication Skills",
-        teacher: "Emma Williams",
-        progress: 100,
-        lectures: "12/12 lectures",
-        time: "Completed",
-        status: "Completed",
-    },
-]
 
-const materials = [
-    { title: "IELTS Writing Task 1 - Introduction", sub: "45 min", type: "video" },
-    { title: "IELTS Speaking Strategies Guide", sub: "2.4 MB", type: "pdf" },
-    { title: "Sample Essays Collection", sub: "1.8 MB", type: "pdf" },
-    { title: "Listening Practice - Lecture Format", sub: "30 min", type: "video" },
-    { title: "Vocabulary Builder - Academic Words", sub: "950 KB", type: "pdf" },
-    { title: "Grammar Essentials Presentation", sub: "3.2 MB", type: "play" },
-]
-
-const exercises = [
-    { title: "Writing Task 2 - Opinion Essay", sub: "5 questions · 60 min", type: "Start" },
-    { title: "Reading Comprehension - Set A", sub: "10 questions · 30 min", type: "Review" },
-    { title: "Listening Practice Test 1", sub: "15 questions · 40 min", type: "Review" },
-    { title: "Speaking Mock Interview", sub: "8 questions · 15 min", type: "Start" },
-]
 
 const CoursesSection = () => {
     return (
@@ -87,10 +48,12 @@ const CoursesSection = () => {
                                     <Clock size={16} />
                                     <span>{course.time}</span>
                                 </div>
+<Link to={`/course/${course.slug}`}>
 
                                 <button className="font-inter font-normal md:text-sm w-full sm:w-auto not-only:text-[12px] sm:text-sm px-3 py-2 sm:px-4 rounded-lg sm:rounded-[10px] bg-[#FF6B35] hover:bg-orange-600 text-white whitespace-nowrap transition ">
                                     Continue Learning →
                                 </button>
+</Link>
                             </div>
 
                         </div>
