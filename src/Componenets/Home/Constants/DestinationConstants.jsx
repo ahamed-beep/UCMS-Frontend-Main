@@ -1,27 +1,27 @@
 export const countries = [
   {
-    name: "United Kingdom",
-    programs: "500+ Programs",
-    flag: "/Images/flag1.png",
+    title: "United Kingdom",
+    description: "500+ Programs",
+    image: "/Images/flag1.png",
   },
   {
-    name: "Australia",
-    programs: "450+ Programs",
-    flag: "/Images/flag2.png",
+    title: "Australia",
+    description: "450+ Programs",
+    image: "/Images/flag2.png",
   },
   {
-    name: "Canada",
-    programs: "600+ Programs",
-    flag: "/Images/flag3.png",
+    title: "Canada",
+    description: "600+ Programs",
+    image: "/Images/flag3.png",
   },
   {
-    name: "United States",
-    programs: "700+ Programs",
-    flag: "/Images/flag4.png",
+    title: "United States",
+    description: "700+ Programs",
+    image: "/Images/flag4.png",
   },
   {
-    name: "Europe",
-    programs: "300+ Programs",
-    flag: "/Images/flag5.png",
+    title: "Europe",
+    description: "300+ Programs",
+    image: "/Images/flag5.png",
   },
 ];

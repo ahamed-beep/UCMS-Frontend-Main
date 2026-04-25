@@ -1,22 +1,22 @@
 export const upskills = [
   {
-    name: "10+ Years Experience",
-    programs: "Decade of expertise in international education",
-    flag: "/Images/skill1.png",
+    title: "10+ Years Experience",
+    description: "Decade of expertise in international education",
+    image: "/Images/skill1.png",
   },
   {
-    name: "5000+ Success Stories",
-    programs: "Students successfully placed worldwide",
-    flag: "/Images/skill1.png",
+    title: "5000+ Success Stories",
+    description: "Students successfully placed worldwide",
+    image: "/Images/skill1.png",
   },
   {
-    name: "95% Visa Success Rate",
-    programs: "Industry-leading approval rate",
-    flag: "/Images/skill1.png",
+    title: "95% Visa Success Rate",
+    description: "Industry-leading approval rate",
+    image: "/Images/skill1.png",
   },
   {
-    name: "Expert Counselors",
-    programs: "Certified and experienced advisors",
-    flag: "/Images/skill1.png",
+    title: "Expert Counselors",
+    description: "Certified and experienced advisors",
+    image: "/Images/skill1.png",
   }
 ];

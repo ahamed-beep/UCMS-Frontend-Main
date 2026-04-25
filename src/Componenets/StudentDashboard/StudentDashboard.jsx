@@ -114,12 +114,12 @@ const SupportPage = () => (
 
 const PurchasesPage = () => (
   <div className="px-5 py-7 sm:px-8">
-    <div className="flex justify-between items-center">
+    <div className="flex flex-col sm:flex-row gap-2 justify-between items-center ">
       <div>
         <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
         <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
       </div>
-      <button className="bg-orange-500 text-white px-4 py-2 rounded-lg ">
+      <button className="bg-[#FF6B35] text-white px-4 py-2 rounded-[10px] whitespace-nowrap">
         Browse Courses
       </button>
     </div>

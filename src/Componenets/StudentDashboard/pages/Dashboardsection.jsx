@@ -18,7 +18,7 @@ const Dashboardpage = () => {
                     const Icon = item.icon;
                     return (
                         <div key={i} className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm">
-                            <div className="p-5 flex flex-col gap-3">
+                            <div className="p-5 flex flex-col items-center md:items-start gap-3">
                                 <div className={`w-12 h-12 flex items-center justify-center rounded-[10px] text-white ${item.color}`}>
                                     <Icon size={24} />
                                 </div>
