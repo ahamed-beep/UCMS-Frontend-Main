@@ -14,14 +14,16 @@ const Welcome = () => {
       <div className='w-full md:mt-16 mt-10'>
         <h3 className='font-inter font-bold text-[24px] md:text-[36px] text-[#0A0A0A] text-center'>Welcome to UCMS</h3>
         <p className='font-inter font-normal text-[16px] md:text-[20px] text-[#4A5565] text-center mx-3'>Learn more about our services</p>
-        <div className=' bg-[#F9FAFB] py-4 md:py-7 lg:py-9 px-6 md:px-10 lg:px-18 mx-4 md:mx-6'>
+        <div className=' bg-[#F9FAFB] py-4 md:py-7 lg:py-9 px-6 md:px-10 lg:px-18 mx-4 md:mx-6 mb-4 md:mb-6'>
           <div className='flex flex-col gap-5 md:gap-8 lg:gap-15 md:flex-row'>
             <div className='w-full lg:w-[872px] lg:h-[581px] md:w-[700px] md:h-[450px]'>
               <video
-                src="/videos/demo.mp4"
                 className='w-full h-full object-cover rounded-[14px]'
+                loop
+                muted
                 controls
-              />
+              ><source src="https://res.cloudinary.com/ddhxxqkpc/video/upload/v1775653906/project_u5xzzu.mp4"
+                type="video/mp4" /></video>
             </div>
             <div className="w-full md:w-[320px] mx-auto bg-white self-start">
 
@@ -40,9 +42,9 @@ const Welcome = () => {
                     className="w-full flex items-center font-inter font-medium text-[14px] md:text-[16px] text-left gap-3 text-[#193CB8] px-3 py-2 lg:px-4 lg:py-3 hover:bg-gray-100"
                   >
                     <span className={`transform transition ${openIndex === index ? "rotate-90" : ""}`}>
-                     <IoIosArrowForward />
+                      <IoIosArrowForward />
                     </span>
-                    <span>{item.title}</span> 
+                    <span>{item.title}</span>
                   </button>
 
                   {/* Dropdown Content */}

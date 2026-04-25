@@ -6,6 +6,7 @@ import BlogArticles from "./Pages/BlogArticles";
 import IeltsPreparation from "./Pages/IeltsPreparation";
 import QuizzesSection from "./Pages/QuizzesSection";
 import VideoLibrary from "./Pages/VideoLibrary";
+import { BookOpen } from "lucide-react";
 
 const LearningHub = () => {
   return (
@@ -14,6 +15,7 @@ const LearningHub = () => {
       <Head
         title="Learning Hub"
         subtitle="Your complete resource center for test preparation, study abroad guidance, and career development"
+        icon={<BookOpen size={64}/>}
       />
 
       <div className="font-inter">

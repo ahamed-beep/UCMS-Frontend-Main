@@ -92,35 +92,35 @@ const DocumnetSection = () => {
           <h2 className="text-lg font-semibold">Uploaded Documents</h2>
         </div>
 
-        <div className="hidden md:block overflow-x-auto">
+        <div className=" overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="font-inter font-medium text-[10px] md:text-[12px] text-[#6A7282] uppercase tracking-[0.6px] bg-[#F9FAFB] text-left border-b">
               <tr>
-                <th className="text-left p-4">Document Name</th>
-                <th className="text-left p-4">Category</th>
-                <th className="text-left p-4">Upload Date</th>
-                <th className="text-left p-4">Size</th>
-                <th className="text-left p-4">Status</th>
-                <th className="text-left p-4">Actions</th>
+                <th className="text-left p-2 md:p-4">Document Name</th>
+                <th className="text-left p-2 md:p-4">Category</th>
+                <th className="text-left p-2 md:p-4">Upload Date</th>
+                <th className="text-left p-2 md:p-4">Size</th>
+                <th className="text-left p-2 md:p-4">Status</th>
+                <th className="text-left p-2 md:p-4">Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {documents.map((doc, i) => (
                 <tr key={i} className="border-[0.89px] border-[#E5E7EB]">
-                  <td className="p-4 flex gap-2 font-inter font-medium text-[12px] md:text-sm text-[#101828]"><FileText className="text-[#99A1AF]" size={20} />{doc.name}</td>
-                  <td className="p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.category}</td>
-                  <td className="p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.date}</td>
-                  <td className="p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.size}</td>
-                  <td className="p-4">
+                  <td className="p-2 md:p-4 flex gap-2 font-inter font-medium text-[12px] md:text-sm text-[#101828]"><FileText className="text-[#99A1AF]" size={20} />{doc.name}</td>
+                  <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.category}</td>
+                  <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.date}</td>
+                  <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{doc.size}</td>
+                  <td className="p-2 md:p-4">
                     <span
-                      className={`px-3 py-1 rounded-full font-inter text-[12px] md:text-sm font-medium ${statusStyles[doc.status]?.style}`}
+                      className={`inline-flex items-center justify-center gap-1 text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 rounded-full font-inter font-medium whitespace-nowrap ${statusStyles[doc.status]?.style}`}
                     >
-                      <img src={statusStyles[doc.status]?.icon} alt="icon" width={16} height={16} className="inline-block mr-1" />
+                      <img src={statusStyles[doc.status]?.icon} alt="icon" width={16} height={16} className="hidden sm:inline-block" />
                       {doc.status}
                     </span>
                   </td>
-                  <td className="p-4 flex gap-3 text-gray-500">
+                  <td className="p-2 md:p-4 flex gap-3 text-gray-500">
                     <Eye className="w-4 h-4 cursor-pointer" />
                     <Download className="w-4 h-4 cursor-pointer" />
                     <Trash2 className="w-4 h-4 cursor-pointer text-red-500" />
@@ -131,36 +131,6 @@ const DocumnetSection = () => {
           </table>
         </div>
 
-        <div className="md:hidden p-4 space-y-4">
-          {documents.map((doc, i) => (
-            <div key={i} className="border rounded-lg p-4 space-y-2">
-
-              <div className="flex items-center gap-2 font-medium">
-                <FileText className="text-[#99A1AF]" size={18} />
-                <span>{doc.name}</span>
-              </div>
-
-              <div className="text-sm text-gray-600">
-                <p><span className="font-medium">Category:</span> {doc.category}</p>
-                <p><span className="font-medium">Date:</span> {doc.date}</p>
-                <p><span className="font-medium">Size:</span> {doc.size}</p>
-              </div>
-
-              <div className="flex items-center justify-between mt-2">
-                <span className={`px-3 py-1 rounded-full flex items-center gap-2 text-sm ${statusStyles[doc.status]?.style}`}>
-                  {doc.status}
-                </span>
-
-                <div className="flex gap-3">
-                  <Eye className="w-4 h-4 cursor-pointer" />
-                  <Download className="w-4 h-4 cursor-pointer" />
-                  <Trash2 className="w-4 h-4 cursor-pointer text-red-500" />
-                </div>
-              </div>
-
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
