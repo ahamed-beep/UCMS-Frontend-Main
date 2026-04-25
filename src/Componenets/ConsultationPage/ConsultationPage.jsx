@@ -59,10 +59,10 @@ const Booking = () => {
       <Navbar />
       <Head title="Book Free Consultation" subtitle="Schedule a one-on-one session with our expert counselors at your convenience" />
 
-      <div className="mx-75 py-8">
-        <div className="flex items-center bg-[#F9FAFB] py-2 rounded-2xl justify-center mb-10">
+      <div className="sm:mx-75 mx-auto sm:py-8 py-4">
+        <div className="flex items-center bg-[#F9FAFB] py-2 rounded-2xl justify-center mb-10 sm:flex-nowrap flex-wrap">
           {steps.map((step, idx) => (
-            <div key={step.number} className="flex items-center">
+            <div key={step.number} className="flex items-center mx-auto">
               <div className="flex items-center gap-2">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${currentStep >= step.number ? "bg-[#FF6B35] text-white" : "bg-[#E5E7EB] text-[#6B7280]"}`}>
                   {step.number}
@@ -80,10 +80,10 @@ const Booking = () => {
 
         {currentStep === 1 && (
           <div>
-            <h1 className="text-2xl ml-10 mt-3 text-[#0A0A0A] sm:text-3xl font-bold mb-8">
+            <h1 className="text-2xl sm:ml-10 mx-2 mt-3 text-[#0A0A0A] sm:text-3xl font-bold mb-8">
               Personal Information
             </h1>
-            <div className="space-y-5 ml-10">
+            <div className="space-y-5 sm:ml-10 mx-2">
               <div>
                 <label className="block text-sm text-[#364153] font-medium mb-1.5">
                   Full Name <span className="text-[#FF6B35]">*</span>
@@ -159,10 +159,10 @@ const Booking = () => {
 
         {currentStep === 2 && (
           <div>
-            <h1 className="text-2xl ml-10 mt-3 font-inter text-[#0A0A0A] sm:text-3xl font-bold mb-8">
+            <h1 className="text-2xl sm:ml-10 mx-2 mt-3 font-inter text-[#0A0A0A] sm:text-3xl font-bold mb-8">
               Select Date & Time
             </h1>
-            <div className="ml-10">
+            <div className="sm:ml-10 mx-2">
               <div className="mb-8">
                 <label className="block text-sm text-[#364153] font-inter font-medium mb-3">
                   Choose a Date <span className="text-[#FF6B35]">*</span>
@@ -202,7 +202,7 @@ const Booking = () => {
                 </div>
               </div>
             </div>
-            <div className="flex gap-3 ml-10">
+            <div className="flex gap-3 sm:ml-10 mx-2">
               <button
                 onClick={() => setCurrentStep(1)}
                 className="flex-1 h-12 font-inter rounded-lg text-[#364153] font-semibold text-sm hover:bg-gray-50 bg-[#F3F4F6] transition-colors"
@@ -222,10 +222,10 @@ const Booking = () => {
 
         {currentStep === 3 && (
           <div>
-            <h1 className="text-2xl ml-10 mt-3 text-[#0A0A0A] font-inter sm:text-3xl font-bold mb-8">
+            <h1 className="text-2xl sm:ml-10 mx-2 mt-3 text-[#0A0A0A] font-inter sm:text-3xl font-bold mb-8">
               Consultation Type
             </h1>
-            <div className="space-y-3 mb-6 ml-10">
+            <div className="space-y-3 mb-6 sm:ml-10 mx-2">
               {consultationTypes.map((type) => (
                 <button
                   key={type.title}
@@ -237,7 +237,7 @@ const Booking = () => {
                 </button>
               ))}
             </div>
-            <div className="mb-8 ml-10">
+            <div className="mb-8 sm:ml-10 mx-2">
               <label className="block text-sm font-inter text-[#364153] font-medium mb-1.5">
                 Additional Information (Optional)
               </label>
@@ -252,7 +252,7 @@ const Booking = () => {
             {error && (
               <p className="text-red-500 text-sm ml-10 mb-3">{error}</p>
             )}
-            <div className="flex gap-3 ml-10">
+            <div className="flex gap-3 sm:ml-10 mx-2">
               <button
                 onClick={() => setCurrentStep(2)}
                 className="flex-1 h-12 rounded-lg font-inter text-[#364153] font-semibold text-sm hover:bg-gray-50 bg-[#F3F4F6] transition-colors"
