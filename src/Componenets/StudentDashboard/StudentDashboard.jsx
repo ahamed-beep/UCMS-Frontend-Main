@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLogout } from "../../Hooks/useLogout";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
@@ -14,23 +14,25 @@ import SupportSection from "./pages/SupportSection";
 import PurchaseSection from "./pages/PurchaseSection";
 
 
+
+
 const DashboardPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Welcome Back, John!</h1>
+      <h1 className="font-inter text-[25px] md:text-[30px] -bold tracking-[-0.03em] text-[#101828]">Welcome Back, John!</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Here's what's happening with your applications and classes</p>
     </div>
     <Dashboardsection />
   </div>
 );
 
-const MyCoursesPage = () => (
+const MyCoursesPage = ({ setCourseId }) => (
   <div className="px-5 py-7 sm:px-8">
     <div>
       <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">My Courses</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Access your enrolled courses and learning materials</p>
     </div>
-    <CoursesSection />
+    <CoursesSection setCourseId={setCourseId} />
   </div>
 );
 
@@ -278,6 +280,7 @@ const studentPages = {
 export default function StudentDashboard() {
   const userData = getUser();
   const logout = useLogout();
+const [courseId, setCourseId] = useState(null);
 
   const user = {
     name: `${userData?.firstName} ${userData?.lastName}`,
@@ -286,12 +289,13 @@ export default function StudentDashboard() {
   };
 
   return (
-    <DashboardLayout
-      menuItems={studentMenuItems}
-      pages={studentPages}
-      onLogout={logout}
-      user={user}
-
-    />
+ <DashboardLayout
+  menuItems={studentMenuItems}
+  pages={studentPages}
+  courseId={courseId}       
+  setCourseId={setCourseId}
+  onLogout={logout}
+  user={user}
+/>
   );
 }
