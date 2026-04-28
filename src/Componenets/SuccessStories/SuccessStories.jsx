@@ -155,7 +155,7 @@ const TestimonialCard = ({ t }) => (
           {t.initials}
         </div>
         <div>
-          <h3 className="font-bold text-[#0A0A0A] font-inter text-sm">{t.name}</h3>
+          <h3 className="font-bold text-[#0A0A0A] font-inter text-sm ">{t.name}</h3>
           <p className="text-xs text-[#4A5565] font-inter">{t.program}</p>
         </div>
       </div>
@@ -168,7 +168,7 @@ const TestimonialCard = ({ t }) => (
     </div>
     <div className="relative mb-3 flex-1">
       <Quote className="w-6 h-6 text-[#DBEAFE] absolute -top-1 -left-1" />
-      <p className="text-sm text-[#364153] font-inter italic pl-5">"{t.quote}"</p>
+      <p className="text-sm text-[#364153] font-inter italic pl-5 break-all">"{t.quote}"</p>
     </div>
     <p className="text-sm font-semibold text-[#0F4C8A] font-inter mb-3">{t.university}</p>
     <div className="inline-flex items-center gap-1.5 bg-[#FF6B3570] text-[#193CB8] text-xs font-medium px-3 py-1.5 rounded-full self-start">
@@ -292,7 +292,7 @@ const SuccessStories = () => {
               </span>
               <ul className="space-y-2">
                 {beforeItems.map((item) => (
-                  <li key={item} className="text-sm text-[#FF6B35] font-inter flex gap-2">
+                  <li key={item} className="text-sm text-[#FF6B35] font-inter flex gap-2 break-all">
                     <span>•</span>{item}
                   </li>
                 ))}
@@ -304,7 +304,7 @@ const SuccessStories = () => {
               </span>
               <ul className="space-y-2">
                 {afterItems.map((item) => (
-                  <li key={item} className="text-sm text-[#0F4C8A] font-inter flex gap-2">
+                  <li key={item} className="text-sm text-[#0F4C8A] font-inter flex gap-2 break-all">
                     <span>•</span>{item}
                   </li>
                 ))}

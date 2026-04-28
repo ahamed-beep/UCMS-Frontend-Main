@@ -52,7 +52,7 @@ const Login = () => {
     <section>
       <Navbar />
       <div className="flex flex-col md:flex-row gap-3">
-        <div className="w-full md:w-[50%] px-20 py-10">
+        <div className="w-full md:w-[50%] sm:px-20 px-5 py-10">
           <div className="flex flex-col gap-5">
             <div className="flex">
               <div className="bg-[#0F4C8A] p-3 text-white rounded-xl">
@@ -143,7 +143,7 @@ const Login = () => {
               "linear-gradient(rgba(37, 99, 235, 0.8), rgba(37, 99, 235, 0.8)), url('/Images/login.webp')",
           }}
         >
-          <div className="flex flex-col gap-6 p-10">
+          <div className="flex flex-col gap-6 p-5 md:p-10">
             <div className="self-start text-white font-inter font-semibold bg-[#4285e3] rounded-full py-3 px-4">
               {heroData.badge}
             </div>

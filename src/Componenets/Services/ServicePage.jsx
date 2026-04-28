@@ -18,7 +18,7 @@ const ServiceDetail = ({ service }) => (
     <hr className="border-gray-200 mb-2" />
     <div className="px-7 pb-2 pt-6">
       <h3 className="text-base font-bold mb-2 font-inter text-[#0A0A0A]">Overview</h3>
-      <p className="text-sm text-[#364153] break-all font-inter leading-relaxed mb-7">
+      <p className="text-sm text-[#364153] font-inter leading-relaxed mb-7 break-all">
         {service.overview}
       </p>
 
@@ -33,7 +33,7 @@ const ServiceDetail = ({ service }) => (
               <div className="w-[26px] h-[26px] break-all rounded-full bg-[#FF6900BD] flex items-center justify-center text-[#FFFFFF] text-xs font-bold shrink-0">
                 {i + 1}
               </div>
-              <span className="text-sm break-all text-[#364153]">{step}</span>
+              <span className="text-sm text-[#364153] break-all">{step}</span>
             </div>
           ))}
 
@@ -43,7 +43,7 @@ const ServiceDetail = ({ service }) => (
           {service.requiredDocuments.map((doc) => (
             <div key={doc} className="flex items-center gap-2 mb-2">
               <img src="/Images/file.webp" alt="" />
-              <span className="text-sm break-all text-[#364153] font-inter">{doc}</span>
+              <span className="text-sm text-[#364153] font-inter break-all">{doc}</span>
             </div>
           ))}
 
@@ -52,10 +52,10 @@ const ServiceDetail = ({ service }) => (
           </h3>
           {service.faqs.map((faq, i) => (
             <div key={i} className="border-l-[3px] border-[#0F4C8A] pl-3.5 mb-3.5">
-              <p className="text-sm font-semibold font-inter text-[#0A0A0A] mb-0.5">
+              <p className="text-sm font-semibold font-inter text-[#0A0A0A] mb-0.5 break-all">
                 Q: {faq.question}
               </p>
-              <p className="text-[13px] text-[#364153] font-inter leading-relaxed">
+              <p className="text-[13px] text-[#364153] font-inter leading-relaxed break-all">
                 {faq.answer}
               </p>
             </div>
@@ -63,11 +63,11 @@ const ServiceDetail = ({ service }) => (
         </div>
 
         {/* Right: Pricing Card */}
-        <div className="w-[300px] shrink-0 bg-gradient-to-br from-[#0F4C8A] to-[#3A7BD5] rounded-2xl mx-10 p-5 text-white self-start">
+        <div className="w-[300px] shrink-0 bg-gradient-to-br from-[#0F4C8A] to-[#3A7BD5] rounded-2xl mx-auto md:mx-10 p-5 text-white self-start">
           <p className="text-[11px] font-inter text-[#BEDBFF] text-center opacity-75 uppercase tracking-wider mb-0.5">
             Service Price
           </p>
-          <p className="text-[38px] font-inter font-semibold text-center mb-0.5">
+          <p className="text-[38px] font-inter font-semibold text-center mb-0.5 overflow-hidden">
             ${service.price}
           </p>
           <p className="text-[13px] font-inter text-[#BEDBFF] text-center opacity-75 mb-4">
@@ -80,7 +80,7 @@ const ServiceDetail = ({ service }) => (
           {service.highlightPoints.map((item) => (
             <div key={item} className="flex gap-y-6 items-center gap-2 mb-1.5">
               <img src="/Images/Icon.png" className="w-4 h-4" alt="" />
-              <span className="text-sm">{item}</span>
+              <span className="text-sm break-all">{item}</span>
             </div>
           ))}
 
@@ -208,23 +208,23 @@ const ServicesPage = () => {
                             alt={s.title}
                           />
                         </div>
-<div className="flex-1 min-w-0">
-  <h2 className="text-base  wrap-break-word font-inter font-bold mb-1 text-[#0A0A0A]">
-    {s.title}
-  </h2>
-  <p className="text-[13.5px]  wrap-break-word text-[#364153] mb-2.5 leading-relaxed">
-    {s.description}
-  </p>
-                       <div className="flex max-w-150 flex-wrap gap-x-6 mb-2.5">
-  {s.highlightPoints.map((point) => (
-    <span
-      key={point}
-   className="text-xs break-all font-inter mb-2 text-[#0F4C8A]"
-    >
-      • {point}
-    </span>
-  ))}
-</div>
+                        <div className="flex-1">
+                          <h2 className="text-base font-inter font-bold break-all mb-1 text-[#0A0A0A]">
+                            {s.title}
+                          </h2>
+                          <p className="text-[13.5px] text-[#364153] break-all mb-2.5 leading-relaxed">
+                            {s.description}
+                          </p>
+                          <div className="flex max-w-150 flex-wrap gap-x-6 mb-2.5">
+                            {s.highlightPoints.map((point) => (
+                              <span
+                                key={point}
+                                className="text-xs font-inter mb-2 text-[#0F4C8A] break-all"
+                              >
+                                • {point}
+                              </span>
+                            ))}
+                          </div>
                           <button
                           onClick={() => toggle(s.id)}
                             className="bg-transparent border-none text-[#0F4C8A] font-inter text-[13.5px] font-semibold cursor-pointer p-0 flex items-center gap-1"

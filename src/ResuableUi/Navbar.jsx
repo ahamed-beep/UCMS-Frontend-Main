@@ -71,15 +71,15 @@ const Navbar = () => {
 
                 <nav className="flex flex-col gap-3= px-4 py-6 font-medium  font-inter text-sm leading-[20px] text-white">
                     <Link to="/career" onClick={() => setSidebarOpen(false)} className="text-center hover:text-gray-800 cursor-pointer">Career</Link>
-                    <button onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</button>
-                    <button onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</button>
-                    <button onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</button>
-                    <button onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</button>
-                    <button onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</button>
-                    <button onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</button>
-                    <button onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</button>
-                    <button onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</button>
-                    <button onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</button>
+                    <Link to="/about" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
+                    <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
+                    <Link to="/studydestination" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
+                    <Link to="/learninghub" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</Link>
+                    <Link to="/blog" onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</Link>
+                    <Link to="/success/stories" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
+                    <Link to="/gallery" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
+                    <Link to="/event&announcements" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
+                    <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
                 </nav>
 
                 <div className="px-5 mt-6 mb-8 flex flex-col gap-3">
