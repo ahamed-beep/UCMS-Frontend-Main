@@ -8,64 +8,86 @@ const CoursesSection = ({ setCourseId }) => {
   const [exercises, setExercises] = useState([]);
   const [progressMap, setProgressMap] = useState({});
   const [loading, setLoading] = useState(true);
+    const getCourseId = (course) => course.id ?? course._id;
 
   useEffect(() => {
-    const fetchAll = async () => {
-      try {
-        const { data } = await axiosInstance.get('/courses');
-        const courseList = data.data;
-        setCourses(courseList);
+const fetchAll = async () => {
+  try {
+    const { data } = await axiosInstance.get('/enrollments/my-courses');
+    const enrollments = data.data;
+    console.log('enrollments:', enrollments);
 
-        if (courseList.length) {
-          const firstId = courseList[0].id;
-          const [matRes, exRes] = await Promise.all([
-            axiosInstance.get(`/courses/${firstId}/materials`),
-            axiosInstance.get(`/courses/${firstId}/exercises`),
-          ]);
-          setMaterials(matRes.data.data);
-          setExercises(exRes.data.data);
+    // enrollment se courseId string nikalo
+  const courseIds = enrollments
+  .filter((e) => e.isActive)
+  .map((e) => typeof e.courseId === 'object' ? e.courseId?.id : e.courseId)
+  .filter(Boolean);
 
-          const progressResults = await Promise.all(
-            courseList.map(async (course) => {
-              try {
-                const [progressRes, modulesRes] = await Promise.all([
-                  axiosInstance.get(`/courses/${course.id}/progress`),
-                  axiosInstance.get(`/courses/${course.id}/modules`),
-                ]);
+console.log('courseIds:', courseIds)
+    // har courseId ke liye course fetch karo
+    const courseResults = await Promise.all(
+      courseIds.map((id) =>
+        axiosInstance.get(`/courses/${id}`).then(r => r.data.data).catch(() => null)
+      )
+    );
 
-                const completedIds = progressRes.data?.completedLectureIds ?? progressRes.data?.data?.completedLectureIds ?? [];
-                const modules = modulesRes.data.data;
+    const courseList = courseResults.filter(Boolean);
+    setCourses(courseList);
 
-                const lecturesRes = await Promise.all(
-                  modules.map((mod) =>
-                    axiosInstance.get(`/modules/${mod.id}/lectures`).then(r => r.data.data).catch(() => [])
-                  )
-                );
+    if (courseList.length) {
+      const firstId = courseList[0].id;
+      const [matRes, exRes] = await Promise.all([
+        axiosInstance.get(`/courses/${firstId}/materials`),
+        axiosInstance.get(`/courses/${firstId}/exercises`),
+      ]);
+      setMaterials(matRes.data.data ?? []);
+      setExercises(exRes.data.data ?? []);
 
-                const allLectures = lecturesRes.flat();
-                const total = allLectures.length;
-                const completed = allLectures.filter(l => completedIds.includes(l.id)).length;
-                const pct = total ? Math.round((completed / total) * 100) : 0;
+     const progressResults = await Promise.all(
+  courseList.map(async (course) => {
+    try {
+      const [modulesRes, progressRes] = await Promise.all([
+        axiosInstance.get(`/courses/${course.id}/modules`),
+        axiosInstance.get(`/courses/${course.id}/progress`).catch(() => null),
+      ]);
 
-                return { id: course.id, pct, completed, total };
-              } catch {
-                return { id: course.id, pct: 0, completed: 0, total: 0 };
-              }
-            })
-          );
+      const modules = modulesRes.data.data;
+      const completedIds = progressRes?.data?.completedLectureIds
+        ?? progressRes?.data?.data?.completedLectureIds
+        ?? [];
 
-          const map = {};
-          progressResults.forEach(({ id, pct, completed, total }) => {
-            map[id] = { pct, completed, total };
-          });
-          setProgressMap(map);
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      const lecturesRes = await Promise.all(
+        modules.map((mod) =>
+          axiosInstance.get(`/modules/${mod.id}/lectures`)
+            .then(r => r.data.data)
+            .catch(() => [])
+        )
+      );
+
+      const allLectures = lecturesRes.flat();
+      const total = allLectures.length;
+      const completed = allLectures.filter(l => completedIds.includes(l.id)).length;
+      const pct = total ? Math.round((completed / total) * 100) : 0;
+
+      return { id: course.id, pct, completed, total };
+    } catch {
+      return { id: course.id, pct: 0, completed: 0, total: 0 };
+    }
+  })
+);
+
+      const map = {};
+      progressResults.forEach(({ id, pct, completed, total }) => {
+        map[id] = { pct, completed, total };
+      });
+      setProgressMap(map);
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
     fetchAll();
   }, []);
@@ -79,7 +101,7 @@ const CoursesSection = ({ setCourseId }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
           {courses.map((course) => {
-            const prog = progressMap[course.id] ?? { pct: 0, completed: 0, total: 0 };
+           const prog = progressMap[getCourseId(course)] ?? { pct: 0, completed: 0, total: 0 };
 
             return (
               <div key={course.id} className="border-[0.89px] border-[#E5E7EB] rounded-[10px] p-5 space-y-3">
@@ -115,7 +137,7 @@ const CoursesSection = ({ setCourseId }) => {
                   </div>
                   <button
                     className='bg-[#FF6B35] text-white font-inter rounded-2xl text-shadow-md text-md px-4 py-3'
-                    onClick={() => setCourseId?.(course.id)}
+              onClick={() => setCourseId?.(getCourseId(course))}
                   >
                     Continue Learning →
                   </button>

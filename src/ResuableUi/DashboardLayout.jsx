@@ -11,11 +11,11 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
   const [activePage, setActivePage] = useState(firstPage);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleMenuChange = (label) => {
-    setActivePage(label);
-    setSidebarOpen(false);
- setCourseId(null);
-  };
+ const handleMenuChange = (label) => {
+  setActivePage(label);
+  setSidebarOpen(false);
+  if (typeof setCourseId === 'function') setCourseId(null);
+};
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
