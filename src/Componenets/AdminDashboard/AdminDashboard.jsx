@@ -29,6 +29,7 @@ import AdminLectures from "./Pages/AdminLectures/AdminLectures";
 import AdminMaterials from "./Pages/AdminMaterials/AdminMaterials";
 import AdminResources from "./Pages/AdminResources/AdminResources";
 import AdminInstructor from "./Pages/AdminInstructor/AdminInstructor";
+import AdminEnrollments from "./Pages/AdminEnrollments/AdminEnrollments";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -148,6 +149,11 @@ const UpcomingClassesPage = () => (
 const FacultyPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <FacultyApplicationsPage />
+  </div>
+);
+const EnrollmentsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminEnrollments />
   </div>
 );
 
@@ -451,6 +457,19 @@ const adminMenuItems = [
       </svg>
     ),
   },
+  {
+  label: "Enrollments",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      <line x1="19" y1="8" x2="19" y2="14" />
+      <line x1="22" y1="11" x2="16" y2="11" />
+    </svg>
+  ),
+},
 ];
 
 const adminPages = {
@@ -475,6 +494,7 @@ const adminPages = {
   "IELTS Resources":     IeltsResourcesPage,
   "Upcoming Classes":    UpcomingClassesPage,
   "Courses":             CoursesPage,
+  "Enrollments": EnrollmentsPage,
 };
 
 export default function AdminDashboard() {
