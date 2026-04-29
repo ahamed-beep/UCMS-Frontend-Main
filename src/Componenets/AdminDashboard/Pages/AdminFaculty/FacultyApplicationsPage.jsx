@@ -103,8 +103,8 @@ const handleDelete = async () => {
       width: "22%",
       render: (row) => (
         <div>
-          <p className="text-sm font-medium flex-wrap text-[#0f172a] ">{row.fullName}</p>
-          <p className="text-xs flex-wrap wrap-break-word text-[#94a3b8] ">{row.email}</p>
+          <p className="text-sm font-medium flex-wrap text-[#0f172a] break-all">{row.fullName}</p>
+          <p className="text-xs flex-wrap wrap-break-word text-[#94a3b8] break-all">{row.email}</p>
         </div>
       ),
     },
@@ -114,8 +114,8 @@ const handleDelete = async () => {
       width: "22%",
       render: (row) => (
         <div>
-          <p className="text-sm text-[#334155] ">{row.currentJobPosition}</p>
-          <p className="text-xs text-[#94a3b8] ">{row.institutionAffiliation}</p>
+          <p className="text-sm text-[#334155] break-all">{row.currentJobPosition}</p>
+          <p className="text-xs text-[#94a3b8] break-all">{row.institutionAffiliation}</p>
         </div>
       ),
     },
@@ -125,8 +125,8 @@ const handleDelete = async () => {
       width: "15%",
       render: (row) => (
         <div>
-          <p className="text-sm text-[#334155] ">{row.highestQualification}</p>
-          <p className="text-xs text-[#94a3b8]">{row.yearsOfExperience} yrs exp</p>
+          <p className="text-sm text-[#334155] break-all">{row.highestQualification}</p>
+          <p className="text-xs text-[#94a3b8] break-all">{row.yearsOfExperience} yrs exp</p>
         </div>
       ),
     },

@@ -118,7 +118,7 @@ const ConsultationsPage = () => {
       label: "Destination",
       width: "10%",
       render: (row) => (
-        <span className="text-sm text-[#1e293b]">{row.destination || "—"}</span>
+        <span className="text-sm text-[#1e293b] break-all">{row.destination || "—"}</span>
       ),
     },
     {
