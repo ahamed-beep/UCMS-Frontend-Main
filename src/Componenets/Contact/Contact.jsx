@@ -5,6 +5,7 @@ import Footer from "../../ResuableUi/Footer";
 import Head from "../../ResuableUi/Head";
 import MapSection from "./Section/MapSection";
 import axiosInstance from "../../Api/axiosInstance";
+import { Link } from "react-router-dom";
 
 
 const Contact = () => {
@@ -259,9 +260,9 @@ const handleSubmit = async (e) => {
               <div className="space-y-3 p-5 rounded-2xl bg-[#F9FAFB] font-inter">
                 <h3 className="text-lg font-bold text-[#0A0A0A]">Quick Actions</h3>
                 <div className="flex flex-col gap-2.5 text-[#FFFFFF]">
-                  <button className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0F4C8A] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#193CB8]">
+                  <Link to="/consultation" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0F4C8A] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#193CB8]">
                     Book Consultation
-                  </button>
+                  </Link>
                   <button className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#12E423] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#0ecc1e]">
                     WhatsApp Chat
                   </button>

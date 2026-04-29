@@ -107,7 +107,7 @@ const GalleryPage = () => {
               </h2>
 
               {/* Subtitle */}
-              <p className="text-md font-inter text-[#4A5565] mb-6 text-center">
+              <p className="text-md font-inter text-[#4A5565] mb-6 text-center break-all">
                 {section.subtitle}
               </p>
 

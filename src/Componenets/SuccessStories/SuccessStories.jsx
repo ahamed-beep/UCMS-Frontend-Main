@@ -321,7 +321,7 @@ const SuccessStories = () => {
           <h3 className="font-inter font-bold text-xl md:text-3xl text-white text-center">
             Ready to Write Your Success Story?
           </h3>
-          <p className="font-inter font-normal text-[13px] md:text-[15px] text-[#DBEAFE] text-center py-3 px-2 md:py-2 mx-auto w-full md:w-[50%]">
+          <p className="font-inter font-normal text-[13px] md:text-[15px] text-[#DBEAFE] text-center py-3 px-2 md:py-2 mx-auto w-full md:w-[50%] break-all">
             Join thousands of successful students who achieved their dreams with our guidance
           </p>
           <div className="text-center">
