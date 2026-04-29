@@ -43,7 +43,7 @@ console.log('courseIds:', courseIds)
       setMaterials(matRes.data.data ?? []);
       setExercises(exRes.data.data ?? []);
 
-     const progressResults = await Promise.all(
+const progressResults = await Promise.all(
   courseList.map(async (course) => {
     try {
       const [modulesRes, progressRes] = await Promise.all([
@@ -52,9 +52,9 @@ console.log('courseIds:', courseIds)
       ]);
 
       const modules = modulesRes.data.data;
-      const completedIds = progressRes?.data?.completedLectureIds
-        ?? progressRes?.data?.data?.completedLectureIds
-        ?? [];
+      const completedIds =
+        progressRes?.data?.completedLectureIds ??
+        progressRes?.data?.data?.completedLectureIds ?? [];
 
       const lecturesRes = await Promise.all(
         modules.map((mod) =>
