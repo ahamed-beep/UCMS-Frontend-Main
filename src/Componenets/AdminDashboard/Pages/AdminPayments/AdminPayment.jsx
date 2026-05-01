@@ -4,8 +4,8 @@ import AdminTable from "../../../../ResuableUi/AdminTable";
 
 const statusColors = {
   completed: "bg-emerald-100 text-emerald-700",
-  pending:   "bg-yellow-100 text-yellow-700",
-  failed:    "bg-red-100 text-red-700",
+  pending: "bg-yellow-100 text-yellow-700",
+  failed: "bg-red-100 text-red-700",
   cancelled: "bg-gray-100 text-gray-500",
 };
 
@@ -18,24 +18,24 @@ const columns = [
       <span className="text-sm font-medium text-gray-800">{row.serviceTitle}</span>
     ),
   },
- {
-  key: "customerName",
-  label: "Customer Name",
-  width: "min-w-[120px]",
-  render: (row) => (
-    <span className="text-sm font-medium text-gray-800">
-      {row.customer?.firstName} {row.customer?.lastName}
-    </span>
-  ),
-},
-{
-  key: "customerEmail",
-  label: "Email",
-  width: "min-w-[120px]",
-  render: (row) => (
-    <span className="text-sm wrap-break-word text-gray-600">{row.customer?.email || "—"}</span>
-  ),
-},
+  {
+    key: "customerName",
+    label: "Customer Name",
+    width: "min-w-[120px]",
+    render: (row) => (
+      <span className="text-sm font-medium text-gray-800">
+        {row.customer?.firstName} {row.customer?.lastName}
+      </span>
+    ),
+  },
+  {
+    key: "customerEmail",
+    label: "Email",
+    width: "min-w-[120px]",
+    render: (row) => (
+      <span className="text-sm wrap-break-word text-gray-600">{row.customer?.email || "—"}</span>
+    ),
+  },
   {
     key: "phone",
     label: "Phone",
@@ -60,9 +60,8 @@ const columns = [
     width: "min-w-[120px]",
     render: (row) => (
       <span
-        className={`text-xs font-medium px-2.5 py-1 rounded-full capitalize ${
-          statusColors[row.status] ?? "bg-gray-100 text-gray-500"
-        }`}
+        className={`text-xs font-medium px-2.5 py-1 rounded-full capitalize ${statusColors[row.status] ?? "bg-gray-100 text-gray-500"
+          }`}
       >
         {row.status}
       </span>
@@ -89,37 +88,37 @@ const columns = [
       </span>
     ),
   },
-{
-  key: "createdAt",
-  label: "Date & Time",
-  width: "min-w-[120px]",
-  render: (row) => {
-    if (!row.createdAt) return <span className="text-xs text-gray-400">—</span>;
-    const d = new Date(row.createdAt);
-    return (
-      <div>
-        <p className="text-xs font-medium text-gray-700">
-          {d.toLocaleDateString("en-PK", { dateStyle: "medium", timeZone: "Asia/Karachi" })}
-        </p>
-        <p className="text-xs text-gray-400">
-          {d.toLocaleTimeString("en-PK", { timeStyle: "short", timeZone: "Asia/Karachi" })}
-        </p>
-      </div>
-    );
+  {
+    key: "createdAt",
+    label: "Date & Time",
+    width: "min-w-[120px]",
+    render: (row) => {
+      if (!row.createdAt) return <span className="text-xs text-gray-400">—</span>;
+      const d = new Date(row.createdAt);
+      return (
+        <div>
+          <p className="text-xs font-medium text-gray-700">
+            {d.toLocaleDateString("en-PK", { dateStyle: "medium", timeZone: "Asia/Karachi" })}
+          </p>
+          <p className="text-xs text-gray-400">
+            {d.toLocaleTimeString("en-PK", { timeStyle: "short", timeZone: "Asia/Karachi" })}
+          </p>
+        </div>
+      );
+    },
   },
-},
 ];
 
 const AdminPayments = () => {
   const [payments, setPayments] = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [error, setError]       = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const total     = payments.length;
+  const total = payments.length;
   const completed = payments.filter((p) => p.status === "completed").length;
-  const pending   = payments.filter((p) => p.status === "pending").length;
-  const failed    = payments.filter((p) => p.status === "failed").length;
-  const revenue   = payments
+  const pending = payments.filter((p) => p.status === "pending").length;
+  const failed = payments.filter((p) => p.status === "failed").length;
+  const revenue = payments
     .filter((p) => p.status === "completed")
     .reduce((sum, p) => sum + (p.amount || 0), 0);
 
@@ -170,12 +169,14 @@ const AdminPayments = () => {
       )}
 
       <div className="w-full overflow-x-auto bg-white rounded-2xl shadow-sm border border-gray-100 p-4">
-        <AdminTable
-          columns={columns}
-          rows={payments}
-          loading={loading}
-          emptyText="No payments found."
-        />
+        <div className="w-[900px]">
+          <AdminTable
+            columns={columns}
+            rows={payments}
+            loading={loading}
+            emptyText="No payments found."
+          />
+        </div>
       </div>
     </div>
   );

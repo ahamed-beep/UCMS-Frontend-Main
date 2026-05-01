@@ -30,7 +30,7 @@ const ServiceDetail = ({ service }) => (
           </h3>
           {service.steps.map((step, i) => (
             <div key={i} className="flex items-center gap-3 mb-3">
-              <div className="w-[26px] h-[26px] rounded-full bg-[#FF6900BD] flex items-center justify-center text-[#FFFFFF] text-xs font-bold shrink-0">
+              <div className="w-[26px] h-[26px] break-all rounded-full bg-[#FF6900BD] flex items-center justify-center text-[#FFFFFF] text-xs font-bold shrink-0">
                 {i + 1}
               </div>
               <span className="text-sm text-[#364153] break-all">{step}</span>
@@ -193,7 +193,7 @@ const ServicesPage = () => {
                   <div
               key={s.id}
                   ref={(el) => (cardRefs.current[s.id] = el)}
-                    className={`bg-white md:rounded-xl overflow-hidden transition-colors ${
+                    className={`bg-white md:rounded-xl   transition-colors ${
                       isOpen
                         ? "border-[1.5px] border-[#F3F4F6]"
                         : "border border-gray-200"

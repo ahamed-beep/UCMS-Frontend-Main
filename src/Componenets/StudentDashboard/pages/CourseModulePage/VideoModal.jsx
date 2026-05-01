@@ -50,7 +50,7 @@ const VideoModal = ({ lecture, alreadyCompleted, onClose, onComplete }) => {
         <div className="bg-black">
           <video
             ref={videoRef}
-            src={lecture.videoUrl}
+       src={lecture.fileUrl ?? lecture.videoUrl}
             controls
             controlsList="nodownload noplaybackrate"
             disablePictureInPicture

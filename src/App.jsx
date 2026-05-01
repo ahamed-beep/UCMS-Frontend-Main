@@ -1,5 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Authentication/Login';
 import EmailVerification from './Authentication/EmailVerification';
 import VerifyCode from './Authentication/VerifyCode';
@@ -12,6 +11,7 @@ import StudentDashboard from './Componenets/StudentDashboard/StudentDashboard';
 import ServicesPage from './Componenets/Services/ServicePage';
 import Checkout from './Componenets/Checkout/CheckoutPage';
 import Contact from './Componenets/Contact/Contact';
+import About from './Componenets/About/About';
 import GalleryPage from './Componenets/Gallery/GalleryPage';
 import Booking from './Componenets/ConsultationPage/ConsultationPage';
 import PaymentSuccess from './Componenets/Payment/PaymentSuccess';
@@ -27,13 +27,12 @@ import Blog from './Componenets/Blog/Blog';
 import LearningHub from './Componenets/LearningHub/LearningHub';
 import QuizSection from './Componenets/LearningHub/QuizzesSection';
 import CoursePage from './Componenets/StudentDashboard/pages/CourseModulePage/CourseModuleSection';
-import About from './Componenets/About/About';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/verify" element={<EmailVerification />} />
         <Route path="/codeverification" element={<VerifyCode />} />
@@ -53,47 +52,23 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/learninghub/" element={<LearningHub />} />
         <Route path="/learninghub/Quiz/:id" element={<QuizSection />} />
-  <Route path="/course/:slug" element={<CoursePage />} />
-  <Route path="/about" element={<About />} />
-
-
-
-
-
-
-
-
-
-
-
-
-
+       <Route path="/course/:id" element={<CoursePage />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="/payment-failed" element={<PaymentFailed />} />
-        <Route path="/payment-cancelled" element={<PaymentCancelled   />} /> 
-
-
-
-
-
-
-
+        <Route path="/payment-cancelled" element={<PaymentCancelled />} />
         <Route
           path="/student/dashboard"
-        
           element={
-            <ProtectedRoute allowedRoles={[ROLES.STUDENT]} >
-              <StudentDashboard/>
+            <ProtectedRoute allowedRoles={[ROLES.STUDENT]}>
+              <StudentDashboard />
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/admin/dashboard"
-   
           element={
-            <ProtectedRoute        allowedRoles={[ROLES.ADMIN]} >
-             <Dashboard/>
+            <ProtectedRoute allowedRoles={[ROLES.ADMIN]}>
+              <Dashboard />
             </ProtectedRoute>
           }
         />
