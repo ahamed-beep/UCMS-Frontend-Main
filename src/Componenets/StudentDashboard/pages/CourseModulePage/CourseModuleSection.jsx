@@ -1,4 +1,3 @@
-// CoursePage.jsx
 import { useState, useEffect } from "react";
 import {
   CheckCircle, Circle, Lock, BookOpen, Clock, Award,
@@ -9,12 +8,13 @@ import InstructorCard from "./InstructorCard";
 import NeedHelpCard from "./NeedHelpCard";
 import VideoModal from "./VideoModal";
 import axiosInstance from "../../../../Api/axiosInstance";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 function CoursePage({ courseId, onBack }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const resolvedId = courseId ?? id;
+  const location = useLocation();
 
   const [courseInfo, setCourseInfo] = useState(null);
   const [modules, setModules] = useState([]);
@@ -25,6 +25,7 @@ function CoursePage({ courseId, onBack }) {
   const [completed, setCompleted] = useState({});
   const [open, setOpen] = useState({});
   const [activeVideo, setActiveVideo] = useState(null);
+  const [lectureQuizzes, setLectureQuizzes] = useState({});
 
   useEffect(() => {
     if (!resolvedId) return;
@@ -48,7 +49,6 @@ function CoursePage({ courseId, onBack }) {
         setExercises(exercisesRes.data.data ?? []);
         setInstructor(instructorRes?.data?.data ?? null);
 
-        console.log('resolvedId:', resolvedId);
         const completedIds =
           progressRes?.data?.completedLectureIds ??
           progressRes?.data?.data?.completedLectureIds ?? [];
@@ -76,6 +76,22 @@ function CoursePage({ courseId, onBack }) {
         );
 
         setModules(modulesWithResources);
+
+        const allLectures = modulesWithResources.flatMap((m) => m.lectures ?? []);
+        const quizResults = await Promise.all(
+          allLectures.map((lec) =>
+            axiosInstance.get(`/lectures/${lec.id}/quizzes`)
+              .then((r) => ({ lectureId: lec.id, quizzes: r.data.data ?? [] }))
+              .catch(() => ({ lectureId: lec.id, quizzes: [] }))
+          )
+        );
+
+        const quizMap = {};
+        quizResults.forEach(({ lectureId, quizzes }) => {
+          quizMap[lectureId] = quizzes;
+        });
+        setLectureQuizzes(quizMap);
+
         if (modulesWithResources.length) {
           setOpen({ [modulesWithResources[0].id]: true });
         }
@@ -89,6 +105,28 @@ function CoursePage({ courseId, onBack }) {
     fetchAll();
   }, [resolvedId]);
 
+  useEffect(() => {
+  if (!location.state?.quizCompleted) return;
+
+  const completedLectureId = location.state?.lectureId;
+
+  if (completedLectureId) {
+    setCompleted((c) => ({ ...c, [completedLectureId]: true }));
+
+    axiosInstance
+      .get(`/lectures/${completedLectureId}/quizzes`)
+      .then((r) => {
+        setLectureQuizzes((prev) => ({
+          ...prev,
+          [completedLectureId]: r.data.data ?? [],
+        }));
+      })
+      .catch(() => {});
+  }
+
+  window.history.replaceState({}, '');
+}, [location.state]);
+
   const handleBack = () => {
     if (onBack) onBack();
     else navigate(-1);
@@ -101,6 +139,23 @@ function CoursePage({ courseId, onBack }) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+const handleStartLectureQuiz = (lectureId, quizItem) => {
+  navigate(`/student/quiz/${quizItem.quizId}`, {
+    state: {
+      submitEndpoint: `/lectures/${lectureId}/quizzes/${quizItem.quizId}/submit`,
+      returnTo: `/student/course/${resolvedId}`,
+      lectureId,
+    },
+  });
+};
+
+  const refreshLectureQuizzes = async (lectureId) => {
+    try {
+      const res = await axiosInstance.get(`/lectures/${lectureId}/quizzes`);
+      setLectureQuizzes((prev) => ({ ...prev, [lectureId]: res.data.data ?? [] }));
+    } catch {}
   };
 
   const isModuleComplete = (m) => m.lectures?.every((it) => completed[it.id]);
@@ -130,21 +185,16 @@ function CoursePage({ courseId, onBack }) {
       <div className="max-w-7xl mx-auto">
 
         <div className="text-sm mb-4 flex items-center gap-1">
-          <button onClick={handleBack} className="text-[#0F4C8A] font-inter hover:underline">
-            My Courses
-          </button>
+          <button onClick={handleBack} className="text-[#0F4C8A] font-inter hover:underline">My Courses</button>
           <span className="text-[#4A5565] font-inter mx-2">/</span>
           <span className="text-[#4A5565] font-inter">{courseInfo.title}</span>
         </div>
 
-        <div
-          className="rounded-xl p-6 sm:p-8 text-white flex flex-col lg:flex-row gap-6 lg:items-center justify-between"
-          style={{ background: "linear-gradient(135deg, #0F4C8A, #1565C0)" }}
-        >
+        <div className="rounded-xl p-6 sm:p-8 text-white flex flex-col lg:flex-row gap-6 lg:items-center justify-between"
+          style={{ background: "linear-gradient(135deg, #0F4C8A, #1565C0)" }}>
           <div className="flex-1">
             <div className="flex items-center gap-2 text-white font-inter text-md mb-3">
-              <BookOpenIcon className="w-5 h-5" />
-              <span>Course</span>
+              <BookOpenIcon className="w-5 h-5" /><span>Course</span>
             </div>
             <h1 className="text-3xl sm:text-4xl text-white font-inter font-bold mb-3">{courseInfo.title}</h1>
             <p className="text-[#DBEAFE] font-inter max-w-2xl leading-relaxed">{courseInfo.description}</p>
@@ -154,7 +204,6 @@ function CoursePage({ courseId, onBack }) {
               <div className="flex items-center gap-2"><BookOpen className="w-4 h-4" /> {modules.length} modules</div>
             </div>
           </div>
-
           <div className="bg-white/10 rounded-lg p-5 w-full lg:w-72 shrink-0">
             <div className="text-blue-100 text-sm mb-1">Course Progress</div>
             <div className="text-4xl font-bold mb-3">{progressPct}%</div>
@@ -179,80 +228,112 @@ function CoursePage({ courseId, onBack }) {
                   <div key={m.id} className="border border-gray-200 rounded-lg overflow-hidden">
                     <button
                       onClick={() => unlocked && setOpen((o) => ({ ...o, [m.id]: !o[m.id] }))}
-                      className={`w-full flex items-center justify-between p-4 text-left ${unlocked ? 'hover:bg-gray-50' : 'cursor-not-allowed'}`}
-                    >
+                      className={`w-full flex items-center justify-between p-4 text-left ${unlocked ? 'hover:bg-gray-50' : 'cursor-not-allowed'}`}>
                       <div className="flex items-start gap-3">
-                        {!unlocked ? (
-                          <Lock className="w-6 h-6 text-gray-400 mt-0.5" />
-                        ) : moduleDone ? (
-                          <CheckCircle className="w-6 h-6 text-[#00A63E] mt-0.5" />
-                        ) : (
-                          <Circle className="w-6 h-6 text-gray-300 mt-0.5" />
-                        )}
+                        {!unlocked ? <Lock className="w-6 h-6 text-gray-400 mt-0.5" />
+                          : moduleDone ? <CheckCircle className="w-6 h-6 text-[#00A63E] mt-0.5" />
+                          : <Circle className="w-6 h-6 text-gray-300 mt-0.5" />}
                         <div>
-                          <div className={`font-bold font-inter ${unlocked ? 'text-[#0A0A0A]' : 'text-gray-400'}`}>
-                            {m.title}
-                          </div>
+                          <div className={`font-bold font-inter ${unlocked ? 'text-[#0A0A0A]' : 'text-gray-400'}`}>{m.title}</div>
                           <div className="text-sm text-[#4A5565] font-inter mt-1">
                             {lectures.length} lectures <span className="mx-1">•</span> {m.hours}
                             {!unlocked && <span className="text-orange-500 ml-2">Locked</span>}
                           </div>
                         </div>
                       </div>
-                      {unlocked && (
-                        <ChevronDown className={`w-5 h-5 text-gray-400 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-                      )}
+                      {unlocked && <ChevronDown className={`w-5 h-5 text-gray-400 shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
                     </button>
 
                     {isOpen && (
                       <div className="px-4 pb-4 space-y-2">
                         {lectures.map((it) => {
                           const done = !!completed[it.id];
+                          const quizzes = lectureQuizzes[it.id] ?? [];
 
                           if (it.type === 'doc') {
                             return (
-                              <div key={it.id} className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100">
-                                <div className="flex items-center gap-3 flex-1">
-                                  {getLectureIcon(it.type)}
-                                  <div>
-                                    <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
-                                    <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                              <div key={it.id}>
+                                <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100">
+                                  <div className="flex items-center gap-3 flex-1">
+                                    {getLectureIcon(it.type)}
+                                    <div>
+                                      <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
+                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <button
-                                    onClick={() => {
+                                  <div className="flex items-center gap-2">
+                                    <button onClick={() => {
                                       const link = document.createElement('a');
                                       link.href = it.docUrl.replace('/upload/', '/upload/fl_attachment/');
                                       link.click();
                                       markDone(it.id);
-                                    }}
-                                    className="text-gray-400 hover:text-gray-600"
-                                  >
-                                    <Download className="w-5 h-5 text-[#99A1AF]" />
-                                  </button>
-                                  {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
+                                    }} className="text-gray-400 hover:text-gray-600">
+                                      <Download className="w-5 h-5 text-[#99A1AF]" />
+                                    </button>
+                                    {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
+                                  </div>
                                 </div>
+
+                                {quizzes.map((qItem) => (
+                                  <div key={qItem.id} className="flex items-center justify-between bg-blue-50 rounded-lg p-3 border border-blue-100 mt-2 ml-4">
+                                    <div className="flex items-center gap-3">
+                                      <HelpCircle className="w-4 h-4 text-[#0F4C8A]" />
+                                      <div>
+                                        <div className="font-semibold text-[#0A0A0A] font-inter text-sm">Lecture Quiz</div>
+                                        <div className="text-xs text-[#6A7282] font-inter mt-0.5">
+                                          {qItem.isCompleted ? `Score: ${qItem.scorePercent}%` : 'Complete to unlock next'}
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {qItem.isCompleted
+                                      ? <CheckCircle className="w-5 h-5 text-[#00A63E]" />
+                                      : <button onClick={() => handleStartLectureQuiz(it.id, qItem)}
+                                          className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">
+                                          Start
+                                        </button>
+                                    }
+                                  </div>
+                                ))}
                               </div>
                             );
                           }
 
                           return (
-                            <div key={it.id} className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100">
-                              <button
-                                onClick={() => {
+                            <div key={it.id}>
+                              <div className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100">
+                                <button onClick={() => {
                                   if (it.type === 'video') setActiveVideo(it);
                                   else markDone(it.id);
-                                }}
-                                className="flex items-center gap-3 text-left flex-1 hover:opacity-80"
-                              >
-                                {getLectureIcon(it.type)}
-                                <div>
-                                  <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
-                                  <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                                }} className="flex items-center gap-3 text-left flex-1 hover:opacity-80">
+                                  {getLectureIcon(it.type)}
+                                  <div>
+                                    <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
+                                    <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                                  </div>
+                                </button>
+                                {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
+                              </div>
+
+                              {quizzes.map((qItem) => (
+                                <div key={qItem.id} className="flex items-center justify-between bg-blue-50 rounded-lg p-3 border border-blue-100 mt-2 ml-4">
+                                  <div className="flex items-center gap-3">
+                                    <HelpCircle className="w-4 h-4 text-[#0F4C8A]" />
+                                    <div>
+                                      <div className="font-semibold text-[#0A0A0A] font-inter text-sm">Lecture Quiz</div>
+                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5">
+                                        {qItem.isCompleted ? `Score: ${qItem.scorePercent}%` : 'Complete to unlock next'}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {qItem.isCompleted
+                                    ? <CheckCircle className="w-5 h-5 text-[#00A63E]" />
+                                    : <button onClick={() => handleStartLectureQuiz(it.id, qItem)}
+                                        className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">
+                                        Start
+                                      </button>
+                                  }
                                 </div>
-                              </button>
-                              {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
+                              ))}
                             </div>
                           );
                         })}
@@ -270,15 +351,12 @@ function CoursePage({ courseId, onBack }) {
                                       <div className="text-xs text-[#6A7282] font-inter mt-0.5">{r.meta}</div>
                                     </div>
                                   </div>
-                                  <button
-                                    onClick={() => {
-                                      const link = document.createElement('a');
-                                      link.href = r.url.replace('/upload/', '/upload/fl_attachment/');
-                                      link.download = r.name;
-                                      link.click();
-                                    }}
-                                    className="text-[#99A1AF] hover:text-gray-600"
-                                  >
+                                  <button onClick={() => {
+                                    const link = document.createElement('a');
+                                    link.href = r.url.replace('/upload/', '/upload/fl_attachment/');
+                                    link.download = r.name;
+                                    link.click();
+                                  }} className="text-[#99A1AF] hover:text-gray-600">
                                     <Download className="w-5 h-5" />
                                   </button>
                                 </div>
@@ -322,23 +400,15 @@ function CoursePage({ courseId, onBack }) {
                     <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282]">{item.sub}</p>
                   </div>
                 </div>
-                {item.type === 'video' ? (
-                  <button onClick={() => setActiveVideo(item)} className="text-[#4A5565] hover:text-[#0F4C8A]">
-                    <PlayCircle size={18} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
+                {item.type === 'video'
+                  ? <button onClick={() => setActiveVideo(item)} className="text-[#4A5565] hover:text-[#0F4C8A]"><PlayCircle size={18} /></button>
+                  : <button onClick={() => {
                       const link = document.createElement('a');
                       link.href = item.fileUrl.replace('/upload/', '/upload/fl_attachment/');
                       link.download = item.title;
                       link.click();
-                    }}
-                    className="text-[#4A5565] hover:text-gray-700"
-                  >
-                    <Download size={16} />
-                  </button>
-                )}
+                    }} className="text-[#4A5565] hover:text-gray-700"><Download size={16} /></button>
+                }
               </div>
             ))}
           </div>
