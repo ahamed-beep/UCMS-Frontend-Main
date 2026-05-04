@@ -26,7 +26,7 @@ const Confirmation = () => {
     <div>
 
 <Navbar />
-<Head/>
+<Head title="Registration Successful!" subtitle="You're all set for the event. We're excited to see you there!" icon={<img src="/Images/successfull.webp" className="w-18 md:w-24 object-contain"/>}/>
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="bg-[#EFF6FF] p-6">

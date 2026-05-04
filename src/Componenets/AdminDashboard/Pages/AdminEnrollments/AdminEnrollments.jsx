@@ -124,7 +124,7 @@ const AdminEnrollments = () => {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors"
+          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium md:px-4 md:py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors "
         >
           <Plus className="w-4 h-4" /> Enroll Student
         </button>

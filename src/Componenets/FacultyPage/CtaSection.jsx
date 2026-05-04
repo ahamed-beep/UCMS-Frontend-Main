@@ -12,7 +12,7 @@ const CtaSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
             <span className=' font-inter text-[#FFFFFF]' > 📧 careers@upskills.com</span>
             <span className="hidden sm:inline text-[#FFFFFF]">|</span>
-            <span className=' flex font-inter text-[#FFFFFF]' ><Phone className='w-4 h-4' color='#4A4E50' /> +1 (234) 567-8900</span>
+            <span className=' flex font-inter text-[#FFFFFF]' ><Phone className='w-4 h-4' /> +1 (234) 567-8900</span>
           </div>
         </div>
       </section>

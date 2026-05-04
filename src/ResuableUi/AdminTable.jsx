@@ -11,7 +11,7 @@ const AdminTable = ({ columns, rows, loading, emptyText = "No data found." }) =>
   }
 
   return (
-    <div className="w-[1000px] border border-gray-200 rounded-xl overflow-x-auto">
+    <div className="xl:w-full border border-gray-200 rounded-xl overflow-x-auto">
       <div className="overflow-x-auto">
         <table className="w-full border-collapse min-w-[600px]" style={{ tableLayout: "fixed" }}>
           <thead>

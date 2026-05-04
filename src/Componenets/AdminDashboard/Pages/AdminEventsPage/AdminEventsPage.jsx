@@ -53,7 +53,7 @@ const AdminEventsPage = () => {
       render: (row) => (
         <div>
           <div className="text-sm font-semibold text-[#0f172a] truncate">{row.title}</div>
-          <div className="text-xs text-[#64748b] mt-0.5">{row.tag}</div>
+          <div className="text-xs text-[#64748b] mt-0.5 break-all">{row.tag}</div>
         </div>
       ),
     },
@@ -84,7 +84,7 @@ const AdminEventsPage = () => {
       ),
     },
     {
-      key: "status", label: "Status", width: "16%",
+      key: "status", label: "Status", width: "25%",
       render: (row) => (
         <select
           value={row.status}

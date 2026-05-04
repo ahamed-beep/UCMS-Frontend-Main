@@ -251,9 +251,9 @@ const ServicesPage = () => {
               <p className="text-sm text-[#4A5565] font-inter mb-5">
                 Book a free consultation with our expert advisors
               </p>
-              <button className="py-3 px-8 rounded-lg border-none bg-[#FF6B35] text-[#FFFFFF] text-[12px] font-bold cursor-pointer inline-flex items-center gap-2">
+              <Link to="/consultation" className="py-3 px-8 rounded-lg border-none bg-[#FF6B35] text-[#FFFFFF] text-[12px] font-bold cursor-pointer inline-flex items-center gap-2">
                 Book Free Consultation <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
           )}
         </div>

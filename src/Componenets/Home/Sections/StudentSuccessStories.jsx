@@ -6,8 +6,8 @@ const StudentSuccessStories = () => {
     <section className='relative w-full bg-[#0F4C8A] bg-cover bg-center'>
       <div className='absolute inset-0 bg-[url("/Images/bg.png")] opacity-20'></div>
       <div className='relative w-full md:mt-16 mt-10 py-3 z-10'>
-        <h3 className='font-inter font-bold text-[24px] md:text-[36px] text-white text-center'>Student Success Stories</h3>
-        <p className='font-inter font-normal text-[16px] md:text-[20px] text-[#DBEAFE] text-center'>Real students, real results</p>
+        <h3 className='font-inter font-bold text-[24px] md:text-[36px] text-white text-center wrap-break-word'>Student Success Stories</h3>
+        <p className='font-inter font-normal text-[16px] md:text-[20px] text-[#DBEAFE] text-center wrap-break-word'>Real students, real results</p>
         <div className='w-[90%] flex sm:flex-row flex-col justify-between gap-5 mx-auto py-5'>
           {
             testimonialsData.map((test, index) => (
@@ -15,10 +15,10 @@ const StudentSuccessStories = () => {
                 <div className="text-[#FF6B35] text-xl">
                   {test.rating}
                 </div>
-                <p className='font-inter font-normal text-[14px] md:text-[16px] italic text-[#DBEAFE]'>"{test.message}"</p>
+                <p className='font-inter font-normal text-[14px] md:text-[16px] italic text-[#DBEAFE] wrap-break-word'>"{test.message}"</p>
                 <div>
-                  <h4 className='font-inter font-normal text-[14px] md:text-[16px] text-white'>{test.name}</h4>
-                  <p className='font-inter font-normal text-[12px] md:text-[14px] text-[#DBEAFE]'>{test.university}</p>
+                  <h4 className='font-inter font-normal text-[14px] md:text-[16px] text-white wrap-break-word'>{test.name}</h4>
+                  <p className='font-inter font-normal text-[12px] md:text-[14px] text-[#DBEAFE] wrap-break-word'>{test.university}</p>
                 </div>
               </div>
             ))

@@ -4,6 +4,7 @@ import Navbar from "../../ResuableUi/Navbar";
 import Footer from "../../ResuableUi/Footer";
 import Head from "../../ResuableUi/Head";
 import axiosInstance from "../../Api/axiosInstance";
+import { toast } from "react-toastify";
 
 const Booking = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -40,13 +41,17 @@ const Booking = () => {
     else if (currentStep === 2 && isStep2Valid()) setCurrentStep(3);
   };
 
+  const toastMessage = ()=>{
+    toast.success("Booking Confirmed! Check your email for confirmation.")
+  }
+
   const handleConfirmBooking = async () => {
     if (!isStep3Valid()) return;
     setLoading(true);
     setError("");
     try {
       await axiosInstance.post("/consultations", formData);
-      alert("Booking Confirmed! Check your email for confirmation.");
+      toastMessage();
     } catch (err) {
       setError(err?.response?.data?.message || "Something went wrong. Please try again.");
     } finally {

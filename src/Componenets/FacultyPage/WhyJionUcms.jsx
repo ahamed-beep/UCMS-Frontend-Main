@@ -25,7 +25,7 @@ const WhyJionUcms = () => {
                 </svg>
               </div>
               <h3 className="text-md font-bold font-inter text-[#0A0A0A] mb-1 break-all">{item.title}</h3>
-              <p className="text-sm font-inter  md:max-w-60 flex-wrap text-[#4A5565] leading-relaxed break-all">{item.desc}</p>
+              <p className="text-sm font-inter  md:max-w-60 flex-wrap text-[#4A5565] leading-relaxed px-2 break-all">{item.desc}</p>
             </div>
           ))}
         </div>
