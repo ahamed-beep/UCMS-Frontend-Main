@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../../ResuableUi/Navbar";
 import Head from "../../ResuableUi/Head";
 import Footer from "../../ResuableUi/Footer";
+import Button from "./Button"
 import { Calendar, CircleCheckBig, Clock, GraduationCap, Mail, MapPin, Phone, User } from "lucide-react";
 import axiosInstance from "../../Api/axiosInstance";
 
@@ -96,7 +97,7 @@ const Register = () => {
   return (
     <div>
       <Navbar />
-      <Head />
+        <Head title="Register for an Event" subtitle="Join us for upcoming seminars, workshops, and university fairs. Register now to secure your spot!" icon={<Button/>}/>
       <div className="py-10 px-4">
         <div className="md:mx-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:mt-6">
