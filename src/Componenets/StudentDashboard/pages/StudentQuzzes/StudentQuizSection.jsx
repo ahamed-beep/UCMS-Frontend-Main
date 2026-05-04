@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { CircleCheckBig, Flag } from "lucide-react";
 import StudentQuizSubmitted from "./StudentQuizSubmitted";
 import axiosInstance from "../../../../Api/axiosInstance";
+
+const STORAGE_KEY = (quizId) => `quiz_session_${quizId}`;
 
 const StudentQuizSection = () => {
   const { id } = useParams();
@@ -22,7 +24,9 @@ const StudentQuizSection = () => {
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
   const [redirectCountdown, setRedirectCountdown] = useState(5);
-  const [startTime] = useState(Date.now());
+
+  const submitRef = useRef(null);
+  const timerRef = useRef(null);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -30,9 +34,36 @@ const StudentQuizSection = () => {
         const res = await axiosInstance.get(`/quizzes/${id}`);
         const data = res.data.data;
         setQuiz(data);
-        setAnswers(Array(data.questions.length).fill(null));
-        setFlagged(Array(data.questions.length).fill(false));
-        setTimeLeft(data.timeLimitMinutes * 60);
+
+        const storageKey = STORAGE_KEY(id);
+        const saved = localStorage.getItem(storageKey);
+
+        if (saved) {
+          const session = JSON.parse(saved);
+          const elapsed = Math.floor((Date.now() - session.startedAt) / 1000);
+          const totalSeconds = data.timeLimitMinutes * 60;
+          const remaining = totalSeconds - elapsed;
+
+          if (remaining <= 0) {
+            setAnswers(session.answers ?? Array(data.questions.length).fill(null));
+            setFlagged(session.flagged ?? Array(data.questions.length).fill(false));
+            setTimeLeft(0);
+          } else {
+            setAnswers(session.answers ?? Array(data.questions.length).fill(null));
+            setFlagged(session.flagged ?? Array(data.questions.length).fill(false));
+            setTimeLeft(remaining);
+          }
+        } else {
+          const session = {
+            startedAt: Date.now(),
+            answers: Array(data.questions.length).fill(null),
+            flagged: Array(data.questions.length).fill(false),
+          };
+          localStorage.setItem(storageKey, JSON.stringify(session));
+          setAnswers(session.answers);
+          setFlagged(session.flagged);
+          setTimeLeft(data.timeLimitMinutes * 60);
+        }
       } catch {
         navigate(returnTo);
       } finally {
@@ -42,39 +73,77 @@ const StudentQuizSection = () => {
     fetchQuiz();
   }, [id]);
 
+  const persistSession = (newAnswers, newFlagged) => {
+    const storageKey = STORAGE_KEY(id);
+    const saved = localStorage.getItem(storageKey);
+    if (!saved) return;
+    const session = JSON.parse(saved);
+    localStorage.setItem(storageKey, JSON.stringify({
+      ...session,
+      answers: newAnswers,
+      flagged: newFlagged,
+    }));
+  };
+
+  const handleSubmit = async (currentAnswers) => {
+    const finalAnswers = currentAnswers ?? answers;
+    try {
+      const storageKey = STORAGE_KEY(id);
+      const saved = localStorage.getItem(storageKey);
+      const startedAt = saved ? JSON.parse(saved).startedAt : Date.now();
+      const timeTakenSeconds = Math.floor((Date.now() - startedAt) / 1000);
+
+      const res = await axiosInstance.post(submitEndpoint, {
+        answers: finalAnswers,
+        timeTakenSeconds,
+      });
+      setResult(res.data.data);
+    } catch {
+    } finally {
+      localStorage.removeItem(STORAGE_KEY(id));
+      setSubmitted(true);
+    }
+  };
+
+  submitRef.current = handleSubmit;
+
   useEffect(() => {
     if (submitted || timeLeft === null) return;
-    if (timeLeft <= 0) { handleSubmit(); return; }
-    const t = setInterval(() => setTimeLeft((s) => s - 1), 1000);
-    return () => clearInterval(t);
+
+    if (timeLeft <= 0) {
+      submitRef.current(answers);
+      return;
+    }
+
+    timerRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          submitRef.current(answers);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timerRef.current);
   }, [timeLeft, submitted]);
 
-useEffect(() => {
-  if (!submitted) return;
-  if (redirectCountdown <= 0) {
-    navigate(returnTo, {
-      state: {
-        quizCompleted: true,
-        lectureId: location.state?.lectureId,
-        courseId: location.state?.courseId,
-      },
-    });
-    return;
-  }
-  const t = setInterval(() => setRedirectCountdown((c) => c - 1), 1000);
-  return () => clearInterval(t);
-}, [submitted, redirectCountdown]);
-
- const handleSubmit = async () => {
-  try {
-    const timeTakenSeconds = Math.floor((Date.now() - startTime) / 1000);
-    const res = await axiosInstance.post(submitEndpoint, { answers, timeTakenSeconds });
-    setResult(res.data.data);
-  } catch {
-  } finally {
-    setSubmitted(true);
-  }
-};
+  useEffect(() => {
+    if (!submitted) return;
+    if (redirectCountdown <= 0) {
+      navigate(returnTo, {
+        state: {
+          quizCompleted: true,
+          lectureId: location.state?.lectureId,
+          courseId: location.state?.courseId,
+        },
+      });
+      return;
+    }
+    const t = setInterval(() => setRedirectCountdown((c) => c - 1), 1000);
+    return () => clearInterval(t);
+  }, [submitted, redirectCountdown]);
 
   const formatTime = (s) => {
     if (s === null) return "00:00";
@@ -87,22 +156,22 @@ useEffect(() => {
     const next = [...answers];
     next[current] = idx;
     setAnswers(next);
+    persistSession(next, flagged);
   };
 
   const toggleFlag = () => {
     const next = [...flagged];
     next[current] = !next[current];
     setFlagged(next);
+    persistSession(answers, next);
   };
 
   const answeredCount = answers.filter((a) => a !== null).length;
   const unansweredCount = answers.length - answeredCount;
 
   if (loading) return (
-    <div>
-      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-        <div className="text-gray-500 font-inter text-lg">Loading quiz...</div>
-      </div>
+    <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="text-gray-500 font-inter text-lg">Loading quiz...</div>
     </div>
   );
 
@@ -117,18 +186,14 @@ useEffect(() => {
   );
 
   if (submitted && !result) return (
-    <div>
-      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-        <div className="text-gray-500 font-inter text-lg">Quiz submitted. Redirecting...</div>
-      </div>
-   </div>
+    <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="text-gray-500 font-inter text-lg">Quiz submitted. Redirecting...</div>
+    </div>
   );
 
   if (!quiz || !quiz.questions || quiz.questions.length === 0) return (
-    <div>
-      <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-        <div className="text-gray-500 font-inter text-lg">Quiz not found.</div>
-      </div>
+    <div className="bg-gray-50 min-h-screen flex items-center justify-center">
+      <div className="text-gray-500 font-inter text-lg">Quiz not found.</div>
     </div>
   );
 
@@ -263,7 +328,7 @@ useEffect(() => {
               </div>
               <div className="flex gap-3 mt-6">
                 <button onClick={() => setShowSubmitModal(false)} className="flex-1 border border-gray-300 text-gray-700 font-semibold py-2.5 rounded-lg hover:bg-gray-50">Cancel</button>
-                <button onClick={() => { setShowSubmitModal(false); handleSubmit(); }} className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg">Submit Now</button>
+                <button onClick={() => { setShowSubmitModal(false); handleSubmit(answers); }} className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg">Submit Now</button>
               </div>
             </div>
           </div>

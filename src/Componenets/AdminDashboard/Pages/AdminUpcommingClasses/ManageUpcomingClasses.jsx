@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Plus, Pencil, Trash2, Eye } from "lucide-react";
-import axiosInstance from "../../../Api/axiosInstance";
+import axiosInstance from "../../../../Api/axiosInstance";
+import AdminTable from "../../../../ResuableUi/AdminTable";
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
 import UpcomingClassForm from "./UpcomingClassForm";
 import UpcomingClassDetailModal from "./UpcomingClassDetailModal";
-import DeleteModal from "../../../ResuableUi/DeleteModal";
-import AdminTable from "../../../ResuableUi/AdminTable";
 
 const STATUS_COLORS = {
   active: "bg-green-100 text-green-700",

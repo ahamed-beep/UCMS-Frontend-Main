@@ -4,7 +4,7 @@ import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
 import Dashboardsection from "./pages/Dashboardsection";
 import CoursesSection from "./pages/CourseSection/CoursesSection";
-import AssignmentSection from "./pages/AssignmentSection";
+import AssignmentSection from "./pages/StudentAssignments/AssignmentSection";
 import QuizzesSection from "./pages/StudentQuzzes/QuizzesSection";
 import ProgressSection from "./pages/ProgressSection";
 import ApplicationSection from "./pages/ApplicationSection";
