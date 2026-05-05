@@ -59,7 +59,7 @@ const BlogArticles = () => {
             <span className={`inline-block text-xs font-medium px-3 py-1 rounded-full mb-3 ${CATEGORY_STYLES[cat]}`}>
               {loading ? "..." : `${counts[cat] ?? 0} Articles`}
             </span>
-            <h3 className="text-base font-semibold text-gray-900">{cat}</h3>
+            <h3 className="text-base font-semibold text-gray-900 wrap-break-word">{cat}</h3>
           </div>
         ))}
       </div>

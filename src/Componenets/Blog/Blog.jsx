@@ -100,7 +100,7 @@ const Blog = () => {
 
           {showFeatured && featuredPost && (
             <>
-              <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-4">Featured Post</h2>
+              <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-4 wrap-break-word">Featured Post</h2>
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 mb-12 overflow-hidden">
                 <div className=" grid md:grid-cols-2">
                   <div className="h-[260px] overflow-hidden">
@@ -117,10 +117,10 @@ const Blog = () => {
                       </span>
                       <span className="text-xs text-[#4A5565] font-inter">{featuredPost.readTime}</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-3 leading-snug break-words">
+                    <h3 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-3 leading-snug wrap-break-word">
                       {featuredPost.title}
                     </h3>
-                    <p className="text-[#4A5565] font-inter text-sm mb-5 leading-relaxed break-words">
+                    <p className="text-[#4A5565] font-inter text-sm mb-5 leading-relaxed wrap-break-word">
                       {featuredPost.excerpt}
                     </p>
                     <div className="flex items-center gap-4 text-xs text-[#4A5565] font-inter mb-4">
@@ -148,7 +148,7 @@ const Blog = () => {
 
                 {featuredExpanded && (
                   <div className="px-8 pb-8 pt-4 border-t border-gray-100">
-                    <p className="text-gray-600 text-sm leading-relaxed break-words">
+                    <p className="text-gray-600 text-sm leading-relaxed wrap-break-word">
                       {featuredPost.description}
                     </p>
                   </div>

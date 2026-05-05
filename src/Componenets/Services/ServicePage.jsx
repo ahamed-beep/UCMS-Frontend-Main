@@ -33,7 +33,7 @@ const ServiceDetail = ({ service }) => (
               <div className="w-[26px] h-[26px] break-all rounded-full bg-[#FF6900BD] flex items-center justify-center text-[#FFFFFF] text-xs font-bold shrink-0">
                 {i + 1}
               </div>
-              <span className="text-sm text-[#364153] break-all">{step}</span>
+              <span className="text-sm text-[#364153] wrap-break-word">{step}</span>
             </div>
           ))}
 
@@ -43,7 +43,7 @@ const ServiceDetail = ({ service }) => (
           {service.requiredDocuments.map((doc) => (
             <div key={doc} className="flex items-center gap-2 mb-2">
               <img src="/Images/file.webp" alt="" />
-              <span className="text-sm text-[#364153] font-inter break-all">{doc}</span>
+              <span className="text-sm text-[#364153] font-inter wrap-break-word">{doc}</span>
             </div>
           ))}
 
@@ -52,10 +52,10 @@ const ServiceDetail = ({ service }) => (
           </h3>
           {service.faqs.map((faq, i) => (
             <div key={i} className="border-l-[3px] border-[#0F4C8A] pl-3.5 mb-3.5">
-              <p className="text-sm font-semibold font-inter text-[#0A0A0A] mb-0.5 break-all">
+              <p className="text-sm font-semibold font-inter text-[#0A0A0A] mb-0.5 wrap-break-word">
                 Q: {faq.question}
               </p>
-              <p className="text-[13px] text-[#364153] font-inter leading-relaxed break-all">
+              <p className="text-[13px] text-[#364153] font-inter leading-relaxed wrap-break-word">
                 {faq.answer}
               </p>
             </div>
@@ -80,7 +80,7 @@ const ServiceDetail = ({ service }) => (
           {service.highlightPoints.map((item) => (
             <div key={item} className="flex gap-y-6 items-center gap-2 mb-1.5">
               <img src="/Images/Icon.png" className="w-4 h-4" alt="" />
-              <span className="text-sm break-all">{item}</span>
+              <span className="text-sm wrap-break-word">{item}</span>
             </div>
           ))}
 

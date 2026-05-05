@@ -69,8 +69,8 @@ const VideoCard = ({ title, views, src }) => {
         </div>
       </div>
       <div className="p-4">
-        <h3 className="text-base font-semibold text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm text-gray-500">{views}</p>
+        <h3 className="text-base font-semibold text-gray-900 mb-1 wrap-break-word">{title}</h3>
+        <p className="text-sm text-gray-500 wrap-break-word">{views}</p>
       </div>
     </div>
   );
