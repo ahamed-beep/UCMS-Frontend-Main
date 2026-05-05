@@ -90,7 +90,7 @@ const QuizzesSection = () => {
     navigate(`/student/quiz/${quiz.quizId}`, {
       state: {
         submitEndpoint: `/lectures/${quiz.lectureId}/quizzes/${quiz.quizId}/submit`,
-        returnTo: "/learninghub",
+        returnTo: "/student/dashboard",
       },
     });
   };

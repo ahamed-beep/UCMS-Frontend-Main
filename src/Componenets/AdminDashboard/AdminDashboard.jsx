@@ -32,6 +32,7 @@ import AdminInstructor from "./Pages/AdminInstructor/AdminInstructor";
 import AdminEnrollments from "./Pages/AdminEnrollments/AdminEnrollments";
 import AdminLectureQuizzes from "./Pages/AdminLectureQuizzes/AdminLectureQuizzes";
 import AdminLectureAssignments from "./Pages/AdminLectureAssignments/AdminLectureAssignments";
+import AdminLectureAssignmentSubmissions from "./Pages/AdminAssignmentSubmissionsmanagement/Adminassignmentsubmissions";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -215,7 +216,7 @@ const CoursesPage = () => {
           {selectedLecture ? (
           <div>
     <div className="flex gap-2 mb-4">
-      {["quizzes", "assignments"].map((tab) => (
+  {["quizzes", "assignments", "submissions"].map((tab) => (
         <button
           key={tab}
           onClick={() => setLectureTab(tab)}
@@ -232,8 +233,11 @@ const CoursesPage = () => {
     {lectureTab === "quizzes" && (
       <AdminLectureQuizzes lectureId={selectedLecture.id} />
     )}
-    {lectureTab === "assignments" && (
+       {lectureTab === "assignments" && (
       <AdminLectureAssignments lectureId={selectedLecture.id} />
+    )}
+    {lectureTab === "submissions" && (
+      <AdminLectureAssignmentSubmissions lectureId={selectedLecture.id} />
     )}
   </div>
           ) : selectedModule ? (

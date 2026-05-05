@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   CheckCircle, Circle, Lock, BookOpen, Clock, Award,
-  PlayCircle, FileText, HelpCircle, ChevronDown, Download, BookOpenIcon
+  PlayCircle, FileText, HelpCircle, ChevronDown, Download, BookOpenIcon, ClipboardList
 } from "lucide-react";
 import CourseStats from "./CourseStats";
 import InstructorCard from "./InstructorCard";
@@ -9,6 +9,8 @@ import NeedHelpCard from "./NeedHelpCard";
 import VideoModal from "./VideoModal";
 import axiosInstance from "../../../../Api/axiosInstance";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import UploadAssignmentModal from "../StudentAssignments/UploadAssignmentModal";
+import FeedbackModal from "../StudentAssignments/FeedbackModal";
 
 function CoursePage({ courseId, onBack }) {
   const { id } = useParams();
@@ -26,6 +28,9 @@ function CoursePage({ courseId, onBack }) {
   const [open, setOpen] = useState({});
   const [activeVideo, setActiveVideo] = useState(null);
   const [lectureQuizzes, setLectureQuizzes] = useState({});
+  const [lectureAssignments, setLectureAssignments] = useState({});
+  const [uploadTarget, setUploadTarget] = useState(null);
+  const [feedbackTarget, setFeedbackTarget] = useState(null);
 
   useEffect(() => {
     if (!resolvedId) return;
@@ -78,19 +83,35 @@ function CoursePage({ courseId, onBack }) {
         setModules(modulesWithResources);
 
         const allLectures = modulesWithResources.flatMap((m) => m.lectures ?? []);
-        const quizResults = await Promise.all(
-          allLectures.map((lec) =>
-            axiosInstance.get(`/lectures/${lec.id}/quizzes`)
-              .then((r) => ({ lectureId: lec.id, quizzes: r.data.data ?? [] }))
-              .catch(() => ({ lectureId: lec.id, quizzes: [] }))
-          )
-        );
+
+        const [quizResults, assignmentResults] = await Promise.all([
+          Promise.all(
+            allLectures.map((lec) =>
+              axiosInstance.get(`/lectures/${lec.id}/quizzes`)
+                .then((r) => ({ lectureId: lec.id, quizzes: r.data.data ?? [] }))
+                .catch(() => ({ lectureId: lec.id, quizzes: [] }))
+            )
+          ),
+          Promise.all(
+            allLectures.map((lec) =>
+              axiosInstance.get(`/lectures/${lec.id}/assignments/student`)
+                .then((r) => ({ lectureId: lec.id, assignments: r.data?.data ?? r.data ?? [] }))
+                .catch(() => ({ lectureId: lec.id, assignments: [] }))
+            )
+          ),
+        ]);
 
         const quizMap = {};
         quizResults.forEach(({ lectureId, quizzes }) => {
           quizMap[lectureId] = quizzes;
         });
         setLectureQuizzes(quizMap);
+
+        const assignmentMap = {};
+        assignmentResults.forEach(({ lectureId, assignments }) => {
+          assignmentMap[lectureId] = assignments;
+        });
+        setLectureAssignments(assignmentMap);
 
         if (modulesWithResources.length) {
           setOpen({ [modulesWithResources[0].id]: true });
@@ -106,26 +127,26 @@ function CoursePage({ courseId, onBack }) {
   }, [resolvedId]);
 
   useEffect(() => {
-  if (!location.state?.quizCompleted) return;
+    if (!location.state?.quizCompleted) return;
 
-  const completedLectureId = location.state?.lectureId;
+    const completedLectureId = location.state?.lectureId;
 
-  if (completedLectureId) {
-    setCompleted((c) => ({ ...c, [completedLectureId]: true }));
+    if (completedLectureId) {
+      setCompleted((c) => ({ ...c, [completedLectureId]: true }));
 
-    axiosInstance
-      .get(`/lectures/${completedLectureId}/quizzes`)
-      .then((r) => {
-        setLectureQuizzes((prev) => ({
-          ...prev,
-          [completedLectureId]: r.data.data ?? [],
-        }));
-      })
-      .catch(() => {});
-  }
+      axiosInstance
+        .get(`/lectures/${completedLectureId}/quizzes`)
+        .then((r) => {
+          setLectureQuizzes((prev) => ({
+            ...prev,
+            [completedLectureId]: r.data.data ?? [],
+          }));
+        })
+        .catch(() => {});
+    }
 
-  window.history.replaceState({}, '');
-}, [location.state]);
+    window.history.replaceState({}, '');
+  }, [location.state]);
 
   const handleBack = () => {
     if (onBack) onBack();
@@ -141,21 +162,26 @@ function CoursePage({ courseId, onBack }) {
     }
   };
 
-const handleStartLectureQuiz = (lectureId, quizItem) => {
-  navigate(`/student/quiz/${quizItem.quizId}`, {
-    state: {
-      submitEndpoint: `/lectures/${lectureId}/quizzes/${quizItem.quizId}/submit`,
-      returnTo: `/student/course/${resolvedId}`,
-      lectureId,
-    },
-  });
-};
+  const handleStartLectureQuiz = (lectureId, quizItem) => {
+    navigate(`/student/quiz/${quizItem.quizId}`, {
+      state: {
+        submitEndpoint: `/lectures/${lectureId}/quizzes/${quizItem.quizId}/submit`,
+        returnTo: `/student/course/${resolvedId}`,
+        lectureId,
+      },
+    });
+  };
 
-  const refreshLectureQuizzes = async (lectureId) => {
-    try {
-      const res = await axiosInstance.get(`/lectures/${lectureId}/quizzes`);
-      setLectureQuizzes((prev) => ({ ...prev, [lectureId]: res.data.data ?? [] }));
-    } catch {}
+  const handleAssignmentSubmitted = (lectureId, assignmentId, submission) => {
+    setLectureAssignments((prev) => ({
+      ...prev,
+      [lectureId]: (prev[lectureId] ?? []).map((a) =>
+        a.id === assignmentId
+          ? { ...a, status: "submitted", fileUrl: submission.fileUrl, submittedAt: submission.createdAt }
+          : a
+      ),
+    }));
+    setUploadTarget(null);
   };
 
   const isModuleComplete = (m) => m.lectures?.every((it) => completed[it.id]);
@@ -164,10 +190,22 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
     return modules.slice(0, idx).every((m) => isModuleComplete(m));
   };
 
-  const totalItems = modules.reduce((s, m) => s + (m.lectures?.length ?? 0), 0);
-  const completedItemsCount = modules.reduce(
+  const totalLectures = modules.reduce((s, m) => s + (m.lectures?.length ?? 0), 0);
+  const completedLecturesCount = modules.reduce(
     (s, m) => s + (m.lectures?.filter((it) => completed[it.id]).length ?? 0), 0
   );
+
+  const allQuizzes = Object.values(lectureQuizzes).flat();
+  const completedQuizzesCount = allQuizzes.filter((q) => q.isCompleted).length;
+
+  const allAssignments = Object.values(lectureAssignments).flat();
+  const completedAssignmentsCount = allAssignments.filter(
+    (a) => a.status === "submitted" || a.status === "graded"
+  ).length;
+
+  const totalItems = totalLectures + allQuizzes.length + allAssignments.length;
+  const completedItemsCount = completedLecturesCount + completedQuizzesCount + completedAssignmentsCount;
+
   const completedModulesCount = modules.filter((m) => isModuleComplete(m)).length;
   const progressPct = totalItems ? Math.round((completedItemsCount / totalItems) * 100) : 0;
 
@@ -210,7 +248,7 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
             <div className="w-full h-2 bg-blue-900/40 rounded-full overflow-hidden">
               <div className="h-full bg-white rounded-full transition-all" style={{ width: `${progressPct}%` }} />
             </div>
-            <div className="text-blue-100 text-sm mt-3">{completedItemsCount} of {totalItems} lectures completed</div>
+            <div className="text-blue-100 text-sm mt-3">{completedItemsCount} of {totalItems} items completed</div>
           </div>
         </div>
 
@@ -249,6 +287,7 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
                         {lectures.map((it) => {
                           const done = !!completed[it.id];
                           const quizzes = lectureQuizzes[it.id] ?? [];
+                          const assignments = lectureAssignments[it.id] ?? [];
 
                           if (it.type === 'doc') {
                             return (
@@ -294,6 +333,15 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
                                     }
                                   </div>
                                 ))}
+
+                                {assignments.map((aItem) => (
+                                  <AssignmentRow
+                                    key={aItem.id}
+                                    assignment={aItem}
+                                    onUpload={() => setUploadTarget({ assignment: aItem, lectureId: it.id })}
+                                    onViewFeedback={() => setFeedbackTarget(aItem)}
+                                  />
+                                ))}
                               </div>
                             );
                           }
@@ -333,6 +381,15 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
                                       </button>
                                   }
                                 </div>
+                              ))}
+
+                              {assignments.map((aItem) => (
+                                <AssignmentRow
+                                  key={aItem.id}
+                                  assignment={aItem}
+                                  onUpload={() => setUploadTarget({ assignment: aItem, lectureId: it.id })}
+                                  onViewFeedback={() => setFeedbackTarget(aItem)}
+                                />
                               ))}
                             </div>
                           );
@@ -443,6 +500,81 @@ const handleStartLectureQuiz = (lectureId, quizItem) => {
           onClose={() => setActiveVideo(null)}
           onComplete={() => markDone(activeVideo.id)}
         />
+      )}
+
+      {uploadTarget && (
+        <UploadAssignmentModal
+          assignment={uploadTarget.assignment}
+          lectureId={uploadTarget.lectureId}
+          onClose={() => setUploadTarget(null)}
+          onSubmitted={(submission) =>
+            handleAssignmentSubmitted(uploadTarget.lectureId, uploadTarget.assignment.id, submission)
+          }
+        />
+      )}
+
+      {feedbackTarget && (
+        <FeedbackModal
+          assignment={feedbackTarget}
+          onClose={() => setFeedbackTarget(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function AssignmentRow({ assignment, onUpload, onViewFeedback }) {
+  const statusMap = {
+    pending: { label: "Pending", color: "text-[#F54900]", bg: "bg-orange-50 border-orange-100" },
+    submitted: { label: "Submitted", color: "text-[#155DFC]", bg: "bg-blue-50 border-blue-100" },
+    graded: { label: "Graded", color: "text-[#00A63E]", bg: "bg-green-50 border-green-100" },
+  };
+
+  const style = statusMap[assignment.status] ?? statusMap.pending;
+
+  return (
+    <div className={`flex items-center justify-between rounded-lg p-3 border mt-2 ml-4 ${style.bg}`}>
+      <div className="flex items-center gap-3">
+        <ClipboardList className="w-4 h-4 text-[#0F4C8A] shrink-0" />
+        <div>
+          <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{assignment.title}</div>
+          <div className={`text-xs font-inter mt-0.5 ${style.color}`}>
+            {assignment.status === "graded"
+              ? `Graded: ${assignment.grade ?? 0}%`
+              : assignment.status === "submitted"
+              ? "Submitted — awaiting grade"
+              : assignment.dueDate
+              ? `Due: ${new Date(assignment.dueDate).toLocaleDateString("en-GB")}`
+              : "Assignment"}
+          </div>
+        </div>
+      </div>
+
+      {assignment.status === "pending" && (
+        <button
+          onClick={onUpload}
+          className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800 whitespace-nowrap"
+        >
+          Upload
+        </button>
+      )}
+      {assignment.status === "submitted" && (
+        <a
+          href={assignment.fileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-[#155DFC] font-inter hover:underline whitespace-nowrap"
+        >
+          View
+        </a>
+      )}
+      {assignment.status === "graded" && (
+        <button
+          onClick={onViewFeedback}
+          className="text-xs text-[#00A63E] font-inter hover:underline whitespace-nowrap"
+        >
+          Feedback
+        </button>
       )}
     </div>
   );

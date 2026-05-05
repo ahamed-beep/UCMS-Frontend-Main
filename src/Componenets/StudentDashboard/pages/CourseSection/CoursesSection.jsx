@@ -62,20 +62,33 @@ const CoursesSection = ({ setCourseId }) => {
 
                 const allLectures = lecturesPerModule.flat();
 
-                const quizzesPerLecture = await Promise.all(
-                  allLectures.map((lec) =>
-                    axiosInstance.get(`/lectures/${lec.id}/quizzes`)
-                      .then(r => r.data.data ?? [])
-                      .catch(() => [])
-                  )
-                );
+                const [quizzesPerLecture, assignmentsPerLecture] = await Promise.all([
+                  Promise.all(
+                    allLectures.map((lec) =>
+                      axiosInstance.get(`/lectures/${lec.id}/quizzes`)
+                        .then(r => r.data.data ?? [])
+                        .catch(() => [])
+                    )
+                  ),
+                  Promise.all(
+                    allLectures.map((lec) =>
+                      axiosInstance.get(`/lectures/${lec.id}/assignments/student`)
+                        .then(r => r.data?.data ?? r.data ?? [])
+                        .catch(() => [])
+                    )
+                  ),
+                ]);
 
                 const allQuizzes = quizzesPerLecture.flat();
+                const allAssignments = assignmentsPerLecture.flat();
 
-                const totalItems = allLectures.length + allQuizzes.length;
+                const totalItems = allLectures.length + allQuizzes.length + allAssignments.length;
                 const completedLectures = allLectures.filter(l => completedIds.includes(l.id)).length;
                 const completedQuizzes = allQuizzes.filter(q => q.isCompleted).length;
-                const completedItems = completedLectures + completedQuizzes;
+                const completedAssignments = allAssignments.filter(
+                  (a) => a.status === "submitted" || a.status === "graded"
+                ).length;
+                const completedItems = completedLectures + completedQuizzes + completedAssignments;
 
                 const pct = totalItems ? Math.round((completedItems / totalItems) * 100) : 0;
 
