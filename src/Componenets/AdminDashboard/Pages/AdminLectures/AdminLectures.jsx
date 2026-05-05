@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Plus, Eye, Pencil, Trash2 } from "lucide-react";
+import { Plus, Eye, Pencil, Trash2, BookOpen } from "lucide-react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 import DeleteModal from "../../../../ResuableUi/DeleteModal";
 import LectureFormModal from "./LectureFormModal";
 import LectureViewModal from "./LectureViewModal";
 
-const AdminLectures = ({ moduleId }) => {
+const AdminLectures = ({ moduleId, onSelectLecture }) => {
   const [lectures, setLectures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState(null);
@@ -68,7 +68,7 @@ const AdminLectures = ({ moduleId }) => {
       render: (r) => <span className="text-sm text-[#334155]">{r.duration ?? "—"}</span>,
     },
     {
-      key: "actions", label: "Actions", width: "20%",
+      key: "actions", label: "Actions", width: "25%",
       render: (r) => (
         <div className="flex items-center gap-2">
           <button onClick={() => setShowView(r)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500">
@@ -80,6 +80,15 @@ const AdminLectures = ({ moduleId }) => {
           <button onClick={() => setDeleteTarget(r)} className="w-8 h-8 flex items-center justify-center rounded-lg border border-red-100 hover:bg-red-50 text-red-500">
             <Trash2 className="w-4 h-4" />
           </button>
+          {onSelectLecture && (
+            <button
+              onClick={() => onSelectLecture({ id: r.id, title: r.title })}
+              className="w-8 h-8 flex items-center justify-center rounded-lg border border-blue-100 hover:bg-blue-50 text-[#0F4C8A]"
+              title="Manage Quizzes"
+            >
+              <BookOpen className="w-4 h-4" />
+            </button>
+          )}
         </div>
       ),
     },

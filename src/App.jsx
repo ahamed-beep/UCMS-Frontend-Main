@@ -27,6 +27,7 @@ import Blog from './Componenets/Blog/Blog';
 import LearningHub from './Componenets/LearningHub/LearningHub';
 import QuizSection from './Componenets/LearningHub/QuizzesSection';
 import CoursePage from './Componenets/StudentDashboard/pages/CourseModulePage/CourseModuleSection';
+import StudentQuizSection from './Componenets/StudentDashboard/pages/StudentQuzzes/StudentQuizSection';
 
 const App = () => {
   return (
@@ -56,6 +57,16 @@ const App = () => {
         <Route path="/payment-success" element={<PaymentSuccess />} />
         <Route path="/payment-failed" element={<PaymentFailed />} />
         <Route path="/payment-cancelled" element={<PaymentCancelled />} />
+        <Route path="/student/quiz/:id" element={<StudentQuizSection />} />
+        <Route path="/student/quiz/:id" element={<StudentQuizSection />} />
+<Route
+  path="/student/course/:id"
+  element={
+    <ProtectedRoute allowedRoles={[ROLES.STUDENT]}>
+      <CoursePage />
+    </ProtectedRoute>
+  }
+/>
         <Route
           path="/student/dashboard"
           element={

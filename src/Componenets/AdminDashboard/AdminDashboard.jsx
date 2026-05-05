@@ -21,7 +21,7 @@ import BlogsTable from "./Pages/AdminBlog/BlogsTable";
 import ManageQuizzes from "./Pages/AdminQuizes/ManageQuizzes";
 import ManageVideoLibrary from "./Pages/AdminLearningHunVideoLibrary/ManageVideoLibrary";
 import ManageIeltsResources from "./Pages/AdminIeltsResources/ManageIeltsResources";
-import ManageUpcomingClasses from "./AdminUpcommingClasses/ManageUpcomingClasses";
+import ManageUpcomingClasses from "./Pages/AdminUpcommingClasses/ManageUpcomingClasses";
 import AdminCourses from "./Pages/AdminCourses/AdminCourses";
 import AdminCourseModules from "./Pages/AdminCourseModule/AdminCourseModules";
 import AdminExercises from "./Pages/AdminExercise/AdminExercises";
@@ -30,6 +30,9 @@ import AdminMaterials from "./Pages/AdminMaterials/AdminMaterials";
 import AdminResources from "./Pages/AdminResources/AdminResources";
 import AdminInstructor from "./Pages/AdminInstructor/AdminInstructor";
 import AdminEnrollments from "./Pages/AdminEnrollments/AdminEnrollments";
+import AdminLectureQuizzes from "./Pages/AdminLectureQuizzes/AdminLectureQuizzes";
+import AdminLectureAssignments from "./Pages/AdminLectureAssignments/AdminLectureAssignments";
+import AdminLectureAssignmentSubmissions from "./Pages/AdminAssignmentSubmissionsmanagement/Adminassignmentsubmissions";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -162,8 +165,8 @@ const CoursesPage = () => {
   const [activeTab, setActiveTab] = useState("modules");
   const [selectedModule, setSelectedModule] = useState(null);
   const [moduleTab, setModuleTab] = useState("lectures");
-
-  
+  const [selectedLecture, setSelectedLecture] = useState(null);
+  const [lectureTab, setLectureTab] = useState("quizzes");
 
   return (
     <div className="px-5 py-7 sm:px-8">
@@ -171,14 +174,22 @@ const CoursesPage = () => {
         <div>
           <div className="flex items-center gap-2 text-sm text-[#64748b] mb-4">
             <button
-              onClick={() => { setSelectedCourse(null); setSelectedModule(null); setActiveTab("modules"); }}
+              onClick={() => {
+                setSelectedCourse(null);
+                setSelectedModule(null);
+                setSelectedLecture(null);
+                setActiveTab("modules");
+              }}
               className="hover:text-[#0f172a] transition-colors"
             >
               Courses
             </button>
             <span>/</span>
             <button
-              onClick={() => setSelectedModule(null)}
+              onClick={() => {
+                setSelectedModule(null);
+                setSelectedLecture(null);
+              }}
               className="hover:text-[#0f172a] transition-colors font-medium text-[#0f172a]"
             >
               {selectedCourse.title}
@@ -186,21 +197,31 @@ const CoursesPage = () => {
             {selectedModule && (
               <>
                 <span>/</span>
-                <span className="font-medium text-[#0f172a]">{selectedModule.title}</span>
+                <button
+                  onClick={() => setSelectedLecture(null)}
+                  className="hover:text-[#0f172a] transition-colors font-medium text-[#0f172a]"
+                >
+                  {selectedModule.title}
+                </button>
+              </>
+            )}
+            {selectedLecture && (
+              <>
+                <span>/</span>
+                <span className="font-medium text-[#0f172a]">{selectedLecture.title}</span>
               </>
             )}
           </div>
 
-        {selectedModule ? (
-  <div>
-    {/* Module level tabs */}
+          {selectedLecture ? (
+          <div>
     <div className="flex gap-2 mb-4">
-      {["lectures", "resources"].map((tab) => (
+  {["quizzes", "assignments", "submissions"].map((tab) => (
         <button
           key={tab}
-          onClick={() => setModuleTab(tab)}
+          onClick={() => setLectureTab(tab)}
           className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors capitalize ${
-            moduleTab === tab
+            lectureTab === tab
               ? "bg-[#0F4C8A] text-white"
               : "border border-gray-200 text-[#334155] hover:bg-gray-50"
           }`}
@@ -209,13 +230,48 @@ const CoursesPage = () => {
         </button>
       ))}
     </div>
-    {moduleTab === "lectures" && <AdminLectures moduleId={selectedModule.id} />}
-    {moduleTab === "resources" && <AdminResources moduleId={selectedModule.id} />}
+    {lectureTab === "quizzes" && (
+      <AdminLectureQuizzes lectureId={selectedLecture.id} />
+    )}
+       {lectureTab === "assignments" && (
+      <AdminLectureAssignments lectureId={selectedLecture.id} />
+    )}
+    {lectureTab === "submissions" && (
+      <AdminLectureAssignmentSubmissions lectureId={selectedLecture.id} />
+    )}
   </div>
-) : (
+          ) : selectedModule ? (
+            <div>
+              <div className="flex gap-2 mb-4">
+                {["lectures", "resources"].map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setModuleTab(tab)}
+                    className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors capitalize ${
+                      moduleTab === tab
+                        ? "bg-[#0F4C8A] text-white"
+                        : "border border-gray-200 text-[#334155] hover:bg-gray-50"
+                    }`}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+              {moduleTab === "lectures" && (
+                <AdminLectures
+                  moduleId={selectedModule.id}
+                  onSelectLecture={setSelectedLecture}
+                />
+              )}
+              {moduleTab === "resources" && (
+                <AdminResources moduleId={selectedModule.id} />
+              )}
+              
+            </div>
+          ) : (
             <>
               <div className="flex gap-2 mb-4">
-               {["modules", "exercises", "materials", "instructor"].map((tab) => (
+                {["modules", "exercises", "materials", "instructor"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -229,7 +285,6 @@ const CoursesPage = () => {
                   </button>
                 ))}
               </div>
-
               {activeTab === "modules" && (
                 <AdminCourseModules
                   courseId={selectedCourse.id}
@@ -239,9 +294,12 @@ const CoursesPage = () => {
               {activeTab === "exercises" && (
                 <AdminExercises courseId={selectedCourse.id} />
               )}
-
-              {activeTab === "materials" && <AdminMaterials courseId={selectedCourse.id} />}
-              {activeTab === "instructor" && <AdminInstructor courseId={selectedCourse.id} />}
+              {activeTab === "materials" && (
+                <AdminMaterials courseId={selectedCourse.id} />
+              )}
+              {activeTab === "instructor" && (
+                <AdminInstructor courseId={selectedCourse.id} />
+              )}
             </>
           )}
         </div>
