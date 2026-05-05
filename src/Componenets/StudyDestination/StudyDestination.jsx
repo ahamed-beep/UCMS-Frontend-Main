@@ -52,8 +52,8 @@ setDestinations(data);
                     className="text-white p-6 flex flex-col justify-center"
                   >
                     <img className="w-12 h-12 mb-3 rounded-full object-cover" src={d.flag} alt={d.name} />
-                    <h3 className="text-2xl text-[#FFFFFF] font-inter font-semibold mb-1 break-all">{d.name}</h3>
-                    <p className="text-xs text-[#DBEAFE] font-inter mb-4 break-all">{d.tagline}</p>
+                    <h3 className="text-2xl text-[#FFFFFF] font-inter font-semibold mb-1 wrap-break-word">{d.name}</h3>
+                    <p className="text-xs text-[#DBEAFE] font-inter mb-4 wrap-break-word">{d.tagline}</p>
                     <ul className="space-y-1.5 text-xs text-[#DBEAFE] font-inter">
                       <li className="flex items-center gap-2 break-all">🎓 {d.partnerUniversities}</li>
                       <li className="flex items-center gap-2 break-all">📚 {d.programs}</li>
@@ -61,30 +61,30 @@ setDestinations(data);
                   </div>
 
                   <div className="p-6 border bg-white border-[#F3F4F6]">
-                    <h4 className="font-semibold text-[#101828] font-inter mb-4">Key Information</h4>
+                    <h4 className="font-semibold text-[#101828] font-inter mb-4 wrap-break-word">Key Information</h4>
                     <div className="space-y-3">
                       <div className="flex items-start gap-2">
                         <DollarSign className="w-4 h-4 text-[#FF6B35] mt-0.5 flex-shrink-0" />
                         <div>
                           <p className="text-sm text-[#364153] font-inter">Average Cost</p>
-                          <p className="text-sm text-[#4A5565] font-inter break-all">{d.averageCost}</p>
+                          <p className="text-sm text-[#4A5565] font-inter wrap-break-word">{d.averageCost}</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-2">
                         <Calendar className="w-4 h-4 text-[#FF6B35] mt-0.5 flex-shrink-0" />
                         <div>
                           <p className="text-sm text-[#364153] font-inter">Intakes</p>
-                          <p className="text-sm text-[#4A5565] font-inter break-all">{d.intakes}</p>
+                          <p className="text-sm text-[#4A5565] font-inter wrap-break-word">{d.intakes}</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <div className="p-6 bg-[#F9FAFB] flex flex-col">
-                    <h4 className="font-semibold text-[#101828] font-inter mb-4">Highlights</h4>
+                    <h4 className="font-semibold text-[#101828] font-inter mb-4 break-all">Highlights</h4>
                     <ul className="space-y-2 mb-4 flex-1">
                       {d.highlights.map((h) => (
-                        <li key={h} className="flex items-center gap-2 text-sm text-[#364153] font-inter break-all">
+                        <li key={h} className="flex items-center gap-2 text-sm text-[#364153] font-inter wrap-break-word">
                           <FileCheck className="w-4 h-4 text-[#193CB8] flex-shrink-0" />
                           {h}
                         </li>
@@ -103,10 +103,10 @@ setDestinations(data);
           )}
 
           <div className="mt-10 bg-white justify-center flex items-center flex-col rounded-xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-2">
+            <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-2 wrap-anywhere">
               Not Sure Which Destination to Choose?
             </h2>
-            <p className="text-[#4A5565] font-inter mb-5">
+            <p className="text-[#4A5565] font-inter mb-5 wrap-anywhere">
               Our expert counselors can help you find the perfect match
             </p>
             <Link to="/consultation" className="bg-[#FF6B35] flex font-inter text-sm hover:bg-orange-600 transition-colors text-white font-semibold gap-2 px-6 py-3 rounded-lg">

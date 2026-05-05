@@ -26,7 +26,7 @@ const QuizzesSection = () => {
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter text-center mb-8 flex items-center justify-center gap-2">
-          <Brain className="w-6 h-6 text-[#0F4C8A]" />
+          <Brain className="w-6 h-6 text-[#0F4C8A] wrap-break-word" />
           Online Quizzes & Mock Tests
         </h2>
 
@@ -50,7 +50,7 @@ const QuizzesSection = () => {
                 <div className="w-10 h-10 rounded-lg bg-[#F3E8FF] flex items-center justify-center mb-4">
                   <Brain className="w-5 h-5 text-[#FF6B35]" />
                 </div>
-                <h3 className="text-base font-semibold text-[#0A0A0A] font-inter mb-2">{q.title}</h3>
+                <h3 className="text-base font-semibold text-[#0A0A0A] font-inter mb-2 wrap-break-word">{q.title}</h3>
                 <p className="text-sm text-[#4A5565] font-inter mb-4">
                   {q.totalQuestions} Questions &nbsp;•&nbsp; {q.attempts.toLocaleString()} Attempts
                 </p>
