@@ -102,12 +102,12 @@ const GalleryPage = () => {
               </div>
 
               {/* Title */}
-              <h2 className="text-2xl font-poppins text-[#1A2942] font-bold mb-1">
+              <h2 className="text-2xl font-poppins text-[#1A2942] font-bold mb-1 wrap-anywhere">
                 {section.title}
               </h2>
 
               {/* Subtitle */}
-              <p className="text-md font-inter text-[#4A5565] mb-6 text-center break-all">
+              <p className="text-md font-inter text-[#4A5565] mb-6 text-center wrap-anywhere">
                 {section.subtitle}
               </p>
 
@@ -129,7 +129,7 @@ const GalleryPage = () => {
                     images.map((img, imgIdx) => (
                       <div
                         key={imgIdx}
-                        className="w-56 h-40 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100"
+                        className="w-56 h-40 rounded-xl flex-shrink-0 bg-gray-100"
                       >
                         <img
                           src={img}
@@ -164,7 +164,7 @@ const GalleryPage = () => {
                   images.map((img, imgIdx) => (
                     <div
                       key={imgIdx}
-                      className="aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 shadow-sm"
+                      className="aspect-[4/3] rounded-xl bg-gray-100 shadow-sm"
                     >
                       <img
                         src={img}

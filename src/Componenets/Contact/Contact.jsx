@@ -193,7 +193,7 @@ const handleSubmit = async (e) => {
                     <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                       <MapPin color="#0F4C8A" className="h-5 w-5 mb-3 text-primary" />
                     </div>
-                    <span className="text-sm text-[#364153] font-inter">123 Main Street, Business District, City, Country</span>
+                    <span className="text-sm text-[#364153] font-inter wrap-anywhere">123 Main Street, Business District, City, Country</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
@@ -217,7 +217,7 @@ const handleSubmit = async (e) => {
                     <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
                       <MapPin color="#0F4C8A" className="h-5 w-5 mb-3 text-primary" />
                     </div>
-                    <span className="text-sm text-[#364153] font-inter">456 Park Avenue, Downtown, City, Country</span>
+                    <span className="text-sm text-[#364153] font-inter wrap-anywhere">456 Park Avenue, Downtown, City, Country</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">

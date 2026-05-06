@@ -24,7 +24,7 @@ const LearningHub = () => {
         <IeltsPreparation />
         <VideoLibrary />
         <QuizzesSection />
-        <SubscribtionBar title="Want Personalized Guidance?" subtitle="Join our live classes and get expert feedback on your progress" showButton={true}/>
+        <SubscribtionBar title="Want Personalized Guidance?" subtitle="Join our live classes and get expert feedback on your progress" showButton={true} button="Book Free Consultation" color="text-[#0F4C8A]"/>
       </div>
 
       <Footer />

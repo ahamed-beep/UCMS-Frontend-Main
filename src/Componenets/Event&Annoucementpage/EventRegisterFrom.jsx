@@ -105,13 +105,13 @@ const Register = () => {
               onSubmit={handleSubmit}
               className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-6"
             >
-              <h2 className="text-xl font-bold text-[#101828] font-inter">Registration Form</h2>
+              <h2 className="text-xl font-bold text-[#101828] font-inter wrap-break-word">Registration Form</h2>
 
               {/* Select Event */}
               <div>
                 <div className="flex gap-1.5 mt-5">
                   <Calendar className="w-5 h-5 text-[#155DFC]" />
-                  <h3 className="text-md text-[#101828] font-semibold font-inter mb-3 flex items-center">
+                  <h3 className="text-md text-[#101828] font-semibold font-inter mb-3 flex items-center wrap-break-word">
                     Select Event
                   </h3>
                 </div>
@@ -164,7 +164,7 @@ const Register = () => {
 
               {/* Personal Information */}
               <div className="mt-5">
-                <h3 className="text-sm font-semibold gap-1.5 text-[#101828] font-inter mb-3 flex items-center">
+                <h3 className="text-sm font-semibold gap-1.5 text-[#101828] font-inter mb-3 flex items-center wrap-break-word">
                   <User className="w-5 h-5 text-[#155DFC]" /> Personal Information
                 </h3>
                 <hr className="mb-4 border-[#E5E7EB]" />
@@ -198,7 +198,7 @@ const Register = () => {
 
               {/* Academic */}
               <div className="mt-5">
-                <h3 className="text-sm gap-1.5 font-semibold text-[#101828] font-inter mb-3 flex items-center">
+                <h3 className="text-sm gap-1.5 font-semibold text-[#101828] font-inter mb-3 flex items-center wrap-break-word">
                   <GraduationCap className="w-5 h-5 text-[#155DFC]" /> Academic & Study Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -248,27 +248,27 @@ const Register = () => {
                 <div className="flex items-start gap-3">
                   <Mail className="w-6 h-6 text-[#155DFC]" />
                   <div>
-                    <div className="font-semibold text-sm text-[#101828] font-inter">Event Confirmation</div>
-                    <div className="text-sm mt-1 font-inter text-[#4A5565]">You'll receive a confirmation email with event details within 24 hours.</div>
+                    <div className="font-semibold text-sm text-[#101828] font-inter wrap-anywhere">Event Confirmation</div>
+                    <div className="text-sm mt-1 font-inter text-[#4A5565] wrap-anywhere">You'll receive a confirmation email with event details within 24 hours.</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-[#155DFC]" />
                   <div>
-                    <div className="font-semibold text-sm text-[#101828] font-inter">Need Help?</div>
-                    <div className="text-sm mt-1 font-inter text-[#4A5565]">Contact us at <span className="text-blue-600 font-inter">+1 (234) 567-8900</span></div>
+                    <div className="font-semibold text-sm text-[#101828] font-inter wrap-anywhere">Need Help?</div>
+                    <div className="text-sm mt-1 font-inter text-[#4A5565] wrap-anywhere">Contact us at <span className="text-blue-600 font-inter">+1 (234) 567-8900</span></div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-[#F9FAFB] rounded-xl shadow-md border border-gray-100 p-5">
-                <div className="font-semibold text-md text-[#101828] font-inter mb-3">What You'll Get</div>
+                <div className="font-semibold text-md text-[#101828] font-inter mb-3 wrap-break-word">What You'll Get</div>
                 <ul className="space-y-2 text-sm text-[#364153] font-inter">
-                  <li className="flex gap-2 items-center"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Free admission to all sessions</li>
-                  <li className="flex items-center gap-2"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Expert guidance and counselling</li>
-                  <li className="flex items-center gap-2"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Free study materials</li>
-                  <li className="flex items-center gap-2"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Networking opportunities</li>
-                  <li className="flex items-center gap-2"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Certificate of participation</li>
+                  <li className="flex gap-2 items-center wrap-break-word"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Free admission to all sessions</li>
+                  <li className="flex items-center gap-2 wrap-break-word"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Expert guidance and counselling</li>
+                  <li className="flex items-center gap-2 wrap-break-word"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Free study materials</li>
+                  <li className="flex items-center gap-2 wrap-break-word"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Networking opportunities</li>
+                  <li className="flex items-center gap-2 wrap-break-word"><CircleCheckBig className="w-4.5 h-4.5 text-[#00A63E]" /> Certificate of participation</li>
                 </ul>
               </div>
             </div>
