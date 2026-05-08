@@ -62,7 +62,7 @@ const VideoDetailModal = ({ videoId, onClose }) => {
               </div>
 
               <div>
-                <h2 className="text-lg font-bold text-[#0f172a]">{video.title}</h2>
+                <h2 className="text-lg font-bold text-[#0f172a] wrap-break-word">{video.title}</h2>
               </div>
 
               <div className="grid grid-cols-3 gap-3">

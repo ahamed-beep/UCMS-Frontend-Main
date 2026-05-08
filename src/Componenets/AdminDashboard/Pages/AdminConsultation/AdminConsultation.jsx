@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 import ConsultationDetailModal from "./ConsultationDetail";
+import { toast } from "react-toastify";
 
 const statusColors = {
   unread: "bg-yellow-100 text-yellow-700",
@@ -43,17 +44,54 @@ const ConsultationsPage = () => {
 
   const handleDelete = async (id) => {
     console.log("Deleting id:", id); // debug — remove baad mein
-    if (!id) return;
-    if (!window.confirm("Is consultation ko delete karna chahte ho?")) return;
-    setDeletingId(id);
-    try {
-      await axiosInstance.delete(`/consultations/${id}`);
-      setConsultations((prev) => prev.filter((c) => c.id !== id));
-    } catch (err) {
-      console.error("Delete failed", err);
-    } finally {
-      setDeletingId(null);
+    if (!id) {
+      toast.error("Invalid consultation ID");
+      return;
     }
+    toast(
+      ({ closeToast }) => (
+        <div className="flex flex-col gap-3">
+          <p>Is consultation ko delete karna chahte ho?</p>
+
+          <div className="flex gap-2">
+            <button
+              className="bg-red-500 text-white px-3 py-1 rounded"
+              onClick={async () => {
+                closeToast();
+                setDeletingId(id);
+                try {
+                  await axiosInstance.delete(`/consultations/${id}`);
+                  setConsultations((prev) => prev.filter((c) => c.id !== id));
+                  toast.success("Consultation deleted successfully");
+                } catch (err) {
+                  console.error("Delete failed", err);
+                  toast.error("Failed to delete consultation");
+                } finally {
+                  setDeletingId(null);
+                }
+              }
+              }>
+                Yes
+            </button>
+            <button
+              className="bg-gray-300 px-3 py-1 rounded"
+              onClick={() => {
+                closeToast();
+                toast.info("Delete cancelled");
+              }}
+            >
+              No
+            </button>
+          </div>
+        </div>
+      ),
+      {
+        position: "top-center",
+        autoClose: false,
+        closeOnClick: false,
+        draggable: false,
+      }
+    );
   };
 
   const handleStatusChange = async (id, newStatus) => {
@@ -127,9 +165,8 @@ const ConsultationsPage = () => {
       width: "16%",
       render: (row) => (
         <span
-          className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-            statusColors[row.status] ?? "bg-gray-100 text-gray-600"
-          }`}
+          className={`text-xs font-medium px-2.5 py-1 rounded-full ${statusColors[row.status] ?? "bg-gray-100 text-gray-600"
+            }`}
         >
           {row.status}
         </span>
@@ -180,7 +217,7 @@ const ConsultationsPage = () => {
 
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-[#1e293b]">Consultations</h1>
+          <h1 className="text-xl font-semibold text-[#1e293b] wrap-break-word">Consultations</h1>
           <p className="text-sm text-[#64748b]">
             {consultations.length} record{consultations.length !== 1 ? "s" : ""} found
           </p>
@@ -191,11 +228,10 @@ const ConsultationsPage = () => {
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`text-xs px-3 py-1.5 rounded-md font-medium transition-colors ${
-                activeFilter === f
-                  ? "bg-white text-[#1e293b] shadow-sm"
-                  : "text-[#64748b] hover:text-[#1e293b]"
-              }`}
+              className={`text-xs px-3 py-1.5 rounded-md font-medium transition-colors ${activeFilter === f
+                ? "bg-white text-[#1e293b] shadow-sm"
+                : "text-[#64748b] hover:text-[#1e293b]"
+                }`}
             >
               {f}
             </button>

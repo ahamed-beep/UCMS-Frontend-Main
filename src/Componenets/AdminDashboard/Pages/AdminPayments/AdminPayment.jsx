@@ -139,26 +139,26 @@ const AdminPayments = () => {
   return (
     <div className=" space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-gray-900">Payments</h1>
-        <p className="text-sm text-gray-500 mt-1">All transactions overview</p>
+        <h1 className="text-xl font-bold text-gray-900 wrap-break-word">Payments</h1>
+        <p className="text-sm text-gray-500 mt-1 wrap-break-word">All transactions overview</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
           <p className="text-xs text-gray-500 mb-1">Total</p>
-          <p className="text-2xl font-bold text-gray-800">{total}</p>
+          <p className="text-2xl font-bold text-gray-800 wrap-break-word">{total}</p>
         </div>
         <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
           <p className="text-xs text-gray-500 mb-1">Completed</p>
-          <p className="text-2xl font-bold text-emerald-600">{completed}</p>
+          <p className="text-2xl font-bold text-emerald-600 wrap-break-word">{completed}</p>
         </div>
         <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
           <p className="text-xs text-gray-500 mb-1">Pending / Failed</p>
-          <p className="text-2xl font-bold text-yellow-500">{pending + failed}</p>
+          <p className="text-2xl font-bold text-yellow-500 wrap-break-word">{pending + failed}</p>
         </div>
         <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
           <p className="text-xs text-gray-500 mb-1">Revenue (USD)</p>
-          <p className="text-2xl font-bold text-blue-600">${revenue.toFixed(2)}</p>
+          <p className="text-2xl font-bold text-blue-600 wrap-break-word">${revenue.toFixed(2)}</p>
         </div>
       </div>
 
