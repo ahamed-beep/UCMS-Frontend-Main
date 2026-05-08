@@ -41,7 +41,7 @@ const EventPage = () => {
       <Head title="Events & Announcements" subtitle="Join our free seminars, workshops, and university fairs to accelerate your study abroad journey" icon={<Calendar size={64} />}/>
       <div className="min-h-screen bg-gray-50 py-10 px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold font-inter text-[#0A0A0A] mb-9">Upcoming Events</h2>
+          <h2 className="text-3xl font-bold font-inter text-[#0A0A0A] mb-9 wrap-break-word">Upcoming Events</h2>
 
           {loading ? (
             <div className="text-center text-gray-400 py-20 font-inter">Loading events...</div>
@@ -52,28 +52,28 @@ const EventPage = () => {
               {events.map((event) => (
                 <div
                   key={event.id}
-                  className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col md:flex-row"
+                  className="bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row"
                 >
                   <div className="text-white p-6 flex flex-col items-start justify-center md:w-60" style={{ background: "linear-gradient(to right, #0F4C8A, #193CB8)" }}>
                     <Calendar className="w-9 h-9" />
-                    <div className="text-2xl text-[#FFFFFF] font-inter mt-2.5 font-bold leading-none">{event.day}</div>
-                    <div className="text-sm font-inter font-light text-[#FFFFFF] mt-1">{event.monthYear}</div>
-                    <span className="mt-4 inline-block bg-[#FFFFFF]/18 font-inter text-white text-xs px-3 py-1 rounded-full">
+                    <div className="text-2xl text-[#FFFFFF] font-inter mt-2.5 font-bold leading-none wrap-anywhere">{event.day}</div>
+                    <div className="text-sm font-inter font-light text-[#FFFFFF] mt-1 wrap-anywhere">{event.monthYear}</div>
+                    <span className="mt-4 inline-block bg-[#FFFFFF]/18 font-inter text-white text-xs px-3 py-1 rounded-full wrap-anywhere">
                       {event.tag}
                     </span>
                   </div>
 
                   <div className="flex-1 p-6">
-                    <h3 className="text-lg font-bold text-[#0A0A0A] font-inter mb-2">{event.title}</h3>
-                    <p className="text-sm text-[#4A5565] font-inter mb-4">{event.description}</p>
+                    <h3 className="text-lg font-bold text-[#0A0A0A] font-inter mb-2 wrap-break-word">{event.title}</h3>
+                    <p className="text-sm text-[#4A5565] font-inter mb-4 wrap-break-word">{event.description}</p>
 
                     <div className="space-y-2 mb-4">
                       <div className="flex items-center gap-2 text-sm text-[#364153] font-inter">
-                        <Clock className="w-4 h-4 text-[#FF6B35]" />
+                        <Clock className="w-4 h-4 text-[#FF6B35] " />
                         {event.startTime} - {event.endTime}
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-[#364153] font-inter">
-                        <MapPin className="w-4 h-4 text-[#FF6B35]" />
+                      <div className="flex items-center gap-2 text-sm text-[#364153] font-inter wrap-anywhere">
+                        <MapPin className="w-4 h-4 text-[#FF6B35] " />
                         {event.location}
                       </div>
                       <div className="flex items-center gap-2 text-sm text-[#364153] font-inter">
@@ -85,10 +85,10 @@ const EventPage = () => {
                     {event.highlights?.length > 0 && (
                       <div>
                         <hr className="my-3 border-gray-200" />
-                        <p className="text-sm font-bold font-inter text-[#0A0A0A] mb-2">Event Highlights:</p>
+                        <p className="text-sm font-bold font-inter text-[#0A0A0A] mb-2 wrap-break-word">Event Highlights:</p>
                         <ul className="space-y-1">
                           {event.highlights.map((h, i) => (
-                            <li key={i} className="flex items-center text-sm text-[#364153] font-inter">
+                            <li key={i} className="flex items-center text-sm text-[#364153] font-inter wrap-anywhere">
                               <span className="bg-[#FF6B35] rounded-full p-[3px] mr-2"></span>
                               {h}
                             </li>

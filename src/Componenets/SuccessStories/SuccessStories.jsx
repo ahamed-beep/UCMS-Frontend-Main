@@ -6,6 +6,7 @@ import Footer from "../../ResuableUi/Footer";
 import axiosInstance from "../../Api/axiosInstance";
 import { afterItems, beforeItems, stats } from "./Constant/SuccessStoriesConstant";
 import { Link } from "react-router-dom";
+import SubscribtionBar from "../../ResuableUi/SubscribtionBar";
 
 
 
@@ -74,8 +75,8 @@ const VideoCard = ({ v }) => {
         />
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-[#0A0A0A] font-inter">{v.name}</h3>
-        <p className="text-xs text-[#4A5565] font-inter mt-0.5">{v.university}</p>
+        <h3 className="font-semibold text-[#0A0A0A] font-inter wrap-break-word">{v.name}</h3>
+        <p className="text-xs text-[#4A5565] font-inter mt-0.5 wrap-break-word">{v.university}</p>
       </div>
     </div>
   );
@@ -155,8 +156,8 @@ const TestimonialCard = ({ t }) => (
           {t.initials}
         </div>
         <div>
-          <h3 className="font-bold text-[#0A0A0A] font-inter text-sm ">{t.name}</h3>
-          <p className="text-xs text-[#4A5565] font-inter">{t.program}</p>
+          <h3 className="font-bold text-[#0A0A0A] font-inter text-sm wrap-anywhere">{t.name}</h3>
+          <p className="text-xs text-[#4A5565] font-inter wrap-anywhere">{t.program}</p>
         </div>
       </div>
       {t.flagUrl && <img className="w-5 h-5" src={t.flagUrl} alt="" />}
@@ -168,9 +169,9 @@ const TestimonialCard = ({ t }) => (
     </div>
     <div className="relative mb-3 flex-1">
       <Quote className="w-6 h-6 text-[#DBEAFE] absolute -top-1 -left-1" />
-      <p className="text-sm text-[#364153] font-inter italic pl-5 break-all">"{t.quote}"</p>
+      <p className="text-sm text-[#364153] font-inter italic pl-5 wrap-break-word">"{t.quote}"</p>
     </div>
-    <p className="text-sm font-semibold text-[#0F4C8A] font-inter mb-3">{t.university}</p>
+    <p className="text-sm font-semibold text-[#0F4C8A] font-inter mb-3 break-all">{t.university}</p>
     <div className="inline-flex items-center gap-1.5 bg-[#FF6B3570] text-[#193CB8] text-xs font-medium px-3 py-1.5 rounded-full self-start">
       <Check className="w-3 h-3" />
       {t.badge}
@@ -222,7 +223,7 @@ const SuccessStories = () => {
             ))}
           </div>
 
-          <h2 className="text-3xl font-bold text-[#0A0A0A] font-inter text-center mt-15 md:mt-12 mb-12">
+          <h2 className="text-3xl font-bold text-[#0A0A0A] font-inter text-center mt-15 md:mt-12 mb-12 wrap-break-word">
             Student Testimonials
           </h2>
 
@@ -252,7 +253,7 @@ const SuccessStories = () => {
           )}
 
           <div className="mt-12 rounded-xl p-6">
-            <h2 className="text-3xl font-bold font-inter text-[#0A0A0A] text-center mb-10">
+            <h2 className="text-3xl font-bold font-inter text-[#0A0A0A] text-center mb-10 wrap-anywhere">
               Video Testimonials
             </h2>
 
@@ -282,7 +283,7 @@ const SuccessStories = () => {
             )}
           </div>
 
-          <h2 className="text-3xl font-bold text-[#0A0A0A] font-inter text-center mt-12 mb-10">
+          <h2 className="text-3xl font-bold text-[#0A0A0A] font-inter text-center mt-12 mb-10 wrap-break-word">
             Transformation Journeys
           </h2>
           <div className="bg-gradient-to-r from-[#FEF2F2] mb-15 to-[#51A2FF]/20 border border-gray-100 rounded-xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -292,7 +293,7 @@ const SuccessStories = () => {
               </span>
               <ul className="space-y-2">
                 {beforeItems.map((item) => (
-                  <li key={item} className="text-sm text-[#FF6B35] font-inter flex gap-2 break-all">
+                  <li key={item} className="text-sm text-[#FF6B35] font-inter flex gap-2 wrap-anywhere">
                     <span>•</span>{item}
                   </li>
                 ))}
@@ -304,7 +305,7 @@ const SuccessStories = () => {
               </span>
               <ul className="space-y-2">
                 {afterItems.map((item) => (
-                  <li key={item} className="text-sm text-[#0F4C8A] font-inter flex gap-2 break-all">
+                  <li key={item} className="text-sm text-[#0F4C8A] font-inter flex gap-2 wrap-anywhere">
                     <span>•</span>{item}
                   </li>
                 ))}
@@ -315,22 +316,7 @@ const SuccessStories = () => {
         </div>
       </div>
 
-      <section className="relative w-full h-[220px] flex justify-center items-center bg-gradient-to-r from-[#0F4C8A] to-[#3A7BD5] bg-cover bg-center">
-        <div className="absolute inset-0 bg-[url('/Images/bg.png')] opacity-20"></div>
-        <div className="relative w-full md:mt-16 mt-10 py-3 z-10">
-          <h3 className="font-inter font-bold text-xl md:text-3xl text-white text-center">
-            Ready to Write Your Success Story?
-          </h3>
-          <p className="font-inter font-normal text-[13px] md:text-[15px] text-[#DBEAFE] text-center py-3 px-2 md:py-2 mx-auto w-full md:w-[50%] break-all">
-            Join thousands of successful students who achieved their dreams with our guidance
-          </p>
-          <div className="text-center">
-            <Link to="/contact" className="bg-[#FFFFFF]  p-3 mt-2 mb-15 rounded-lg font-semibold text-[#FF6B35] font-inter text-xs">
-              Start Your Journey Today
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SubscribtionBar title="Ready to Write Your Success Story?" subtitle="Join thousands of successful students who achieved their dreams with our guidance" showButton={true} button="Start Your Journey Today" color="text-[#FF6B35]"/>
 
       <Footer />
     </div>

@@ -40,7 +40,7 @@ const Confirmation = () => {
         </div>
 
         <div className="p-6 border-b border-gray-100">
-          <h3 className="font-bold text-[#101828] font-inter mb-4">Registered Attendee</h3>
+          <h3 className="font-bold text-[#101828] font-inter mb-4 wrap-break-word">Registered Attendee</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <div className="text-xs text-[#4A5565] font-inter">Name</div>
@@ -48,27 +48,27 @@ const Confirmation = () => {
             </div>
             <div  >
               <div className="text-xs text-[#4A5565] font-inter">Email</div>
-              <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.email}</div>
+              <div className="font-semibold text-[#0A0A0A] font-inter wrap-break-word">{attendee.email}</div>
             </div>
             <div>
               <div className="text-xs text-[#4A5565] font-inter">Phone</div>
-              <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.phone}</div>
+              <div className="font-semibold text-[#0A0A0A] font-inter break-all">{attendee.phone}</div>
             </div>
             <div>
               <div className="text-xs text-[#4A5565] font-inter">Number of Attendees</div>
-              <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.attendees}</div>
+              <div className="font-semibold text-[#0A0A0A] font-inter break-all">{attendee.attendees}</div>
             </div>
           </div>
         </div>
 
         <div className="md:p-6">
           <div className="bg-[#EFF6FF]  rounded-lg p-5">
-            <div className="font-semibold text-[#101828] font-inter mb-3">What Happens Next?</div>
+            <div className="font-semibold text-[#101828] font-inter mb-3 wrap-break-word">What Happens Next?</div>
             <ul className="space-y-2 text-sm text-[#364153] font-inter">
                 <div className="flex gap-1  " >
 
                    <CircleCheckBig className="  hidden md:block  text-[#00A63E] w-5  h-5" />
-              <li className="flex flex-col  md:flex-row items-start gap-1.5">
+              <li className="flex flex-col  md:flex-row items-start gap-1.5 wrap-anywhere">
            
                  You'll receive a confirmation email at {attendee.email} within the next few minutes
               </li>
@@ -76,19 +76,19 @@ const Confirmation = () => {
                 <div className="flex  gap-1" >
 
 <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
-              <li className="flex items-start gap-1.5">
+              <li className="flex items-start gap-1.5 wrap-anywhere">
               
                 Event details, location map, and any preparation materials will be included
               </li>
                 </div>
-              <li className="flex md:flex-row items-start gap-1.5">
+              <li className="flex md:flex-row items-start gap-1.5 wrap-anywhere">
                 <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
                 You'll receive a reminder 24 hours before the event
               </li>
               <div className=" flex  gap-1" >
 
                   <CircleCheckBig className="  hidden md:block text-[#00A63E] w-5  h-5" />
-              <li className="flex md:flex-row  flex-col items-start gap-1.5">
+              <li className="flex md:flex-row  flex-col items-start gap-1.5 wrap-anywhere">
          
                 If you have questions, our team will contact you at {attendee.phone}
               </li>

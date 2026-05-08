@@ -90,7 +90,7 @@ const IeltsPreparation = () => {
                   </span>
                 </div>
 
-                <h3 className="text-base font-semibold text-[#0A0A0A] font-inter mb-1">
+                <h3 className="text-base font-semibold text-[#0A0A0A] font-inter mb-1 wrap-break-word">
                   {r.title}
                 </h3>
 

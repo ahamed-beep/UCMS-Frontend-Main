@@ -101,7 +101,7 @@ const Blog = () => {
           {showFeatured && featuredPost && (
             <>
               <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-4 wrap-break-word">Featured Post</h2>
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 mb-12 overflow-hidden">
+              <div className="bg-white rounded-2xl shadow-sm border border-gray-100 mb-12 ">
                 <div className=" grid md:grid-cols-2">
                   <div className="h-[260px] overflow-hidden">
                     <img

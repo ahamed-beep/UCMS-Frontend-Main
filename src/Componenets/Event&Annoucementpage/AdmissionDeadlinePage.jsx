@@ -23,7 +23,7 @@ const AdmissionDeadlinePage = () => {
 
   return (
     <div className='px-4 md:px-27'>
-      <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mt-12 mb-6">
+      <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mt-12 mb-6 wrap-break-word">
         Admission Deadlines
       </h2>
 
@@ -55,8 +55,8 @@ const AdmissionDeadlinePage = () => {
                   <td className="px-6 py-4 text-[#364153] font-inter">{row.intake}</td>
                   <td className="px-6 py-4">
                     <a
-                      href="#"
-                      className="text-[#193CB8] hover:text-[#153290] font-bold font-inter"
+                      href="/consultation"
+                      className="text-[#193CB8] hover:text-[#153290] font-bold font-inter cursor-pointer"
                     >
                       Apply Now →
                     </a>
