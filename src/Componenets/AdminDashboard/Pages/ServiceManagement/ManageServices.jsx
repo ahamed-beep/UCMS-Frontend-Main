@@ -168,8 +168,8 @@ const ManageServices = () => {
     <div>
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1">Manage services</h2>
-          <p className="text-[14px] text-[#64748b]">Create, edit, or toggle service pages.</p>
+          <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1 wrap-anywhere">Manage services</h2>
+          <p className="text-[14px] text-[#64748b] wrap-anywhere">Create, edit, or toggle service pages.</p>
         </div>
         <button
           onClick={() => { setEditData(null); setTab("create"); }}

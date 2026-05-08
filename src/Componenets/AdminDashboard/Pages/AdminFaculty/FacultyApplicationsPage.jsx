@@ -223,7 +223,7 @@ const handleDelete = async () => {
 
       <div className="mb-6 flex flex-col md:flex-row items-start justify-between">
         <div >
-          <h1 className="text-xl whitespace-nowrap md:mr-4 font-semibold text-[#0f172a]">Faculty Applications</h1>
+          <h1 className="text-xl md:mr-4 font-semibold text-[#0f172a] wrap-break-word">Faculty Applications</h1>
           <p className="text-sm text-[#94a3b8] mt-0.5">
             {applications.length} total application{applications.length !== 1 ? "s" : ""}
           </p>

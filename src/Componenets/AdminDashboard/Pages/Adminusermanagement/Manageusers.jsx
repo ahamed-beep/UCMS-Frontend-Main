@@ -121,8 +121,8 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1">Manage users</h2>
-      <p className="text-[14px] text-[#64748b] mb-5">Toggle active/inactive status or update user details.</p>
+      <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1 wrap-break-word">Manage users</h2>
+      <p className="text-[14px] text-[#64748b] mb-5 wrap-break-word">Toggle active/inactive status or update user details.</p>
 
       <input
         type="text"

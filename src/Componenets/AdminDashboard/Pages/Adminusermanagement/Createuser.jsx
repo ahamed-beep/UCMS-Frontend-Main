@@ -56,8 +56,8 @@ const CreateUser = () => {
 
   return (
     <div>
-      <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1">Create new user</h2>
-      <p className="text-[14px] text-[#64748b] mb-6">New accounts are created with the Student role by default.</p>
+      <h2 className="text-[18px] font-semibold text-[#0A0A0A] mb-1 wrap-break-word">Create new user</h2>
+      <p className="text-[14px] text-[#64748b] mb-6 wrap-break-word">New accounts are created with the Student role by default.</p>
 
       {success && (
         <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg px-4 py-3 text-sm mb-5">

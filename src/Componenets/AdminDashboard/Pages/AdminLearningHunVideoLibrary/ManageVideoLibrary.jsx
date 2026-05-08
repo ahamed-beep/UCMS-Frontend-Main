@@ -71,7 +71,7 @@ const ManageVideoLibrary = () => {
       label: "Views",
       width: "20%",
       render: (row) => (
-        <span className="text-sm text-[#64748b]">{row.views}</span>
+        <span className="text-sm text-[#64748b] wrap-break-word">{row.views}</span>
       ),
     },
     {
@@ -127,7 +127,7 @@ const ManageVideoLibrary = () => {
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Video Library</h1>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Video Library</h1>
           <p className="text-sm text-[#64748b] mt-0.5">{total} video{total !== 1 ? "s" : ""} total</p>
         </div>
         <button
