@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useLogout } from "../../Hooks/useLogout";
 import DashboardLayout from "../../ResuableUi/DashboardLayout";
 import { getUser } from "../../Utils/Auth";
-import Dashboardsection from "./pages/Dashboardsection";
+import Dashboardsection from "./pages/Dashboardsection/Dashboardsection";
 import CoursesSection from "./pages/CourseSection/CoursesSection";
 import AssignmentSection from "./pages/StudentAssignments/AssignmentSection";
 import QuizzesSection from "./pages/StudentQuzzes/QuizzesSection";
 import ProgressSection from "./pages/ProgressSection";
-import ApplicationSection from "./pages/ApplicationSection";
-import DocumnetSection from "./pages/DocumentSection";
-import ClassScheduleSection from "./pages/ClassScheduleSection";
-import SupportSection from "./pages/SupportSection";
+import ApplicationSection from "./pages/ApplicationSection/ApplicationSection";
+import DocumnetSection from "./pages/DocumentSection/DocumentSection";
+import SupportSection from "./pages/SupportSection/SupportSection";
 import PurchaseSection from "./pages/PurchaseSection";
+import ClassScheduleSection from "./pages/ClassSchedule/ClassScheduleSection";
 
 
 
@@ -87,12 +87,7 @@ const DocumentsPage = () => (
   </div>
 );
 
-const AppointmentPage = () => (
-  <div className="px-5 py-7 sm:px-8">
-    <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Appointment</h1>
-    <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">View your IELTS/PTE classes and study materials</p>
-  </div>
-);
+
 
 const ClassSchedulePage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -208,19 +203,7 @@ const studentMenuItems = [
       </svg>
     ),
   },
-  {
-    label: "Appointments",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-        <rect x="3" y="4" width="18" height="18" rx="2" />
-        <path d="M16 2v4" />
-        <path d="M8 2v4" />
-        <path d="M3 10h18" />
-        <circle cx="12" cy="16" r="3" />
-        <path d="M12 14v2l1.5 1" />
-      </svg>
-    ),
-  },
+ 
   {
     label: "Class Schedule",
     icon: (
@@ -270,7 +253,6 @@ const studentPages = {
   "Progress": ProgressPage,
   "Applications": ApplicationsPage,
   "Documents": DocumentsPage,
-  "Appointments": AppointmentPage,
   "Class Schedule": ClassSchedulePage,
   "Support": SupportPage,
   "Purchases": PurchasesPage,
