@@ -33,6 +33,12 @@ import AdminEnrollments from "./Pages/AdminEnrollments/AdminEnrollments";
 import AdminLectureQuizzes from "./Pages/AdminLectureQuizzes/AdminLectureQuizzes";
 import AdminLectureAssignments from "./Pages/AdminLectureAssignments/AdminLectureAssignments";
 import AdminLectureAssignmentSubmissions from "./Pages/AdminAssignmentSubmissionsmanagement/Adminassignmentsubmissions";
+import AdminClassSessions from "./Pages/Adminclasssessions/Adminclasssessions";
+import AdminStudyMaterials from "./Pages/Adminstudymaterials/Adminstudymaterials";
+import AdminUserDocuments from "./Pages/AdminUserDocuments/AdminUserDocuments";
+import AdminApplications from "./Pages/AdminApplications/AdminApplications";
+import AdminSupport from "./Pages/AdminSupport/AdminSupport";
+import AdminNotifications from "./Pages/AdminNotifications/AdminNotifications";
 
 const OverviewPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -148,6 +154,17 @@ const UpcomingClassesPage = () => (
     <ManageUpcomingClasses />
   </div>
 );
+const ClassSessionsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminClassSessions />
+  </div>
+);
+
+const StudyMaterialsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminStudyMaterials />
+  </div>
+);
 
 const FacultyPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -157,6 +174,26 @@ const FacultyPage = () => (
 const EnrollmentsPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <AdminEnrollments />
+  </div>
+);
+const UserDocumentsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminUserDocuments />
+  </div>
+);
+const ApplicationsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminApplications />
+  </div>
+);
+const SupportPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminSupport />
+  </div>
+);
+const NotificationsPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminNotifications />
   </div>
 );
 
@@ -506,6 +543,7 @@ const adminMenuItems = [
       </svg>
     ),
   },
+  
   {
     label: "Courses",
     icon: (
@@ -515,6 +553,26 @@ const adminMenuItems = [
       </svg>
     ),
   },
+  {
+  label: "Class Sessions",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <rect x="14" y="11" width="8" height="8" rx="1" />
+      <path d="M16 15h4M18 13v4" />
+    </svg>
+  ),
+},
+{
+  label: "Study Materials",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  ),
+},
   {
   label: "Enrollments",
   icon: (
@@ -528,6 +586,48 @@ const adminMenuItems = [
     </svg>
   ),
 },
+{
+  label: "User Documents",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="16" y1="13" x2="8" y2="13" />
+      <line x1="16" y1="17" x2="8" y2="17" />
+      <polyline points="10 9 9 9 8 9" />
+    </svg>
+  ),
+  
+},
+{
+  label: "Applications",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="8" y1="13" x2="16" y2="13" />
+      <line x1="8" y1="17" x2="16" y2="17" />
+      <line x1="8" y1="9" x2="10" y2="9" />
+    </svg>
+  ),
+},
+{
+  label: "Support",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0z" />
+    </svg>
+  ),
+}, 
+{
+  label: "Notifications",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+    </svg>
+  ),
+}, 
 ];
 
 const adminPages = {
@@ -552,7 +652,13 @@ const adminPages = {
   "IELTS Resources":     IeltsResourcesPage,
   "Upcoming Classes":    UpcomingClassesPage,
   "Courses":             CoursesPage,
+  "Class Sessions": ClassSessionsPage,
+"Study Materials": StudyMaterialsPage,
   "Enrollments": EnrollmentsPage,
+  "User Documents": UserDocumentsPage,
+  "Applications": ApplicationsPage,
+  "Support": SupportPage,
+  "Notifications": NotificationsPage,
 };
 
 export default function AdminDashboard() {
