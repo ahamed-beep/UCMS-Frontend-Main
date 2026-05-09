@@ -10,7 +10,7 @@ import ProgressSection from "./pages/ProgressSection";
 import ApplicationSection from "./pages/ApplicationSection/ApplicationSection";
 import DocumnetSection from "./pages/DocumentSection/DocumentSection";
 import SupportSection from "./pages/SupportSection/SupportSection";
-import PurchaseSection from "./pages/PurchaseSection";
+import PurchaseSection from "./PurchaseSection/PurchaseSection";
 import ClassScheduleSection from "./pages/ClassSchedule/ClassScheduleSection";
 
 

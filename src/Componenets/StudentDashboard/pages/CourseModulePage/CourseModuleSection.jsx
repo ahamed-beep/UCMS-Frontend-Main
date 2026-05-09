@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
 import {
   CheckCircle, Circle, Lock, BookOpen, Clock, Award,
   PlayCircle, FileText, HelpCircle, ChevronDown, Download, BookOpenIcon, ClipboardList
@@ -11,6 +11,7 @@ import axiosInstance from "../../../../Api/axiosInstance";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import UploadAssignmentModal from "../StudentAssignments/UploadAssignmentModal";
 import FeedbackModal from "../StudentAssignments/FeedbackModal";
+import ExercisePage from '../ExercisePage/ExercisePage';
 
 function CoursePage({ courseId, onBack }) {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function CoursePage({ courseId, onBack }) {
   const [completed, setCompleted] = useState({});
   const [open, setOpen] = useState({});
   const [activeVideo, setActiveVideo] = useState(null);
+  const [activeExercise, setActiveExercise] = useState(null);
   const [lectureQuizzes, setLectureQuizzes] = useState({});
   const [lectureAssignments, setLectureAssignments] = useState({});
   const [uploadTarget, setUploadTarget] = useState(null);
@@ -102,15 +104,11 @@ function CoursePage({ courseId, onBack }) {
         ]);
 
         const quizMap = {};
-        quizResults.forEach(({ lectureId, quizzes }) => {
-          quizMap[lectureId] = quizzes;
-        });
+        quizResults.forEach(({ lectureId, quizzes }) => { quizMap[lectureId] = quizzes; });
         setLectureQuizzes(quizMap);
 
         const assignmentMap = {};
-        assignmentResults.forEach(({ lectureId, assignments }) => {
-          assignmentMap[lectureId] = assignments;
-        });
+        assignmentResults.forEach(({ lectureId, assignments }) => { assignmentMap[lectureId] = assignments; });
         setLectureAssignments(assignmentMap);
 
         if (modulesWithResources.length) {
@@ -128,23 +126,14 @@ function CoursePage({ courseId, onBack }) {
 
   useEffect(() => {
     if (!location.state?.quizCompleted) return;
-
     const completedLectureId = location.state?.lectureId;
-
     if (completedLectureId) {
       setCompleted((c) => ({ ...c, [completedLectureId]: true }));
-
-      axiosInstance
-        .get(`/lectures/${completedLectureId}/quizzes`)
+      axiosInstance.get(`/lectures/${completedLectureId}/quizzes`)
         .then((r) => {
-          setLectureQuizzes((prev) => ({
-            ...prev,
-            [completedLectureId]: r.data.data ?? [],
-          }));
-        })
-        .catch(() => {});
+          setLectureQuizzes((prev) => ({ ...prev, [completedLectureId]: r.data.data ?? [] }));
+        }).catch(() => {});
     }
-
     window.history.replaceState({}, '');
   }, [location.state]);
 
@@ -194,18 +183,14 @@ function CoursePage({ courseId, onBack }) {
   const completedLecturesCount = modules.reduce(
     (s, m) => s + (m.lectures?.filter((it) => completed[it.id]).length ?? 0), 0
   );
-
   const allQuizzes = Object.values(lectureQuizzes).flat();
   const completedQuizzesCount = allQuizzes.filter((q) => q.isCompleted).length;
-
   const allAssignments = Object.values(lectureAssignments).flat();
   const completedAssignmentsCount = allAssignments.filter(
     (a) => a.status === "submitted" || a.status === "graded"
   ).length;
-
   const totalItems = totalLectures + allQuizzes.length + allAssignments.length;
   const completedItemsCount = completedLecturesCount + completedQuizzesCount + completedAssignmentsCount;
-
   const completedModulesCount = modules.filter((m) => isModuleComplete(m)).length;
   const progressPct = totalItems ? Math.round((completedItemsCount / totalItems) * 100) : 0;
 
@@ -217,6 +202,16 @@ function CoursePage({ courseId, onBack }) {
 
   if (loading) return <div className="py-20 text-center text-[#4A5565]">Loading...</div>;
   if (!courseInfo) return <div className="py-20 text-center text-[#4A5565]">Course not found.</div>;
+
+  if (activeExercise) {
+    return (
+      <ExercisePage
+        courseId={resolvedId}
+        exercise={activeExercise}
+        onBack={() => setActiveExercise(null)}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F9FAFB] px-4 sm:px-6 lg:px-10 py-6">
@@ -312,7 +307,6 @@ function CoursePage({ courseId, onBack }) {
                                     {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
                                   </div>
                                 </div>
-
                                 {quizzes.map((qItem) => (
                                   <div key={qItem.id} className="flex items-center justify-between bg-blue-50 rounded-lg p-3 border border-blue-100 mt-2 ml-4">
                                     <div className="flex items-center gap-3">
@@ -327,20 +321,14 @@ function CoursePage({ courseId, onBack }) {
                                     {qItem.isCompleted
                                       ? <CheckCircle className="w-5 h-5 text-[#00A63E]" />
                                       : <button onClick={() => handleStartLectureQuiz(it.id, qItem)}
-                                          className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">
-                                          Start
-                                        </button>
+                                          className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">Start</button>
                                     }
                                   </div>
                                 ))}
-
                                 {assignments.map((aItem) => (
-                                  <AssignmentRow
-                                    key={aItem.id}
-                                    assignment={aItem}
+                                  <AssignmentRow key={aItem.id} assignment={aItem}
                                     onUpload={() => setUploadTarget({ assignment: aItem, lectureId: it.id })}
-                                    onViewFeedback={() => setFeedbackTarget(aItem)}
-                                  />
+                                    onViewFeedback={() => setFeedbackTarget(aItem)} />
                                 ))}
                               </div>
                             );
@@ -361,7 +349,6 @@ function CoursePage({ courseId, onBack }) {
                                 </button>
                                 {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
                               </div>
-
                               {quizzes.map((qItem) => (
                                 <div key={qItem.id} className="flex items-center justify-between bg-blue-50 rounded-lg p-3 border border-blue-100 mt-2 ml-4">
                                   <div className="flex items-center gap-3">
@@ -376,20 +363,14 @@ function CoursePage({ courseId, onBack }) {
                                   {qItem.isCompleted
                                     ? <CheckCircle className="w-5 h-5 text-[#00A63E]" />
                                     : <button onClick={() => handleStartLectureQuiz(it.id, qItem)}
-                                        className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">
-                                        Start
-                                      </button>
+                                        className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800">Start</button>
                                   }
                                 </div>
                               ))}
-
                               {assignments.map((aItem) => (
-                                <AssignmentRow
-                                  key={aItem.id}
-                                  assignment={aItem}
+                                <AssignmentRow key={aItem.id} assignment={aItem}
                                   onUpload={() => setUploadTarget({ assignment: aItem, lectureId: it.id })}
-                                  onViewFeedback={() => setFeedbackTarget(aItem)}
-                                />
+                                  onViewFeedback={() => setFeedbackTarget(aItem)} />
                               ))}
                             </div>
                           );
@@ -448,7 +429,9 @@ function CoursePage({ courseId, onBack }) {
               <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Course Materials</h2>
               <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Video lectures, PDFs, and presentation slides</p>
             </div>
-            {materials.map((item) => (
+            {materials.length === 0
+              ? <p className="text-sm text-[#6A7282] text-center py-4">No materials yet.</p>
+              : materials.map((item) => (
               <div key={item.id} className="flex justify-between items-center bg-[#F9FAFB] p-3 rounded-[10px]">
                 <div className='flex items-center gap-2'>
                   <img src={item.type === 'video' ? '/Images/video.webp' : '/Images/pdf.webp'} alt="icon" className='w-5 h-5' />
@@ -473,19 +456,23 @@ function CoursePage({ courseId, onBack }) {
           <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-4">
             <div className='border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] -mx-5'>
               <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Practice Exercises</h2>
-              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Assignments and practice tests</p>
+              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Writing, Reading, Listening & Speaking</p>
             </div>
-            {exercises.map((ex) => (
+            {exercises.length === 0
+              ? <p className="text-sm text-[#6A7282] text-center py-4">No exercises yet.</p>
+              : exercises.map((ex) => (
               <div key={ex.id} className="flex justify-between items-center bg-[#F9FAFB] p-3 rounded-[10px]">
                 <div className='flex items-center gap-2'>
-                  <img src={ex.status === 'completed' ? '/Images/success.webp' : '/Images/error.webp'} alt="icon" className='w-5 h-5' />
+                  <img src='/Images/pending.webp' alt="icon" className='w-5 h-5' />
                   <div>
                     <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828]">{ex.title}</p>
-                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282]">{ex.sub}</p>
+                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] capitalize">{ex.type}</p>
                   </div>
                 </div>
-                <button className={`font-inter font-medium text-[10px] md:text-[12px] px-3 py-1 rounded-full ${ex.status === 'completed' ? 'bg-[#DCFCE7] text-[#008236]' : 'bg-[#155DFC] text-white'}`}>
-                  {ex.status === 'completed' ? 'Review' : 'Start'}
+                <button
+                  onClick={() => setActiveExercise(ex)}
+                  className="font-inter font-medium text-[10px] md:text-[12px] px-3 py-1 rounded-full bg-[#155DFC] text-white">
+                  Start
                 </button>
               </div>
             ))}
@@ -514,10 +501,7 @@ function CoursePage({ courseId, onBack }) {
       )}
 
       {feedbackTarget && (
-        <FeedbackModal
-          assignment={feedbackTarget}
-          onClose={() => setFeedbackTarget(null)}
-        />
+        <FeedbackModal assignment={feedbackTarget} onClose={() => setFeedbackTarget(null)} />
       )}
     </div>
   );
@@ -529,7 +513,6 @@ function AssignmentRow({ assignment, onUpload, onViewFeedback }) {
     submitted: { label: "Submitted", color: "text-[#155DFC]", bg: "bg-blue-50 border-blue-100" },
     graded: { label: "Graded", color: "text-[#00A63E]", bg: "bg-green-50 border-green-100" },
   };
-
   const style = statusMap[assignment.status] ?? statusMap.pending;
 
   return (
@@ -549,32 +532,14 @@ function AssignmentRow({ assignment, onUpload, onViewFeedback }) {
           </div>
         </div>
       </div>
-
       {assignment.status === "pending" && (
-        <button
-          onClick={onUpload}
-          className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800 whitespace-nowrap"
-        >
-          Upload
-        </button>
+        <button onClick={onUpload} className="text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full font-inter hover:bg-blue-800 whitespace-nowrap">Upload</button>
       )}
       {assignment.status === "submitted" && (
-        <a
-          href={assignment.fileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-[#155DFC] font-inter hover:underline whitespace-nowrap"
-        >
-          View
-        </a>
+        <a href={assignment.fileUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[#155DFC] font-inter hover:underline whitespace-nowrap">View</a>
       )}
       {assignment.status === "graded" && (
-        <button
-          onClick={onViewFeedback}
-          className="text-xs text-[#00A63E] font-inter hover:underline whitespace-nowrap"
-        >
-          Feedback
-        </button>
+        <button onClick={onViewFeedback} className="text-xs text-[#00A63E] font-inter hover:underline whitespace-nowrap">Feedback</button>
       )}
     </div>
   );
