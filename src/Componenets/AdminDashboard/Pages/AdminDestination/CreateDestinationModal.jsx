@@ -187,27 +187,7 @@ const CreateDestinationModal = ({ open, onClose, onCreated }) => {
             ))}
           </div>
 
-          {/* Status Toggle */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100">
-            <div>
-              <p className="text-sm font-semibold text-[#0f172a]">Active Status</p>
-              <p className="text-xs text-[#94a3b8] mt-0.5">
-                {form.isActive ? "Visible to users on the website" : "Hidden from public listing"}
-              </p>
-            </div>
-            <button
-              onClick={() => setForm((p) => ({ ...p, isActive: !p.isActive }))}
-              className={`relative w-11 h-6 rounded-full transition-colors duration-200 flex-shrink-0 ${
-                form.isActive ? "bg-[#193CB8]" : "bg-gray-300"
-              }`}
-            >
-              <span
-                className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ${
-                  form.isActive ? "translate-x-5" : "translate-x-0"
-                }`}
-              />
-            </button>
-          </div>
+        
 
           {/* Highlights */}
           <div>
