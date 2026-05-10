@@ -43,11 +43,11 @@ const AdminExercises = ({ courseId }) => {
   const columns = [
     {
       key: "title", label: "Title", width: "35%",
-      render: (r) => <span className="font-medium text-[#0f172a] text-sm">{r.title}</span>,
+      render: (r) => <span className="font-medium text-[#0f172a] text-sm truncate block">{r.title}</span>,
     },
     {
       key: "sub", label: "Sub", width: "25%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.sub ?? "—"}</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.sub ?? "—"}</span>,
     },
     {
       key: "status", label: "Status", width: "20%",
@@ -81,10 +81,10 @@ const AdminExercises = ({ courseId }) => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Exercises</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage exercises for this course</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Exercises</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-anywhere">Manage exercises for this course</p>
         </div>
         <button
           onClick={() => { setEditTarget(null); setShowForm(true); }}

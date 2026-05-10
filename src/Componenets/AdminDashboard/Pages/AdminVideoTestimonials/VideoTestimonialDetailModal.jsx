@@ -53,7 +53,7 @@ const VideoTestimonialDetailModal = ({ selected, setSelected }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h3 className="font-bold text-[#0f172a] text-base">Video Testimonial</h3>
+          <h3 className="font-bold text-[#0f172a] text-base wrap-break-word">Video Testimonial</h3>
           <button
             onClick={() => setSelected(null)}
             className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500 transition-colors"
@@ -93,8 +93,8 @@ const VideoTestimonialDetailModal = ({ selected, setSelected }) => {
         </div>
 
         <div className="p-5">
-          <p className="font-semibold text-[#0f172a]">{selected.name}</p>
-          <p className="text-sm text-[#64748b] mt-0.5">{selected.university}</p>
+          <p className="font-semibold text-[#0f172a] wrap-break-word">{selected.name}</p>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">{selected.university}</p>
         </div>
       </div>
     </div>

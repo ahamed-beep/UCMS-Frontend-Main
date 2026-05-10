@@ -49,11 +49,11 @@ const AdminLectures = ({ moduleId, onSelectLecture }) => {
   const columns = [
     {
       key: "order", label: "#", width: "5%",
-      render: (r) => <span className="text-sm text-[#64748b]">{r.order}</span>,
+      render: (r) => <span className="text-sm text-[#64748b] truncate block">{r.order}</span>,
     },
     {
       key: "title", label: "Title", width: "30%",
-      render: (r) => <span className="font-medium text-[#0f172a] text-sm">{r.title}</span>,
+      render: (r) => <span className="font-medium text-[#0f172a] text-sm truncate block">{r.title}</span>,
     },
     {
       key: "type", label: "Type", width: "15%",
@@ -65,7 +65,7 @@ const AdminLectures = ({ moduleId, onSelectLecture }) => {
     },
     {
       key: "duration", label: "Duration", width: "15%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.duration ?? "—"}</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.duration ?? "—"}</span>,
     },
     {
       key: "actions", label: "Actions", width: "25%",
@@ -96,10 +96,10 @@ const AdminLectures = ({ moduleId, onSelectLecture }) => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Lectures</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage lectures for this module</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Lectures</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage lectures for this module</p>
         </div>
         <button
           onClick={() => { setEditTarget(null); setShowForm(true); }}

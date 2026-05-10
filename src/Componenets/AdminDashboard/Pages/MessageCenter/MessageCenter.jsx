@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
+import { toast } from "react-toastify";
 
 const relativeTime = (iso) => {
   const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000);
@@ -10,76 +12,79 @@ const relativeTime = (iso) => {
 };
 
 const STATUS_CONFIG = {
-  new:     { label: "New",     cls: "bg-blue-100 text-blue-800"     },
-  read:    { label: "Read",    cls: "bg-gray-100 text-gray-600"     },
-  replied: { label: "Replied", cls: "bg-green-100 text-green-800"   },
-  closed:  { label: "Closed",  cls: "bg-yellow-100 text-yellow-800" },
+  new: { label: "New", cls: "bg-blue-100 text-blue-800" },
+  read: { label: "Read", cls: "bg-gray-100 text-gray-600" },
+  replied: { label: "Replied", cls: "bg-green-100 text-green-800" },
+  closed: { label: "Closed", cls: "bg-yellow-100 text-yellow-800" },
 };
 
 export default function ContactMessages() {
-  const [messages, setMessages]       = useState([]);
-  const [loading, setLoading]         = useState(true);
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedMsg, setSelectedMsg] = useState(null);
-  const [error, setError]             = useState("");
+  const [error, setError] = useState("");
 
-  const totalCount  = messages.length;
+  const [deleteSelected, setDeleteSelected] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const totalCount = messages.length;
   const unreadCount = messages.filter((m) => !m.isRead).length;
 
- const fetchMessages = useCallback(async () => {
-  try {
-    setLoading(true);
-    const { data } = await axiosInstance.get("/contact/admin/messages");
-    
-   
-    
-  
-    
-    setMessages(data.data || []);
-    
-    if (!data.data || data.data.length === 0) {
-      console.log("No messages found in response");
+  const fetchMessages = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data } = await axiosInstance.get("/contact/admin/messages");
+
+      setMessages(data.data || []);
+
+      if (!data.data || data.data.length === 0) {
+        console.log("No messages found in response");
+      }
+    } catch (error) {
+      console.error("Fetch error details:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
+      setError("Failed to load messages. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Fetch error details:", {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status
-    });
-    setError("Failed to load messages. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-}, []);
+  }, []);
 
   useEffect(() => { fetchMessages(); }, [fetchMessages]);
 
- const handleView = async (msg) => {
-  setSelectedMsg(msg);
-  if (!msg.isRead) {
-    try {
-      await axiosInstance.patch(`/contact/admin/messages/${msg.id}/read`);
-      const markRead = (m) =>
-        m.id === msg.id  
-          ? { ...m, isRead: true, status: m.status === "new" ? "read" : m.status }
-          : m;
-      setMessages((prev) => prev.map(markRead));
-      setSelectedMsg((prev) => markRead(prev));
-    } catch (error) {
-      console.error('Mark as read error:', error);
+  const handleView = async (msg) => {
+    setSelectedMsg(msg);
+    if (!msg.isRead) {
+      try {
+        await axiosInstance.patch(`/contact/admin/messages/${msg.id}/read`);
+        const markRead = (m) =>
+          m.id === msg.id
+            ? { ...m, isRead: true, status: m.status === "new" ? "read" : m.status }
+            : m;
+        setMessages((prev) => prev.map(markRead));
+        setSelectedMsg((prev) => markRead(prev));
+      } catch (error) {
+        console.error('Mark as read error:', error);
+      }
     }
-  }
-};
+  };
 
-const handleDelete = async (msg) => {
-  if (!window.confirm("Are you sure you want to delete this message?")) return;
-  try {
-    await axiosInstance.delete(`/contact/admin/messages/${msg.id}`);
-    setMessages((prev) => prev.filter((m) => m.id !== msg.id)); 
-  } catch (error) {
-    console.error('Delete error:', error);
-    alert("Failed to delete message. Please try again.");
-  }
-};
+  const handleDelete = async (msg) => {
+    setDeleteLoading(true);
+    try {
+      await axiosInstance.delete(`/contact/admin/messages/${msg.id}`);
+      toast.success("Message deleted successfully");
+      setDeleteSelected(null);
+      setMessages((prev) => prev.filter((m) => m.id !== msg.id));
+    } catch (error) {
+      console.error('Delete error:', error);
+      toast.error("Failed to delete message. Please try again.");
+    }finally {
+      setDeleteLoading(false);
+    }
+  };
 
   const columns = [
     {
@@ -134,19 +139,19 @@ const handleDelete = async (msg) => {
             className="border border-gray-200 rounded-md p-1.5 inline-flex items-center text-xs text-gray-500 hover:bg-gray-50 cursor-pointer"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
             </svg>
           </button>
           <button
             title="Delete message"
-            onClick={(e) => { e.stopPropagation(); handleDelete(row); }}
+            onClick={(e) => { e.stopPropagation(); setDeleteSelected(row) }}
             className="border border-gray-200 rounded-md p-1.5 inline-flex items-center text-xs text-red-500 hover:bg-red-50 cursor-pointer"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="3 6 5 6 21 6"/>
-              <path d="M19 6l-1 14H6L5 6"/>
-              <path d="M10 11v6M14 11v6"/>
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14H6L5 6" />
+              <path d="M10 11v6M14 11v6" />
             </svg>
           </button>
         </div>
@@ -157,8 +162,8 @@ const handleDelete = async (msg) => {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-3xl font-medium m-0">Contact messages</h1>
-        <p className="text-sm text-gray-500 mt-1">Manage all incoming contact form submissions</p>
+        <h1 className="text-3xl font-medium m-0 wrap-break-word">Contact messages</h1>
+        <p className="text-sm text-gray-500 mt-1 wrap-break-word">Manage all incoming contact form submissions</p>
       </div>
 
       {error && (
@@ -172,23 +177,23 @@ const handleDelete = async (msg) => {
 
       <div className="grid grid-cols-2 gap-3 mb-6">
         {[
-          { label: "Total messages", value: totalCount,  valueClass: "text-gray-900" },
-          { label: "New / unread",   value: unreadCount, valueClass: "text-blue-600" },
+          { label: "Total messages", value: totalCount, valueClass: "text-gray-900" },
+          { label: "New / unread", value: unreadCount, valueClass: "text-blue-600" },
         ].map(({ label, value, valueClass }) => (
           <div key={label} className="bg-gray-50 rounded-lg p-4">
             <p className="text-xs text-gray-500 mb-1.5">{label}</p>
-            <p className={`text-3xl font-medium ${valueClass}`}>{value}</p>
+            <p className={`text-3xl font-medium ${valueClass} break-all`}>{value}</p>
           </div>
         ))}
       </div>
 
       <AdminTable
-  columns={columns}
-  rows={messages.map((m) => ({ ...m, _key: m.id }))} 
-  loading={loading}
-  emptyText="No messages found."
-  rowStyle={(row) => (!row.isRead ? { background: "var(--color-background-info)" } : {})}
-/>
+        columns={columns}
+        rows={messages.map((m) => ({ ...m, _key: m.id }))}
+        loading={loading}
+        emptyText="No messages found."
+        rowStyle={(row) => (!row.isRead ? { background: "var(--color-background-info)" } : {})}
+      />
       {selectedMsg && (
         <div
           onClick={() => setSelectedMsg(null)}
@@ -231,6 +236,14 @@ const handleDelete = async (msg) => {
           </div>
         </div>
       )}
+
+      <DeleteModal
+        selected={deleteSelected}
+        setSelected={setDeleteSelected}
+        onConfirm={handleDelete}
+        loading={deleteLoading}
+        itemName={deleteSelected?.fullName}
+      />
     </div>
   );
 }

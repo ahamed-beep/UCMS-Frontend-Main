@@ -20,7 +20,7 @@ const CourseViewModal = ({ course, onClose }) => (
         ].map(({ label, value }) => (
           <div key={label} className="flex flex-col gap-0.5">
             <span className="text-xs font-medium text-[#64748b]">{label}</span>
-            <span className="text-sm text-[#0f172a]">{value}</span>
+            <span className="text-sm text-[#0f172a] wrap-break-word">{value}</span>
           </div>
         ))}
       </div>

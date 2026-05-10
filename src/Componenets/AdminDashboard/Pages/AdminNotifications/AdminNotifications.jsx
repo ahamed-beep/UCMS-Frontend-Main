@@ -215,8 +215,8 @@ const AdminNotifications = () => {
       width: "22%",
       render: (row) => (
         <div className="flex flex-col">
-          <span className="text-sm font-medium text-[#0f172a]">{row.studentName ?? "—"}</span>
-          <span className="text-xs text-[#64748b]">{row.studentEmail ?? ""}</span>
+          <span className="text-sm font-medium text-[#0f172a] truncate block">{row.studentName ?? "—"}</span>
+          <span className="text-xs text-[#64748b] truncate block">{row.studentEmail ?? ""}</span>
         </div>
       ),
     },
@@ -225,7 +225,7 @@ const AdminNotifications = () => {
       label: "Message",
       width: "38%",
       render: (row) => (
-        <span className="text-sm text-[#334155] line-clamp-2">{row.message}</span>
+        <span className="text-sm text-[#334155] line-clamp-2 break-all">{row.message}</span>
       ),
     },
     {
@@ -253,7 +253,7 @@ const AdminNotifications = () => {
       label: "Sent",
       width: "10%",
       render: (row) => (
-        <span className="text-sm text-[#64748b]">{timeAgo(row.createdAt)}</span>
+        <span className="text-sm text-[#64748b] wrap-break-word">{timeAgo(row.createdAt)}</span>
       ),
     },
     {
@@ -273,10 +273,10 @@ const AdminNotifications = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Notifications</h1>
-          <p className="text-sm text-[#64748b] mt-1">Send and manage student notifications</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-anywhere">Notifications</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-anywhere">Send and manage student notifications</p>
         </div>
         <button
           onClick={() => setModalOpen(true)}

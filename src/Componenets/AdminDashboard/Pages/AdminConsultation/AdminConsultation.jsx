@@ -3,6 +3,7 @@ import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 import ConsultationDetailModal from "./ConsultationDetail";
 import { toast } from "react-toastify";
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
 
 const statusColors = {
   unread: "bg-yellow-100 text-yellow-700",
@@ -18,6 +19,9 @@ const ConsultationsPage = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [deletingId, setDeletingId] = useState(null);
   const [selectedConsultation, setSelectedConsultation] = useState(null);
+
+  const [deleteSelected, setDeleteSelected] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const fetchConsultations = async (filter) => {
     setLoading(true);
@@ -42,56 +46,21 @@ const ConsultationsPage = () => {
     fetchConsultations(activeFilter);
   }, [activeFilter]);
 
-  const handleDelete = async (id) => {
-    console.log("Deleting id:", id); // debug — remove baad mein
-    if (!id) {
-      toast.error("Invalid consultation ID");
-      return;
+  const handleDelete = async (consultation) => {
+    setDeleteLoading(true);
+    try {
+      await axiosInstance.delete(`/consultations/${consultation.id}`);
+      setConsultations((prev) =>
+        prev.filter((item) => item.id !== consultation.id)
+      );
+      toast.success("Consultation deleted successfully");
+      setDeleteSelected(null);
+    } catch (err) {
+      console.error("Delete failed", err);
+      toast.error("Failed to delete consultation");
+    } finally {
+      setDeleteLoading(false);
     }
-    toast(
-      ({ closeToast }) => (
-        <div className="flex flex-col gap-3">
-          <p>Is consultation ko delete karna chahte ho?</p>
-
-          <div className="flex gap-2">
-            <button
-              className="bg-red-500 text-white px-3 py-1 rounded"
-              onClick={async () => {
-                closeToast();
-                setDeletingId(id);
-                try {
-                  await axiosInstance.delete(`/consultations/${id}`);
-                  setConsultations((prev) => prev.filter((c) => c.id !== id));
-                  toast.success("Consultation deleted successfully");
-                } catch (err) {
-                  console.error("Delete failed", err);
-                  toast.error("Failed to delete consultation");
-                } finally {
-                  setDeletingId(null);
-                }
-              }
-              }>
-                Yes
-            </button>
-            <button
-              className="bg-gray-300 px-3 py-1 rounded"
-              onClick={() => {
-                closeToast();
-                toast.info("Delete cancelled");
-              }}
-            >
-              No
-            </button>
-          </div>
-        </div>
-      ),
-      {
-        position: "top-center",
-        autoClose: false,
-        closeOnClick: false,
-        draggable: false,
-      }
-    );
   };
 
   const handleStatusChange = async (id, newStatus) => {
@@ -190,8 +159,7 @@ const ConsultationsPage = () => {
           </button>
 
           <button
-            onClick={() => handleDelete(row.id)}
-            disabled={deletingId === row.id}
+            onClick={() => setDeleteSelected(row)}
             title="Delete"
             className="text-red-400 hover:text-red-600 disabled:opacity-40 transition-colors"
           >
@@ -244,6 +212,14 @@ const ConsultationsPage = () => {
         rows={consultations.map((c) => ({ ...c, _key: c.id }))}
         loading={loading}
         emptyText="Koi consultation nahi mili."
+      />
+
+      <DeleteModal
+        selected={deleteSelected}
+        setSelected={setDeleteSelected}
+        onConfirm={handleDelete}
+        loading={deleteLoading}
+        itemName={deleteSelected?.fullName}
       />
     </div>
   );

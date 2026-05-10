@@ -50,11 +50,11 @@ const AdminResources = ({ moduleId }) => {
   const columns = [
     {
       key: "name", label: "Name", width: "35%",
-      render: (r) => <span className="font-medium text-[#0f172a] text-sm">{r.name}</span>,
+      render: (r) => <span className="font-medium text-[#0f172a] text-sm truncate block">{r.name}</span>,
     },
     {
       key: "meta", label: "Meta", width: "20%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.meta ?? "—"}</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.meta ?? "—"}</span>,
     },
     {
       key: "type", label: "Type", width: "15%",
@@ -84,10 +84,10 @@ const AdminResources = ({ moduleId }) => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 md:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Resources</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage resources for this module</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-anywhere">Resources</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage resources for this module</p>
         </div>
         <button
           onClick={() => { setEditTarget(null); setShowForm(true); }}

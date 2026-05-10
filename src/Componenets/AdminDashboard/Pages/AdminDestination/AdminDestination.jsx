@@ -70,25 +70,25 @@ const AdminDestinations = () => {
       key: "partnerUniversities",
       label: "Partner Unis",
       className: "hidden md:table-cell",
-      render: (row) => <span className="text-sm text-[#334155]">{row.partnerUniversities}</span>,
+      render: (row) => <span className="text-sm text-[#334155] break-all">{row.partnerUniversities}</span>,
     },
     {
       key: "programs",
       label: "Programs",
       className: "hidden md:table-cell",
-      render: (row) => <span className="text-sm text-[#334155]">{row.programs}</span>,
+      render: (row) => <span className="text-sm text-[#334155] break-all">{row.programs}</span>,
     },
     {
       key: "averageCost",
       label: "Avg Cost",
       className: "hidden lg:table-cell",
-      render: (row) => <span className="text-sm text-[#334155]">{row.averageCost}</span>,
+      render: (row) => <span className="text-sm text-[#334155] break-all">{row.averageCost}</span>,
     },
     {
       key: "intakes",
       label: "Intakes",
       className: "hidden lg:table-cell",
-      render: (row) => <span className="text-sm text-[#334155]">{row.intakes}</span>,
+      render: (row) => <span className="text-sm text-[#334155] break-all">{row.intakes}</span>,
     },
     {
       key: "isActive",
@@ -139,8 +139,8 @@ const AdminDestinations = () => {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Study Destinations</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage all study destinations</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Study Destinations</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage all study destinations</p>
         </div>
         <button
           onClick={() => setCreateOpen(true)}

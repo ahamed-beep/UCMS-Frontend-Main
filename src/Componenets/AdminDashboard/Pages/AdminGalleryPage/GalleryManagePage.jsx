@@ -3,6 +3,8 @@ import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 import GalleryCreateModal from "./GalleryCreateModal";
 import GalleryEditModal from "./GalleryEditModal";
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
+import { toast } from "react-toastify";
 
 export default function GalleryManagePage() {
   const [items, setItems] = useState([]);
@@ -12,6 +14,9 @@ export default function GalleryManagePage() {
   const [showCreate, setShowCreate] = useState(false);
   const [editItem, setEditItem] = useState(null);
   const [togglingId, setTogglingId] = useState(null); // ✅ NEW
+
+  const [deleteSelected, setDeleteSelected] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const fetchItems = async () => {
     setLoading(true);
@@ -37,16 +42,20 @@ export default function GalleryManagePage() {
 
   const getItemId = (row) => row.id ?? row._id;
 
-  const handleDelete = async (row) => {
-    const id = getItemId(row);
-    if (!id) return showMsg("Invalid item ID.", true);
-    if (!window.confirm("Are you sure you want to delete this gallery item?")) return;
+  const handleDelete = async (gallery) => {
+    setDeleteLoading(true);
     try {
-      await axiosInstance.delete(`/gallery/${id}`);
-      showMsg("Gallery item deleted.");
-      fetchItems();
+      await axiosInstance.delete(`/gallery/${gallery.id}`);
+      setItems((prev) =>
+        prev.filter((galleryItem) => getItemId(galleryItem) !== gallery.id)
+      );
+      toast.success("Gallery deleted successfully");
+      setDeleteSelected(null);
     } catch {
-      showMsg("Failed to delete item.", true);
+      console.error("Delete failed", err);
+      toast.error("Failed to delete gallery");
+    } finally {
+      setDeleteLoading(false);
     }
   };
 
@@ -110,7 +119,7 @@ export default function GalleryManagePage() {
     {
       key: "section",
       label: "Section",
-      width: "14%",
+      width: "15%",
       render: (row) => (
         <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100 capitalize">
           {row.section}
@@ -124,7 +133,7 @@ export default function GalleryManagePage() {
       render: (row) => (
         <div className="flex items-center gap-1.5">
           <div className="flex -space-x-1.5">
-            {(row.images || []).slice(0,4).map((src, i) => (
+            {(row.images || []).slice(0, 4).map((src, i) => (
               <img
                 key={i}
                 src={src}
@@ -154,20 +163,17 @@ export default function GalleryManagePage() {
             <button
               onClick={() => handleToggle(row)}
               disabled={togglingId === id}
-              className={`relative w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none disabled:opacity-50 ${
-                row.isActive ? "bg-emerald-500" : "bg-gray-300"
-              }`}
+              className={`relative w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none disabled:opacity-50 ${row.isActive ? "bg-emerald-500" : "bg-gray-300"
+                }`}
             >
               <span
-                className={`absolute  hidden md:block top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200 ${
-                  row.isActive ? "translate-x-4" : "translate-x-0"
-                }`}
+                className={`absolute  hidden md:block top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200 ${row.isActive ? "translate-x-4" : "translate-x-0"
+                  }`}
               />
             </button>
             <span
-              className={`text-[12px] hidden md:block font-medium px-2 py-0.5 rounded-full ${
-                row.isActive ? "bg-emerald-50 text-emerald-700" : "bg-red-50 text-red-600"
-              }`}
+              className={`text-[12px] hidden md:block font-medium px-2 py-0.5 rounded-full ${row.isActive ? "bg-emerald-50 text-emerald-700" : "bg-red-50 text-red-600"
+                }`}
             >
               {row.isActive ? "Active" : "Inactive"}
             </span>
@@ -201,8 +207,8 @@ export default function GalleryManagePage() {
             className="p-1.5 rounded-lg text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/>
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z" />
             </svg>
           </button>
 
@@ -213,23 +219,23 @@ export default function GalleryManagePage() {
             className="p-1.5 rounded-lg text-gray-500 hover:bg-purple-50 hover:text-purple-600 transition-colors"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-              <line x1="14" y1="3" x2="14" y2="9"/>
-              <line x1="11" y1="6" x2="17" y2="6"/>
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+              <line x1="14" y1="3" x2="14" y2="9" />
+              <line x1="11" y1="6" x2="17" y2="6" />
             </svg>
           </button>
 
           {/* Delete */}
           <button
-            onClick={() => handleDelete(row)}
+            onClick={() => setDeleteSelected(row)}
             title="Delete"
             className="p-1.5 rounded-lg text-gray-500 hover:bg-red-50 hover:text-red-600 transition-colors"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="3 6 5 6 21 6"/>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
             </svg>
           </button>
         </div>
@@ -243,29 +249,29 @@ export default function GalleryManagePage() {
 
         <div className="flex flex-col md:flex-row   md:items-center justify-between mb-6">
           <div>
-            <h1 className="text-xl font-semibold text-gray-900">Gallery</h1>
-            <p className="text-sm text-gray-500 mt-1">Manage your gallery items and images</p>
+            <h1 className="text-xl font-semibold text-gray-900 wrap-break-word">Gallery</h1>
+            <p className="text-sm text-gray-500 mt-1 wrap-break-word">Manage your gallery items and images</p>
           </div>
           <div className="flex md:mt-0 mt-2" >
 
-            
-          <button
-            onClick={() => setShowCreate(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-xl hover:bg-gray-700 transition-colors"
+
+            <button
+              onClick={() => setShowCreate(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-xl hover:bg-gray-700 transition-colors"
             >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            Add Gallery Item
-          </button>
-              </div>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add Gallery Item
+            </button>
+          </div>
         </div>
 
         {success && (
           <div className="mb-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-green-50 border border-green-100 text-green-700 text-sm">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="20 6 9 17 4 12"/>
+              <polyline points="20 6 9 17 4 12" />
             </svg>
             {success}
           </div>
@@ -273,9 +279,9 @@ export default function GalleryManagePage() {
         {error && (
           <div className="mb-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
             {error}
           </div>
@@ -318,6 +324,14 @@ export default function GalleryManagePage() {
           onError={(msg) => showMsg(msg, true)}
         />
       )}
+
+      <DeleteModal
+        selected={deleteSelected}
+        setSelected={setDeleteSelected}
+        onConfirm={handleDelete}
+        loading={deleteLoading}
+        itemName={deleteSelected?.title}
+      />
     </div>
   );
 }

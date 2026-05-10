@@ -290,7 +290,7 @@ const AdminClassSessions = () => {
       label: "Title",
       width: "25%",
       render: (row) => (
-        <span className="font-medium text-sm text-[#0f172a]">{row.title}</span>
+        <span className="font-medium text-sm text-[#0f172a] truncate block">{row.title}</span>
       ),
     },
     {
@@ -298,7 +298,7 @@ const AdminClassSessions = () => {
       label: "Course",
       width: "20%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{row.course?.title ?? "—"}</span>
+        <span className="text-sm text-[#334155] truncate block">{row.course?.title ?? "—"}</span>
       ),
     },
     {
@@ -306,7 +306,7 @@ const AdminClassSessions = () => {
       label: "Date",
       width: "18%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{formatDate(row.scheduledAt)}</span>
+        <span className="text-sm text-[#334155] truncate block">{formatDate(row.scheduledAt)}</span>
       ),
     },
     {
@@ -314,7 +314,7 @@ const AdminClassSessions = () => {
       label: "Time",
       width: "18%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{formatTime(row.scheduledAt, row.durationMinutes)}</span>
+        <span className="text-sm text-[#334155] truncate block">{formatTime(row.scheduledAt, row.durationMinutes)}</span>
       ),
     },
     {
@@ -362,10 +362,10 @@ const AdminClassSessions = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Class Sessions</h1>
-          <p className="text-sm text-[#64748b] mt-1">Manage all scheduled class sessions</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-break-word">Class Sessions</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-break-word">Manage all scheduled class sessions</p>
         </div>
         <button
           onClick={() => { setEditing(null); setModalOpen(true); }}

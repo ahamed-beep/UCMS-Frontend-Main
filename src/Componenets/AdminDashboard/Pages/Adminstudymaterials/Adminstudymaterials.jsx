@@ -43,7 +43,7 @@ const MaterialModal = ({ open, onClose, onSubmit, loading, courses, sessions }) 
     <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
       <div className="bg-white rounded-2xl w-full max-w-md shadow-xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h3 className="font-bold text-[#0f172a] text-base">Add Study Material</h3>
+          <h3 className="font-bold text-[#0f172a] text-base wrap-break-word">Add Study Material</h3>
           <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500">
             <X className="w-4 h-4" />
           </button>
@@ -215,7 +215,7 @@ const fetchMaterials = async (courseId) => {
     },
     {
       key: "class", label: "Class", width: "25%",
-      render: (row) => <span className="text-sm text-[#334155]">{row.classSessionId ? sessions.find((s) => s.id === row.classSessionId)?.title ?? "Class Material" : "General"}</span>,
+      render: (row) => <span className="text-sm text-[#334155] truncate">{row.classSessionId ? sessions.find((s) => s.id === row.classSessionId)?.title ?? "Class Material" : "General"}</span>,
     },
     {
       key: "created", label: "Created", width: "15%",
@@ -238,10 +238,10 @@ const fetchMaterials = async (courseId) => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row gap-2  sm:items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Study Materials</h1>
-          <p className="text-sm text-[#64748b] mt-1">Manage course study materials</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-anywhere">Study Materials</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-anywhere">Manage course study materials</p>
         </div>
         <button
           onClick={() => setModalOpen(true)}

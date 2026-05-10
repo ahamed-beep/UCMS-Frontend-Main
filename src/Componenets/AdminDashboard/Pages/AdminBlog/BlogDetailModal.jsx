@@ -36,7 +36,7 @@ export default function BlogDetailModal({ blog, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h3 className="font-semibold text-[#0f172a] text-base">Blog Detail</h3>
+          <h3 className="font-semibold text-[#0f172a] text-base wrap-break-word">Blog Detail</h3>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500 transition-colors"
@@ -53,7 +53,7 @@ export default function BlogDetailModal({ blog, onClose }) {
           />
 
           <div className="flex items-start justify-between gap-3 flex-wrap">
-            <h2 className="text-lg font-semibold text-[#0f172a] leading-snug">{blog.title}</h2>
+            <h2 className="text-lg font-semibold text-[#0f172a] leading-snug wrap-anywhere">{blog.title}</h2>
             <div className="flex items-center gap-2 shrink-0">
               {blog.isFeatured && (
                 <span className="flex items-center gap-1 text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full">

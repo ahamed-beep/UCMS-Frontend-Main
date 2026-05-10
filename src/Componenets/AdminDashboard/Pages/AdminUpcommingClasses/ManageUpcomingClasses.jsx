@@ -166,10 +166,10 @@ const ManageUpcomingClasses = () => {
     <div>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
         <div>
-          <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a]">
+          <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a] wrap-break-word">
             Upcoming Classes
           </h1>
-          <p className="mt-1 text-sm text-[#64748b]">Manage IELTS / PTE upcoming classes</p>
+          <p className="mt-1 text-sm text-[#64748b] wrap-break-word">Manage IELTS / PTE upcoming classes</p>
         </div>
         <div>
 <div className=" flex mt-3 md:mt-0" >

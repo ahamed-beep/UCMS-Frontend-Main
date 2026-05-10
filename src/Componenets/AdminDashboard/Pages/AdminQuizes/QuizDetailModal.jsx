@@ -67,14 +67,14 @@ const QuizDetailModal = ({ quizId, onClose }) => {
           {!loading && quiz && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-[#0f172a]">{quiz.title}</h2>
-                <p className="text-sm text-[#64748b] mt-1">{quiz.description}</p>
+                <h2 className="text-lg font-bold text-[#0f172a] wrap-break-word">{quiz.title}</h2>
+                <p className="text-sm text-[#64748b] mt-1 wrap-break-word">{quiz.description}</p>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="bg-[#f8fafc] rounded-xl p-3 text-center">
                   <p className="text-xs text-[#94a3b8] mb-1">Category</p>
-                  <p className="text-sm font-semibold text-[#0f172a] capitalize">{quiz.category}</p>
+                  <p className="text-sm font-semibold text-[#0f172a] capitalize wrap-break-word">{quiz.category}</p>
                 </div>
                 <div className="bg-[#f8fafc] rounded-xl p-3 text-center">
                   <p className="text-xs text-[#94a3b8] mb-1">Difficulty</p>

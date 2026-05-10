@@ -75,15 +75,15 @@ const ManageQuizzes = () => {
       label: "Title",
       width: "28%",
       render: (row) => (
-        <span className="text-sm font-medium text-[#0f172a] line-clamp-1">{row.title}</span>
+        <span className="text-sm font-medium text-[#0f172a] line-clamp-1 break-all">{row.title}</span>
       ),
     },
     {
       key: "category",
       label: "Category",
-      width: "13%",
+      width: "15%",
       render: (row) => (
-        <span className="text-sm text-[#64748b] capitalize">{row.category}</span>
+        <span className="text-sm text-[#64748b] capitalize break-all">{row.category}</span>
       ),
     },
     {
@@ -155,8 +155,8 @@ const ManageQuizzes = () => {
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Manage Quizzes</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">{total} quiz{total !== 1 ? "zes" : ""} total</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Manage Quizzes</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 break-all">{total} quiz{total !== 1 ? "zes" : ""} total</p>
         </div>
         <button
           onClick={() => { setEditData(null); setModalOpen(true); }}

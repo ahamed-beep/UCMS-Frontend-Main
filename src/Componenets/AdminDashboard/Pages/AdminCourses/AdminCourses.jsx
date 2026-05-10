@@ -43,15 +43,15 @@ const AdminCourses = ({ onSelectCourse = () => {} }) => {
   const columns = [
     {
       key: "title", label: "Title", width: "25%",
-      render: (r) => <span className="font-medium text-[#0f172a] text-sm">{r.title}</span>,
+      render: (r) => <span className="font-medium text-[#0f172a] text-sm truncate block">{r.title}</span>,
     },
     {
       key: "teacher", label: "Teacher", width: "15%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.teacher}</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.teacher}</span>,
     },
     {
       key: "hours", label: "Hours", width: "10%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.hours}h</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.hours}h</span>,
     },
     {
       key: "status", label: "Status", width: "15%",
@@ -95,10 +95,10 @@ const AdminCourses = ({ onSelectCourse = () => {} }) => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-1 md:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Courses</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage all courses</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-anywhere">Courses</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage all courses</p>
         </div>
         <button
           onClick={() => { setEditTarget(null); setShowForm(true); }}
