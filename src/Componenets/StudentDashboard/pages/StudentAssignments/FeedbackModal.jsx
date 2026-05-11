@@ -43,7 +43,7 @@ export default function FeedbackModal({ assignment, onClose }) {
 
           <div className="bg-[#F9FAFB] rounded-xl p-4 space-y-1">
             <p className="text-xs font-medium text-[#6A7282] uppercase tracking-wide">Feedback</p>
-            <p className="text-sm text-[#101828]">
+            <p className="text-sm text-[#101828] break-all">
               {assignment.feedback ?? "No feedback provided."}
             </p>
           </div>

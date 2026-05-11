@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ break-allimport { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../Api/axiosInstance";
 
@@ -119,8 +119,8 @@ const QuizzesSection = () => {
         {stats.map((item, i) => (
           <div key={i} className="p-4 md:p-6 flex justify-between items-center border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm">
             <div>
-              <p className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565]">{item.title}</p>
-              <h2 className="font-inter font-bold text-[25px] md:text-[30px] text-[#0A0A0A]">{item.value}</h2>
+              <p className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565] break-all">{item.title}</p>
+              <h2 className="font-inter font-bold text-[25px] md:text-[30px] text-[#0A0A0A] break-all">{item.value}</h2>
             </div>
             <img src={item.icon} alt="icon" width={40} height={40} />
           </div>
@@ -129,7 +129,7 @@ const QuizzesSection = () => {
 
       <div className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm">
         <h2 className="font-inter font-semibold text-[16px] md:text-lg text-[#0A0A0A] mb-1">Online Quizzes</h2>
-        <p className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565] mb-4">Instant scores and automated evaluation</p>
+        <p className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565] mb-4 break-all">Instant scores and automated evaluation</p>
 
         <div className="space-y-4">
           {lectureQuizzes.length === 0 && (
@@ -144,15 +144,15 @@ const QuizzesSection = () => {
               <div key={quiz.id} className="border-t-[0.89px] border-[#E5E7EB] px-4 md:px-6 -mx-6 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-3">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-inter font-semibold text-[16px] md:text-lg text-[#0A0A0A]">
+                    <h3 className="font-inter font-semibold text-[16px] md:text-lg text-[#0A0A0A] break-all">
                       {quiz.lectureTitle} — Quiz
                     </h3>
-                    <span className={`font-inter font-medium text-[10px] md:text-xs px-3 py-1 rounded-full ${config.badge}`}>
+                    <span className={`font-inter font-medium text-[10px] md:text-xs px-3 py-1 rounded-full break-all ${config.badge}`}>
                       {config.label}
                     </span>
                   </div>
 
-                  <h4 className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">
+                  <h4 className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">
                     {quiz.moduleTitle}
                   </h4>
 
@@ -165,7 +165,7 @@ const QuizzesSection = () => {
 
                   {quiz.isCompleted && (
                     <p className="font-inter font-normal text-[12px] md:text-sm text-[#364153]">
-                      Score: <span className="font-inter font-bold text-[16px] md:text-lg text-[#00A63E]">{quiz.scorePercent}%</span>
+                      Score: <span className="font-inter font-bold text-[16px] md:text-lg text-[#00A63E] break-all">{quiz.scorePercent}%</span>
                     </p>
                   )}
                 </div>

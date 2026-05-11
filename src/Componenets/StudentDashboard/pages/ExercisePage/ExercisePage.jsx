@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+ break-allimport { useEffect, useState } from "react";
 import { ChevronLeft, Volume2, CheckCircle } from "lucide-react";
 import axiosInstance from "../../../../Api/axiosInstance";
 
@@ -75,8 +75,8 @@ const handleSubmit = async () => {
             <span className={`text-xs font-medium px-2 py-1 rounded-full capitalize ${typeColor[exercise.type] ?? "bg-gray-100 text-gray-700"}`}>
               {exercise.type}
             </span>
-            <h1 className="font-inter font-bold text-[20px] text-[#101828] mt-2">{exercise.title}</h1>
-            <p className="font-inter font-normal text-sm text-[#4A5565] mt-1">{exercise.instructions}</p>
+            <h1 className="font-inter font-bold text-[20px] text-[#101828] mt-2 break-all">{exercise.title}</h1>
+            <p className="font-inter font-normal text-sm text-[#4A5565] mt-1 break-all">{exercise.instructions}</p>
           </div>
 
           {/* Writing */}
@@ -112,7 +112,7 @@ const handleSubmit = async () => {
                   onChange={(e) => setAnswer(e.target.value)}
                   disabled={submitted}
                   placeholder="Type exactly what you hear..."
-                  className="w-full border border-[#D1D5DC] rounded-xl px-4 py-3 text-sm text-[#0f172a] min-h-[120px] outline-none focus:border-[#0F4C8A] resize-none disabled:opacity-60"
+                  className="w-full border break-all border-[#D1D5DC] rounded-xl px-4 py-3 text-sm text-[#0f172a] min-h-[120px] outline-none focus:border-[#0F4C8A] resize-none disabled:opacity-60"
                 />
               </div>
             </div>
@@ -123,7 +123,7 @@ const handleSubmit = async () => {
   <div className="space-y-4">
     {exercise.passage && (
       <div className="bg-[#F9FAFB] border border-[#E5E7EB] rounded-xl p-4">
-        <p className="text-sm text-[#334155] font-inter leading-relaxed">{exercise.passage}</p>
+        <p className="text-sm text-[#334155] font-inter leading-relaxed break-all">{exercise.passage}</p>
       </div>
     )}
     <div className="space-y-2">
@@ -140,7 +140,7 @@ const handleSubmit = async () => {
                   ? result?.isCorrect ? "bg-green-100 border-green-400 text-green-700" : "bg-red-100 border-red-400 text-red-700"
                   : "bg-[#DBEAFE] border-[#0F4C8A] text-[#0F4C8A]"
                 : "bg-white border-[#E5E7EB] text-[#334155] hover:bg-gray-50"}`}>
-            <span className="font-semibold mr-2">{label}.</span>{opt.text}
+            <span className="font-semibold mr-2 break-all">{label}.</span>{opt.text}
           </button>
         );
       })}
@@ -164,7 +164,7 @@ const handleSubmit = async () => {
                 ? result?.isCorrect ? "bg-green-100 border-green-400 text-green-700" : "bg-red-100 border-red-400 text-red-700"
                 : "bg-[#DBEAFE] border-[#0F4C8A] text-[#0F4C8A]"
               : "bg-white border-[#E5E7EB] text-[#334155] hover:bg-gray-50"}`}>
-          <span className="font-semibold mr-2">{label}.</span>{opt.text}
+          <span className="font-semibold mr-2 break-all">{label}.</span>{opt.text}
         </button>
       );
     })}
@@ -182,7 +182,7 @@ const handleSubmit = async () => {
                     : result.isCorrect ? "Correct Answer!" : "Incorrect Answer"}
                 </p>
                 {result.adminFeedback && (
-                  <p className="text-sm text-[#334155] mt-1">{result.adminFeedback}</p>
+                  <p className="text-sm text-[#334155] mt-1 break-all">{result.adminFeedback}</p>
                 )}
               </div>
             </div>
@@ -226,8 +226,8 @@ const handleSubmit = async () => {
                   </div>
                   {att.essayText && <p className="text-[#334155] mt-2 line-clamp-2">{att.essayText}</p>}
                   {att.transcriptText && <p className="text-[#334155] mt-2">{att.transcriptText}</p>}
-                  {att.selectedOption && <p className="text-[#334155] mt-2">Selected: <strong>{att.selectedOption}</strong></p>}
-                  {att.adminFeedback && <p className="text-green-700 mt-2">Feedback: {att.adminFeedback}</p>}
+                  {att.selectedOption && <p className="text-[#334155] mt-2 break-all">Selected: <strong>{att.selectedOption}</strong></p>}
+                  {att.adminFeedback && <p className="text-green-700 mt-2 break-all">Feedback: {att.adminFeedback}</p>}
                 </div>
               ))}
             </div>

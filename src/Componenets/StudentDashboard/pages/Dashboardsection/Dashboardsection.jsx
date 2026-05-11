@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+ break-allimport React, { useEffect, useState } from 'react';
 import { CheckCircle, Clock, FileText, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { IoMdArrowForward } from 'react-icons/io';
 import RecentNotification from './RecentNotification';
@@ -69,9 +69,9 @@ const Dashboardpage = ({ onNavigate }) => {
                 <div className={`w-12 h-12 flex items-center justify-center rounded-[10px] text-white ${item.color}`}>
                   <Icon size={24} />
                 </div>
-                <div className="font-inter font-bold text-[20px] md:text-[24px] text-[#101828]">{item.value}</div>
-                <div className="font-inter font-medium text-[12px] md:text-[14px] text-[#4A5565]">{item.title}</div>
-                <div className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">{item.sub}</div>
+                <div className="font-inter font-bold text-[20px] md:text-[24px] text-[#101828] break-all">{item.value}</div>
+                <div className="font-inter font-medium text-[12px] md:text-[14px] text- break-all[#4A5565] break-all">{item.title}</div>
+                <div className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282] break-all">{item.sub}</div>
               </div>
             </div>
           );
@@ -93,9 +93,9 @@ const Dashboardpage = ({ onNavigate }) => {
                 {visibleApps.map((app, i) => (
                   <div key={app._id ?? i} className="p-4 rounded-[10px] bg-[#F9FAFB] flex flex-col md:flex-row gap-1 justify-between items-start md:items-center">
                     <div>
-                      <p className="font-inter font-medium text-[16px] md:text-[18px] text-[#101828]">{app.university}</p>
-                      <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{app.country}</p>
-                      <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">Applied: {formatDate(app.createdAt)}</p>
+                      <p className="font-inter font-medium text-[16px] md:text-[18px] text-[#101828] break-all">{app.university}</p>
+                      <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">{app.country}</p>
+                      <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282] break-all">Applied: {formatDate(app.createdAt)}</p>
                     </div>
                     <span className={`px-3 py-1 font-inter font-medium text-[10px] md:text-[12px] rounded-full whitespace-nowrap ${statusStyles[app.status] ?? 'bg-gray-100 text-gray-600'}`}>
                       {app.status}
@@ -136,13 +136,13 @@ const Dashboardpage = ({ onNavigate }) => {
                 {visibleClasses.map((cls, i) => (
                   <div key={cls._id ?? i} className="p-4 rounded-[10px] bg-[#F9FAFB] flex justify-between items-center">
                     <div className='w-full'>
-                      <p className="font-inter font-medium text-[16px] md:text-[18px] text-[#101828]">{cls.title}</p>
+                      <p className="font-inter font-medium text-[16px] md:text-[18px] text-[#101828] break-all">{cls.title}</p>
                       <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">
                         {cls.courseId?.teacher ?? '—'}
                       </p>
                       <div className='flex justify-between items-center'>
-                        <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">{formatClassTime(cls.scheduledAt)}</p>
-                        <span className="font-inter font-normal text-[10px] md:text-[12px] text-[#155DFC]">{cls.durationMinutes} mins</span>
+                        <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282] break-all">{formatClassTime(cls.scheduledAt)}</p>
+                        <span className="font-inter font-normal text-[10px] md:text-[12px] text-[#155DFC] break-all">{cls.durationMinutes} mins</span>
                       </div>
                     </div>
                   </div>
@@ -177,7 +177,7 @@ const Dashboardpage = ({ onNavigate }) => {
             <img src="/Images/catalog.webp" alt="catalog" className='w-5 h-5 sm:w-8 sm:h-8' />
             <h2 className="font-inter font-bold text-[18px] md:text-[24px] text-white">Explore Our Course Catalog</h2>
           </div>
-          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#DBEAFE]">Browse IELTS, PTE, TOEFL courses designed to help you achieve your goals.</p>
+          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#DBEAFE] break-all">Browse IELTS, PTE, TOEFL courses designed to help you achieve your goals.</p>
           <button onClick={() => navigiate('/services')} className='flex font-inter font-semibold text-[14px] md:text-[16px] bg-white text-[#0F4C8A] text-start rounded-[10px] py-3 px-4 mt-5 cursor-pointer'>
             Browse Courses <IoMdArrowForward className='ml-2' size={20} />
           </button>

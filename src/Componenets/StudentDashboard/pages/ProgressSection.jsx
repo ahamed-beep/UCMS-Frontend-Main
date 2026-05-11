@@ -46,8 +46,8 @@ const ProgressSection = () => {
             <div className={`w-9 h-9 md:w-12 md:h-12 ${stat.color} rounded-[10px] flex items-center justify-center mb-4`}>
               {stat.icon}
             </div>
-            <div className="font-inter font-bold text-[22px] md:text-[24px] text-[#0A0A0A]">{stat.value}</div>
-            <div className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565]">{stat.label}</div>
+            <div className="font-inter font-bold text-[22px] md:text-[24px] text-[#0A0A0A] break-all">{stat.value}</div>
+            <div className="font-inter font-medium text-[12px] md:text-sm text-[#4A5565] break-all">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -96,7 +96,7 @@ const ProgressSection = () => {
       <section className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6">
         <div className="border-b-[0.89px] ps-5 border-[#E5E7EB] -mx-4 md:-mx-6 pb-3 md:pb-6">
           <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A]">Recent Scores</h2>
-          <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">Quiz and assignment performance</p>
+          <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">Quiz and assignment performance</p>
         </div>
         <div className="space-y-3 pt-3 md:pt-6">
           {loading ? (
@@ -113,7 +113,7 @@ const ProgressSection = () => {
                       {score.type}
                     </span>
                     <div>
-                      <p className="font-inter font-medium text-xs md:text-sm text-[#0A0A0A]">{score.title}</p>
+                      <p className="font-inter font-medium text-xs md:text-sm text-[#0A0A0A] break-all">{score.title}</p>
                       <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">
                         {new Date(score.date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' })}
                       </p>

@@ -7,7 +7,7 @@ const NeedHelpCard = ({ onNavigate }) => {
       style={{ background: "linear-gradient(135deg, #0F4C8A, #083766)" }}
     >
       <h3 className="text-lg font-bold font-inter text-[#FFFFFF] mb-2">Need Help?</h3>
-      <p className="text-sm text-[#FFFFFF] font-inter leading-relaxed">
+      <p className="text-sm text-[#FFFFFF] font-inter leading-relaxed break-all">
         Have questions about the course content or technical issues?
       </p>
       <button

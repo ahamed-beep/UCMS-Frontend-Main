@@ -60,8 +60,8 @@ const ApplicationSection = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {stats.map((config, i) => (
           <div key={i} className="p-4 md:p-6 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm text-start">
-            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{config.label}</p>
-            <p className="font-inter font-bold text-[22px] md:text-[24px]" style={{ color: config.color }}>{config.value}</p>
+            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">{config.label}</p>
+            <p className="font-inter font-bold text-[22px] md:text-[24px] break-all" style={{ color: config.color }}>{config.value}</p>
           </div>
         ))}
       </div>
@@ -78,11 +78,11 @@ const ApplicationSection = () => {
                 <div className="flex flex-col gap-1">
                   <div className="flex justify-center items-center gap-2">
                     <img src={statusIcons[app.status] ?? "/Images/pending.webp"} alt="icon" width={20} height={20} />
-                    <h3 className="font-inter font-semibold text-[18px] md:text-[20px] text-[#101828]">{app.university}</h3>
+                    <h3 className="font-inter font-semibold text-[18px] md:text-[20px] text-[#101828] break-all">{app.university}</h3>
                   </div>
-                  <p className="font-inter font-medium text-sm md:text-[16px] text-[#364153]">{app.program}</p>
-                  <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">{app.country}</p>
-                  <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">Applied: {formatDate(app.createdAt)}</p>
+                  <p className="font-inter font-medium text-sm md:text-[16px] text-[#364153] break-all">{app.program}</p>
+                  <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">{app.country}</p>
+                  <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282] break-all">Applied: {formatDate(app.createdAt)}</p>
                 </div>
                 <div className="flex justify-center items-center gap-2">
                   <span className={`font-inter font-normal text-xs md:text-sm px-4 py-2 rounded-full ${statusStyles[app.status]}`}>
@@ -97,7 +97,7 @@ const ApplicationSection = () => {
 
               {openId === app.id && (
                 <div className="mt-4 space-y-3">
-                  <h4 className="font-inter font-medium text-xs md:text-sm text-[#364153]">Application Timeline</h4>
+                  <h4 className="font-inter font-medium text-xs md:text-sm text-[#364153] break-all">Application Timeline</h4>
                   {(app.timeline ?? []).map((step, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="flex flex-col items-center relative">
@@ -112,9 +112,9 @@ const ApplicationSection = () => {
                         <div className={`w-[2px] h-6 md:h-12 ${step.done ? "bg-[#B9F8CF]" : "bg-gray-300"}`} />
                       </div>
                       <div>
-                        <p className="font-inter font-medium text-sm md:text-[16px] text-[#101828]">{step.label}</p>
+                        <p className="font-inter font-medium text-sm md:text-[16px] text-[#101828] break-all">{step.label}</p>
                         {step.date && (
-                          <p className="font-inter font-normal text-xs md:text-sm text-[#6A7282]">{step.date}</p>
+                          <p className="font-inter font-normal text-xs md:text-sm text-[#6A7282] break-all">{step.date}</p>
                         )}
                       </div>
                     </div>

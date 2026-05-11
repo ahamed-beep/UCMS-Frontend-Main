@@ -152,8 +152,8 @@
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mb-4 md:mb-6">
           {stats.map((item, i) => (
             <div key={i} className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4">
-              <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">{item.label}</p>
-              <p className={`font-inter font-bold text-[22px] md:text-[24px] ${item.color}`}>{item.value}</p>
+              <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">{item.label}</p>
+              <p className={`font-inter font-bold text-[22px] md:text-[24px] break-all ${item.color}`}>{item.value}</p>
             </div>
           ))}
         </div>
@@ -161,28 +161,28 @@
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="md:col-span-2 border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6">
             <div className="border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] mb-4 md:mb-6 -mx-4 md:-mx-6">
-              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A]">
+              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A] break-all">
                 Upcoming Classes
               </h2>
             </div>
 
             {schedule.length === 0 ? (
-              <p className="font-inter text-sm text-[#4A5565]">No upcoming classes.</p>
+              <p className="font-inter text-sm text-[#4A5565] break-all">No upcoming classes.</p>
             ) : (
               schedule.map((cls, i) => (
                 <div key={i} className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] mb-4 p-4">
                   <div className="flex justify-between mb-2">
-                    <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A]">
+                    <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A] break-all">
                       {cls.title}
                     </h3>
-                    <span className="font-inter font-medium text-[10px] md:text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full self-start">
+                    <span className="font-inter font-medium text-[10px] md:text-xs bg-[#0F4C8A] text-white px-3 py-1 rounded-full self-start break-all">
                       {cls.level}
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-2">
                     <img src="/Images/openbook.webp" alt="book" width={16} height={16} />
-                    <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">
+                    <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">
                       {cls.course?.teacher ?? "—"}
                     </p>
                   </div>
@@ -190,13 +190,13 @@
                   <div className="flex md:flex-row flex-col justify-between">
                     <div className="flex items-center gap-2 mb-2">
                       <img src="/Images/calendergray.webp" alt="calendar" width={16} height={16} />
-                      <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">
+                      <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">
                         {formatDate(cls.scheduledAt)}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 mb-2">
                       <img src="/Images/time.webp" alt="time" width={16} height={16} />
-                      <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">
+                      <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">
                         {formatTime(cls.scheduledAt, cls.durationMinutes)}
                       </p>
                     </div>
@@ -208,12 +208,12 @@
                   </div>
 
                   <div className="bg-[#F9FAFB] mb-3 flex flex-col p-3 rounded-[10px]">
-                    <p className="font-inter font-medium text-[10px] md:text-xs text-[#364153]">Topics Covered:</p>
+                    <p className="font-inter font-medium text-[10px] md:text-xs text-[#364153] break-all">Topics Covered:</p>
                     <div className="flex flex-wrap gap-2">
                       {(cls.topics ?? []).map((t, idx) => (
                         <span
                           key={idx}
-                          className="font-inter font-normal text-[10px] md:text-xs text-[#364153] bg-white border-[0.89px] border-[#E5E7EB] rounded-sm p-1 mt-2"
+                          className="font-inter font-normal text-[10px] md:text-xs text-[#364153] bg-white border-[0.89px] border-[#E5E7EB] rounded-sm p-1 mt-2 break-all"
                         >
                           {t}
                         </span>
@@ -242,7 +242,7 @@
                       {!classMaterials[cls.id] ? (
                         <p className="font-inter text-xs text-[#4A5565]">Loading...</p>
                       ) : classMaterials[cls.id].length === 0 ? (
-                        <p className="font-inter text-xs text-[#4A5565]">No materials for this class.</p>
+                        <p className="font-inter text-xs text-[#4A5565] break-all">No materials for this class.</p>
                       ) : (
                         classMaterials[cls.id].map((m, idx) => (
                           <a
@@ -257,7 +257,7 @@
                               <h4 className="font-inter font-medium text-[12px] md:text-sm text-[#0A0A0A] truncate">
                                 {m.title}
                               </h4>
-                              <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">
+                              <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282] break-all">
                                 {m.type} • {m.fileSize}
                               </p>
                             </div>

@@ -207,8 +207,8 @@ const StudentQuizSection = () => {
 
         <div className="max-w-6xl mx-auto bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between mb-5">
           <div>
-            <h1 className="text-xl font-bold text-gray-900 font-inter">{quiz.title}</h1>
-            <p className="text-sm text-gray-400 font-inter capitalize">{quiz.category} • {quiz.difficulty}</p>
+            <h1 className="text-xl font-bold text-gray-900 font-inter break-all">{quiz.title}</h1>
+            <p className="text-sm text-gray-400 font-inter capitalize break-all">{quiz.category} • {quiz.difficulty}</p>
           </div>
           <div className={`flex items-center gap-2 font-inter font-semibold px-4 py-2 rounded-lg transition-all duration-300 ${timeLeft !== null && timeLeft <= 300 ? "bg-red-50 text-red-600 shadow-[0_0_12px_2px_rgba(239,68,68,0.4)] animate-pulse" : "bg-blue-50 text-[#0F4C8A]"}`}>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -275,7 +275,7 @@ const StudentQuizSection = () => {
             <div className="grid grid-cols-2 gap-3 mb-5">
               <div className="bg-green-50 rounded-lg p-3 text-center">
                 <div className="text-xs font-inter text-gray-600">Answered</div>
-                <div className="text-xl font-bold text-[#008236] font-inter">{answeredCount}</div>
+                <div className="text-xl font-bold text-[#008236] font-inter break-all">{answeredCount}</div>
               </div>
               <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <div className="text-xs font-inter text-gray-600">Unanswered</div>

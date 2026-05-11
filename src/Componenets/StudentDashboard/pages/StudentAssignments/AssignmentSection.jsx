@@ -215,8 +215,8 @@ const AssignmentSection = () => {
           {file ? (
             <>
               <CheckCircle className="w-10 h-10 text-green-500" />
-              <p className="font-inter font-medium text-sm text-green-700">{file.name}</p>
-              <p className="font-inter text-xs text-green-500">{(file.size / 1024).toFixed(1)} KB</p>
+              <p className="font-inter font-medium text-sm text-green-700 break-all">{file.name}</p>
+              <p className="font-inter text-xs text-green-500 break-all">{(file.size / 1024).toFixed(1)} KB</p>
               <button
                 onClick={(e) => { e.stopPropagation(); setFile(null); }}
                 className="font-inter text-xs text-[#E7000B] hover:underline"
@@ -319,7 +319,7 @@ const AssignmentSection = () => {
             className={`${item.bg} ${item.border} p-4 md:p-6 rounded-xl flex justify-between items-center`}
           >
             <div>
-              <p className={`font-inter font-medium text-[12px] md:text-sm ${item.textColor}`}>
+              <p className={`font-inter font-medium text-[12px] md:text-sm break-all ${item.textColor}`}>
                 {item.label}
               </p>
               <h2 className={`font-inter font-bold text-[25px] md:text-[30px] ${item.countColor}`}>

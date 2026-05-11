@@ -112,7 +112,7 @@ const PurchaseSection = ({ onNavigate }) => {
                         </span>
                       </td>
 
-                      <td className="p-2 md:p-4 font-inter text-[12px] md:text-sm text-[#4A5565] max-w-[180px]">
+                      <td className="p-2 md:p-4 font-inter text-[12px] md:text-sm text-[#4A5565] max-w-[180px] break-all">
                         {item.serviceTitle}
                       </td>
 

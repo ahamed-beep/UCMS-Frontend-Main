@@ -1,4 +1,4 @@
-import React from 'react';
+ break-allimport React from 'react';
 
 const CourseStats = ({ totalLectures, completedModulesCount, modulesLength, progressPct }) => {
   return (
@@ -11,11 +11,11 @@ const CourseStats = ({ totalLectures, completedModulesCount, modulesLength, prog
         </div>
         <div className="flex justify-between">
           <span className="text-[#4A5565] font-inter">Total Lectures</span>
-          <span className="text-[#0A0A0A] font-inter font-medium">{totalLectures}</span>
+          <span className="text-[#0A0A0A] font-inter font-medium break-all">{totalLectures}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-[#4A5565] font-inter ">Completed</span>
-          <span className="text-[#00A63E] font-inter font-semibold">{completedModulesCount}/{modulesLength}</span>
+          <span className="text-[#00A63E] font-inter font-semibold break-all">{completedModulesCount}/{modulesLength}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-[#4A5565] font-inter">Certificate</span>

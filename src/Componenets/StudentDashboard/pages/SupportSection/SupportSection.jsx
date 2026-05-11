@@ -120,7 +120,7 @@ const SupportSection = () => {
             <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">{card.title}</h3>
             <div>
               <p className="font-inter font-medium text-xs md:text-sm text-[#101828]">{card.info}</p>
-              <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">{card.sub}</p>
+              <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282] break-all">{card.sub}</p>
             </div>
           </div>
         ))}
@@ -133,7 +133,7 @@ const SupportSection = () => {
           </div>
           <div>
             <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Contact Support Team</h2>
-            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">Send us a message and we'll get back to you soon</p>
+            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">Send us a message and we'll get back to you soon</p>
           </div>
         </div>
 
@@ -186,7 +186,7 @@ const SupportSection = () => {
           </div>
 
           <div>
-            <label className="mb-1.5 block text-sm font-medium font-inter text-[#364153]">
+            <label className="mb-1.5 block text-sm font-medium font-inter text-[#364153] break-all">
               Message <span className="text-[#FF6B35]">*</span>
             </label>
             <textarea
@@ -235,7 +235,7 @@ const SupportSection = () => {
           </div>
           <div>
             <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Frequently Asked Questions</h2>
-            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">Find quick answers to common questions</p>
+            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">Find quick answers to common questions</p>
           </div>
         </div>
         <div className="space-y-2 py-4 md:py-6">
@@ -260,7 +260,7 @@ const SupportSection = () => {
           </div>
           <div>
             <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Basic Troubleshooting</h2>
-            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">Quick fixes for common technical issues</p>
+            <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">Quick fixes for common technical issues</p>
           </div>
         </div>
         <div className="space-y-2 md:space-y-4 py-4 md:py-6">
@@ -269,9 +269,9 @@ const SupportSection = () => {
               <div key={i} className="border-[0.89px] border-[#E5E7EB] p-4 rounded-[10px] space-y-2">
                 <div className="flex items-center gap-2">
                   <img src="/Images/troubleshoot.webp" alt="icon" width={16} height={16} />
-                  <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">{item.title}</h3>
+                  <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all">{item.title}</h3>
                 </div>
-                <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] leading-[22.75px]">{item.desc}</p>
+                <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] leading-[22.75px] break-all">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -279,8 +279,8 @@ const SupportSection = () => {
       </div>
 
       <div className="bg-gradient-to-b from-[#E3EDF7] to-[#F3E8FF] p-4 md:p-6 rounded-[10px] border-[0.89px] border-[#BEDBFF] space-y-2">
-        <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Still need help?</h3>
-        <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">
+        <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all">Still need help?</h3>
+        <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565] break-all">
           Our support team is available Monday to Friday, 9:00 AM to 6:00 PM. For urgent matters outside office hours, please email us and we'll respond as soon as possible.
         </p>
         <div className="space-x-2">

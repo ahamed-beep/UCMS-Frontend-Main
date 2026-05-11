@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+ break-all break-allimport { useEffect, useState } from 'react';
 import { BookOpen, Clock, Download } from 'lucide-react';
 import axiosInstance from '../../../../Api/axiosInstance';
 import ExercisePage from '../ExercisePage/ExercisePage';
@@ -135,10 +135,10 @@ const CoursesSection = ({ setCourseId }) => {
 
       {/* Enrolled Courses */}
       <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6">
-        <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A]">Enrolled Courses</h2>
+        <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A] break-all break-all">Enrolled Courses</h2>
 
         {courses.length === 0 ? (
-          <p className="text-sm text-[#6A7282] text-center py-6">No enrolled courses yet.</p>
+          <p className="text-sm text-[#6A7282] text-center py-6 break-all break-all">No enrolled courses yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
             {courses.map((course) => {
@@ -153,8 +153,8 @@ const CoursesSection = ({ setCourseId }) => {
                         <BookOpen size={24} className='text-[#0F4C8A]' />
                       </div>
                       <div>
-                        <p className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A]">{course.title}</p>
-                        <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">{course.teacher}</p>
+                        <p className="font-inter font-semibold text-[16px] md:text-[18px] text-[#0A0A0A] break-all">{course.title}</p>
+                        <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">{course.teacher}</p>
                       </div>
                     </div>
                     <span className={`font-inter font-medium text-[10px] md:text-[12px] self-end md:self-auto px-2 py-1 sm:px-3 rounded-full whitespace-nowrap ${prog.pct === 100 ? 'bg-[#DCFCE7] text-[#008236]' : 'bg-[#0F4C8A] text-white'}`}>
@@ -196,8 +196,8 @@ const CoursesSection = ({ setCourseId }) => {
         {/* Course Materials */}
         <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-4">
           <div className='border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] -mx-5'>
-            <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Course Materials</h2>
-            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Video lectures, PDFs, and presentation slides</p>
+            <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all break-all break-all">Course Materials</h2>
+            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all break-all break-all">Video lectures, PDFs, and presentation slides</p>
           </div>
 
           {materials.length === 0 ? (
@@ -212,8 +212,8 @@ const CoursesSection = ({ setCourseId }) => {
                     className='w-5 h-5'
                   />
                   <div>
-                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828]">{item.title}</p>
-                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282]">{item.sub}</p>
+                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828] break-all">{item.title}</p>
+                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] break-all ">{item.sub}</p>
                   </div>
                 </div>
                 <a href={item.fileUrl} target="_blank" rel="noreferrer">
@@ -227,8 +227,8 @@ const CoursesSection = ({ setCourseId }) => {
         {/* Practice Exercises */}
         <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-4">
           <div className='border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] -mx-5'>
-            <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Practice Exercises</h2>
-            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Writing, Reading, Listening & Speaking</p>
+            <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all">Practice Exercises</h2>
+            <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">Writing, Reading, Listening & Speaking</p>
           </div>
 
           {exercises.length === 0 ? (
@@ -239,7 +239,7 @@ const CoursesSection = ({ setCourseId }) => {
                 <div className='flex items-center gap-2'>
                   <img src='/Images/pending.webp' alt="icon" className='w-5 h-5' />
                   <div>
-                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828]">{ex.title}</p>
+                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828] break-all">{ex.title}</p>
                     <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] capitalize">{ex.type}</p>
                   </div>
                 </div>

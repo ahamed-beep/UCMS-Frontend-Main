@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+ break-allimport { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 
 const VideoModal = ({ lecture, alreadyCompleted, onClose, onComplete }) => {
@@ -39,8 +39,8 @@ const VideoModal = ({ lecture, alreadyCompleted, onClose, onComplete }) => {
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div>
-            <div className="font-bold text-gray-900">{lecture.title}</div>
-            <div className="text-xs text-gray-500 mt-0.5">{lecture.duration}</div>
+            <div className="font-bold text-gray-900 break-all">{lecture.title}</div>
+            <div className="text-xs text-gray-500 mt-0.5 break-all">{lecture.duration}</div>
           </div>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-800">
             <X className="w-6 h-6" />

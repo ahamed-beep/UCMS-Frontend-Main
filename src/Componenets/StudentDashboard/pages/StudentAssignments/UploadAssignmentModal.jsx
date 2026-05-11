@@ -80,7 +80,7 @@ export default function UploadAssignmentModal({ assignment, lectureId, onClose, 
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <div>
             <h3 className="font-bold text-[#101828] text-base">Submit Assignment</h3>
-            <p className="text-xs text-[#6A7282] mt-0.5 truncate max-w-[280px]">{assignment.title}</p>
+            <p className="text-xs text-[#6A7282] mt-0.5 truncate max-w-[280px] break-all">{assignment.title}</p>
           </div>
           <button
             onClick={onClose}

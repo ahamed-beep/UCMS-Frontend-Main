@@ -155,12 +155,12 @@ const DocumnetSection = () => {
                   <tr key={doc.id} className="border-[0.89px] border-[#E5E7EB]">
                     <td className="p-2 md:p-4 flex gap-2 font-inter font-medium text-[12px] md:text-sm text-[#101828]">
                       <FileText className="text-[#99A1AF] shrink-0" size={20} />
-                      <span className="truncate max-w-[200px]">{doc.name}</span>
+                      <span className="truncate max-w-[200px] break-all">{doc.name}</span>
                     </td>
-                    <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">
+                    <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">
                       {formatDate(doc.createdAt)}
                     </td>
-                    <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">
+                    <td className="p-2 md:p-4 font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">
                       {doc.fileSize}
                     </td>
                     <td className="p-2 md:p-4">

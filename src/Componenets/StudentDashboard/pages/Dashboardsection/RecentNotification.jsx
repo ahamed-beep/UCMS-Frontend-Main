@@ -55,8 +55,8 @@ const RecentNotification = () => {
               <div key={note.id ?? i} className="flex items-center gap-3">
                 <img src={getImagePath(note.status)} width={20} height={20} className="flex-shrink-0" />
                 <div>
-                  <p className="font-inter font-normal text-[12px] md:text-sm text-[#101828]">{note.message}</p>
-                  <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">{timeAgo(note.createdAt)}</p>
+                  <p className="font-inter font-normal text-[12px] md:text-sm text-[#101828] break-all">{note.message}</p>
+                  <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282] break-all">{timeAgo(note.createdAt)}</p>
                 </div>
               </div>
             ))

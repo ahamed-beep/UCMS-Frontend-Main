@@ -9,27 +9,27 @@ const InstructorCard = ({ instructor, onNavigate }) => {
           <AwardIcon className="w-6 h-6" />
         </div>
         <div>
-          <div className="font-bold text-[#0A0A0A] font-inter">
+          <div className="font-bold text-[#0A0A0A] font-inter break-all">
             {instructor?.name ?? 'N/A'}
           </div>
-          <div className="text-sm text-[#4A5565] font-inter">
+          <div className="text-sm text-[#4A5565] font-inter break-all">
             {instructor?.designation ?? 'Instructor'}
           </div>
         </div>
       </div>
       {instructor?.bio && (
-        <p className="text-sm text-[#4A5565] font-inter mt-4 leading-relaxed">
+        <p className="text-sm text-[#4A5565] font-inter mt-4 leading-relaxed break-all">
           {instructor.bio}
         </p>
       )}
       {instructor?.experience && (
-        <p className="text-xs text-[#6A7282] font-inter mt-2">
+        <p className="text-xs text-[#6A7282] font-inter mt-2 break-all">
           Experience: {instructor.experience}
         </p>
       )}
       <button
         onClick={() => onNavigate?.('Support')}
-        className="mt-4 w-full border border-[#0F4C8A] font-inter text-[#0F4C8A] font-semibold py-2 rounded-lg hover:bg-blue-50 transition-colors"
+        className="mt-4 w-full border border-[#0F4C8A] font-inter text-[#0F4C8A] font-semibold py-2 rounded-lg hover:bg-blue-50 transition-colors break-all"
       >
         Message Instructor
       </button>

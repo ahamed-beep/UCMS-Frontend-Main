@@ -220,7 +220,7 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
         <div className="text-sm mb-4 flex items-center gap-1">
           <button onClick={handleBack} className="text-[#0F4C8A] font-inter hover:underline">My Courses</button>
           <span className="text-[#4A5565] font-inter mx-2">/</span>
-          <span className="text-[#4A5565] font-inter">{courseInfo.title}</span>
+          <span className="text-[#4A5565] font-inter break-all">{courseInfo.title}</span>
         </div>
 
         <div className="rounded-xl p-6 sm:p-8 text-white flex flex-col lg:flex-row gap-6 lg:items-center justify-between"
@@ -229,12 +229,12 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
             <div className="flex items-center gap-2 text-white font-inter text-md mb-3">
               <BookOpenIcon className="w-5 h-5" /><span>Course</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl text-white font-inter font-bold mb-3">{courseInfo.title}</h1>
-            <p className="text-[#DBEAFE] font-inter max-w-2xl leading-relaxed">{courseInfo.description}</p>
+            <h1 className="text-3xl sm:text-4xl text-white font-inter font-bold mb-3 break-all">{courseInfo.title}</h1>
+            <p className="text-[#DBEAFE] font-inter max-w-2xl leading-relaxed break-all">{courseInfo.description}</p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-sm text-white font-inter">
-              <div className="flex items-center gap-2"><Award className="w-4 h-4" /> Instructor: {courseInfo.teacher}</div>
-              <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> {courseInfo.hours} hours total</div>
-              <div className="flex items-center gap-2"><BookOpen className="w-4 h-4" /> {modules.length} modules</div>
+              <div className="flex items-center gap-2 break-all"><Award className="w-4 h-4" /> Instructor: {courseInfo.teacher}</div>
+              <div className="flex items-center gap-2 break-all"><Clock className="w-4 h-4" /> {courseInfo.hours} hours total</div>
+              <div className="flex items-center gap-2 break-all"><BookOpen className="w-4 h-4" /> {modules.length} modules</div>
             </div>
           </div>
           <div className="bg-white/10 rounded-lg p-5 w-full lg:w-72 shrink-0">
@@ -243,7 +243,7 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
             <div className="w-full h-2 bg-blue-900/40 rounded-full overflow-hidden">
               <div className="h-full bg-white rounded-full transition-all" style={{ width: `${progressPct}%` }} />
             </div>
-            <div className="text-blue-100 text-sm mt-3">{completedItemsCount} of {totalItems} items completed</div>
+            <div className="text-blue-100 text-sm mt-3 break-all break-all">{completedItemsCount} of {totalItems} items completed</div>
           </div>
         </div>
 
@@ -291,8 +291,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                                   <div className="flex items-center gap-3 flex-1">
                                     {getLectureIcon(it.type)}
                                     <div>
-                                      <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
-                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                                      <div className="font-semibold text-[#0A0A0A] font-inter text-sm break-all">{it.title}</div>
+                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5 break-all">{it.duration}</div>
                                     </div>
                                   </div>
                                   <div className="flex items-center gap-2">
@@ -312,7 +312,7 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                                     <div className="flex items-center gap-3">
                                       <HelpCircle className="w-4 h-4 text-[#0F4C8A]" />
                                       <div>
-                                        <div className="font-semibold text-[#0A0A0A] font-inter text-sm">Lecture Quiz</div>
+                                        <div className="font-semibold text-[#0A0A0A] font-inter text-sm break-all">Lecture Quiz</div>
                                         <div className="text-xs text-[#6A7282] font-inter mt-0.5">
                                           {qItem.isCompleted ? `Score: ${qItem.scorePercent}%` : 'Complete to unlock next'}
                                         </div>
@@ -343,8 +343,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                                 }} className="flex items-center gap-3 text-left flex-1 hover:opacity-80">
                                   {getLectureIcon(it.type)}
                                   <div>
-                                    <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{it.title}</div>
-                                    <div className="text-xs text-[#6A7282] font-inter mt-0.5">{it.duration}</div>
+                                    <div className="font-semibold text-[#0A0A0A] font-inter text-sm break-all">{it.title}</div>
+                                    <div className="text-xs text-[#6A7282] font-inter mt-0.5 break-all">{it.duration}</div>
                                   </div>
                                 </button>
                                 {done && <CheckCircle className="w-5 h-5 text-[#00A63E]" />}
@@ -378,7 +378,7 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
 
                         {m.resources?.length > 0 && (
                           <div className="pt-3">
-                            <div className="text-sm font-semibold text-[#0A0A0A] font-inter mb-2">Downloadable Resources</div>
+                            <div className="text-sm font-semibold text-[#0A0A0A] font-inter mb-2 break-all">Downloadable Resources</div>
                             <div className="space-y-2">
                               {m.resources.map((r) => (
                                 <div key={r.id} className="flex items-center justify-between bg-slate-50 rounded-lg p-3 border border-slate-100">
@@ -386,7 +386,7 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                                     <FileText className="w-5 h-5 text-[#0F4C8A]" />
                                     <div>
                                       <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{r.name}</div>
-                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5">{r.meta}</div>
+                                      <div className="text-xs text-[#6A7282] font-inter mt-0.5 break-all break-all">{r.meta}</div>
                                     </div>
                                   </div>
                                   <button onClick={() => {
@@ -426,8 +426,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
         <div className="grid md:grid-cols-2 gap-6 mt-6">
           <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-4">
             <div className='border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] -mx-5'>
-              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Course Materials</h2>
-              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Video lectures, PDFs, and presentation slides</p>
+              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all">Course Materials</h2>
+              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">Video lectures, PDFs, and presentation slides</p>
             </div>
             {materials.length === 0
               ? <p className="text-sm text-[#6A7282] text-center py-4">No materials yet.</p>
@@ -436,8 +436,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                 <div className='flex items-center gap-2'>
                   <img src={item.type === 'video' ? '/Images/video.webp' : '/Images/pdf.webp'} alt="icon" className='w-5 h-5' />
                   <div>
-                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828]">{item.title}</p>
-                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282]">{item.sub}</p>
+                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828] break-all">{item.title}</p>
+                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] break-all">{item.sub}</p>
                   </div>
                 </div>
                 {item.type === 'video'
@@ -455,8 +455,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
 
           <div className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-4">
             <div className='border-b-[0.89px] pb-4 ps-5 border-[#E5E7EB] -mx-5'>
-              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Practice Exercises</h2>
-              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565]">Writing, Reading, Listening & Speaking</p>
+              <h2 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828] break-all">Practice Exercises</h2>
+              <p className="font-inter font-normal text-[12px] md:text-sm text-[#4A5565] break-all">Writing, Reading, Listening & Speaking</p>
             </div>
             {exercises.length === 0
               ? <p className="text-sm text-[#6A7282] text-center py-4">No exercises yet.</p>
@@ -465,8 +465,8 @@ function CoursePage({ courseId, onBack ,onNavigate}) {
                 <div className='flex items-center gap-2'>
                   <img src='/Images/pending.webp' alt="icon" className='w-5 h-5' />
                   <div>
-                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828]">{ex.title}</p>
-                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] capitalize">{ex.type}</p>
+                    <p className="font-inter font-medium text-[12px] md:text-sm text-[#101828] break-all">{ex.title}</p>
+                    <p className="font-inter font-normal md:text-[12px] text-[10px] text-[#6A7282] capitalize break-all">{ex.type}</p>
                   </div>
                 </div>
                 <button
@@ -520,7 +520,7 @@ function AssignmentRow({ assignment, onUpload, onViewFeedback }) {
       <div className="flex items-center gap-3">
         <ClipboardList className="w-4 h-4 text-[#0F4C8A] shrink-0" />
         <div>
-          <div className="font-semibold text-[#0A0A0A] font-inter text-sm">{assignment.title}</div>
+          <div className="font-semibold text-[#0A0A0A] font-inter text-sm break-all">{assignment.title}</div>
           <div className={`text-xs font-inter mt-0.5 ${style.color}`}>
             {assignment.status === "graded"
               ? `Graded: ${assignment.grade ?? 0}%`

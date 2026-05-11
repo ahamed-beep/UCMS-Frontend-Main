@@ -46,11 +46,11 @@ const StudentAssignmentTable = ({ assignments, onUpload, onView, onViewFeedback 
                       <div className="flex items-center gap-2">
                         <FileText className="text-[#99A1AF] shrink-0" size={20} />
                         <div>
-                          <p className="font-inter font-semibold text-sm text-[#101828]">
+                          <p className="font-inter font-semibold text-sm text-[#101828] break-all">
                             {a.title}
                           </p>
                           {a.submittedAt && (
-                            <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282]">
+                            <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#6A7282] break-all">
                               Submitted: {new Date(a.submittedAt).toLocaleDateString("en-GB")}
                             </p>
                           )}

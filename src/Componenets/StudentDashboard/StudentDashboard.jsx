@@ -17,8 +17,8 @@ import { useNavigate } from "react-router-dom";
 const DashboardPage = ({ onNavigate }) => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Welcome Back!</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Here's what's happening with your applications and classes</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] wrap-break-word">Welcome Back!</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] wrap-break-word">Here's what's happening with your applications and classes</p>
     </div>
     <Dashboardsection onNavigate={onNavigate} />
   </div>
@@ -27,8 +27,8 @@ const DashboardPage = ({ onNavigate }) => (
 const MyCoursesPage = ({ setCourseId }) => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">My Courses</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Access your enrolled courses and learning materials</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] wrap-break-word">My Courses</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] wrap-break-word">Access your enrolled courses and learning materials</p>
     </div>
     <CoursesSection setCourseId={setCourseId} />
   </div>
@@ -37,8 +37,8 @@ const MyCoursesPage = ({ setCourseId }) => (
 const AssignmentsPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Assignments</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload assignments and track submission status</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] wrap-break-word">Assignments</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] wrap-break-word">Upload assignments and track submission status</p>
     </div>
     <AssignmentSection />
   </div>
@@ -47,8 +47,8 @@ const AssignmentsPage = () => (
 const QuizzesPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Quizzes & Mock Tests</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Test your knowledge and track your progress</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Quizzes & Mock Tests</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Test your knowledge and track your progress</p>
     </div>
     <QuizzesSection />
   </div>
@@ -57,8 +57,8 @@ const QuizzesPage = () => (
 const ProgressPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Progress Tracking</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Monitor your learning progress</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Progress Tracking</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Monitor your learning progress</p>
     </div>
     <ProgressSection />
   </div>
@@ -67,8 +67,8 @@ const ProgressPage = () => (
 const ApplicationsPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Application Status</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Track your university applications and visa processing</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Application Status</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Track your university applications and visa processing</p>
     </div>
     <ApplicationSection />
   </div>
@@ -77,8 +77,8 @@ const ApplicationsPage = () => (
 const DocumentsPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Documents</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Upload and manage your application documents</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Documents</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Upload and manage your application documents</p>
     </div>
     <DocumnetSection />
   </div>
@@ -87,8 +87,8 @@ const DocumentsPage = () => (
 const ClassSchedulePage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Class Schedule</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">View your IELTS/PTE classes and study materials</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Class Schedule</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">View your IELTS/PTE classes and study materials</p>
     </div>
     <ClassScheduleSection />
   </div>
@@ -97,8 +97,8 @@ const ClassSchedulePage = () => (
 const SupportPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Support & Help</h1>
-      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Get assistance and find answers to common questions</p>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Support & Help</h1>
+      <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Get assistance and find answers to common questions</p>
     </div>
     <SupportSection />
   </div>
@@ -110,8 +110,8 @@ const PurchasesPage = ({ onNavigate }) => {
     <div className="px-5 py-7 sm:px-8">
       <div className="flex flex-col sm:flex-row gap-2 justify-between items-center">
         <div>
-          <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
-          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
+          <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828] break-all">Purchases & Billing</h1>
+          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565] break-all">Manage your course purchases and payment history</p>
         </div>
         <button
           onClick={() => navigate('/services')}
