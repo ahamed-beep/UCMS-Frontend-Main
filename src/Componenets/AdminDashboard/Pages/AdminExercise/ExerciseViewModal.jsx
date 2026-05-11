@@ -14,7 +14,7 @@ const ExerciseViewModal = ({ exercise, onClose }) => (
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-        <h3 className="font-bold text-[#0f172a] text-base">Exercise Details</h3>
+        <h3 className="font-bold text-[#0f172a] text-base wrap-break-word">Exercise Details</h3>
         <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500">
           <X className="w-4 h-4" />
         </button>
@@ -34,7 +34,7 @@ const ExerciseViewModal = ({ exercise, onClose }) => (
         ].map(({ label, value }) => (
           <div key={label} className="flex flex-col gap-0.5">
             <span className="text-xs font-medium text-[#64748b]">{label}</span>
-            <span className="text-sm text-[#0f172a]">{value}</span>
+            <span className="text-sm text-[#0f172a] wrap-break-word">{value}</span>
           </div>
         ))}
 

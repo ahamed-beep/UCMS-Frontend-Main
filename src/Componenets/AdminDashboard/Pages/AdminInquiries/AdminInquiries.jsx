@@ -107,7 +107,7 @@ await axiosInstance.delete(`/inquiries/${deleteId}`)
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold text-[#0A0A0A] mb-6">Inquiries</h1>
+      <h1 className="text-2xl font-bold text-[#0A0A0A] mb-6 wrap-break-word">Inquiries</h1>
 
       <AdminTable
         columns={columns}

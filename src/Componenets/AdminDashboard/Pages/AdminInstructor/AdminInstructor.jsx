@@ -41,8 +41,8 @@ const AdminInstructor = ({ courseId }) => {
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Instructor</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage instructor for this course</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Instructor</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage instructor for this course</p>
         </div>
         {!instructor && !loading && (
           <button
@@ -65,9 +65,9 @@ const AdminInstructor = ({ courseId }) => {
             <div className="flex-1 space-y-2">
               <div className="flex items-start justify-between">
                 <div>
-                  <h2 className="text-base font-bold text-[#0f172a]">{instructor.name}</h2>
+                  <h2 className="text-base font-bold text-[#0f172a] wrap-anywhere">{instructor.name}</h2>
                   {instructor.designation && (
-                    <p className="text-sm text-[#64748b]">{instructor.designation}</p>
+                    <p className="text-sm text-[#64748b] wrap-break-word">{instructor.designation}</p>
                   )}
                 </div>
                 <div className="flex gap-2">
@@ -92,7 +92,7 @@ const AdminInstructor = ({ courseId }) => {
                 </p>
               )}
               {instructor.bio && (
-                <p className="text-sm text-[#334155] leading-relaxed">{instructor.bio}</p>
+                <p className="text-sm text-[#334155] leading-relaxed wrap-anywhere">{instructor.bio}</p>
               )}
             </div>
           </div>

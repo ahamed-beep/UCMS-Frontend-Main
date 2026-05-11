@@ -104,14 +104,14 @@ export default function BlogsTable() {
     label: "Category",
     width: "15%",
     render: (row) => (
-      <span className="text-xs text-[#475569] bg-[#f1f5f9] px-2 py-0.5 rounded-full">{row.category}</span>
+      <span className="text-xs text-[#475569] bg-[#f1f5f9] px-2 py-0.5 rounded-full wrap-break-word">{row.category}</span>
     ),
   },
   {
     key: "author",
     label: "Author",
     width: "10%",
-    render: (row) => <span className="text-sm text-[#334155]">{row.author}</span>,
+    render: (row) => <span className="text-sm text-[#334155] wrap-break-word">{row.author}</span>,
   },
   {
     key: "readTime",
@@ -166,8 +166,8 @@ export default function BlogsTable() {
     <div className="p-6 space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-[#0f172a]">Blogs</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">{blogs.length} total posts</p>
+          <h1 className="text-xl font-semibold text-[#0f172a] wrap-break-word">Blogs</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 break-all">{blogs.length} total posts</p>
         </div>
         <button
           onClick={() => setShowCreate(true)}

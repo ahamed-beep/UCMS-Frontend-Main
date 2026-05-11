@@ -72,7 +72,7 @@ const UpcomingClassDetailModal = ({ selected, onClose }) => {
             <Calendar className="w-7 h-7 text-[#0F4C8A]" />
           </div>
 
-          <p className="text-center font-semibold text-[#0f172a] text-sm">{selected.title}</p>
+          <p className="text-center font-semibold text-[#0f172a] text-sm wrap-break-word">{selected.title}</p>
 
           <div className="space-y-3">
             {fields.map((f, i) => (
@@ -80,7 +80,7 @@ const UpcomingClassDetailModal = ({ selected, onClose }) => {
                 <span className="text-[#94a3b8] mt-0.5">{f.icon}</span>
                 <div className="flex-1 flex items-center justify-between">
                   <span className="text-xs text-[#64748b]">{f.label}</span>
-                  <span className="text-sm font-medium text-[#0f172a] text-right">{f.value}</span>
+                  <span className="text-sm font-medium text-[#0f172a] text-right wrap-anywhere">{f.value}</span>
                 </div>
               </div>
             ))}

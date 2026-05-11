@@ -83,11 +83,11 @@ const AdminAdmissionDeadlinePage = () => {
   const columns = [
     {
       key: "university", label: "University", width: "25%",
-      render: (row) => <div className="text-sm font-semibold text-[#0f172a]">{row.university}</div>,
+      render: (row) => <div className="text-sm font-semibold text-[#0f172a] wrap-anywhere">{row.university}</div>,
     },
     {
       key: "program", label: "Program", width: "18%",
-      render: (row) => <div className="text-xs text-[#374151]">{row.program}</div>,
+      render: (row) => <div className="text-xs text-[#374151] wrap-anywhere">{row.program}</div>,
     },
     {
       key: "deadline", label: "Deadline", width: "18%",
@@ -131,8 +131,8 @@ const AdminAdmissionDeadlinePage = () => {
     <div className="md:p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Admission Deadlines</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">{deadlines.length} total records</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Admission Deadlines</h1>
+        <p className="text-sm text-[#64748b] mt-0.5 break-all">{deadlines.length} total records</p>
         </div>
         <button
           onClick={() => setShowCreate(true)}

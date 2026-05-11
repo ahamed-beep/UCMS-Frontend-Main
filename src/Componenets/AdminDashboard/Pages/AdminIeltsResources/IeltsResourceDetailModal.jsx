@@ -74,8 +74,8 @@ const IeltsResourceDetailModal = ({ selected, onClose }) => {
               <div key={i} className="flex items-start gap-3">
                 <span className="text-[#94a3b8] mt-0.5">{f.icon}</span>
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="text-xs text-[#64748b]">{f.label}</span>
-                  <span className="text-sm font-medium text-[#0f172a] text-right max-w-[60%]">
+                  <span className="text-xs text-[#64748b] ">{f.label}</span>
+                  <span className="text-sm font-medium text-[#0f172a] text-right max-w-[60%] break-all">
                     {f.value}
                   </span>
                 </div>

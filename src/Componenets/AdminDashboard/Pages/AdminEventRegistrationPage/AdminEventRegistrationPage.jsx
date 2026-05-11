@@ -5,24 +5,31 @@ import { DetailModal } from "./DetailModal";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 import { statusColor } from "./Constant/AdminEventRegistrationConstant";
 import axiosInstance from "../../../../Api/axiosInstance";
+import { toast } from "react-toastify";
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
 
 const AdminRegistrationsPage = () => {
   const { registrations, loading, page, setPage, total, limit, refetch } = useRegistrations();
   const [viewReg, setViewReg] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
 
+  const [deleteSelected, setDeleteSelected] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const totalPages = Math.ceil(total / limit);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this registration?")) return;
-    setDeletingId(id);
+  const handleDelete = async (registration) => {
+    setDeleteLoading(true);
     try {
-      await axiosInstance.delete(`/registrations/${id}`);
+      await axiosInstance.delete(`/registrations/${registration.id}`);
       refetch();
+      toast.success("Registration deleted successfully");
+      setDeleteSelected(null);
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to delete registration.");
+      console.error("Delete failed", err);
+      toast.error("Failed to delete registration");
     } finally {
-      setDeletingId(null);
+      setDeleteLoading(false);
     }
   };
 
@@ -31,7 +38,7 @@ const AdminRegistrationsPage = () => {
       key: "name", label: "Attendee", width: "18%",
       render: (row) => (
         <div>
-          <div className="text-sm font-semibold text-[#0f172a]">{row.fullName}</div>
+          <div className="text-sm font-semibold text-[#0f172a] break-all">{row.fullName}</div>
         </div>
       ),
     },
@@ -40,7 +47,7 @@ const AdminRegistrationsPage = () => {
       render: (row) => (
         <div className="text-xs text-[#374151]">
           {typeof row.eventId === "object"
-            ? <><div className="font-medium truncate">{row.eventId?.title}</div><div className="text-[#64748b]">{row.eventId?.tag}</div></>
+            ? <><div className="font-medium truncate">{row.eventId?.title}</div><div className="text-[#64748b] break-all">{row.eventId?.tag}</div></>
             : <span className="text-[#64748b]">—</span>
           }
         </div>
@@ -49,7 +56,7 @@ const AdminRegistrationsPage = () => {
     {
       key: "email", label: "Email", width: "18%",
       render: (row) => (
-        <div className="text-xs wrap-break-word text-[#374151]">
+        <div className="text-xs wrap-break-word text-[#374151] break-all">
           {row.email}
         </div>
       ),
@@ -57,16 +64,16 @@ const AdminRegistrationsPage = () => {
     {
       key: "phone", label: "Phone", width: "12%",
       render: (row) => (
-        <div className="text-xs wrap-break-word text-[#374151]">
+        <div className="text-xs wrap-break-word text-[#374151] break-all">
           {row.phone}
         </div>
       ),
     },
   
     {
-      key: "attendees", label: "Attendees", width: "8%",
+      key: "attendees", label: "Attendees", width: "10%",
       render: (row) => (
-        <div className="text-xs text-[#374151] text-center">{row.attendees}</div>
+        <div className="text-xs text-[#374151] text-center break-all">{row.attendees}</div>
       ),
     },
     {
@@ -85,8 +92,7 @@ const AdminRegistrationsPage = () => {
             <Eye size={15} />
           </button>
           <button
-            onClick={() => handleDelete(row.id)}
-            disabled={deletingId === row.id}
+            onClick={() => setDeleteSelected(row)}
             className="text-red-400 hover:text-red-600 transition-colors disabled:opacity-40"
           >
             <Trash2 size={15} />
@@ -100,8 +106,8 @@ const AdminRegistrationsPage = () => {
     <div className="md:p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Registrations</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">{total} total registrations</p>
+          <h1 className="text-xl font-bold text-[#0f172a] break-all">Registrations</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 break-all">{total} total registrations</p>
         </div>
       </div>
 
@@ -141,6 +147,14 @@ const AdminRegistrationsPage = () => {
           onStatusUpdated={() => { refetch(); setViewReg(null); }}
         />
       )}
+
+      <DeleteModal
+        selected={deleteSelected}
+        setSelected={setDeleteSelected}
+        onConfirm={handleDelete}
+        loading={deleteLoading}
+        itemName={deleteSelected?.fullName}
+      />
     </div>
   );
 };

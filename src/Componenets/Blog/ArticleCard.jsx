@@ -1,5 +1,5 @@
  export  const ArticleCard = ({ article, idx, expandedCards, toggleCard }) => (
-  <div className="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow overflow-hidden">
+  <div className="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow ">
     <div className="h-44 overflow-hidden shrink-0">
       <img className="w-full h-full object-cover" src={article.imageUrl} alt={article.title} />
     </div>

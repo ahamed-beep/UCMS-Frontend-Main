@@ -64,7 +64,7 @@ const AdminVideoTestimonials = () => {
       label: "Name",
       width: "28%",
       render: (row) => (
-        <p className="text-sm font-medium text-[#0f172a]">{row.name}</p>
+        <p className="text-sm font-medium text-[#0f172a] break-all">{row.name}</p>
       ),
     },
     {
@@ -106,10 +106,10 @@ const AdminVideoTestimonials = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex sm:flex-row flex-col items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Video Testimonials</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Student video reviews manage karein</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-break-word">Video Testimonials</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Student video reviews manage karein</p>
         </div>
         <button
           onClick={() => setCreateOpen(true)}

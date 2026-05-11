@@ -25,7 +25,7 @@ const TestimonialDetailModal = ({ selected, setSelected }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h3 className="font-bold text-[#0f172a] text-base">Testimonial Details</h3>
+          <h3 className="font-bold text-[#0f172a] text-base wrap-break-word">Testimonial Details</h3>
           <button
             onClick={() => setSelected(null)}
             className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500 transition-colors"
@@ -43,8 +43,8 @@ const TestimonialDetailModal = ({ selected, setSelected }) => {
               {selected.initials}
             </div>
             <div>
-              <p className="font-bold text-white text-base">{selected.name}</p>
-              <p className="text-xs text-blue-200">{selected.program}</p>
+              <p className="font-bold text-white text-base wrap-break-word">{selected.name}</p>
+              <p className="text-xs text-blue-200 break-all">{selected.program}</p>
             </div>
             {selected.flagUrl && (
               <img src={selected.flagUrl} alt="" className="w-7 h-7 rounded-full object-cover border-2 border-white/30 ml-auto" />
@@ -54,7 +54,7 @@ const TestimonialDetailModal = ({ selected, setSelected }) => {
           <div className="grid grid-cols-2 gap-3 mb-5">
             <div className="bg-gray-50 rounded-xl p-3">
               <p className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wide mb-1">University</p>
-              <p className="text-sm font-medium text-[#1e293b]">{selected.university}</p>
+              <p className="text-sm font-medium text-[#1e293b] wrap-break-word">{selected.university}</p>
             </div>
             <div className="bg-gray-50 rounded-xl p-3">
               <p className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wide mb-1">Rating</p>
@@ -68,7 +68,7 @@ const TestimonialDetailModal = ({ selected, setSelected }) => {
 
           <p className="text-xs font-semibold text-[#94a3b8] uppercase tracking-wide mb-2">Quote</p>
           <div className="bg-gray-50 rounded-xl p-4 mb-5">
-            <p className="text-sm text-[#334155] italic">"{selected.quote}"</p>
+            <p className="text-sm text-[#334155] italic wrap-break-word">"{selected.quote}"</p>
           </div>
 
           <div className="inline-flex items-center gap-1.5 bg-[#FF6B3520] text-[#193CB8] text-xs font-medium px-3 py-1.5 rounded-full">

@@ -192,7 +192,7 @@ export default function SubmissionsModal({ assignment, lectureId, onClose }) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 flex-shrink-0">
           <div>
             <h3 className="font-bold text-[#0f172a] text-base">Submissions</h3>
-            <p className="text-xs text-[#64748b] mt-0.5">{assignment.title}</p>
+            <p className="text-xs text-[#64748b] mt-0.5 wrap-break-word">{assignment.title}</p>
           </div>
           <button
             onClick={onClose}

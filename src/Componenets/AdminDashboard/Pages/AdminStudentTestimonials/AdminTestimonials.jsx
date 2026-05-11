@@ -59,8 +59,8 @@ const AdminTestimonials = () => {
             {row.initials}
           </div>
           <div>
-            <p className="text-sm font-medium text-[#0f172a]">{row.name}</p>
-            <p className="text-xs text-[#64748b]">{row.program}</p>
+            <p className="text-sm font-medium text-[#0f172a] break-all">{row.name}</p>
+            <p className="text-xs text-[#64748b] break-all">{row.program}</p>
           </div>
         </div>
       ),
@@ -128,8 +128,8 @@ const AdminTestimonials = () => {
     <div>
       <div className="flex md:flex-row flex-col md:items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Student Testimonials</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Student reviews manage karein</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-break-word">Student Testimonials</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Student reviews manage karein</p>
         </div>
         <button
           onClick={() => setCreateOpen(true)}

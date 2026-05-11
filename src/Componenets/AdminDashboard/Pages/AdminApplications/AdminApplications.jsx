@@ -298,9 +298,9 @@ const fetchStudents = async () => {
     {
       key: "university",
       label: "University",
-      width: "22%",
+       width: "19%",
       render: (row) => (
-        <span className="font-medium text-sm text-[#0f172a]">{row.university}</span>
+        <span className="font-medium text-sm text-[#0f172a] truncate block">{row.university}</span>
       ),
     },
     {
@@ -308,7 +308,7 @@ const fetchStudents = async () => {
       label: "Program",
       width: "18%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{row.program}</span>
+        <span className="text-sm text-[#334155] truncate block">{row.program}</span>
       ),
     },
     {
@@ -316,7 +316,7 @@ const fetchStudents = async () => {
       label: "Country",
       width: "12%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{row.country}</span>
+        <span className="text-sm text-[#334155] truncate block">{row.country}</span>
       ),
     },
     {
@@ -324,7 +324,7 @@ const fetchStudents = async () => {
       label: "Student",
       width: "15%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">
+        <span className="text-sm text-[#334155] truncate block">
           {row.userId?.firstName
             ? `${row.userId.firstName} ${row.userId.lastName}`
             : row.userId ?? "—"}
@@ -334,7 +334,7 @@ const fetchStudents = async () => {
     {
       key: "date",
       label: "Applied",
-      width: "10%",
+      width: "13%",
       render: (row) => (
         <span className="text-sm text-[#64748b]">{formatDate(row.createdAt)}</span>
       ),
@@ -342,7 +342,7 @@ const fetchStudents = async () => {
     {
       key: "status",
       label: "Status",
-      width: "15%",
+      width: "19%",
       render: (row) => (
         <select
           value={row.status}
@@ -361,7 +361,7 @@ const fetchStudents = async () => {
       label: "Actions",
       width: "8%",
       render: (row) => (
-        <div className="flex items-center gap-2">
+         <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between mb-6">
           <button
             onClick={() => { setEditing(row); setModalOpen(true); }}
             className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-[#64748b]"
@@ -383,8 +383,8 @@ const fetchStudents = async () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Applications</h1>
-          <p className="text-sm text-[#64748b] mt-1">Manage student university applications</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-anywhere">Applications</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-anywhere">Manage student university applications</p>
         </div>
         <button
           onClick={() => { setEditing(null); setModalOpen(true); }}

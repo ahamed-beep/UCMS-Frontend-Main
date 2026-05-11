@@ -33,7 +33,7 @@ const DetailModal = ({ open, onClose, item }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-          <h3 className="font-bold text-[#0f172a] text-base">Support Request Detail</h3>
+          <h3 className="font-bold text-[#0f172a] text-base wrap-break-word">Support Request Detail</h3>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500"
@@ -44,18 +44,18 @@ const DetailModal = ({ open, onClose, item }) => {
         <div className="p-6 flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-xs font-medium text-[#64748b]">Full Name</span>
-            <span className="text-sm text-[#0f172a] font-medium">{item.fullName}</span>
+            <span className="text-sm text-[#0f172a] font-medium wrap-break-word">{item.fullName}</span>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs font-medium text-[#64748b]">Email</span>
-            <span className="text-sm text-[#0f172a]">{item.email}</span>
+            <span className="text-sm text-[#0f172a] wrap-break-word">{item.email}</span>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs font-medium text-[#64748b]">Subject</span>
-            <span className="text-sm text-[#0f172a] font-medium">{item.subject}</span>
+            <span className="text-sm text-[#0f172a] font-medium wrap-break-word">{item.subject}</span>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-[#64748b]">Message</span>
+            <span className="text-xs font-medium text-[#64748b] wrap-break-word">Message</span>
             <span className="text-sm text-[#334155] leading-relaxed bg-[#f8fafc] rounded-xl p-3">{item.message}</span>
           </div>
           <div className="flex flex-col gap-1">
@@ -128,7 +128,7 @@ const AdminSupport = () => {
       label: "Name",
       width: "18%",
       render: (row) => (
-        <span className="font-medium text-sm text-[#0f172a]">{row.fullName}</span>
+        <span className="font-medium text-sm text-[#0f172a] truncate block">{row.fullName}</span>
       ),
     },
     {
@@ -136,7 +136,7 @@ const AdminSupport = () => {
       label: "Email",
       width: "22%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{row.email}</span>
+        <span className="text-sm text-[#334155] truncate block">{row.email}</span>
       ),
     },
     {
@@ -152,7 +152,7 @@ const AdminSupport = () => {
       label: "Date",
       width: "12%",
       render: (row) => (
-        <span className="text-sm text-[#64748b]">
+         <span className="text-sm text-[#64748b] truncate block">
           {new Date(row.createdAt).toLocaleDateString("en-US")}
         </span>
       ),
@@ -200,8 +200,8 @@ const AdminSupport = () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">Support Requests</h1>
-          <p className="text-sm text-[#64748b] mt-1">Manage student support messages</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-anywhere">Support Requests</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-anywhere">Manage student support messages</p>
         </div>
       </div>
 

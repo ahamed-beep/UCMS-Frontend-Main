@@ -7,9 +7,7 @@ import { useEvents } from "./Hook/useEvents";
 import axiosInstance from "../../../../Api/axiosInstance";
 import { EventDetailModal } from "./EventDetailModal";
 import { statusColor, STATUSES } from "./Constant/AdminEventsConstant";
-
-
-
+import DeleteModal from "../../../../ResuableUi/DeleteModal";
 
 
 const AdminEventsPage = () => {
@@ -20,18 +18,22 @@ const AdminEventsPage = () => {
   const [statusLoading, setStatusLoading] = useState(null);
   const [viewEvent, setViewEvent] = useState(null);
 
+  const [deleteSelected, setDeleteSelected] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const totalPages = Math.ceil(total / limit);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this event?")) return;
-    setDeletingId(id);
+  const handleDelete = async (event) => {
+    
+    setDeleteLoading(true);
     try {
-      await axiosInstance.delete(`/events/${id}`);
+      await axiosInstance.delete(`/events/${event.id}`);
+      setDeleteSelected(null);
       refetch();
     } catch (err) {
       alert(err.response?.data?.message || "Failed to delete event.");
     } finally {
-      setDeletingId(null);
+      setDeleteLoading(false);
     }
   };
 
@@ -106,7 +108,7 @@ const AdminEventsPage = () => {
     <button onClick={() => setEditEvent(row)} className="text-[#155DFC] hover:text-blue-800 transition-colors">
       <Pencil size={14} />
     </button>
-    <button onClick={() => handleDelete(row.id)} disabled={deletingId === row.id} className="text-red-400 hover:text-red-600 transition-colors disabled:opacity-40">
+    <button onClick={() => setDeleteSelected(row)} className="text-red-400 hover:text-red-600 transition-colors disabled:opacity-40">
       <Trash2 size={14} />
     </button>
   </div>
@@ -151,6 +153,14 @@ const AdminEventsPage = () => {
       {viewEvent && <EventDetailModal event={viewEvent} onClose={() => setViewEvent(null)} />}
       {showCreate && <CreateEventModal onClose={() => setShowCreate(false)} onCreated={refetch} />}
       {editEvent && <EditEventModal event={editEvent} onClose={() => setEditEvent(null)} onUpdated={refetch} />}
+
+      <DeleteModal
+        selected={deleteSelected}
+        setSelected={setDeleteSelected}
+        onConfirm={handleDelete}
+        loading={deleteLoading}
+        itemName={deleteSelected?.title}
+      />
     </div>
   );
 };

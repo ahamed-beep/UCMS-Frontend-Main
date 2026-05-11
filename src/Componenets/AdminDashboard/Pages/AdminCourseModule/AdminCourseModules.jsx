@@ -43,15 +43,15 @@ const AdminCourseModules = ({ courseId, onSelectModule = () => {} }) => {
   const columns = [
     {
       key: "order", label: "#", width: "5%",
-      render: (r) => <span className="text-sm text-[#64748b]">{r.order}</span>,
+      render: (r) => <span className="text-sm text-[#64748b] truncate block">{r.order}</span>,
     },
     {
       key: "title", label: "Title", width: "35%",
-      render: (r) => <span className="font-medium text-[#0f172a] text-sm">{r.title}</span>,
+      render: (r) => <span className="font-medium text-[#0f172a] text-sm truncate block">{r.title}</span>,
     },
     {
       key: "hours", label: "Hours", width: "15%",
-      render: (r) => <span className="text-sm text-[#334155]">{r.hours ? `${r.hours}h` : "—"}</span>,
+      render: (r) => <span className="text-sm text-[#334155] truncate block">{r.hours ? `${r.hours}h` : "—"}</span>,
     },
     
     {
@@ -86,8 +86,8 @@ const AdminCourseModules = ({ courseId, onSelectModule = () => {} }) => {
     <div className="p-6 space-y-5">
       <div className="flex flex-col md:flex-row md:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Course Modules</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage modules for this course</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-break-word">Course Modules</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-break-word">Manage modules for this course</p>
         </div>
         <div className=" flex mt-3" >
 

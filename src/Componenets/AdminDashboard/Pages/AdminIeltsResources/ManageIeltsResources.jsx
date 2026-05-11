@@ -156,10 +156,10 @@ const ManageIeltsResources = () => {
     <div>
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
         <div>
-          <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a]">
+          <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a] wrap-break-word">
             IELTS / PTE Resources
           </h1>
-          <p className="mt-1 text-sm text-[#64748b]">Manage downloadable resources for students</p>
+          <p className="mt-1 text-sm text-[#64748b] wrap-break-word">Manage downloadable resources for students</p>
         </div>
         <div className="flex md:mt-0 mt-3" >
 

@@ -56,7 +56,7 @@ export default function AdminLectureAssignments({ lectureId }) {
       label: "#",
       width: "60px",
       render: (row) => (
-        <span className="inline-flex items-center gap-1 text-xs text-[#64748b]">
+        <span className="inline-flex items-center gap-1 text-xs text-[#64748b] truncate">
           <Hash className="w-3 h-3" />{row.order ?? 0}
         </span>
       ),
@@ -89,7 +89,7 @@ export default function AdminLectureAssignments({ lectureId }) {
       label: "Due Date",
       width: "140px",
       render: (row) => (
-        <span className="inline-flex items-center gap-1 text-xs text-[#334155]">
+        <span className="inline-flex items-center gap-1 text-xs text-[#334155] break-all">
           <Calendar className="w-3 h-3 text-[#94a3b8]" />
           {row.dueDate
             ? new Date(row.dueDate).toLocaleDateString("en-GB", {
@@ -141,7 +141,7 @@ export default function AdminLectureAssignments({ lectureId }) {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-semibold text-[#0f172a] text-sm">Lecture Assignments</h3>
+          <h3 className="font-semibold text-[#0f172a] text-sm wrap-break-word">Lecture Assignments</h3>
           <p className="text-xs text-[#64748b] mt-0.5">
             {assignments.length} assignment{assignments.length !== 1 ? "s" : ""}
           </p>

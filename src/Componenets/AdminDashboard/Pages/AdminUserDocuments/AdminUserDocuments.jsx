@@ -109,7 +109,7 @@ const AdminUserDocuments = () => {
     {
       key: "status",
       label: "Status",
-      width: "20%",
+       width: "25%",
       render: (row) => (
         <select
           value={row.status}
@@ -152,8 +152,8 @@ const AdminUserDocuments = () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#0f172a]">User Documents</h1>
-          <p className="text-sm text-[#64748b] mt-1">Manage and review student uploaded documents</p>
+          <h1 className="text-2xl font-bold text-[#0f172a] wrap-anywhere">User Documents</h1>
+          <p className="text-sm text-[#64748b] mt-1 wrap-anywhere">Manage and review student uploaded documents</p>
         </div>
       </div>
 

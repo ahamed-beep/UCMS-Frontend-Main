@@ -56,17 +56,17 @@ const AdminEnrollments = () => {
       key: "student", label: "Student", width: "25%",
       render: (r) => (
         <div>
-          <p className="font-medium text-[#0f172a] text-sm">
+          <p className="font-medium text-[#0f172a] text-sm truncate">
             {r.studentId?.firstName} {r.studentId?.lastName}
           </p>
-          <p className="text-xs text-[#64748b]">{r.studentId?.emailId}</p>
+          <p className="text-xs text-[#64748b] truncate">{r.studentId?.emailId}</p>
         </div>
       ),
     },
     {
       key: "course", label: "Course", width: "25%",
       render: (r) => (
-        <span className="font-medium text-[#0f172a] text-sm">
+        <span className="font-medium text-[#0f172a] text-sm truncate">
           {r.courseId?.title ?? r.courseId}
         </span>
       ),
@@ -117,14 +117,14 @@ const AdminEnrollments = () => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-[#0f172a]">Enrollments</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Manage student course enrollments</p>
+          <h1 className="text-xl font-bold text-[#0f172a] wrap-anywhere">Enrollments</h1>
+          <p className="text-sm text-[#64748b] mt-0.5 wrap-anywhere">Manage student course enrollments</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium md:px-4 md:py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors "
+          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors "
         >
           <Plus className="w-4 h-4" /> Enroll Student
         </button>

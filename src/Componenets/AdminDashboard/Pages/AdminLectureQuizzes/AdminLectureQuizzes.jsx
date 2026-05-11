@@ -304,7 +304,7 @@ const AdminLectureQuizzes = ({ lectureId }) => {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-lg font-bold text-[#0f172a]">Lecture Quizzes</h2>
+          <h2 className="text-lg font-bold text-[#0f172a] wrap-anywhere">Lecture Quizzes</h2>
           <p className="text-sm text-[#64748b] mt-0.5">{quizzes.length} quiz{quizzes.length !== 1 ? "zes" : ""} attached</p>
         </div>
         <button
