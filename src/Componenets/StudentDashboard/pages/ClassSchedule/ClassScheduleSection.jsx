@@ -362,9 +362,7 @@
               <p className="font-inter font-normal text-xs md:text-sm mb-3">
                 {percentageProgress}% completed
               </p>
-              <button className="w-full font-inter font-medium text-xs md:text-sm bg-white text-[#0F4C8A] py-2 rounded-[10px]">
-                View Details
-              </button>
+            
             </div>
           </div>
         </div>

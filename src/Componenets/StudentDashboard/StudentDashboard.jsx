@@ -12,17 +12,15 @@ import DocumnetSection from "./pages/DocumentSection/DocumentSection";
 import SupportSection from "./pages/SupportSection/SupportSection";
 import PurchaseSection from "./PurchaseSection/PurchaseSection";
 import ClassScheduleSection from "./pages/ClassSchedule/ClassScheduleSection";
+import { useNavigate } from "react-router-dom";
 
-
-
-
-const DashboardPage = () => (
+const DashboardPage = ({ onNavigate }) => (
   <div className="px-5 py-7 sm:px-8">
     <div>
-      <h1 className="font-inter text-[25px] md:text-[30px] -bold tracking-[-0.03em] text-[#101828]">Welcome Back, John!</h1>
+      <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Welcome Back!</h1>
       <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Here's what's happening with your applications and classes</p>
     </div>
-    <Dashboardsection />
+    <Dashboardsection onNavigate={onNavigate} />
   </div>
 );
 
@@ -44,7 +42,6 @@ const AssignmentsPage = () => (
     </div>
     <AssignmentSection />
   </div>
-
 );
 
 const QuizzesPage = () => (
@@ -87,8 +84,6 @@ const DocumentsPage = () => (
   </div>
 );
 
-
-
 const ClassSchedulePage = () => (
   <div className="px-5 py-7 sm:px-8">
     <div>
@@ -109,22 +104,25 @@ const SupportPage = () => (
   </div>
 );
 
-const PurchasesPage = () => (
-  <div className="px-5 py-7 sm:px-8">
-    <div className="flex flex-col sm:flex-row gap-2 justify-between items-center ">
-      <div>
-        <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
-        <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
+const PurchasesPage = ({ onNavigate }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="px-5 py-7 sm:px-8">
+      <div className="flex flex-col sm:flex-row gap-2 justify-between items-center">
+        <div>
+          <h1 className="font-inter text-[25px] md:text-[30px] font-bold tracking-[-0.03em] text-[#101828]">Purchases & Billing</h1>
+          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#4A5565]">Manage your course purchases and payment history</p>
+        </div>
+        <button
+          onClick={() => navigate('/services')}
+          className="bg-[#FF6B35] text-white px-4 py-2 rounded-[10px] whitespace-nowrap">
+          Browse Courses
+        </button>
       </div>
-      <button className="bg-[#FF6B35] text-white px-4 py-2 rounded-[10px] whitespace-nowrap">
-        Browse Courses
-      </button>
+      <PurchaseSection onNavigate={onNavigate} />
     </div>
-    <PurchaseSection />
-  </div>
-);
-
-
+  );
+};
 const studentMenuItems = [
   {
     label: "Dashboard",
@@ -164,10 +162,8 @@ const studentMenuItems = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
         <path d="M9 3c-2 0-4 2-4 4 0 1 .5 2 1.2 2.7C5.5 10.3 5 11.1 5 12c0 1.7 1.3 3 3 3h1v5" />
         <path d="M9 3c1.5 0 2.5 1 2.5 2.5S10.5 8 9 8" />
-
         <path d="M15 3c2 0 4 2 4 4 0 1-.5 2-1.2 2.7.7.6 1.2 1.4 1.2 2.3 0 1.7-1.3 3-3 3h-1v5" />
         <path d="M15 3c-1.5 0-2.5 1-2.5 2.5S13.5 8 15 8" />
-
         <path d="M9 15h6" />
       </svg>
     ),
@@ -188,7 +184,6 @@ const studentMenuItems = [
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
         <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7z" />
         <path d="M14 2v5h5" />
-
         <path d="M9 13h6" />
         <path d="M9 17h6" />
       </svg>
@@ -203,7 +198,6 @@ const studentMenuItems = [
       </svg>
     ),
   },
- 
   {
     label: "Class Schedule",
     icon: (
@@ -234,8 +228,7 @@ const studentMenuItems = [
   {
     label: "Purchases",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5"
-      >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
         <rect x="3" y="5" width="18" height="14" rx="2" />
         <path d="M3 10h18" />
         <path d="M7 15h4" />
@@ -243,7 +236,6 @@ const studentMenuItems = [
     ),
   },
 ];
-
 
 const studentPages = {
   "Dashboard": DashboardPage,
@@ -258,11 +250,10 @@ const studentPages = {
   "Purchases": PurchasesPage,
 };
 
-
 export default function StudentDashboard() {
   const userData = getUser();
   const logout = useLogout();
-const [courseId, setCourseId] = useState(null);
+  const [courseId, setCourseId] = useState(null);
 
   const user = {
     name: `${userData?.firstName} ${userData?.lastName}`,
@@ -271,13 +262,13 @@ const [courseId, setCourseId] = useState(null);
   };
 
   return (
- <DashboardLayout
-  menuItems={studentMenuItems}
-  pages={studentPages}
-  courseId={courseId}       
-  setCourseId={setCourseId}
-  onLogout={logout}
-  user={user}
-/>
+    <DashboardLayout
+      menuItems={studentMenuItems}
+      pages={studentPages}
+      courseId={courseId}
+      setCourseId={setCourseId}
+      onLogout={logout}
+      user={user}
+    />
   );
 }

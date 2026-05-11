@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import CoursePage from "../Componenets/StudentDashboard/pages/CourseModulePage/CourseModuleSection";
 
-const renderPage = (activePage, pages, setCourseId) => {
+const renderPage = (activePage, pages, setCourseId, handleMenuChange) => {
   const Component = pages[activePage];
-  return Component ? <Component setCourseId={setCourseId} /> : null;
+  return Component ? <Component setCourseId={setCourseId} onNavigate={handleMenuChange} /> : null;
 };
 
-export default function DashboardLayout({ menuItems, pages, courseId, setCourseId , user, onLogout }) {
+export default function DashboardLayout({ menuItems, pages, courseId, setCourseId, user, onLogout }) {
   const firstPage = Object.keys(pages)[0];
-  const [activePage, setActivePage] = useState(firstPage);
+  const [activePage, setActivePage] = useState(() => {
+    const saved = localStorage.getItem('dashboard_active_page');
+    return saved && pages[saved] ? saved : firstPage;
+  });
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
- const handleMenuChange = (label) => {
-  setActivePage(label);
-  setSidebarOpen(false);
-  if (typeof setCourseId === 'function') setCourseId(null);
-};
+  const handleMenuChange = (label) => {
+    setActivePage(label);
+    localStorage.setItem('dashboard_active_page', label);
+    setSidebarOpen(false);
+    if (typeof setCourseId === 'function') setCourseId(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('dashboard_active_page');
+    onLogout();
+  };
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
@@ -30,18 +39,14 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
 
         <aside
           className={[
-            "fixed inset-y-0 left-0 z-30 w-[255px] shrink-0 border-r border-[#e2e8f0] bg-white flex flex-col transition-transform duration-300",
-            "lg:static lg:translate-x-0",
+            "fixed inset-y-0 left-0 z-30 w-[255px] shrink-0 border-r border-[#e2e8f0] bg-white flex flex-col transition-transform duration-300 overflow-hidden",
+            "lg:fixed lg:translate-x-0",
             sidebarOpen ? "translate-x-0" : "-translate-x-full",
           ].join(" ")}
         >
           <div className="flex h-[68px] items-center justify-between border-b border-[#e2e8f0] px-6">
             <div className="flex items-center gap-3">
-              <img src="/Images/Logo.webp" className="h-9 w-9" />
-              <div>
-                <div className="text-[14px] font-bold leading-none text-[#0f172a]">Upskills</div>
-                <div className="mt-1 text-[12px] leading-none text-[#64748b]">{user.portalLabel}</div>
-              </div>
+              <img src="/Images/Logo.webp" className="h-10 w-auto object-contain" />
             </div>
             <button
               type="button"
@@ -79,7 +84,7 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
           <div className="lg:hidden border-t border-[#e2e8f0] px-4 py-4">
             <button
               type="button"
-              onClick={onLogout}
+              onClick={handleLogout}
               className="flex h-11 w-full items-center gap-3 rounded-xl px-4 text-left text-[15px] font-medium text-[#0f172a] hover:bg-[#f1f5f9] transition-colors"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5 shrink-0">
@@ -92,7 +97,7 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
           </div>
         </aside>
 
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-w-0 flex-1 flex-col lg:ml-[255px]">
           <header className="flex h-[68px] justify-between items-center gap-4 border-b border-[#e2e8f0] bg-white px-5 sm:px-8">
             <button
               type="button"
@@ -122,7 +127,7 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
               </div>
               <button
                 type="button"
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="flex h-10 w-10 items-center justify-center rounded-full text-[#475569] transition-colors hover:bg-[#f1f5f9]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
@@ -134,13 +139,13 @@ export default function DashboardLayout({ menuItems, pages, courseId, setCourseI
             </div>
           </header>
 
-          <main className="flex-1 overflow-y-auto">
-            {courseId ? (
-              <CoursePage courseId={courseId} onBack={() => setCourseId(null)} />
-            ) : (
-              renderPage(activePage, pages, setCourseId)
-            )}
-          </main>
+<main className="flex-1 overflow-y-auto">
+  {courseId ? (
+    <CoursePage courseId={courseId} onBack={() => setCourseId(null)} onNavigate={handleMenuChange} />
+  ) : (
+    renderPage(activePage, pages, setCourseId, handleMenuChange)
+  )}
+</main>
         </div>
       </div>
     </div>

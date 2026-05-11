@@ -11,8 +11,9 @@ const STATUS_STYLES = {
 
 const TABLE_COLUMNS = ["Order Details", "Course", "Date", "Amount", "Payment Method", "Status", "Invoice"];
 
-const PurchaseSection = () => {
+const PurchaseSection = ({ onNavigate }) => {
   const { purchases, totalSpent, loading, error, refetch } = usePurchases();
+  
 
   if (loading) {
     return (
@@ -164,9 +165,11 @@ const PurchaseSection = () => {
         <p className="font-inter text-xs md:text-sm text-[#4A5565]">
           Our support team is here to assist you with any questions about your purchases, invoices, or payment methods.
         </p>
-        <button className="font-inter font-medium text-xs md:text-sm bg-[#155DFC] text-white px-3 py-2 rounded-[10px] hover:bg-[#1248d1] transition-colors">
-          Contact Support
-        </button>
+        <button
+  onClick={() => onNavigate?.('Support')}
+  className="font-inter font-medium text-xs md:text-sm bg-[#155DFC] text-white px-3 py-2 rounded-[10px] hover:bg-[#1248d1] transition-colors">
+  Contact Support
+</button>
       </div>
 
     </div>

@@ -40,12 +40,6 @@ import AdminApplications from "./Pages/AdminApplications/AdminApplications";
 import AdminSupport from "./Pages/AdminSupport/AdminSupport";
 import AdminNotifications from "./Pages/AdminNotifications/AdminNotifications";
 
-const OverviewPage = () => (
-  <div className="px-5 py-7 sm:px-8">
-    <h1 className="text-[32px] font-bold tracking-[-0.03em] text-[#0f172a] sm:text-[42px] wrap-break-word">Admin Overview</h1>
-    <p className="mt-2 text-[16px] text-[#64748b] wrap-break-word">Manage the entire platform from here</p>
-  </div>
-);
 
 const UsersPage = () => (
   <div className="px-5 py-7 sm:px-8">
@@ -348,17 +342,7 @@ const CoursesPage = () => {
 };
 
 const adminMenuItems = [
-  {
-    label: "Overview",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-        <rect x="3" y="3" width="7" height="7" rx="1.5" />
-        <rect x="14" y="3" width="7" height="7" rx="1.5" />
-        <rect x="3" y="14" width="7" height="7" rx="1.5" />
-        <rect x="14" y="14" width="7" height="7" rx="1.5" />
-      </svg>
-    ),
-  },
+ 
   {
     label: "Users",
     icon: (
@@ -631,7 +615,6 @@ const adminMenuItems = [
 ];
 
 const adminPages = {
-  "Overview":            OverviewPage,
   "Users":               UsersPage,
   "Faculty":             FacultyPage,
   "Consultations":       ConsultationsWrapper,
