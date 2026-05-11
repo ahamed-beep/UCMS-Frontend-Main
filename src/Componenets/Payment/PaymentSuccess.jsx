@@ -53,22 +53,22 @@ const PaymentSuccess = () => {
           {status === "loading" && (
             <>
               <Loader2 className="animate-spin text-blue-600 mx-auto mb-4" size={48} />
-              <h2 className="text-lg font-semibold text-gray-800">Verifying Payment...</h2>
-              <p className="text-sm text-gray-500 mt-2">Please wait, do not close this page.</p>
+              <h2 className="text-lg font-semibold text-gray-800 break-all">Verifying Payment...</h2>
+              <p className="text-sm text-gray-500 mt-2 break-all">Please wait, do not close this page.</p>
             </>
           )}
 
           {status === "success" && (
             <>
               <CheckCircle className="text-emerald-500 mx-auto mb-4" size={48} />
-              <h2 className="text-lg font-semibold text-gray-800">Payment Successful!</h2>
+              <h2 className="text-lg font-semibold text-gray-800 break-all">Payment Successful!</h2>
               <p className="text-sm text-gray-500 mt-2">
                 Thank you for your payment.
               </p>
               {paymentData && (
                 <div className="mt-4 text-left bg-gray-50 rounded-lg p-4 text-sm text-gray-600 space-y-1">
-                  <p><span className="font-medium">Service:</span> {paymentData.serviceTitle}</p>
-                  <p><span className="font-medium">Amount:</span> {paymentData.amount} {paymentData.currency}</p>
+                  <p className="break-all"><span className="font-medium">Service:</span> {paymentData.serviceTitle}</p>
+                  <p className="break-all"><span className="font-medium">Amount:</span> {paymentData.amount} {paymentData.currency}</p>
                <p><span className="font-medium">Name:</span> {paymentData.customer?.firstName} {paymentData.customer?.lastName}</p>
                 </div>
               )}

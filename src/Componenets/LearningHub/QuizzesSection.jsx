@@ -128,7 +128,7 @@ const QuizSection = () => {
       <div>
         <Navbar />
         <div className="bg-gray-50 min-h-screen flex items-center justify-center">
-          <div className="text-gray-500 font-inter text-lg">Quiz submitted. Redirecting...</div>
+          <div className="text-gray-500 font-inter text-lg break-all">Quiz submitted. Redirecting...</div>
         </div>
         <Footer />
       </div>
@@ -157,8 +157,8 @@ const QuizSection = () => {
       <div className="bg-gray-50 font-inter p-6">
         <div className="max-w-6xl mx-auto bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between mb-5">
           <div>
-            <h1 className="text-xl font-bold text-gray-900 font-inter">{quiz.title}</h1>
-            <p className="text-sm text-gray-400 font-inter capitalize">
+            <h1 className="text-xl font-bold text-gray-900 font-inter break-all">{quiz.title}</h1>
+            <p className="text-sm text-gray-400 font-inter capitalize break-all">
               {quiz.category} • {quiz.difficulty}
             </p>
           </div>
@@ -261,16 +261,16 @@ const QuizSection = () => {
 
           {/* Navigator */}
           <div className="bg-white rounded-xl border border-gray-200 p-5 h-fit">
-            <h3 className="font-semibold text-xl text-[#151515] font-inter mb-4">Question Navigator</h3>
+            <h3 className="font-semibold text-xl text-[#151515] font-inter mb-4 break-all">Question Navigator</h3>
 
             <div className="grid grid-cols-2 gap-3 mb-5">
               <div className="bg-green-50 rounded-lg p-3 text-center">
                 <div className="text-xs font-inter text-gray-600">Answered</div>
-                <div className="text-xl font-bold text-[#008236] font-inter">{answeredCount}</div>
+                <div className="text-xl font-bold text-[#008236] font-inter break-all">{answeredCount}</div>
               </div>
               <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <div className="text-xs font-inter text-gray-600">Unanswered</div>
-                <div className="text-xl font-inter font-bold text-gray-700">{unansweredCount}</div>
+                <div className="text-xl font-inter font-bold text-gray-700 break-all">{unansweredCount}</div>
               </div>
             </div>
 

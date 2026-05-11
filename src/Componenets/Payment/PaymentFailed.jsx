@@ -14,8 +14,8 @@ const PaymentFailed = () => {
       <div className="min-h-[60vh] flex items-center justify-center px-4">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 max-w-md w-full text-center">
           <XCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="text-lg font-semibold text-gray-800">Payment Failed</h2>
-          <p className="text-sm text-gray-500 mt-2">
+          <h2 className="text-lg font-semibold text-gray-800 break-all">Payment Failed</h2>
+          <p className="text-sm text-gray-500 mt-2 break-all">
             Something went wrong with your payment. Please try again.
           </p>
           {paymentId && (

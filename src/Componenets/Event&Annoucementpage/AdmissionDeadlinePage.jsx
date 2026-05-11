@@ -48,11 +48,11 @@ const AdmissionDeadlinePage = () => {
                   <td className="px-6 py-4 font-medium text-[#0A0A0A] font-inter">
                     {row.university}
                   </td>
-                  <td className="px-6 py-4 text-[#364153] font-inter">{row.program}</td>
+                  <td className="px-6 py-4 text-[#364153] font-inter break-all">{row.program}</td>
                   <td className={`px-6 py-4 font-semibold font-inter ${row.deadlineColor}`}>
                     {row.deadline}
                   </td>
-                  <td className="px-6 py-4 text-[#364153] font-inter">{row.intake}</td>
+                  <td className="px-6 py-4 text-[#364153] font-inter break-all">{row.intake}</td>
                   <td className="px-6 py-4">
                     <a
                       href="/consultation"

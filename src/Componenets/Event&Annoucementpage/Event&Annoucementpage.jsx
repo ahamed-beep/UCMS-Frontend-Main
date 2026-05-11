@@ -89,7 +89,7 @@ const EventPage = () => {
                         <ul className="space-y-1">
                           {event.highlights.map((h, i) => (
                             <li key={i} className="flex items-center text-sm text-[#364153] font-inter wrap-anywhere">
-                              <span className="bg-[#FF6B35] rounded-full p-[3px] mr-2"></span>
+                              <span className="bg-[#FF6B35] rounded-full p-[3px] mr-2 break-all"></span>
                               {h}
                             </li>
                           ))}

@@ -44,7 +44,7 @@ const BlogArticles = () => {
   return (
     <section className="max-w-7xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold font-inter text-[#0A0A0A]">Blog & Articles</h2>
+        <h2 className="text-2xl font-bold font-inter text-[#0A0A0A] break-all">Blog & Articles</h2>
         <Link to="/blog" className="text-sm text-[#0F4C8A] font-inter font-semibold hover:underline flex items-center gap-1">
           View All Posts <ArrowRight className="w-3 h-3" />
         </Link>

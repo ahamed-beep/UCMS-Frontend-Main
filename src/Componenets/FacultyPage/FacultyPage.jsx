@@ -87,10 +87,10 @@ const FacultyPage = () => {
         <section className="pt-4 pb-10 md:py-16 px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-inter font-bold text-[#0A0A0A]">
+              <h2 className="text-3xl font-inter font-bold text-[#0A0A0A] break-all">
                 Faculty Application Form
               </h2>
-              <p className="text-[#4A5565] font-inter mt-3 text-md">
+              <p className="text-[#4A5565] font-inter mt-3 text-md break-all">
                 Fill in your details below to apply
               </p>
             </div>
@@ -103,13 +103,13 @@ const FacultyPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1E2939]">Application Submitted!</h3>
-                  <p className="text-[#4A5565] text-sm">
+                  <h3 className="text-xl font-semibold text-[#1E2939] break-all">Application Submitted!</h3>
+                  <p className="text-[#4A5565] text-sm break-all">
                     Thank you for applying. We'll review your application and get back to you soon.
                   </p>
                   <button
                     onClick={() => setSuccess(false)}
-                    className="mt-4 px-6 py-2.5 bg-[#FF6B35] hover:bg-orange-600 text-white font-semibold rounded-lg text-sm transition-colors"
+                    className="mt-4 px-6 py-2.5 bg-[#FF6B35] hover:bg-orange-600 text-white font-semibold rounded-lg text-sm transition-colors "
                   >
                     Submit Another
                   </button>
@@ -262,7 +262,7 @@ const FacultyPage = () => {
                     onChange={handleChange}
                     rows={3}
                     placeholder="Tell us why you want to join our team and what makes you a great fit..."
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                    className="w-full break-all px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                     required
                   />
                 </div>
@@ -307,7 +307,7 @@ const FacultyPage = () => {
                   )}
                 </button>
 
-                <p className="text-xs text-[#6A7282] font-inter text-center mt-4">
+                <p className="text-xs text-[#6A7282] font-inter text-center mt-4 break-all">
                   By submitting this form, you agree to our privacy policy and terms of service.
                 </p>
               </form>

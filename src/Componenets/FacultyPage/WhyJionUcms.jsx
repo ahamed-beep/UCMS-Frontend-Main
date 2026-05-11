@@ -6,8 +6,8 @@ const WhyJionUcms = () => {
 
     <div>
         <section className="py-16 px-4 text-center bg-[#F9FAFB]">
-        <h2 className="  md:text-4xl font-bold text-[#0A0A0A] font-inter mb-2">Why Join UCMS?</h2>
-        <p className="text-[#4A5565] mt-3 mb-12">Building careers while building futures</p>
+        <h2 className="  md:text-4xl font-bold text-[#0A0A0A] font-inter mb-2 break-all">Why Join UCMS?</h2>
+        <p className="text-[#4A5565] mt-3 mb-12 break-all">Building careers while building futures</p>
         <div className=" md:mx-20 grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
             { title: "Collaborative Environment", desc: "Work with diverse professionals and passionate educators" },

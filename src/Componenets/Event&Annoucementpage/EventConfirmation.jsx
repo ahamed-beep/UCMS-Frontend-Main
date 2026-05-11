@@ -44,7 +44,7 @@ const Confirmation = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <div className="text-xs text-[#4A5565] font-inter">Name</div>
-              <div className="font-semibold text-[#0A0A0A] font-inter">{attendee.name}</div>
+              <div className="font-semibold text-[#0A0A0A] font-inter break-all">{attendee.name}</div>
             </div>
             <div  >
               <div className="text-xs text-[#4A5565] font-inter">Email</div>

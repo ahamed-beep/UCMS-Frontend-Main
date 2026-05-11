@@ -172,7 +172,7 @@ const TestimonialCard = ({ t }) => (
       <p className="text-sm text-[#364153] font-inter italic pl-5 wrap-break-word">"{t.quote}"</p>
     </div>
     <p className="text-sm font-semibold text-[#0F4C8A] font-inter mb-3 break-all">{t.university}</p>
-    <div className="inline-flex items-center gap-1.5 bg-[#FF6B3570] text-[#193CB8] text-xs font-medium px-3 py-1.5 rounded-full self-start">
+    <div className="inline-flex items-center gap-1.5 bg-[#FF6B3570] text-[#193CB8] text-xs font-medium px-3 py-1.5 rounded-full self-start break-all">
       <Check className="w-3 h-3" />
       {t.badge}
     </div>
@@ -217,8 +217,8 @@ const SuccessStories = () => {
           <div className="mt-12 bg-blue-50/60 border border-blue-100 rounded-xl px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-3xl font-bold font-inter text-[#155DFC]">{s.value}</div>
-                <div className="text-sm text-[#4A5565] font-inter mt-1">{s.label}</div>
+                <div className="text-3xl font-bold font-inter text-[#155DFC] break-all">{s.value}</div>
+                <div className="text-sm text-[#4A5565] font-inter mt-1 break-all">{s.label}</div>
               </div>
             ))}
           </div>

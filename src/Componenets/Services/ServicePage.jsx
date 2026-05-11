@@ -47,7 +47,7 @@ const ServiceDetail = ({ service }) => (
             </div>
           ))}
 
-          <h3 className="text-base font-bold font-inter mt-6 mb-2.5 text-[#0A0A0A]">
+          <h3 className="text-base font-bold font-inter mt-6 mb-2.5 text-[#0A0A0A] break-all">
             Frequently Asked Questions
           </h3>
           {service.faqs.map((faq, i) => (
