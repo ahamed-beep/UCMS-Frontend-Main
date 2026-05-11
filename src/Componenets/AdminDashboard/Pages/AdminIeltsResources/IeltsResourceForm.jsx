@@ -3,6 +3,11 @@ import { X, Upload } from "lucide-react";
 
 const defaultForm = { title: "", tag: "PDF", status: "active" };
 
+const FILE_CONFIG = {
+  PDF: { accept: "application/pdf", placeholder: "Click to upload PDF" },
+  DOC: { accept: ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document", placeholder: "Click to upload DOC / DOCX" },
+};
+
 const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
   const [form, setForm] = useState(defaultForm);
   const [file, setFile] = useState(null);
@@ -30,7 +35,15 @@ const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
     };
   }, [mode]);
 
+  useEffect(() => {
+    setFile(null);
+    setFileName("");
+  }, [form.tag]);
+
   if (!mode) return null;
+
+  const fileConfig = FILE_CONFIG[form.tag] ?? FILE_CONFIG.PDF;
+  const isCreate = mode === "create";
 
   const handleFile = (e) => {
     const f = e.target.files[0];
@@ -47,8 +60,6 @@ const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
     if (file) formData.append("file", file);
     onSubmit(formData);
   };
-
-  const isCreate = mode === "create";
 
   return (
     <div
@@ -91,8 +102,7 @@ const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
               className="w-full border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm text-[#0f172a] focus:outline-none focus:ring-2 focus:ring-[#FF6B35]/30 focus:border-[#FF6B35] transition-all"
             >
               <option value="PDF">PDF</option>
-              <option value="VIDEO">VIDEO</option>
-              <option value="AUDIO">AUDIO</option>
+              <option value="DOC">DOC</option>
             </select>
           </div>
 
@@ -110,7 +120,7 @@ const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
 
           <div>
             <label className="block text-xs font-medium text-[#334155] mb-1.5">
-              PDF File{" "}
+              {form.tag} File{" "}
               {!isCreate && (
                 <span className="text-[#94a3b8] font-normal">(leave empty to keep existing)</span>
               )}
@@ -118,9 +128,14 @@ const IeltsResourceForm = ({ mode, selected, onClose, onSubmit, loading }) => {
             <label className="flex items-center gap-3 border border-dashed border-gray-300 rounded-xl px-4 py-3 cursor-pointer hover:border-[#FF6B35] hover:bg-orange-50/30 transition-all">
               <Upload className="w-4 h-4 text-[#94a3b8] shrink-0" />
               <span className="text-sm text-[#64748b] truncate">
-                {fileName || "Click to upload PDF"}
+                {fileName || fileConfig.placeholder}
               </span>
-              <input type="file" accept="application/pdf" onChange={handleFile} className="hidden" />
+              <input
+                type="file"
+                accept={fileConfig.accept}
+                onChange={handleFile}
+                className="hidden"
+              />
             </label>
           </div>
 
