@@ -13,7 +13,7 @@ import UploadAssignmentModal from "../StudentAssignments/UploadAssignmentModal";
 import FeedbackModal from "../StudentAssignments/FeedbackModal";
 import ExercisePage from '../ExercisePage/ExercisePage';
 
-function CoursePage({ courseId, onBack }) {
+function CoursePage({ courseId, onBack ,onNavigate}) {
   const { id } = useParams();
   const navigate = useNavigate();
   const resolvedId = courseId ?? id;
@@ -418,8 +418,8 @@ function CoursePage({ courseId, onBack }) {
               progressPct={progressPct}
               enrolledAt={courseInfo.createdAt}
             />
-            <InstructorCard instructor={instructor} />
-            <NeedHelpCard />
+           <InstructorCard instructor={instructor} onNavigate={onNavigate} />
+<NeedHelpCard onNavigate={onNavigate} />
           </div>
         </div>
 

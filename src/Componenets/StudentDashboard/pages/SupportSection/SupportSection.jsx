@@ -284,12 +284,13 @@ const SupportSection = () => {
           Our support team is available Monday to Friday, 9:00 AM to 6:00 PM. For urgent matters outside office hours, please email us and we'll respond as soon as possible.
         </p>
         <div className="space-x-2">
-          <button className="font-inter font-medium text-xs md:text-sm bg-[#155DFC] text-white px-3 py-2 rounded-[10px]">
-            Schedule a Call
-          </button>
-          <button className="font-inter font-medium text-xs md:text-sm border-[0.89px] text-[#364153] border-[#D1D5DC] px-3 py-2 rounded-[10px] bg-white">
-            Browse Docs
-          </button>
+        <a 
+  href="tel:+923001234567" 
+  className="font-inter font-medium text-xs md:text-sm bg-[#155DFC] text-white px-3 py-2 rounded-[10px]"
+>
+  Schedule a Call
+</a>
+       
         </div>
       </div>
 

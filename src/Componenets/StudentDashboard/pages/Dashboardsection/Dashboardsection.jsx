@@ -3,6 +3,7 @@ import { CheckCircle, Clock, FileText, Calendar, ChevronDown, ChevronUp } from "
 import { IoMdArrowForward } from 'react-icons/io';
 import RecentNotification from './RecentNotification';
 import axiosInstance from '../../../../Api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const statusStyles = {
   'In Progress': 'bg-[#DBEAFE] text-[#1447E6]',
@@ -11,7 +12,7 @@ const statusStyles = {
   'Rejected': 'bg-[#FFE2E2] text-[#C10007]',
 };
 
-const Dashboardpage = () => {
+const Dashboardpage = ({ onNavigate }) => {
   const [stats, setStats] = useState({
     totalApplications: 0,
     upcomingClasses: 0,
@@ -22,6 +23,7 @@ const Dashboardpage = () => {
   });
   const [showAllApps, setShowAllApps] = useState(false);
   const [showAllClasses, setShowAllClasses] = useState(false);
+  const navigiate = useNavigate();
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -101,21 +103,18 @@ const Dashboardpage = () => {
                   </div>
                 ))}
 
-                {stats.recentApplications.length > 3 && (
+                {stats.recentApplications.length > 3 ? (
                   <button
-                    onClick={() => setShowAllApps(!showAllApps)}
+                    onClick={() => onNavigate('Applications')}
                     className="w-full flex items-center justify-center gap-1 font-inter font-medium md:text-sm text-[12px] text-[#155DFC] py-1 hover:underline"
                   >
-                    {showAllApps ? (
-                      <><ChevronUp size={16} /> Show Less</>
-                    ) : (
-                      <><ChevronDown size={16} /> View All Applications ({stats.recentApplications.length})</>
-                    )}
+                    <ChevronDown size={16} /> View All Applications ({stats.recentApplications.length})
                   </button>
-                )}
-
-                {stats.recentApplications.length <= 3 && (
-                  <div className="font-inter font-medium md:text-sm text-[12px] text-[#155DFC] text-center cursor-pointer">
+                ) : (
+                  <div
+                    onClick={() => onNavigate('Applications')}
+                    className="font-inter font-medium md:text-sm text-[12px] text-[#155DFC] text-center cursor-pointer hover:underline"
+                  >
                     View All Applications →
                   </div>
                 )}
@@ -149,21 +148,18 @@ const Dashboardpage = () => {
                   </div>
                 ))}
 
-                {stats.upcomingClassList.length > 2 && (
+                {stats.upcomingClassList.length > 2 ? (
                   <button
-                    onClick={() => setShowAllClasses(!showAllClasses)}
+                    onClick={() => onNavigate('Class Schedule')}
                     className="w-full flex items-center justify-center gap-1 font-inter font-medium md:text-sm text-[12px] text-[#155DFC] py-1 hover:underline"
                   >
-                    {showAllClasses ? (
-                      <><ChevronUp size={16} /> Show Less</>
-                    ) : (
-                      <><ChevronDown size={16} /> View Full Schedule ({stats.upcomingClassList.length})</>
-                    )}
+                    <ChevronDown size={16} /> View Full Schedule ({stats.upcomingClassList.length})
                   </button>
-                )}
-
-                {stats.upcomingClassList.length <= 2 && (
-                  <div className="font-inter font-medium md:text-sm text-[12px] text-[#155DFC] text-center cursor-pointer">
+                ) : (
+                  <div
+                    onClick={() => onNavigate('Class Schedule')}
+                    className="font-inter font-medium md:text-sm text-[12px] text-[#155DFC] text-center cursor-pointer hover:underline"
+                  >
                     View Full Schedule →
                   </div>
                 )}
@@ -171,7 +167,6 @@ const Dashboardpage = () => {
             )}
           </div>
         </div>
-
       </div>
 
       <RecentNotification />
@@ -183,7 +178,7 @@ const Dashboardpage = () => {
             <h2 className="font-inter font-bold text-[18px] md:text-[24px] text-white">Explore Our Course Catalog</h2>
           </div>
           <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#DBEAFE]">Browse IELTS, PTE, TOEFL courses designed to help you achieve your goals.</p>
-          <button className='flex font-inter font-semibold text-[14px] md:text-[16px] bg-white text-[#0F4C8A] text-start rounded-[10px] py-3 px-4 mt-5 cursor-pointer'>
+          <button onClick={() => navigiate('/services')} className='flex font-inter font-semibold text-[14px] md:text-[16px] bg-white text-[#0F4C8A] text-start rounded-[10px] py-3 px-4 mt-5 cursor-pointer'>
             Browse Courses <IoMdArrowForward className='ml-2' size={20} />
           </button>
         </div>

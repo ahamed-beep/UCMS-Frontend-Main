@@ -1,7 +1,6 @@
-// InstructorCard.jsx
 import { AwardIcon } from 'lucide-react';
 
-const InstructorCard = ({ instructor }) => {
+const InstructorCard = ({ instructor, onNavigate }) => {
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6">
       <h3 className="text-lg font-bold text-[#0A0A0A] font-inter mb-4">Your Instructor</h3>
@@ -28,7 +27,10 @@ const InstructorCard = ({ instructor }) => {
           Experience: {instructor.experience}
         </p>
       )}
-      <button className="mt-4 w-full border border-[#0F4C8A] font-inter text-[#0F4C8A] font-semibold py-2 rounded-lg hover:bg-blue-50 transition-colors">
+      <button
+        onClick={() => onNavigate?.('Support')}
+        className="mt-4 w-full border border-[#0F4C8A] font-inter text-[#0F4C8A] font-semibold py-2 rounded-lg hover:bg-blue-50 transition-colors"
+      >
         Message Instructor
       </button>
     </div>
