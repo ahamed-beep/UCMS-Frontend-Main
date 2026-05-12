@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
@@ -7,11 +7,14 @@ import EnrollmentFormModal from "./EnrollmentFormModal";
 
 const AdminEnrollments = () => {
   const [enrollments, setEnrollments] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [toggleLoading, setToggleLoading] = useState(null);
+  const [search, setSearch] = useState("");
+  const [courseFilter, setCourseFilter] = useState("");
 
   const fetchEnrollments = async () => {
     try {
@@ -24,7 +27,12 @@ const AdminEnrollments = () => {
     }
   };
 
-  useEffect(() => { fetchEnrollments(); }, []);
+  useEffect(() => {
+    fetchEnrollments();
+    axiosInstance.get("/courses").then((res) => {
+      setCourses(res.data.data ?? []);
+    }).catch(() => {});
+  }, []);
 
   const handleDelete = async (enrollment) => {
     try {
@@ -43,13 +51,32 @@ const AdminEnrollments = () => {
       setToggleLoading(enrollment.id);
       await axiosInstance.patch(`/enrollments/${enrollment.id}/toggle`);
       setEnrollments((prev) =>
-        prev.map((e) => e.id === enrollment.id ? { ...e, isActive: !e.isActive } : e)
+        prev.map((e) =>
+          e.id === enrollment.id ? { ...e, isActive: !e.isActive } : e
+        )
       );
     } catch {
     } finally {
       setToggleLoading(null);
     }
   };
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    return enrollments.filter((e) => {
+      const matchesSearch =
+        !q ||
+        e.studentId?.firstName?.toLowerCase().includes(q) ||
+        e.studentId?.lastName?.toLowerCase().includes(q) ||
+        e.studentId?.emailId?.toLowerCase().includes(q);
+
+      const matchesCourse =
+        !courseFilter ||
+        (e.courseId?._id || e.courseId?.id || e.courseId) === courseFilter;
+
+      return matchesSearch && matchesCourse;
+    });
+  }, [enrollments, search, courseFilter]);
 
   const columns = [
     {
@@ -117,22 +144,55 @@ const AdminEnrollments = () => {
 
   return (
     <div className="p-6 space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-[#0f172a]">Enrollments</h1>
           <p className="text-sm text-[#64748b] mt-0.5">Manage student course enrollments</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium md:px-4 md:py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors "
+          className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium px-4 py-2.5 rounded-xl hover:bg-[#0d3d6e] transition-colors"
         >
           <Plus className="w-4 h-4" /> Enroll Student
         </button>
       </div>
 
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="relative w-full sm:w-72">
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by name or email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]"
+          />
+        </div>
+
+        <select
+          value={courseFilter}
+          onChange={(e) => setCourseFilter(e.target.value)}
+          className="w-full sm:w-64 px-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] text-[#475569] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]"
+        >
+          <option value="">All courses</option>
+          {courses.map((c) => (
+            <option key={c.id || c._id} value={c.id || c._id}>
+              {c.title}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <AdminTable
         columns={columns}
-        rows={enrollments.map((e) => ({ ...e, _key: e.id }))}
+        rows={filtered.map((e) => ({ ...e, _key: e.id }))}
         loading={loading}
         emptyText="No enrollments found."
       />

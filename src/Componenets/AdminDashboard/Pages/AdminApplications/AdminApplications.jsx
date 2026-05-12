@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Plus, Edit2, Trash2, X } from "lucide-react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
@@ -13,27 +13,30 @@ const statusStyles = {
   Rejected: "bg-[#FFE2E2] text-[#C10007]",
 };
 
+const DEFAULT_TIMELINE = [
+  { label: "Application Submitted", date: "", done: false },
+  { label: "Document Verification", date: "", done: false },
+  { label: "Under University Review", date: "", done: false },
+  { label: "Decision Received", date: "", done: false },
+];
+
 const EMPTY_FORM = {
-  studentId: "",
+  studentIds: [],
   university: "",
   program: "",
   country: "",
   status: "In Progress",
-  timeline: [
-    { label: "Application Submitted", date: "", done: false },
-    { label: "Document Verification", date: "", done: false },
-    { label: "Under University Review", date: "", done: false },
-    { label: "Decision Received", date: "", done: false },
-  ],
+  timeline: DEFAULT_TIMELINE,
 };
 
 const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students }) => {
   const [form, setForm] = useState(EMPTY_FORM);
+  const [studentSearch, setStudentSearch] = useState("");
 
   useEffect(() => {
     if (initial) {
       setForm({
-        studentId: initial.userId ?? "",
+        studentIds: [initial.userId?.id ?? initial.userId ?? ""].filter(Boolean),
         university: initial.university ?? "",
         program: initial.program ?? "",
         country: initial.country ?? "",
@@ -42,10 +45,11 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
           label: t.label ?? "",
           date: t.date ?? "",
           done: t.done ?? false,
-        })) ?? EMPTY_FORM.timeline,
+        })) ?? DEFAULT_TIMELINE,
       });
     } else {
       setForm(EMPTY_FORM);
+      setStudentSearch("");
     }
   }, [initial, open]);
 
@@ -60,6 +64,17 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
     };
   }, [open]);
 
+  const filteredStudents = useMemo(() => {
+    const q = studentSearch.toLowerCase().trim();
+    if (!q) return students;
+    return students.filter(
+      (s) =>
+        s.firstName?.toLowerCase().includes(q) ||
+        s.lastName?.toLowerCase().includes(q) ||
+        (s.emailId ?? s.email)?.toLowerCase().includes(q)
+    );
+  }, [students, studentSearch]);
+
   if (!open) return null;
 
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
@@ -70,6 +85,25 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
       timeline[index] = { ...timeline[index], [field]: value };
       return { ...p, timeline };
     });
+  };
+
+  const toggleStudent = (id) =>
+    setForm((p) => ({
+      ...p,
+      studentIds: p.studentIds.includes(id)
+        ? p.studentIds.filter((s) => s !== id)
+        : [...p.studentIds, id],
+    }));
+
+  const toggleAll = () => {
+    const allIds = filteredStudents.map((s) => s.id ?? s._id);
+    const allSelected = allIds.every((id) => form.studentIds.includes(id));
+    setForm((p) => ({
+      ...p,
+      studentIds: allSelected
+        ? p.studentIds.filter((id) => !allIds.includes(id))
+        : [...new Set([...p.studentIds, ...allIds])],
+    }));
   };
 
   return (
@@ -96,19 +130,80 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
         <div className="p-6 flex flex-col gap-4">
           {!initial && (
             <div className="flex flex-col gap-1">
-              <label className="text-xs font-medium text-[#334155]">Student</label>
-              <select
-                value={form.studentId}
-                onChange={set("studentId")}
-                className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
-              >
-                <option value="">Select student</option>
-               {students.map((s) => (
-  <option key={s.id ?? s._id} value={s.id ?? s._id}>
-    {s.firstName} {s.lastName} — {s.emailId ?? s.email}
-  </option>
-))}
-              </select>
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-xs font-medium text-[#334155]">
+                  Students
+                  {form.studentIds.length > 0 && (
+                    <span className="ml-2 bg-[#0F4C8A] text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+                      {form.studentIds.length}
+                    </span>
+                  )}
+                </label>
+                {filteredStudents.length > 0 && (
+                  <button
+                    onClick={toggleAll}
+                    className="text-[11px] text-[#0F4C8A] hover:underline"
+                  >
+                    {filteredStudents.every((s) =>
+                      form.studentIds.includes(s.id ?? s._id)
+                    )
+                      ? "Deselect all"
+                      : "Select all"}
+                  </button>
+                )}
+              </div>
+
+              <div className="relative mb-2">
+                <svg
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                  width="13" height="13" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search students..."
+                  value={studentSearch}
+                  onChange={(e) => setStudentSearch(e.target.value)}
+                  className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#0F4C8A]"
+                />
+              </div>
+
+              <div className="border border-gray-200 rounded-xl overflow-y-auto max-h-48">
+                {filteredStudents.length === 0 ? (
+                  <p className="text-xs text-[#64748b] text-center py-4">No students found</p>
+                ) : (
+                  filteredStudents.map((s) => {
+                    const id = s.id ?? s._id;
+                    const checked = form.studentIds.includes(id);
+                    return (
+                      <label
+                        key={id}
+                        className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors border-b border-gray-50 last:border-0 ${
+                          checked ? "bg-[#EFF6FF]" : "hover:bg-gray-50"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleStudent(id)}
+                          className="accent-[#0F4C8A] w-3.5 h-3.5 shrink-0"
+                        />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-[#0f172a] truncate">
+                            {s.firstName} {s.lastName}
+                          </p>
+                          <p className="text-[11px] text-[#64748b] truncate">
+                            {s.emailId ?? s.email}
+                          </p>
+                        </div>
+                      </label>
+                    );
+                  })
+                )}
+              </div>
             </div>
           )}
 
@@ -187,7 +282,7 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
             </button>
             <button
               onClick={() => onSubmit(form)}
-              disabled={loading}
+              disabled={loading || (!initial && form.studentIds.length === 0)}
               className="flex-1 px-4 py-2.5 rounded-xl bg-[#0F4C8A] text-sm font-medium text-white hover:bg-[#0d3f74] disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading && (
@@ -195,7 +290,9 @@ const ApplicationModal = ({ open, onClose, onSubmit, loading, initial, students 
                   <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                 </svg>
               )}
-              {initial ? "Update" : "Create"}
+              {initial
+                ? "Update"
+                : `Create${form.studentIds.length > 1 ? ` (${form.studentIds.length})` : ""}`}
             </button>
           </div>
         </div>
@@ -214,6 +311,8 @@ const AdminApplications = () => {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [updatingStatus, setUpdatingStatus] = useState(null);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
   const fetchApplications = async () => {
     try {
@@ -226,14 +325,15 @@ const AdminApplications = () => {
     }
   };
 
-const fetchStudents = async () => {
-  try {
-    const res = await axiosInstance.get("/admin/users?role=student");
-    setStudents(res.data.data ?? []);
-  } catch (err) {
-    console.error(err);
-  }
-};
+  const fetchStudents = async () => {
+    try {
+      const res = await axiosInstance.get("/admin/users");
+      const all = res.data.data ?? [];
+      setStudents(all.filter((u) => u.role === "student"));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     fetchApplications();
@@ -252,7 +352,18 @@ const fetchStudents = async () => {
           timeline: form.timeline,
         });
       } else {
-        await axiosInstance.post("/applications", form);
+        await Promise.all(
+          form.studentIds.map((studentId) =>
+            axiosInstance.post("/applications", {
+              studentId,
+              university: form.university,
+              program: form.program,
+              country: form.country,
+              status: form.status,
+              timeline: form.timeline,
+            })
+          )
+        );
       }
       await fetchApplications();
       setModalOpen(false);
@@ -268,7 +379,9 @@ const fetchStudents = async () => {
     setUpdatingStatus(id);
     try {
       await axiosInstance.patch(`/applications/${id}/status`, { status });
-      await fetchApplications();
+      setApplications((prev) =>
+        prev.map((a) => (a.id === id ? { ...a, status } : a))
+      );
     } catch (err) {
       console.error(err);
     } finally {
@@ -280,7 +393,7 @@ const fetchStudents = async () => {
     setDeleting(true);
     try {
       await axiosInstance.delete(`/applications/${app.id}`);
-      await fetchApplications();
+      setApplications((prev) => prev.filter((a) => a.id !== app.id));
       setDeleteTarget(null);
     } catch (err) {
       console.error(err);
@@ -288,6 +401,23 @@ const fetchStudents = async () => {
       setDeleting(false);
     }
   };
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    return applications.filter((a) => {
+      const fullName = `${a.userId?.firstName ?? ""} ${a.userId?.lastName ?? ""}`.toLowerCase();
+      const email = (a.userId?.emailId ?? "").toLowerCase();
+      const matchesSearch =
+        !q ||
+        fullName.includes(q) ||
+        email.includes(q) ||
+        a.university?.toLowerCase().includes(q) ||
+        a.program?.toLowerCase().includes(q) ||
+        a.country?.toLowerCase().includes(q);
+      const matchesStatus = !statusFilter || a.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
+  }, [applications, search, statusFilter]);
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "—";
@@ -298,7 +428,7 @@ const fetchStudents = async () => {
     {
       key: "university",
       label: "University",
-      width: "22%",
+      width: "20%",
       render: (row) => (
         <span className="font-medium text-sm text-[#0f172a]">{row.university}</span>
       ),
@@ -306,7 +436,7 @@ const fetchStudents = async () => {
     {
       key: "program",
       label: "Program",
-      width: "18%",
+      width: "16%",
       render: (row) => (
         <span className="text-sm text-[#334155]">{row.program}</span>
       ),
@@ -314,7 +444,7 @@ const fetchStudents = async () => {
     {
       key: "country",
       label: "Country",
-      width: "12%",
+      width: "11%",
       render: (row) => (
         <span className="text-sm text-[#334155]">{row.country}</span>
       ),
@@ -322,13 +452,16 @@ const fetchStudents = async () => {
     {
       key: "student",
       label: "Student",
-      width: "15%",
+      width: "18%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">
-          {row.userId?.firstName
-            ? `${row.userId.firstName} ${row.userId.lastName}`
-            : row.userId ?? "—"}
-        </span>
+        <div className="flex flex-col">
+          <span className="text-sm text-[#0f172a] font-medium">
+            {row.userId?.firstName
+              ? `${row.userId.firstName} ${row.userId.lastName}`
+              : "—"}
+          </span>
+          <span className="text-xs text-[#64748b]">{row.userId?.emailId ?? ""}</span>
+        </div>
       ),
     },
     {
@@ -359,7 +492,7 @@ const fetchStudents = async () => {
     {
       key: "actions",
       label: "Actions",
-      width: "8%",
+      width: "10%",
       render: (row) => (
         <div className="flex items-center gap-2">
           <button
@@ -381,7 +514,7 @@ const fetchStudents = async () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0f172a]">Applications</h1>
           <p className="text-sm text-[#64748b] mt-1">Manage student university applications</p>
@@ -395,9 +528,40 @@ const fetchStudents = async () => {
         </button>
       </div>
 
+      <div className="flex flex-col sm:flex-row gap-3 mb-5">
+        <div className="relative w-full sm:w-72">
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by name, university, program..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]"
+          />
+        </div>
+
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="w-full sm:w-44 px-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] text-[#475569] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]"
+        >
+          <option value="">All statuses</option>
+          {statusOptions.map((s) => (
+            <option key={s} value={s}>{s}</option>
+          ))}
+        </select>
+      </div>
+
       <AdminTable
         columns={columns}
-        rows={applications.map((a) => ({ ...a, _key: a.id }))}
+        rows={filtered.map((a) => ({ ...a, _key: a.id }))}
         loading={loading}
         emptyText="No applications found."
       />
