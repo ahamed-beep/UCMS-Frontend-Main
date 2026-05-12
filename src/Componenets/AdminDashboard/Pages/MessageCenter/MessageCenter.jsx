@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import axiosInstance from "../../../../Api/axiosInstance";
 import AdminTable from "../../../../ResuableUi/AdminTable";
 
@@ -21,65 +21,59 @@ export default function ContactMessages() {
   const [loading, setLoading]         = useState(true);
   const [selectedMsg, setSelectedMsg] = useState(null);
   const [error, setError]             = useState("");
+  const [search, setSearch]           = useState("");
 
   const totalCount  = messages.length;
   const unreadCount = messages.filter((m) => !m.isRead).length;
 
- const fetchMessages = useCallback(async () => {
-  try {
-    setLoading(true);
-    const { data } = await axiosInstance.get("/contact/admin/messages");
-    
-   
-    
-  
-    
-    setMessages(data.data || []);
-    
-    if (!data.data || data.data.length === 0) {
-      console.log("No messages found in response");
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    if (!q) return messages;
+    return messages.filter(
+      (m) =>
+        m.fullName?.toLowerCase().includes(q) ||
+        m.email?.toLowerCase().includes(q)
+    );
+  }, [messages, search]);
+
+  const fetchMessages = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data } = await axiosInstance.get("/contact/admin/messages");
+      setMessages(data.data || []);
+    } catch (error) {
+      setError("Failed to load messages. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Fetch error details:", {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status
-    });
-    setError("Failed to load messages. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-}, []);
+  }, []);
 
   useEffect(() => { fetchMessages(); }, [fetchMessages]);
 
- const handleView = async (msg) => {
-  setSelectedMsg(msg);
-  if (!msg.isRead) {
-    try {
-      await axiosInstance.patch(`/contact/admin/messages/${msg.id}/read`);
-      const markRead = (m) =>
-        m.id === msg.id  
-          ? { ...m, isRead: true, status: m.status === "new" ? "read" : m.status }
-          : m;
-      setMessages((prev) => prev.map(markRead));
-      setSelectedMsg((prev) => markRead(prev));
-    } catch (error) {
-      console.error('Mark as read error:', error);
+  const handleView = async (msg) => {
+    setSelectedMsg(msg);
+    if (!msg.isRead) {
+      try {
+        await axiosInstance.patch(`/contact/admin/messages/${msg.id}/read`);
+        const markRead = (m) =>
+          m.id === msg.id
+            ? { ...m, isRead: true, status: m.status === "new" ? "read" : m.status }
+            : m;
+        setMessages((prev) => prev.map(markRead));
+        setSelectedMsg((prev) => markRead(prev));
+      } catch {}
     }
-  }
-};
+  };
 
-const handleDelete = async (msg) => {
-  if (!window.confirm("Are you sure you want to delete this message?")) return;
-  try {
-    await axiosInstance.delete(`/contact/admin/messages/${msg.id}`);
-    setMessages((prev) => prev.filter((m) => m.id !== msg.id)); 
-  } catch (error) {
-    console.error('Delete error:', error);
-    alert("Failed to delete message. Please try again.");
-  }
-};
+  const handleDelete = async (msg) => {
+    if (!window.confirm("Are you sure you want to delete this message?")) return;
+    try {
+      await axiosInstance.delete(`/contact/admin/messages/${msg.id}`);
+      setMessages((prev) => prev.filter((m) => m.id !== msg.id));
+    } catch {
+      alert("Failed to delete message. Please try again.");
+    }
+  };
 
   const columns = [
     {
@@ -156,9 +150,28 @@ const handleDelete = async (msg) => {
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-3xl font-medium m-0">Contact messages</h1>
-        <p className="text-sm text-gray-500 mt-1">Manage all incoming contact form submissions</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        <div>
+          <h1 className="text-3xl font-medium m-0">Contact messages</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage all incoming contact form submissions</p>
+        </div>
+        <div className="relative w-full sm:w-72">
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            placeholder="Search by name or email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 bg-[#f8fafc] focus:outline-none focus:border-[#0F4C8A] focus:ring-1 focus:ring-[#0F4C8A]"
+          />
+        </div>
       </div>
 
       {error && (
@@ -183,12 +196,13 @@ const handleDelete = async (msg) => {
       </div>
 
       <AdminTable
-  columns={columns}
-  rows={messages.map((m) => ({ ...m, _key: m.id }))} 
-  loading={loading}
-  emptyText="No messages found."
-  rowStyle={(row) => (!row.isRead ? { background: "var(--color-background-info)" } : {})}
-/>
+        columns={columns}
+        rows={filtered.map((m) => ({ ...m, _key: m.id }))}
+        loading={loading}
+        emptyText="No messages found."
+        rowStyle={(row) => (!row.isRead ? { background: "var(--color-background-info)" } : {})}
+      />
+
       {selectedMsg && (
         <div
           onClick={() => setSelectedMsg(null)}

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { consultationTypes, dates, steps, times } from "./Constant/BookingConstant";
+import { useState, useEffect } from "react";
+import { consultationTypes, steps } from "./Constant/BookingConstant";
 import Navbar from "../../ResuableUi/Navbar";
 import Footer from "../../ResuableUi/Footer";
 import Head from "../../ResuableUi/Head";
@@ -9,7 +9,10 @@ import { toast } from "react-toastify";
 const Booking = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [slotsLoading, setSlotsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [slots, setSlots] = useState([]);
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -22,8 +25,47 @@ const Booking = () => {
     additionalInfo: "",
   });
 
+  useEffect(() => {
+    axiosInstance
+      .get("/consultation-slots/active")
+      .then((res) => {
+        // 🔍 DEBUG
+        console.log("=== ACTIVE SLOTS RESPONSE ===", res.data);
+
+        // Unwrap any nesting
+        let raw = res.data;
+        if (raw?.data) raw = raw.data;
+        if (raw?.data) raw = raw.data;
+
+        console.log("=== ACTIVE SLOTS UNWRAPPED ===", raw);
+
+        const list = Array.isArray(raw) ? raw : [];
+        // Normalize _id → id
+        const normalized = list.map((s) => ({
+          ...s,
+          id: s.id ?? s._id ?? "",
+          times: Array.isArray(s.times) ? s.times : [],
+        }));
+
+        console.log("=== ACTIVE SLOTS NORMALIZED ===", normalized);
+        setSlots(normalized);
+      })
+      .catch((err) => {
+        console.error("Active slots fetch error:", err);
+        setSlots([]);
+      })
+      .finally(() => setSlotsLoading(false));
+  }, []);
+
+  const availableTimes =
+    slots.find((s) => s.date === formData.selectedDate)?.times ?? [];
+
   const updateField = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => {
+      const updated = { ...prev, [field]: value };
+      if (field === "selectedDate") updated.selectedTime = "";
+      return updated;
+    });
   };
 
   const isStep1Valid = () =>
@@ -41,19 +83,17 @@ const Booking = () => {
     else if (currentStep === 2 && isStep2Valid()) setCurrentStep(3);
   };
 
-  const toastMessage = ()=>{
-    toast.success("Booking Confirmed! Check your email for confirmation.")
-  }
-
   const handleConfirmBooking = async () => {
     if (!isStep3Valid()) return;
     setLoading(true);
     setError("");
     try {
       await axiosInstance.post("/consultations", formData);
-      toastMessage();
+      toast.success("Booking Confirmed! Check your email for confirmation.");
     } catch (err) {
-      setError(err?.response?.data?.message || "Something went wrong. Please try again.");
+      setError(
+        err?.response?.data?.message || "Something went wrong. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -62,27 +102,46 @@ const Booking = () => {
   return (
     <div className="">
       <Navbar />
-      <Head title="Book Free Consultation" subtitle="Schedule a one-on-one session with our expert counselors at your convenience" />
+      <Head
+        title="Book Free Consultation"
+        subtitle="Schedule a one-on-one session with our expert counselors at your convenience"
+      />
 
       <div className="sm:mx-75 mx-auto sm:py-8 py-4">
+        {/* Steps bar */}
         <div className="flex items-center bg-[#F9FAFB] py-2 rounded-2xl justify-center mb-10 sm:flex-nowrap flex-wrap">
           {steps.map((step, idx) => (
             <div key={step.number} className="flex items-center mx-auto">
               <div className="flex items-center gap-2">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${currentStep >= step.number ? "bg-[#FF6B35] text-white" : "bg-[#E5E7EB] text-[#6B7280]"}`}>
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${
+                    currentStep >= step.number
+                      ? "bg-[#FF6B35] text-white"
+                      : "bg-[#E5E7EB] text-[#6B7280]"
+                  }`}
+                >
                   {step.number}
                 </div>
-                <span className={`text-xs sm:text-sm font-medium whitespace-nowrap ${currentStep >= step.number ? "text-[#FF6B35]" : "text-[#6B7280]"}`}>
+                <span
+                  className={`text-xs sm:text-sm font-medium whitespace-nowrap ${
+                    currentStep >= step.number ? "text-[#FF6B35]" : "text-[#6B7280]"
+                  }`}
+                >
                   {step.label}
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className={`w-10 sm:w-20 h-0.5 mx-2 sm:mx-3 ${currentStep > step.number ? "bg-[#FF6B35]" : "bg-[#E5E7EB]"}`} />
+                <div
+                  className={`w-10 sm:w-20 h-0.5 mx-2 sm:mx-3 ${
+                    currentStep > step.number ? "bg-[#FF6B35]" : "bg-[#E5E7EB]"
+                  }`}
+                />
               )}
             </div>
           ))}
         </div>
 
+        {/* ── Step 1 ── */}
         {currentStep === 1 && (
           <div>
             <h1 className="text-2xl sm:ml-10 mx-2 mt-3 text-[#0A0A0A] sm:text-3xl font-bold mb-8">
@@ -154,7 +213,11 @@ const Booking = () => {
               <button
                 onClick={handleNextStep}
                 disabled={!isStep1Valid()}
-                className={`w-full mt-8 h-12 rounded-lg font-semibold text-sm transition-colors ${isStep1Valid() ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer" : "bg-[#99A1AF] text-[#FFFFFF] cursor-not-allowed"}`}
+                className={`w-full mt-8 h-12 rounded-lg font-semibold text-sm transition-colors ${
+                  isStep1Valid()
+                    ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer"
+                    : "bg-[#99A1AF] text-[#FFFFFF] cursor-not-allowed"
+                }`}
               >
                 Continue to Date Selection
               </button>
@@ -162,51 +225,82 @@ const Booking = () => {
           </div>
         )}
 
+        {/* ── Step 2 ── */}
         {currentStep === 2 && (
           <div>
             <h1 className="text-2xl sm:ml-10 mx-2 mt-3 font-inter text-[#0A0A0A] sm:text-3xl font-bold mb-8">
               Select Date & Time
             </h1>
             <div className="sm:ml-10 mx-2">
+
+              {/* Date Selection */}
               <div className="mb-8">
                 <label className="block text-sm text-[#364153] font-inter font-medium mb-3">
                   Choose a Date <span className="text-[#FF6B35]">*</span>
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {dates.map((date) => (
-                    <button
-                      key={date}
-                      onClick={() => updateField("selectedDate", date)}
-                      className={`h-12 px-3 font-inter rounded-lg border text-sm font-medium flex items-center justify-center gap-2 transition-colors ${formData.selectedDate === date ? "border-[#FF6B35] bg-[#FF6B35]/5 text-[#FF6B35]" : "border-[#99A1AF] text-[#FFFFFF] hover:border-[#FF6B35]/50"}`}
-                    >
-                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-xs text-[#0A0A0A] sm:text-sm">{date}</span>
-                    </button>
-                  ))}
-                </div>
+
+                {slotsLoading ? (
+                  <p className="text-sm text-[#64748b]">Loading available dates...</p>
+                ) : slots.length === 0 ? (
+                  <p className="text-sm text-red-500">
+                    Abhi koi date available nahi hai. Baad mein try karein.
+                  </p>
+                ) : (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {slots.map((slot) => (
+                      <button
+                        key={slot.id}
+                        onClick={() => updateField("selectedDate", slot.date)}
+                        className={`h-12 px-3 font-inter rounded-lg border text-sm font-medium flex items-center justify-center gap-2 transition-colors ${
+                          formData.selectedDate === slot.date
+                            ? "border-[#FF6B35] bg-[#FF6B35]/5 text-[#FF6B35]"
+                            : "border-[#99A1AF] text-[#0A0A0A] hover:border-[#FF6B35]/50"
+                        }`}
+                      >
+                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-xs sm:text-sm">{slot.date}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div className="mb-8">
-                <label className="block text-sm text-[#364153] font-inter font-medium mb-3">
-                  Choose a Time <span className="text-[#FF6B35]">*</span>
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {times.map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => updateField("selectedTime", time)}
-                      className={`h-12 px-3 rounded-lg font-inter border text-sm font-medium flex items-center justify-center gap-2 transition-colors ${formData.selectedTime === time ? "border-[#FF6B35] bg-[#FF6B35]/5 text-[#FF6B35]" : "border-[#D1D5DC] text-gray-700 hover:border-[#FF6B35]/50"}`}
-                    >
-                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {time}
-                    </button>
-                  ))}
+
+              {/* Time Selection */}
+              {formData.selectedDate && (
+                <div className="mb-8">
+                  <label className="block text-sm text-[#364153] font-inter font-medium mb-3">
+                    Choose a Time <span className="text-[#FF6B35]">*</span>
+                  </label>
+                  {availableTimes.length === 0 ? (
+                    <p className="text-sm text-red-500">
+                      Is date ke liye koi time available nahi.
+                    </p>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      {availableTimes.map((time) => (
+                        <button
+                          key={time}
+                          onClick={() => updateField("selectedTime", time)}
+                          className={`h-12 px-3 rounded-lg font-inter border text-sm font-medium flex items-center justify-center gap-2 transition-colors ${
+                            formData.selectedTime === time
+                              ? "border-[#FF6B35] bg-[#FF6B35]/5 text-[#FF6B35]"
+                              : "border-[#D1D5DC] text-gray-700 hover:border-[#FF6B35]/50"
+                          }`}
+                        >
+                          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
             </div>
+
             <div className="flex gap-3 sm:ml-10 mx-2">
               <button
                 onClick={() => setCurrentStep(1)}
@@ -217,7 +311,11 @@ const Booking = () => {
               <button
                 onClick={handleNextStep}
                 disabled={!isStep2Valid()}
-                className={`flex-[2] h-12 font-inter rounded-lg font-semibold text-sm transition-colors ${isStep2Valid() ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer" : "bg-[#99A1AF] text-[#FFFFFF] cursor-not-allowed"}`}
+                className={`flex-[2] h-12 font-inter rounded-lg font-semibold text-sm transition-colors ${
+                  isStep2Valid()
+                    ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer"
+                    : "bg-[#99A1AF] text-[#FFFFFF] cursor-not-allowed"
+                }`}
               >
                 Continue
               </button>
@@ -225,6 +323,7 @@ const Booking = () => {
           </div>
         )}
 
+        {/* ── Step 3 ── */}
         {currentStep === 3 && (
           <div>
             <h1 className="text-2xl sm:ml-10 mx-2 mt-3 text-[#0A0A0A] font-inter sm:text-3xl font-bold mb-8">
@@ -235,7 +334,11 @@ const Booking = () => {
                 <button
                   key={type.title}
                   onClick={() => updateField("consultationType", type.title)}
-                  className={`w-full font-inter text-left p-4 rounded-lg border transition-colors ${formData.consultationType === type.title ? "border-[#FF6B35] bg-[#FF6B35]/5" : "border-[#99A1AF] text-[#FFFFFF] hover:border-[#FF6B35]/50"}`}
+                  className={`w-full font-inter text-left p-4 rounded-lg border transition-colors ${
+                    formData.consultationType === type.title
+                      ? "border-[#FF6B35] bg-[#FF6B35]/5"
+                      : "border-[#99A1AF] text-[#FFFFFF] hover:border-[#FF6B35]/50"
+                  }`}
                 >
                   <div className="font-semibold font-inter text-sm text-[#0A0A0A]">{type.title}</div>
                   <div className="text-xs text-[#4A5565] font-inter mt-0.5">{type.desc}</div>
@@ -254,9 +357,7 @@ const Booking = () => {
                 className="w-full px-4 py-3 rounded-lg border border-[#D1D5DC] bg-white text-gray-900 text-sm placeholder:text-gray-400 outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-[#FF6B35] transition-colors resize-none"
               />
             </div>
-            {error && (
-              <p className="text-red-500 text-sm ml-10 mb-3">{error}</p>
-            )}
+            {error && <p className="text-red-500 text-sm ml-10 mb-3">{error}</p>}
             <div className="flex gap-3 sm:ml-10 mx-2">
               <button
                 onClick={() => setCurrentStep(2)}
@@ -267,7 +368,11 @@ const Booking = () => {
               <button
                 onClick={handleConfirmBooking}
                 disabled={!isStep3Valid() || loading}
-                className={`flex-[2] h-12 rounded-lg font-semibold text-sm transition-colors ${isStep3Valid() && !loading ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer" : "bg-gray-300 text-gray-500 cursor-not-allowed"}`}
+                className={`flex-[2] h-12 rounded-lg font-semibold text-sm transition-colors ${
+                  isStep3Valid() && !loading
+                    ? "bg-[#FF6B35] text-white hover:bg-[#FF6B35]/90 cursor-pointer"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
               >
                 {loading ? "Booking..." : "Confirm Booking"}
               </button>
