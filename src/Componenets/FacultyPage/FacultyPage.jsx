@@ -77,8 +77,9 @@ const FacultyPage = () => {
     <div>
       <Navbar />
       <Head
-        title="Join Our Education Faculty"
-        subtitle="Be part of a dynamic team dedicated to shaping the future of students aspiring to study abroad."
+        title="Build Your Career with UCMS"
+        subtitle="Join a dynamic team committed to transforming lives through quality education, 
+professional development, and expert guidance."
       />
 
       <div className="bg-[#F9FAFB] font-inter">

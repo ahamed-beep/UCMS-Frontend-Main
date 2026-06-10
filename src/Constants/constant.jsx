@@ -38,38 +38,38 @@ export const footerData = [
   {
     title: "Quick Links",
     links: [
-      { name: "About Us", url: "/" },
-      { name: "Services", url: "/" },
-      { name: "Study Destination", url: "/" },
-      { name: "Success Stories", url: "/" },
-      { name: "Blog", url: "/" },
-      { name: "Gallery", url: "/" },
+      { name: "About Us", url: "/about" },
+      { name: "Services", url: "/services" },
+      { name: "Study Destination", url: "/studydestination" },
+      { name: "Career", url: "/career" },
+      { name: "Blog", url: "/blog" },
+      { name: "Gallery", url: "/gallery" },
     ],
   },
   {
     title: "Our Services",
     links: [
-      { name: "Career Counseling", url: "/" },
-      { name: "Student Admissions", url: "/" },
-      { name: "Visa Support", url: "/" },
-      { name: "IELTS/PTE Preparation", url: "/" },
-      { name: "Financial Advice", url: "/" },
+      { name: "Career Counseling", url: "/career" },
+      { name: "Student Admissions", url: "/student-admissions" },
+      { name: "Visa Support", url: "/contact" },
+      { name: "IELTS/PTE Preparation", url: "/contact" },
+      { name: "Financial Advice", url: "/contact" },
     ],
   },
 ];
 
 export const contactData = [
   {
-   img: "/Images/MapPin.webp",
-    text: "123 Main Street, Business District, City, Country",
+    img: "/Images/phone.webp",
+    type: "phone",
+    href: "+923214638592",
+    text: "+92 321 4638592 — Academic & Training Department",
   },
   {
-   img: "/Images/phone.webp",
-    text: "+1 234 567 8900",
-  },
-  {
-   img: "/Images/Mail.webp",
-    text: "info@upskills.com",
+    img: "/Images/Mail.webp",
+    type: "email",
+    href: "info@ucms.net.au",
+    text: "info@ucms.net.au",
   },
 ];
 

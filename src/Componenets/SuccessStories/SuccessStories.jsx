@@ -207,8 +207,9 @@ const SuccessStories = () => {
     <div>
       <Navbar />
       <Head
-        title="Success Stories"
-        subtitle="Real students, real dreams, real success. Read how we've helped thousands achieve their study abroad goals"
+        title="Turning Dreams Into Destinations "
+        subtitle="Explore real success stories of students who achieved their study abroad goals with 
+UCMS. "
       />
 
       <div className="min-h-screen px-4">

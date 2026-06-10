@@ -9,19 +9,19 @@ const Herosection = () => {
 
   const slides = [
     {
-      heading: "Your Journey to Academic Excellence Starts Here",
-      sub: "Expert guidance, personalized support, and proven success in helping students achieve their international education dreams..",
-      img: "/Images/heroimg.webp"
+      heading: "Guiding You Towards Success Through Education, Training & Expert Counselling",
+      highlight: "Building Brighter Futures Every Day",
+      sub: "Empowering individuals to achieve academic excellence, professional growth, and personal success through expert guidance and quality training.",
     },
     {
-      heading: "Study abroad with confidently expert guidance support",
-      sub: "We help you achieve your global education dreams, Join thousands of successful students worldwide.",
-      img: "/Images/heroimg.webp"
+      heading: "Let's Master the Skills That Employers Are Looking For",
+      highlight: "Develop Skills Today, Build a Better Tomorrow.",
+      sub: "Empowering students, professionals, and entrepreneurs to build successful careers and businesses through practical IT and digital skills training.",
     },
     {
-      heading: "Build Your Future Today and explore the knowledge",
-      sub: "Join thousands of successful students worldwide, We help you achieve your global education dreams",
-      img: "/Images/heroimg.webp"
+      heading: "Let's Achieve Academic Excellence Through Quality Education & Training",
+      highlight: "Building Knowledge, Developing Skills, Shaping Successful Futures",
+      sub: "Empowering students and professionals to achieve academic excellence and career success through quality education, practical learning, and expert guidance.",
     }
   ]
 
@@ -54,21 +54,20 @@ const Herosection = () => {
     >
       <div className='flex flex-col justify-center items-center md:flex-row'>
 
-        <div className='w-full flex flex-col gap-2 sm:gap-3 lg:gap-6 md:w-[50%] px-10 py-7 md:px-8 md:py-10 lg:px-15 lg:py-10'>
-          
+        <div className='w-full flex flex-col gap-2 sm:gap-3 lg:gap-6 md:w-[50%] px-6 py-7 md:px-8 md:py-10 lg:px-15 lg:py-10'>
+
           <h1
-            className='font-libre font-medium text-[40px] md:text-[55px] leading-[50px] lg:leading-[75px] text-white tracking-[3px] break-words'
+            className='font-libre font-medium text-[30px] md:text-[40px] leading-[40px] lg:leading-[50px] text-white tracking-[3px] break-words'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           >
-            {slide.heading.split(" ").slice(0, 3).join(" ")}{" "}
-            <span className='font-praise text-[40px] md:text-[54px] lg:text-[64px] text-[#FF6B35]'>
-              {slide.heading.split(" ").slice(3, 5).join(" ")}
-            </span>{" "}
-            Starts Here
+            {slide.heading}{" "}
+            <span className='font-praise text-[30px] md:text-[54px] lg:text-[40px] text-[#FF6B35]'>
+              {slide.highlight}
+            </span>
           </h1>
 
           <p
-            className='font-arimo font-medium text-[15px] md:text-[18px] md:leading-[28px] leading-[20px] text-white break-works'
+            className='font-arimo font-medium text-[15px] md:text-[16px] md:leading-[28px] leading-[23px] text-white break-words'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           >
             {slide.sub}
@@ -91,10 +90,9 @@ const Herosection = () => {
 
         <div className='w-full md:w-[50%] sm:px-10 sm:py-7 px-0 py-0 lg:px-15 lg:py-10'>
           <img
-            src={slide.img}
+            src="/Images/heroimg.webp"
             alt="Girl Image"
             className='w-[450px] md:w-[580px] object-fit'
-            style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           />
         </div>
 

@@ -48,12 +48,11 @@ const Welcome = () => {
                   </button>
 
                   {/* Dropdown Content */}
-                  {openIndex === index && (
-                    <div className="px-4 pb-3 text-sm text-gray-600">
-                      {/* You can replace this with real content */}
-                      <p>Details about {item.title}</p>
-                    </div>
-                  )}
+               {openIndex === index && (
+  <div className="px-4 pb-3 text-sm text-gray-600">
+    <p>{item.description}</p>
+  </div>
+)}
                 </div>
               ))}
             </div>

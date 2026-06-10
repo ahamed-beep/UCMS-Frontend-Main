@@ -171,23 +171,7 @@ const Dashboardpage = ({ onNavigate }) => {
 
       <RecentNotification />
 
-      <div className="rounded-[10px] p-6 bg-gradient-to-r from-[#155DFC] to-[#9810FA] shadow-[0px_4px_6px_-4px_#0000001A,0px_10px_15px_-3px_#0000001A] flex flex-col gap-5 md:flex-row justify-between items-center">
-        <div className="space-y-2 max-w-md">
-          <div className='flex gap-2'>
-            <img src="/Images/catalog.webp" alt="catalog" className='w-5 h-5 sm:w-8 sm:h-8' />
-            <h2 className="font-inter font-bold text-[18px] md:text-[24px] text-white">Explore Our Course Catalog</h2>
-          </div>
-          <p className="font-inter font-normal text-[14px] md:text-[16px] text-[#DBEAFE]">Browse IELTS, PTE, TOEFL courses designed to help you achieve your goals.</p>
-          <button onClick={() => navigiate('/services')} className='flex font-inter font-semibold text-[14px] md:text-[16px] bg-white text-[#0F4C8A] text-start rounded-[10px] py-3 px-4 mt-5 cursor-pointer'>
-            Browse Courses <IoMdArrowForward className='ml-2' size={20} />
-          </button>
-        </div>
-        <div className="bg-white/10 p-4 md:p-6 rounded-xl text-center">
-          <p className="font-inter font-normal text-[12px] md:text-sm text-[#DBEAFE]">Featured Offer</p>
-          <p className="font-inter font-bold text-[28px] md:text-[30px] text-white">40% OFF</p>
-          <p className="font-inter font-normal text-[10px] md:text-[12px] text-[#DBEAFE]">On IELTS Preparation</p>
-        </div>
-      </div>
+    
     </div>
   );
 };

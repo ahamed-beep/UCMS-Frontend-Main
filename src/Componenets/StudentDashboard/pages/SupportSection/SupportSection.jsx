@@ -5,36 +5,27 @@ import axiosInstance from "../../../../Api/axiosInstance";
 const supportCards = [
   {
     title: "Email Support",
-    info: "support@upskills.com",
+    info: "info@ucms.net.au",
     sub: "Response within 24 hours",
     icon: "/Images/Mail.webp",
     color: "bg-blue-100 text-blue-600",
+    href: "mailto:info@ucms.net.au",
   },
   {
     title: "Phone Support",
-    info: "+1 234 567 8900",
-    sub: "Mon-Fri: 9:00 AM - 6:00 PM",
+    info: "+92 322 900 8855",
+    sub: "IT Department",
     icon: "/Images/greenphone.webp",
     color: "bg-green-100 text-green-600",
-  },
-  {
-    title: "Live Chat",
-    info: "Chat with our team",
-    sub: "Available during office hours",
-    icon: "/Images/chat.webp",
-    color: "bg-purple-100 text-purple-600",
+    href: "tel:+923229008855",
   },
 ];
-
 const faqs = [
   {
     q: "How do I submit an assignment?",
     a: "Go to the Assignments page, upload your file and click submit.",
   },
-  {
-    q: "Can I retake a quiz if I'm not satisfied with my score?",
-    a: "Yes, multiple attempts may be allowed depending on settings.",
-  },
+ 
   {
     q: "How do I access course materials?",
     a: "Navigate to your enrolled course to access all materials.",
@@ -111,18 +102,23 @@ const SupportSection = () => {
   return (
     <div className="py-4 md:py-6 space-y-4 md:space-y-6">
 
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2 gap-4">
         {supportCards.map((card, i) => (
-          <div key={i} className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-2">
-            <div className={`w-12 h-12 flex items-center justify-center rounded-[10px] ${card.color}`}>
-              <img src={card.icon} alt="icon" width={24} height={24} />
-            </div>
-            <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">{card.title}</h3>
-            <div>
-              <p className="font-inter font-medium text-xs md:text-sm text-[#101828]">{card.info}</p>
-              <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">{card.sub}</p>
-            </div>
-          </div>
+ <div key={i} className="border-[0.89px] border-[#E5E7EB] bg-white rounded-[10px] shadow-sm p-4 md:p-6 space-y-2">
+  <div className={`w-12 h-12 flex items-center justify-center rounded-[10px] ${card.color}`}>
+    <img src={card.icon} alt="icon" width={24} height={24} />
+  </div>
+  <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">{card.title}</h3>
+  <div>
+    <a
+      href={card.href}
+      className="font-inter font-medium text-xs md:text-sm text-[#0F4C8A] hover:underline"
+    >
+      {card.info}
+    </a>
+    <p className="font-inter font-normal text-[10px] md:text-xs text-[#6A7282]">{card.sub}</p>
+  </div>
+</div>
         ))}
       </div>
 
@@ -278,21 +274,7 @@ const SupportSection = () => {
         </div>
       </div>
 
-      <div className="bg-gradient-to-b from-[#E3EDF7] to-[#F3E8FF] p-4 md:p-6 rounded-[10px] border-[0.89px] border-[#BEDBFF] space-y-2">
-        <h3 className="font-inter font-semibold text-[16px] md:text-[18px] text-[#101828]">Still need help?</h3>
-        <p className="font-inter font-normal text-xs md:text-sm text-[#4A5565]">
-          Our support team is available Monday to Friday, 9:00 AM to 6:00 PM. For urgent matters outside office hours, please email us and we'll respond as soon as possible.
-        </p>
-        <div className="space-x-2">
-        <a 
-  href="tel:+923001234567" 
-  className="font-inter font-medium text-xs md:text-sm bg-[#155DFC] text-white px-3 py-2 rounded-[10px]"
->
-  Schedule a Call
-</a>
-       
-        </div>
-      </div>
+   
 
     </div>
   );

@@ -20,11 +20,11 @@ export const events = [
 ];
 
 export const programsData = [
-  { title: "Student File Assessment" },
-  { title: "ILETS & PTE Preparation" },
-  { title: "Career Counseling" },
-  { title: "Visa Support" },
-  { title: "Financial Advise" },
-  { title: "Student Admissions" },
-  { title: "Interview & Test Preparation" },
+  { title: "Student File Assessment", description: "Evaluation of academic profile for study opportunities." },
+  { title: "IELTS & PTE Preparation", description: "Expert coaching to achieve your target score." },
+  { title: "Career Counseling", description: "Professional guidance for informed career decisions." },
+  { title: "Visa Support", description: "Complete assistance for a smooth visa process." },
+  { title: "Financial Advice", description: "Guidance on budgeting, fees, and funding options." },
+  { title: "Student Admissions", description: "End-to-end support for securing admission." },
+  { title: "Interview & Test Preparation", description: "Training to build confidence and succeed in assessments." },
 ];

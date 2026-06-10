@@ -15,7 +15,8 @@ const LearningHub = () => {
       <Navbar />
       <Head
         title="Learning Hub"
-        subtitle="Your complete resource center for test preparation, study abroad guidance, and career development"
+        subtitle="Learn smarter, prepare better, and achieve your academic and career goals with expert 
+resources.  "
         icon={<BookOpen size={64}/>}
       />
 

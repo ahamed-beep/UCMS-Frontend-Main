@@ -57,7 +57,7 @@ const Navbar = () => {
             <div className={`fixed top-0 left-0 h-full w-[270px] z-50 md:hidden transition-transform duration-300 bg-[#0F4C8A] flex flex-col ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
                 <div className="flex items-center justify-between px-5 py-4 border-b border-white/20">
-                    <img src="/Images/Logo.webp" className="w-[130px] md:w-[145px]" alt="UCMS Logo" />
+                    <img src="/Images/footer.webp" className="w-[130px] md:w-[145px]" alt="UCMS Logo" />
                     <button onClick={() => setSidebarOpen(false)} className="text-white">
                         <X size={22} />
                     </button>

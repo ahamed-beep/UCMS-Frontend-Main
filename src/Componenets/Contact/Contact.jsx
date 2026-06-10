@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Clock, Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from "lucide-react";
 import Navbar from "../../ResuableUi/Navbar";
 import Footer from "../../ResuableUi/Footer";
 import Head from "../../ResuableUi/Head";
@@ -25,30 +25,29 @@ const Contact = () => {
     if (status === "error") setStatus("idle");
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setStatus("loading");
-  setErrorMessage("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
 
-  try {
-    await axiosInstance.post("/contact", formData);
-
-    setStatus("success");
-    setFormData({ fullName: "", email: "", phone: "", subject: "", message: "" });
-  } catch (error) {
-    setStatus("error");
-    setErrorMessage(
-      error.response?.data?.message || "Something went wrong. Please try again."
-    );
-  }
-};
+    try {
+      await axiosInstance.post("/contact", formData);
+      setStatus("success");
+      setFormData({ fullName: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage(
+        error.response?.data?.message || "Something went wrong. Please try again."
+      );
+    }
+  };
 
   return (
     <div>
       <Navbar />
       <Head
         title="Contact Us"
-        subtitle="Get in touch with our expert counselors. We're here to help you achieve your study abroad goals"
+        subtitle="Talk to our experts and take the first step toward your education and career goals."
       />
       <div className="bg-background">
         <div className="px-10 md:px-22 pt-10 md:pt-20">
@@ -124,7 +123,7 @@ const handleSubmit = async (e) => {
                     </label>
                     <input
                       name="phone"
-                      placeholder="+1 234 567 8900"
+                      placeholder="+92 300 0000000"
                       value={formData.phone}
                       onChange={handleChange}
                       required
@@ -186,86 +185,179 @@ const handleSubmit = async (e) => {
             <aside className="space-y-6 lg:col-span-2">
               <h2 className="text-2xl text-[#0A0A0A] font-bold text-foreground">Our Offices</h2>
 
+              {/* ── Main Office (Australia) ── */}
               <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
-                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Main Office</h3>
-                <div className="space-y-2">
-                  <div className="flex items-start gap-1">
-                    <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <MapPin color="#0F4C8A" className="h-5 w-5 mb-3 text-primary" />
-                    </div>
-                    <span className="text-sm text-[#364153] font-inter wrap-anywhere">123 Main Street, Business District, City, Country</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Phone color="#0F4C8A" className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm text-[#364153] font-inter">+1 234 567 8900</span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Mail color="#0F4C8A" className="h-5 w-5 text-primary" />
-                    </div>
-                    <span className="text-sm text-[#364153] font-inter">info@yoursite.com</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
-                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Branch Office</h3>
+                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Main Office – Australia</h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2.5">
                     <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <MapPin color="#0F4C8A" className="h-5 w-5 mb-3 text-primary" />
+                      <MapPin color="#0F4C8A" className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="text-sm text-[#364153] font-inter wrap-anywhere">456 Park Avenue, Downtown, City, Country</span>
+                    <span className="text-sm text-[#364153] font-inter">
+                      Unit-1/88, Bathurst Street, Liverpool NSW 2170, Australia
+                    </span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Phone color="#0F4C8A" className="h-5 w-5 text-primary" />
+                      <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="text-sm text-[#364153] font-inter">+1 234 567 8901</span>
+                    <a
+                      href="tel:+924235692472"
+                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+                    >
+                      +92 42 3569 2472
+                    </a>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Mail color="#0F4C8A" className="h-5 w-5 text-primary" />
+                      <Mail color="#0F4C8A" className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="text-sm text-[#364153] font-inter">branch@yoursite.com</span>
+                    <a
+                      href="mailto:info@ucms.net.au"
+                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors wrap-anywhere"
+                    >
+                      info@ucms.net.au
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-xl p-5 bg-gradient-to-br from-[#0F4C8A] to-[#193CB8]">
-                <div className="mb-3 flex items-center gap-1">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-                    <Clock color="#FFFFFF" className="h-5 w-5" />
+              {/* ── Branch Office (Pakistan) ── */}
+              <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
+                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Branch Office – Pakistan</h3>
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2.5">
+                    <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <MapPin color="#0F4C8A" className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-sm text-[#364153] font-inter">
+                      225-Y, Level-1, Commercial Block, Phase-3, DHA, Lahore, Pakistan
+                    </span>
                   </div>
-                  <h3 className="font-bold text-lg font-inter text-[#FFFFFF]">Working Hours</h3>
-                </div>
-                <div className="space-y-1.5 text-md font-inter">
-                  <div className="flex justify-between">
-                    <span className="text-[#FFFFFF]">Monday - Friday</span>
-                    <span className="font-medium text-[#FFFFFF]">9:00 AM - 6:00 PM</span>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+                    </div>
+                    <a
+                      href="tel:+924235692472"
+                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+                    >
+                      +92 42 3569 2472
+                    </a>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#FFFFFF]">Saturday</span>
-                    <span className="font-medium text-[#FFFFFF]">9:00 AM - 1:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#FFFFFF]">Sunday</span>
-                    <span className="font-medium text-[#FFFFFF]">Closed</span>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Mail color="#0F4C8A" className="h-4 w-4 text-primary" />
+                    </div>
+                    <a
+                      href="mailto:applications@ucms.net.au"
+                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors wrap-anywhere"
+                    >
+                      applications@ucms.net.au
+                    </a>
                   </div>
                 </div>
               </div>
 
+              {/* ── Department Contacts ── */}
+              <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
+                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Department Contacts</h3>
+                <div className="space-y-3">
+
+                  {/* Study Abroad & Migration */}
+                  <div>
+                    <p className="text-xs font-semibold text-[#0F4C8A] font-inter uppercase tracking-wide mb-1">
+                      Study Abroad &amp; Migration
+                    </p>
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+                      </div>
+                      <a
+                        href="tel:+923008483375"
+                        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+                      >
+                        +92 300 848 3375
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* IT Department */}
+                  <div>
+                    <p className="text-xs font-semibold text-[#0F4C8A] font-inter uppercase tracking-wide mb-1">
+                      IT Department
+                    </p>
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+                      </div>
+                      <a
+                        href="tel:+923229008855"
+                        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+                      >
+                        +92 322 900 8855
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Academic & Training */}
+                  <div>
+                    <p className="text-xs font-semibold text-[#0F4C8A] font-inter uppercase tracking-wide mb-1">
+                      Academic &amp; Training
+                    </p>
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+                      </div>
+                      <a
+                        href="tel:+923214638592"
+                        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+                      >
+                        +92 321 463 8592
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Marketing */}
+                  <div>
+                    <p className="text-xs font-semibold text-[#0F4C8A] font-inter uppercase tracking-wide mb-1">
+                      Marketing
+                    </p>
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+                        <Mail color="#0F4C8A" className="h-4 w-4 text-primary" />
+                      </div>
+                      <a
+                        href="mailto:marketing@ucms.net.au"
+                        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors wrap-anywhere"
+                      >
+                        marketing@ucms.net.au
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* ── Quick Actions ── */}
               <div className="space-y-3 p-5 rounded-2xl bg-[#F9FAFB] font-inter">
                 <h3 className="text-lg font-bold text-[#0A0A0A]">Quick Actions</h3>
                 <div className="flex flex-col gap-2.5 text-[#FFFFFF]">
-                  <Link to="/consultation" className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0F4C8A] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#193CB8]">
+                  <Link
+                    to="/consultation"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0F4C8A] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#193CB8]"
+                  >
                     Book Consultation
                   </Link>
-                  <button className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#12E423] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#0ecc1e]">
+                  <a
+                    href="https://wa.me/923008483375"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#12E423] px-4 py-2 text-md font-semibold transition-colors hover:bg-[#0ecc1e] text-white"
+                  >
+                    <MessageCircle className="h-5 w-5" />
                     WhatsApp Chat
-                  </button>
+                  </a>
                 </div>
               </div>
             </aside>
