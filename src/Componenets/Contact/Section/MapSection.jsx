@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
-const STORE_LAT = 31.3931074;
-const STORE_LNG = 74.2516419;
+const STORE_LAT = -33.9215;
+const STORE_LNG = 150.9168;
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const MapSection = () => {
@@ -59,7 +59,7 @@ const MapSection = () => {
     const marker = new window.google.maps.Marker({
       position: storeLocation,
       map,
-      title: "Rainbow Cash & Carry",
+      title: "UCMS – Main Office",
       animation: window.google.maps.Animation.DROP,
       icon: {
         path: window.google.maps.SymbolPath.CIRCLE,
@@ -79,12 +79,12 @@ const MapSection = () => {
     container.style.minWidth = "200px";
 
     const title = document.createElement("h3");
-    title.textContent = "Rainbow Cash & Carry";
+    title.textContent = "UCMS – Main Office";
     title.style.cssText = "margin:0 0 6px;color:#0F4C8A;font-size:15px;font-weight:700;";
 
     const address = document.createElement("p");
     address.style.cssText = "margin:0;color:#364153;font-size:13px;line-height:1.5;";
-    address.innerHTML = "Valencia Town, Lahore<br>Punjab, Pakistan";
+    address.innerHTML = "Unit-1/88, Bathurst Street<br>Liverpool NSW 2170, Australia";
 
     const link = document.createElement("a");
     link.href = directionsUrl;

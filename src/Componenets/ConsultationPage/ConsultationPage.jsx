@@ -30,14 +30,12 @@ const Booking = () => {
       .get("/consultation-slots/active")
       .then((res) => {
         // 🔍 DEBUG
-        console.log("=== ACTIVE SLOTS RESPONSE ===", res.data);
 
         // Unwrap any nesting
         let raw = res.data;
         if (raw?.data) raw = raw.data;
         if (raw?.data) raw = raw.data;
 
-        console.log("=== ACTIVE SLOTS UNWRAPPED ===", raw);
 
         const list = Array.isArray(raw) ? raw : [];
         // Normalize _id → id
@@ -47,7 +45,6 @@ const Booking = () => {
           times: Array.isArray(s.times) ? s.times : [],
         }));
 
-        console.log("=== ACTIVE SLOTS NORMALIZED ===", normalized);
         setSlots(normalized);
       })
       .catch((err) => {
@@ -243,7 +240,7 @@ const Booking = () => {
                   <p className="text-sm text-[#64748b]">Loading available dates...</p>
                 ) : slots.length === 0 ? (
                   <p className="text-sm text-red-500">
-                    Abhi koi date available nahi hai. Baad mein try karein.
+                 No dates are currently available. Please check back later.
                   </p>
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -275,7 +272,7 @@ const Booking = () => {
                   </label>
                   {availableTimes.length === 0 ? (
                     <p className="text-sm text-red-500">
-                      Is date ke liye koi time available nahi.
+                    No time slots available for this date.
                     </p>
                   ) : (
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

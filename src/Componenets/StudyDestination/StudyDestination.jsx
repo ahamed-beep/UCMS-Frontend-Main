@@ -32,7 +32,7 @@ setDestinations(data);
       <Navbar />
       <Head
         title="Study Destinations"
-        subtitle="Choose from the world's top education destinations and unlock your potential"
+        subtitle="Your journey to world-class education starts with the right destination.  "
       />
       <div className="bg-[#FFFFFF] py-12 px-4">
         <div className="md:px-22 mx-auto">

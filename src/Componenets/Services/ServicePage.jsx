@@ -160,7 +160,8 @@ const ServicesPage = () => {
       <Navbar />
       <Head
         title="Our Services"
-        subtitle="Discover our range of professional services designed to meet your needs."
+        subtitle="Everything you need for education, skills development, and career success — all in one 
+place. "
       />
       <div className="font-inter text-gray-900 bg-[#FFFFFF]">
         <div className="md:px-22 pt-8 pb-16">

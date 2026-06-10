@@ -1,20 +1,21 @@
 export const aboutData = {
   title: "Our Story",
   description: [
-    "Founded in 2014, Upskills Consultancy & Migration Services has been at the forefront of international education consulting, helping thousands of students realize their dreams of studying abroad at prestigious universities worldwide.",
-    "What started as a small consultancy has grown into a comprehensive education platform, offering not just application support, but a complete ecosystem of learning resources, test preparation, and ongoing student support.",
-    "With offices in major cities and partnerships with over 500 universities globally, we've successfully guided more than 5,000 students to their dream destinations across the UK, USA, Canada, Australia, and Europe."
+    { text: "Founded with a vision to empower individuals through education, professional development, and guidance, Upskills Consultants (UCMS) has become a trusted institution for students, professionals, and families.", bold: true },
+    { text: "At UCMS, we provide comprehensive services including Study Abroad Consultancy, Academic Courses, IELTS/PTE Preparation, Computer Courses, Training & Development Programs, Career Counselling, Family Counselling, and Marriage Counselling.", bold: false },
+    { text: "Our mission is to help individuals achieve their academic, career, and personal goals through expert guidance, quality training, and personalized support. Whether pursuing international education, developing professional skills, or seeking life guidance, UCMS is committed to creating meaningful opportunities and lasting success.", bold: false },
+    { text: "Today, UCMS continues to inspire growth, build confidence, and help people create brighter futures for themselves and their families.", bold: true },
   ],
   cards: [
     {
       icon: "/Images/eye.webp",
       title: "Our Vision",
-      text: "To be the most trusted and comprehensive platform for international education, making quality education accessible to every deserving student regardless of their background or circumstances."
+      text: "To be a trusted and leading institution that empowers individuals through education, professional development, and counselling, helping them unlock their full potential and achieve lifelong success. We envision a future where every student, professional, and family has access to the guidance, skills, and opportunities needed to thrive academically, professionally, and personally."
     },
     {
       icon: "/Images/ques.webp",
       title: "Our Mission",
-      text: "To provide world-class educational consulting services, combining personalized guidance with innovative learning resources, ensuring every student achieves their full potential in the global academic landscape."
+      text: "To provide exceptional education, training, and counselling services through personalized guidance, professional expertise, and a student-centered approach. We are committed to empowering individuals with the knowledge, skills, and confidence needed to achieve their academic, professional, and personal goals while creating meaningful opportunities for growth and success."
     }
   ]
 };
@@ -28,7 +29,7 @@ export const processSteps = [
   },
   {
     id: 2,
-    image: "/Images/02.webp", 
+    image: "/Images/02.webp",
     title: "Profile Assessment",
     description: "Evaluating your academic credentials"
   },
@@ -49,31 +50,31 @@ export const processSteps = [
 export const teamMembers = [
   {
     id: 1,
-    image: "/Images/team1.webp",
-    title: "Dr. James Wilson",
-    description: "Director & Chief Advisor",
-    exp: "15+ years Experience"
+    image: "/Images/about/team1.webp",
+    title: "Muhammad Mumeez",
+    description: "Chairman",
+    exp: ""
   },
   {
     id: 2,
-    image: "/Images/team2.webp", 
-    title: "Sarah Thompson",
-    description: "Senior Counselor - UK & Europe",
-    exp: "12+ years Experience"
+    image: "/Images/about/team2.webp",
+    title: "Dr. Khalid Mahmood",
+    description: "CEO",
+    exp: ""
   },
   {
     id: 3,
-    image: "/Images/team3.webp",
-    title: "Michael Chen",
-    description: "Senior Counselor - USA & Canada",
-    exp: "10+ years Experience"
+    image: "/Images/about/team3.webp",
+    title: "Amjad Hussain",
+    description: "Director - Sales & Marketing",
+    exp: ""
   },
   {
     id: 4,
-    image: "/Images/team4.webp",
-    title: "Priya Sharma",
-    description: "Visa Specialist",
-    exp: "8+ years Experience"
+    image: "/Images/about/team4.webp",
+    title: "Miss Mubeen Akhtar",
+    description: "Operations Manager",
+    exp: ""
   }
 ];
 
@@ -84,7 +85,7 @@ export const Values = [
     description: "We maintain the highest standards of honesty and transparency in all our dealings.",
   },
   {
-    image: "/Images/value2.webp", 
+    image: "/Images/value2.webp",
     title: "Student-Centric Approach",
     description: "Your success is our mission. We tailor our services to meet your unique needs.",
   },
@@ -101,20 +102,20 @@ export const Values = [
 ];
 
 export const success = [
-    {
-        title: "10+",
-        subtitle: "Years of Excellence"
-    },
-    {
-        title: "5000+",
-        subtitle: "Students Placed"
-    },
-    {
-        title: "500+",
-        subtitle: "Partner Universities"
-    },
-    {
-        title: "95%",
-        subtitle: "Visa Success Rate"
-    },
+  {
+    title: "10+",
+    subtitle: "Years of Excellence"
+  },
+  {
+    title: "5000+",
+    subtitle: "Students Placed"
+  },
+  {
+    title: "500+",
+    subtitle: "Partner Universities"
+  },
+  {
+    title: "95%",
+    subtitle: "Visa Success Rate"
+  },
 ];
