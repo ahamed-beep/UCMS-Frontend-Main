@@ -111,14 +111,14 @@ const Herosection = () => {
         {/* BOTTOM — Image with top gradient overlay */}
         <div className='w-full relative overflow-hidden' style={{ marginTop: '-2px', background: '#1A2947', height: '340px' }}>
 
-          {/* Gradient on top of image — stronger fade into image */}
+          {/* Gradient on top of image — lighter fade into image */}
           <div
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
-              height: '180px',
+              height: '120px',
               background: "linear-gradient(180deg, #1A2947 0%, transparent 100%)",
               zIndex: 1,
               pointerEvents: 'none'
