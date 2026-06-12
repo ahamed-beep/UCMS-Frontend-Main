@@ -95,7 +95,7 @@ const Herosection = () => {
           <img
             src={slide.img}
             alt="Girl Image"
-            className=' h-100 w-150 object-fit'
+            className=' md:h-100 md:w-150 object-fit'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           />
         </div>
