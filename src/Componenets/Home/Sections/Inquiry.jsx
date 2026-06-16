@@ -34,11 +34,11 @@ const Inquiry = () => {
 
   return (
     <section>
-      <div className='w-[90%] flex flex-col lg:flex-row md:gap-5 gap-2 md:mt-16 mt-10 mx-auto'>
-        <div className='w-full flex justify-center items-center lg:w-1/3'>
-          <img src="/Images/inquiry.png" alt="Inquiry Page Image" className='w-[350px] md:w-[465px] object-cover' />
+      <div className='w-[90%] flex flex-col lg:flex-row md:gap-5 gap-2 md:mt-16 mt-10 mx-auto items-center'>
+        <div className='w-full flex justify-center items-center  lg:w-1/3 lg:self-center lg:sticky lg:top-10'>
+          <img src="/Images/inquiry.png" alt="Inquiry Page Image" className='w-[350px] md:w-[465px] md:mt-15 object-cover' />
         </div>
-        <div className='w-full lg:w-2/3 '>
+        <div className='w-full lg:w-2/3'>
           <h3 className='font-inter font-bold text-[20px] md:text-[30px] text-[#0A0A0A] text-center'>Quick Inquiry</h3>
           <div className='flex flex-col gap-0 md:gap-5 bg-white rounded-[14px] shadow-xl p-4 md:p-8 mt-1 md:mt-3'>
 
