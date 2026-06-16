@@ -40,7 +40,6 @@
 
         setProgress(progressRes.data.data ?? null);
 
-        // Get course IDs from enrollments (not schedule)
        const enrollments = enrollmentsRes.data.data?.data ?? enrollmentsRes.data.data ?? [];
         const enrolledCourseIds = [
           ...new Set(
