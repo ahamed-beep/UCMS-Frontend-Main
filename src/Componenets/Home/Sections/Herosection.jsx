@@ -68,11 +68,11 @@ const Herosection = () => {
 
         <div className='flex flex-col items-start gap-3 px-5 pt-14 pb-6'>
           <h1
-            className='font-libre font-medium text-[24px] leading-[34px] text-white tracking-[1px] break-words text-left w-full'
+            className='font-poppins font-medium text-[24px] leading-[34px] text-white tracking-[1px] break-words text-left w-full'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           >
             {slide.heading}{" "}
-            <span className='font-praise text-[26px] text-[#FF6B35]'>
+            <span className='font-poppins text-[26px] text-white'>
               {slide.highlight}
             </span>
           </h1>
