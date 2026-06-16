@@ -74,7 +74,7 @@ const About = () => {
                             <div key={i} className='border-[0.89px] border-[#E5E7EB] bg-white rounded-[14px] shadow-sm p-4 md:p-8'>
                                 <div className='flex items-center gap-3'>
                                     <img src={card.icon} alt="eye" width={32} height={32} />
-                                    <h3 className='font-bold text-[20px] md:text-[30px] text-[#0A0A0A]'>{card.title}</h3>
+                                    <h3 className='font-bold  text-[20px] md:text-[30px] text-[#0A0A0A]'>{card.title}</h3>
                                 </div>
                                 <p className='font-normal text-[12px] md:text-[16px] text-[#364153] wrap-anywhere'>{card.text}</p>
                             </div>

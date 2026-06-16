@@ -59,12 +59,12 @@ export const footerData = [
 ];
 
 export const contactData = [
-  {
-    img: "/Images/phone.webp",
-    type: "phone",
-    href: "+923214638592",
-    text: "+92 321 4638592 — Academic & Training Department",
-  },
+{
+  img: "/Images/phone.webp",
+  type: "phone",
+  href: "+923008483375",
+  text: "+92 300 8483375",
+},
   {
     img: "/Images/Mail.webp",
     type: "email",

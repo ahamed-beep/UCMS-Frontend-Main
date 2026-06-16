@@ -186,41 +186,53 @@ const Contact = () => {
               <h2 className="text-2xl text-[#0A0A0A] font-bold text-foreground">Our Offices</h2>
 
               {/* ── Main Office (Australia) ── */}
-              <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
-                <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Main Office – Australia</h3>
-                <div className="space-y-2">
-                  <div className="flex items-start gap-2.5">
-                    <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <MapPin color="#0F4C8A" className="h-4 w-4 text-primary" />
-                    </div>
-                    <span className="text-sm text-[#364153] font-inter">
-                      Unit-1/88, Bathurst Street, Liverpool NSW 2170, Australia
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
-                    </div>
-                    <a
-                      href="tel:+924235692472"
-                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
-                    >
-                      +92 42 3569 2472
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <Mail color="#0F4C8A" className="h-4 w-4 text-primary" />
-                    </div>
-                    <a
-                      href="mailto:info@ucms.net.au"
-                      className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors wrap-anywhere"
-                    >
-                      info@ucms.net.au
-                    </a>
-                  </div>
-                </div>
-              </div>
+           {/* ── Main Office (Australia) ── */}
+<div className="p-4.5 rounded-2xl bg-[#F9FAFB]">
+  <h3 className="text-lg text-[#0A0A0A] font-bold font-inter mb-3">Main Office – Australia</h3>
+  <div className="space-y-2">
+    <div className="flex items-start gap-2.5">
+      <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+        <MapPin color="#0F4C8A" className="h-4 w-4 text-primary" />
+      </div>
+      <span className="text-sm text-[#364153] font-inter">
+        Unit-1/88, Bathurst Street, Liverpool NSW 2170, Australia
+      </span>
+    </div>
+    <div className="flex items-center gap-2.5">
+      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+      </div>
+      <a
+        href="tel:+924235692472"
+        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+      >
+        +92 42 3569 2472
+      </a>
+    </div>
+    <div className="flex items-center gap-2.5">
+      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
+      </div>
+      <a
+        href="tel:+61412335176"
+        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
+      >
+        +61 412 335 176
+      </a>
+    </div>
+    <div className="flex items-center gap-2.5">
+      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
+        <Mail color="#0F4C8A" className="h-4 w-4 text-primary" />
+      </div>
+      <a
+        href="mailto:info@ucms.net.au"
+        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors wrap-anywhere"
+      >
+        info@ucms.net.au
+      </a>
+    </div>
+  </div>
+</div>
 
               {/* ── Branch Office (Pakistan) ── */}
               <div className="p-4.5 rounded-2xl bg-[#F9FAFB]">

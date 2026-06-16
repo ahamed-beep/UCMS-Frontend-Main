@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
-const STORE_LAT = -33.9215;
-const STORE_LNG = 150.9168;
+const PAKISTAN_LAT = 31.4816;
+const PAKISTAN_LNG = 74.4014;
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const MapSection = () => {
@@ -29,10 +29,10 @@ const MapSection = () => {
   const initializeMap = () => {
     if (!mapRef.current) return;
 
-    const storeLocation = { lat: STORE_LAT, lng: STORE_LNG };
+    const pakistanLocation = { lat: PAKISTAN_LAT, lng: PAKISTAN_LNG };
 
     const map = new window.google.maps.Map(mapRef.current, {
-      center: storeLocation,
+      center: pakistanLocation,
       zoom: 15,
       mapTypeControl: false,
       fullscreenControl: true,
@@ -57,9 +57,9 @@ const MapSection = () => {
     mapInstanceRef.current = map;
 
     const marker = new window.google.maps.Marker({
-      position: storeLocation,
+      position: pakistanLocation,
       map,
-      title: "UCMS – Main Office",
+      title: "UCMS – Branch Office",
       animation: window.google.maps.Animation.DROP,
       icon: {
         path: window.google.maps.SymbolPath.CIRCLE,
@@ -71,23 +71,21 @@ const MapSection = () => {
       },
     });
 
-    const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${STORE_LAT},${STORE_LNG}`;
-
     const container = document.createElement("div");
     container.style.fontFamily = "'Segoe UI', sans-serif";
     container.style.padding = "8px 4px";
     container.style.minWidth = "200px";
 
     const title = document.createElement("h3");
-    title.textContent = "UCMS – Main Office";
+    title.textContent = "UCMS – Branch Office";
     title.style.cssText = "margin:0 0 6px;color:#0F4C8A;font-size:15px;font-weight:700;";
 
     const address = document.createElement("p");
     address.style.cssText = "margin:0;color:#364153;font-size:13px;line-height:1.5;";
-    address.innerHTML = "Unit-1/88, Bathurst Street<br>Liverpool NSW 2170, Australia";
+    address.innerHTML = "225-Y, Level-1, Commercial Block<br>Phase-3, DHA, Lahore, Pakistan";
 
     const link = document.createElement("a");
-    link.href = directionsUrl;
+    link.href = `https://www.google.com/maps/dir/?api=1&destination=${PAKISTAN_LAT},${PAKISTAN_LNG}`;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.textContent = "Get Directions";
@@ -97,10 +95,7 @@ const MapSection = () => {
     container.appendChild(address);
     container.appendChild(link);
 
-    const infoWindow = new window.google.maps.InfoWindow({
-      content: container,
-    });
-
+    const infoWindow = new window.google.maps.InfoWindow({ content: container });
     infoWindow.open(map, marker);
 
     marker.addListener("click", () => {
@@ -116,7 +111,7 @@ const MapSection = () => {
       <div className="overflow-hidden rounded-2xl border border-border shadow-lg relative">
         <div ref={mapRef} className="h-[420px] w-full" />
         <a
-          href={`https://www.google.com/maps/dir/?api=1&destination=${STORE_LAT},${STORE_LNG}`}
+          href={`https://www.google.com/maps/dir/?api=1&destination=${PAKISTAN_LAT},${PAKISTAN_LNG}`}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute bottom-5 right-5 inline-flex items-center gap-2 bg-[#0F4C8A] text-white font-inter font-semibold text-sm px-4 py-2.5 rounded-xl shadow-lg hover:bg-[#193CB8] transition-colors z-10"

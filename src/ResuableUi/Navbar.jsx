@@ -1,16 +1,46 @@
 import React, { useState } from 'react'
 import useScrollToSection from "../hooks/useScrollToSection";
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const scrollToSection = useScrollToSection();
+    const location = useLocation();
 
     const handleNavClick = (sectionId) => {
         setSidebarOpen(false);
         scrollToSection(sectionId);
     };
+
+    const isActive = (path) => location.pathname === path;
+
+    const linkClass = (path) =>
+        `hover:text-gray-800 cursor-pointer transition-all duration-200 ${
+            isActive(path)
+                ? 'text-[#032A94] font-semibold relative after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-[#032A94] after:rounded-full'
+                : ''
+        }`;
+
+    const mobileLinkClass = (path) =>
+        `cursor-pointer transition-all duration-200 px-3 py-2 rounded-lg ${
+            isActive(path)
+                ? 'bg-white/20 text-white font-semibold'
+                : 'hover:text-gray-300 text-white'
+        }`;
+
+    const navLinks = [
+        { to: '/career', label: 'Career', section: null },
+        { to: '/about', label: 'About Us', section: 'about' },
+        { to: '/services', label: 'Services', section: 'services' },
+        { to: '/studydestination', label: 'Study Destinations', section: 'study-destination' },
+        { to: '/learninghub', label: 'Learning Hub', section: 'learning-hub' },
+        { to: '/blog', label: 'Blog', section: 'blogs' },
+        { to: '/success/stories', label: 'Success Stories', section: 'success-stories' },
+        { to: '/gallery', label: 'Gallery', section: 'gallery' },
+        { to: '/event&announcements', label: 'Event', section: 'event' },
+        { to: '/contact', label: 'Contact', section: 'contact' },
+    ];
 
     return (
         <div>
@@ -22,16 +52,16 @@ const Navbar = () => {
                         </Link>
                         <div className="hidden md:flex items-center gap-[15px] lg:gap-[10px] text-sm text-gray-600">
                             <nav className="hidden md:flex justify-center items-center font-medium font-inter text-sm leading-[20px] text-[#0F4C8A] gap-x-5 xl:gap-[30px] flex-wrap">
-                                <Link to="/career" className="hover:text-gray-800 cursor-pointer">Career</Link>
-                                <Link to="/about" onClick={() => handleNavClick('about')} className="hover:text-gray-800 cursor-pointer">About Us</Link>
-                                <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-800 cursor-pointer">Services</Link>
-                                <Link to="/studydestination" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-800 cursor-pointer">Study Destinations</Link>
-                                <Link to="/learninghub" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-800 cursor-pointer">Learning Hub</Link>
-                                <Link to="/blog" onClick={() => handleNavClick('blogs')} className="hover:text-gray-800 cursor-pointer">Blog</Link>
-                                <Link to="/success/stories" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-800 cursor-pointer">Success Stories</Link>
-                                <Link to="/gallery" onClick={() => handleNavClick('gallery')} className="hover:text-gray-800 cursor-pointer">Gallery</Link>
-                                <Link to="/event&announcements" onClick={() => handleNavClick('event')} className="hover:text-gray-800 cursor-pointer">Event</Link>
-                                <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-800 cursor-pointer">Contact</Link>
+                                {navLinks.map(({ to, label, section }) => (
+                                    <Link
+                                        key={to}
+                                        to={to}
+                                        onClick={() => section && handleNavClick(section)}
+                                        className={linkClass(to)}
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
                             </nav>
                             <Link to='/login' className="font-inter font-medium leading-[20px] text-[#FFFFFF] text-center px-[4px] py-[8px] lg:px-[7px] lg:py-[15px] bg-[#0F4C8A] text-sm rounded-[10px] hover:opacity-90 transition">
                                 Student Portal
@@ -63,17 +93,17 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                <nav className="flex flex-col gap-4 px-4 py-6 font-medium font-inter text-sm leading-[20px] text-white">
-                    <Link to="/career" onClick={() => setSidebarOpen(false)} className="hover:text-gray-300 cursor-pointer">Career</Link>
-                    <Link to="/about" onClick={() => handleNavClick('about')} className="hover:text-gray-300 cursor-pointer">About Us</Link>
-                    <Link to="/services" onClick={() => handleNavClick('services')} className="hover:text-gray-300 cursor-pointer">Services</Link>
-                    <Link to="/studydestination" onClick={() => handleNavClick('study-destination')} className="hover:text-gray-300 cursor-pointer">Study Destinations</Link>
-                    <Link to="/learninghub" onClick={() => handleNavClick('learning-hub')} className="hover:text-gray-300 cursor-pointer">Learning Hub</Link>
-                    <Link to="/blog" onClick={() => handleNavClick('blogs')} className="hover:text-gray-300 cursor-pointer">Blog</Link>
-                    <Link to="/success/stories" onClick={() => handleNavClick('success-stories')} className="hover:text-gray-300 cursor-pointer">Success Stories</Link>
-                    <Link to="/gallery" onClick={() => handleNavClick('gallery')} className="hover:text-gray-300 cursor-pointer">Gallery</Link>
-                    <Link to="/event&announcements" onClick={() => handleNavClick('event')} className="hover:text-gray-300 cursor-pointer">Event</Link>
-                    <Link to="/contact" onClick={() => handleNavClick('contact')} className="hover:text-gray-300 cursor-pointer">Contact</Link>
+                <nav className="flex flex-col gap-2 px-4 py-6 font-medium font-inter text-sm leading-[20px]">
+                    {navLinks.map(({ to, label, section }) => (
+                        <Link
+                            key={to}
+                            to={to}
+                            onClick={() => section ? handleNavClick(section) : setSidebarOpen(false)}
+                            className={mobileLinkClass(to)}
+                        >
+                            {label}
+                        </Link>
+                    ))}
                 </nav>
 
                 <div className="px-5 mt-auto mb-8 flex flex-col gap-3">
