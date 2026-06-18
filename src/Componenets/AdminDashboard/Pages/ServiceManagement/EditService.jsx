@@ -120,7 +120,7 @@ const EditService = ({ editData, onSuccess, onCancel, onError }) => {
             <input className={inputCls} placeholder="e.g. Study Visa" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div>
-            <label className={labelCls}>Price (PKR) *</label>
+            <label className={labelCls}>Price  *</label>
             <input className={inputCls} type="number" min="0" placeholder="e.g. 5000" value={price} onChange={(e) => setPrice(e.target.value)} />
           </div>
         </div>

@@ -18,6 +18,7 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
     difficulty: "medium",
     timeLimitMinutes: 30,
     status: "active",
+    quizType: "standalone",
     questions: [emptyQuestion()],
   });
 
@@ -38,6 +39,7 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
             difficulty: d.difficulty,
             timeLimitMinutes: d.timeLimitMinutes,
             status: d.status,
+            quizType: d.quizType ?? "standalone",
             questions: d.questions.map((q) => ({
               question: q.question,
               options: q.options,
@@ -57,6 +59,7 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
         difficulty: "medium",
         timeLimitMinutes: 30,
         status: "active",
+        quizType: "standalone",
         questions: [emptyQuestion()],
       });
       setError("");
@@ -96,7 +99,8 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
     });
   };
 
-  const addQuestion = () => setForm((f) => ({ ...f, questions: [...f.questions, emptyQuestion()] }));
+  const addQuestion = () =>
+    setForm((f) => ({ ...f, questions: [...f.questions, emptyQuestion()] }));
 
   const removeQuestion = (qi) =>
     setForm((f) => ({ ...f, questions: f.questions.filter((_, i) => i !== qi) }));
@@ -109,8 +113,14 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
     }
     for (let i = 0; i < form.questions.length; i++) {
       const q = form.questions[i];
-      if (!q.question.trim()) { setError(`Question ${i + 1} text is required.`); return; }
-      if (q.options.some((o) => !o.trim())) { setError(`All options in question ${i + 1} are required.`); return; }
+      if (!q.question.trim()) {
+        setError(`Question ${i + 1} text is required.`);
+        return;
+      }
+      if (q.options.some((o) => !o.trim())) {
+        setError(`All options in question ${i + 1} are required.`);
+        return;
+      }
     }
     setLoading(true);
     try {
@@ -127,15 +137,27 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
     }
   };
 
-  const inputCls = "w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A] focus:ring-2 focus:ring-blue-100 transition-all";
+  const inputCls =
+    "w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A] focus:ring-2 focus:ring-blue-100 transition-all";
   const labelCls = "block text-xs font-medium text-[#64748b] mb-1.5";
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-xl" onClick={(e) => e.stopPropagation()}>
+    <div
+      className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
-          <h3 className="font-bold text-[#0f172a] text-base">{isEdit ? "Edit Quiz" : "Create Quiz"}</h3>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500 transition-colors">
+          <h3 className="font-bold text-[#0f172a] text-base">
+            {isEdit ? "Edit Quiz" : "Create Quiz"}
+          </h3>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-500 transition-colors"
+          >
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -144,19 +166,39 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
           <div className="grid grid-cols-2 gap-4">
             <div className="col-span-2">
               <label className={labelCls}>Title</label>
-              <input className={inputCls} placeholder="Quiz title" value={form.title} onChange={(e) => setField("title", e.target.value)} />
+              <input
+                className={inputCls}
+                placeholder="Quiz title"
+                value={form.title}
+                onChange={(e) => setField("title", e.target.value)}
+              />
             </div>
             <div className="col-span-2">
               <label className={labelCls}>Description</label>
-              <textarea className={`${inputCls} resize-none`} rows={2} placeholder="Short description" value={form.description} onChange={(e) => setField("description", e.target.value)} />
+              <textarea
+                className={`${inputCls} resize-none`}
+                rows={2}
+                placeholder="Short description"
+                value={form.description}
+                onChange={(e) => setField("description", e.target.value)}
+              />
             </div>
             <div>
               <label className={labelCls}>Category</label>
-              <input className={inputCls} placeholder="e.g. grammar" value={form.category} onChange={(e) => setField("category", e.target.value)} />
+              <input
+                className={inputCls}
+                placeholder="e.g. grammar"
+                value={form.category}
+                onChange={(e) => setField("category", e.target.value)}
+              />
             </div>
             <div>
               <label className={labelCls}>Difficulty</label>
-              <select className={inputCls} value={form.difficulty} onChange={(e) => setField("difficulty", e.target.value)}>
+              <select
+                className={inputCls}
+                value={form.difficulty}
+                onChange={(e) => setField("difficulty", e.target.value)}
+              >
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
@@ -164,31 +206,103 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
             </div>
             <div>
               <label className={labelCls}>Time Limit (minutes)</label>
-              <input type="number" className={inputCls} min={1} value={form.timeLimitMinutes} onChange={(e) => setField("timeLimitMinutes", Number(e.target.value))} />
+              <input
+                type="number"
+                className={inputCls}
+                min={1}
+                value={form.timeLimitMinutes}
+                onChange={(e) => setField("timeLimitMinutes", Number(e.target.value))}
+              />
             </div>
             <div>
               <label className={labelCls}>Status</label>
-              <select className={inputCls} value={form.status} onChange={(e) => setField("status", e.target.value)}>
+              <select
+                className={inputCls}
+                value={form.status}
+                onChange={(e) => setField("status", e.target.value)}
+              >
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
               </select>
+            </div>
+
+            {/* Quiz Type — yeh naya field hai */}
+            <div className="col-span-2">
+              <label className={labelCls}>Quiz Type</label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setField("quizType", "standalone")}
+                  className={`flex flex-col items-start px-4 py-3 rounded-xl border-2 transition-all text-left ${
+                    form.quizType === "standalone"
+                      ? "border-[#0F4C8A] bg-blue-50"
+                      : "border-gray-200 hover:border-gray-300 bg-white"
+                  }`}
+                >
+                  <span
+                    className={`text-sm font-semibold ${
+                      form.quizType === "standalone"
+                        ? "text-[#0F4C8A]"
+                        : "text-[#0f172a]"
+                    }`}
+                  >
+                    Standalone
+                  </span>
+                  <span className="text-xs text-[#64748b] mt-0.5">
+              Will be shown on the home page (public)
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setField("quizType", "lecture")}
+                  className={`flex flex-col items-start px-4 py-3 rounded-xl border-2 transition-all text-left ${
+                    form.quizType === "lecture"
+                      ? "border-[#0F4C8A] bg-blue-50"
+                      : "border-gray-200 hover:border-gray-300 bg-white"
+                  }`}
+                >
+                  <span
+                    className={`text-sm font-semibold ${
+                      form.quizType === "lecture"
+                        ? "text-[#0F4C8A]"
+                        : "text-[#0f172a]"
+                    }`}
+                  >
+                    Lecture / Course
+                  </span>
+                  <span className="text-xs text-[#64748b] mt-0.5">
+                   Will only be attached in the course dashboard
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-[#0f172a]">Questions</p>
-              <button onClick={addQuestion} className="flex items-center gap-1.5 text-xs font-medium text-[#0F4C8A] hover:underline">
+              <button
+                onClick={addQuestion}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#0F4C8A] hover:underline"
+              >
                 <Plus className="w-3.5 h-3.5" /> Add Question
               </button>
             </div>
 
             {form.questions.map((q, qi) => (
-              <div key={qi} className="border border-gray-200 rounded-xl p-4 space-y-3 bg-[#f8fafc]">
+              <div
+                key={qi}
+                className="border border-gray-200 rounded-xl p-4 space-y-3 bg-[#f8fafc]"
+              >
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-semibold text-[#64748b]">Question {qi + 1}</p>
+                  <p className="text-xs font-semibold text-[#64748b]">
+                    Question {qi + 1}
+                  </p>
                   {form.questions.length > 1 && (
-                    <button onClick={() => removeQuestion(qi)} className="text-red-400 hover:text-red-600 transition-colors">
+                    <button
+                      onClick={() => removeQuestion(qi)}
+                      className="text-red-400 hover:text-red-600 transition-colors"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   )}
@@ -218,7 +332,9 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-[#94a3b8]">Select radio button to mark correct answer</p>
+                <p className="text-xs text-[#94a3b8]">
+                  Select radio button to mark correct answer
+                </p>
               </div>
             ))}
           </div>
@@ -227,12 +343,26 @@ const CreateEditQuizModal = ({ open, onClose, onSaved, editData }) => {
         </div>
 
         <div className="px-6 py-4 border-t border-gray-100 flex gap-3 shrink-0">
-          <button onClick={onClose} disabled={loading} className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-[#334155] hover:bg-gray-50 transition-colors disabled:opacity-50">
+          <button
+            onClick={onClose}
+            disabled={loading}
+            className="flex-1 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-[#334155] hover:bg-gray-50 transition-colors disabled:opacity-50"
+          >
             Cancel
           </button>
-          <button onClick={handleSubmit} disabled={loading} className="flex-1 px-4 py-2.5 rounded-xl bg-[#0F4C8A] hover:bg-blue-800 text-sm font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+          <button
+            onClick={handleSubmit}
+            disabled={loading}
+            className="flex-1 px-4 py-2.5 rounded-xl bg-[#0F4C8A] hover:bg-blue-800 text-sm font-semibold text-white transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+          >
             {loading && (
-              <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg
+                className="animate-spin w-4 h-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
               </svg>
             )}
