@@ -29,20 +29,22 @@
       };
     }, []);
 
-    useEffect(() => {
-      const fetchAllQuizzes = async () => {
-        setFetchLoading(true);
-        try {
-          const res = await axiosInstance.get("/quizzes");
-          setQuizzes(res.data?.data?.data ?? []);
-        } catch {
-          setQuizzes([]);
-        } finally {
-          setFetchLoading(false);
-        }
-      };
-      fetchAllQuizzes();
-    }, []);
+  useEffect(() => {
+  const fetchAllQuizzes = async () => {
+    setFetchLoading(true);
+    try {
+      const res = await axiosInstance.get("/quizzes/admin", {
+        params: { quizType: "lecture", status: "active", limit: 100 },
+      });
+      setQuizzes(res.data?.data?.data ?? []);
+    } catch {
+      setQuizzes([]);
+    } finally {
+      setFetchLoading(false);
+    }
+  };
+  fetchAllQuizzes();
+}, []);
 
     const filtered = quizzes.filter((q) =>
       q.title.toLowerCase().includes(search.toLowerCase()) ||
