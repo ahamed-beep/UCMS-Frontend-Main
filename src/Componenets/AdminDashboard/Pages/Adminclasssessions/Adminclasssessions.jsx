@@ -7,8 +7,8 @@ import AdminTable from "../../../../ResuableUi/AdminTable";
 const EMPTY_FORM = {
   title: "",
   courseId: "",
-  scheduledAt: "",
-  durationMinutes: "",
+  startTime: "",
+  endTime: "",
   type: "Video",
   level: "",
   topics: "",
@@ -23,8 +23,8 @@ const SessionModal = ({ open, onClose, onSubmit, loading, initial, courses }) =>
       setForm({
         title: initial.title ?? "",
         courseId: initial.course?.id ?? "",
-        scheduledAt: initial.scheduledAt ? initial.scheduledAt.slice(0, 16) : "",
-        durationMinutes: initial.durationMinutes ?? "",
+        startTime: initial.scheduledAt ? initial.scheduledAt.slice(0, 16) : "",
+        endTime: initial.endAt ? initial.endAt.slice(0, 16) : "",
         type: initial.type ?? "Video",
         level: initial.level ?? "",
         topics: Array.isArray(initial.topics) ? initial.topics.join(", ") : "",
@@ -50,15 +50,19 @@ const SessionModal = ({ open, onClose, onSubmit, loading, initial, courses }) =>
 
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
 
-const handleSubmit = () => {
-  const payload = {
-    ...form,
-    scheduledAt: form.scheduledAt ? `${form.scheduledAt}:00` : "", // raw string, no Date()
-    durationMinutes: Number(form.durationMinutes),
-    topics: form.topics ? form.topics.split(",").map((t) => t.trim()).filter(Boolean) : [],
+  const handleSubmit = () => {
+    const payload = {
+      title: form.title,
+      courseId: form.courseId,
+      scheduledAt: form.startTime ? `${form.startTime}:00` : "",
+      endAt: form.endTime ? `${form.endTime}:00` : "",
+      type: form.type,
+      level: form.level,
+      meetingLink: form.meetingLink,
+      topics: form.topics ? form.topics.split(",").map((t) => t.trim()).filter(Boolean) : [],
+    };
+    onSubmit(payload);
   };
-  onSubmit(payload);
-};
 
   return (
     <div
@@ -107,37 +111,35 @@ const handleSubmit = () => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-xs font-medium text-[#334155]">Scheduled At</label>
+            <label className="text-xs font-medium text-[#334155]">Start Time</label>
             <input
               type="datetime-local"
-              value={form.scheduledAt}
-              onChange={set("scheduledAt")}
+              value={form.startTime}
+              onChange={set("startTime")}
               className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
             />
           </div>
 
-          <div className="flex gap-3">
-            <div className="flex-1 flex flex-col gap-1">
-              <label className="text-xs font-medium text-[#334155]">Duration (mins)</label>
-              <input
-                type="number"
-                value={form.durationMinutes}
-                onChange={set("durationMinutes")}
-                placeholder="60"
-                className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
-              />
-            </div>
-            <div className="flex-1 flex flex-col gap-1">
-              <label className="text-xs font-medium text-[#334155]">Type</label>
-              <select
-                value={form.type}
-                onChange={set("type")}
-                className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
-              >
-                <option value="Video">Video</option>
-                <option value="In-Person">In-Person</option>
-              </select>
-            </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-medium text-[#334155]">End Time</label>
+            <input
+              type="datetime-local"
+              value={form.endTime}
+              onChange={set("endTime")}
+              className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="text-xs font-medium text-[#334155]">Type</label>
+            <select
+              value={form.type}
+              onChange={set("type")}
+              className="border border-gray-200 rounded-xl px-3 py-2 text-sm text-[#0f172a] outline-none focus:border-[#0F4C8A]"
+            >
+              <option value="Video">Video</option>
+              <option value="In-Person">In-Person</option>
+            </select>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -207,23 +209,23 @@ const AdminClassSessions = () => {
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
- const fetchSessions = async () => {
-  try {
-    const res = await axiosInstance.get("/class-sessions");
-    const raw = res.data.data ?? [];
-    setSessions(
-      raw.map((s) => ({
-        ...s,
-        id: s._id ?? s.id,
-        course: s.courseId ?? s.course ?? null,
-      }))
-    );
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoading(false);
-  }
-};
+  const fetchSessions = async () => {
+    try {
+      const res = await axiosInstance.get("/class-sessions");
+      const raw = res.data.data ?? [];
+      setSessions(
+        raw.map((s) => ({
+          ...s,
+          id: s._id ?? s.id,
+          course: s.courseId ?? s.course ?? null,
+        }))
+      );
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchCourses = async () => {
     try {
@@ -239,28 +241,31 @@ const AdminClassSessions = () => {
     fetchCourses();
   }, []);
 
-const formatDate = (dateStr) => {
-  if (!dateStr) return "—";
-  // Raw UTC parts lo, local conversion na ho
-  const d = new Date(dateStr);
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  return `${days[d.getUTCDay()]}, ${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
-};
+  // Raw UTC parts — no local timezone conversion
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "—";
+    const d = new Date(dateStr);
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return `${days[d.getUTCDay()]}, ${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+  };
 
-const formatTime = (dateStr, duration) => {
-  if (!dateStr) return "—";
-  const start = new Date(dateStr);
-  const end = new Date(start.getTime() + duration * 60000);
-  const fmt = (d) => {
+  const formatTimeOnly = (dateStr) => {
+    if (!dateStr) return "—";
+    const d = new Date(dateStr);
     let h = d.getUTCHours();
     const m = String(d.getUTCMinutes()).padStart(2, "0");
     const ampm = h >= 12 ? "PM" : "AM";
     h = h % 12 || 12;
     return `${h}:${m} ${ampm}`;
   };
-  return `${fmt(start)} - ${fmt(end)}`;
-};
+
+  const formatTimeRange = (startStr, endStr) => {
+    if (!startStr) return "—";
+    const start = formatTimeOnly(startStr);
+    const end = endStr ? formatTimeOnly(endStr) : "—";
+    return `${start} - ${end}`;
+  };
 
   const handleSave = async (payload) => {
     setSaving(true);
@@ -297,7 +302,7 @@ const formatTime = (dateStr, duration) => {
     {
       key: "title",
       label: "Title",
-      width: "25%",
+      width: "22%",
       render: (row) => (
         <span className="font-medium text-sm text-[#0f172a]">{row.title}</span>
       ),
@@ -305,7 +310,7 @@ const formatTime = (dateStr, duration) => {
     {
       key: "course",
       label: "Course",
-      width: "20%",
+      width: "18%",
       render: (row) => (
         <span className="text-sm text-[#334155]">{row.course?.title ?? "—"}</span>
       ),
@@ -313,7 +318,7 @@ const formatTime = (dateStr, duration) => {
     {
       key: "date",
       label: "Date",
-      width: "18%",
+      width: "16%",
       render: (row) => (
         <span className="text-sm text-[#334155]">{formatDate(row.scheduledAt)}</span>
       ),
@@ -321,9 +326,9 @@ const formatTime = (dateStr, duration) => {
     {
       key: "time",
       label: "Time",
-      width: "18%",
+      width: "16%",
       render: (row) => (
-        <span className="text-sm text-[#334155]">{formatTime(row.scheduledAt, row.durationMinutes)}</span>
+        <span className="text-sm text-[#334155]">{formatTimeRange(row.scheduledAt, row.endAt)}</span>
       ),
     },
     {
@@ -339,7 +344,7 @@ const formatTime = (dateStr, duration) => {
     {
       key: "status",
       label: "Status",
-      width: "10%",
+      width: "9%",
       render: (row) => (
         <span className={`text-xs font-medium px-2 py-1 rounded-full ${row.isActive ? "bg-green-50 text-green-600" : "bg-red-50 text-red-500"}`}>
           {row.isActive ? "Active" : "Inactive"}
@@ -349,7 +354,7 @@ const formatTime = (dateStr, duration) => {
     {
       key: "actions",
       label: "Actions",
-      width: "10%",
+      width: "9%",
       render: (row) => (
         <div className="flex items-center gap-2">
           <button
