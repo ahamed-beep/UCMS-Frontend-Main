@@ -178,7 +178,7 @@ const handleSubmit = async () => {
               <div>
                 <p className={`font-inter font-semibold text-sm ${result.isCorrect ? "text-green-700" : "text-red-600"}`}>
                   {exercise.type === "writing" || exercise.type === "listening"
-                    ? "Submitted! Your response is under review."
+                    ? "Submitted! Check your results below."
                     : result.isCorrect ? "Correct Answer!" : "Incorrect Answer"}
                 </p>
                 {result.adminFeedback && (

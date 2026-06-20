@@ -50,14 +50,15 @@ const SessionModal = ({ open, onClose, onSubmit, loading, initial, courses }) =>
 
   const set = (k) => (e) => setForm((p) => ({ ...p, [k]: e.target.value }));
 
-  const handleSubmit = () => {
-    const payload = {
-      ...form,
-      durationMinutes: Number(form.durationMinutes),
-      topics: form.topics ? form.topics.split(",").map((t) => t.trim()).filter(Boolean) : [],
-    };
-    onSubmit(payload);
+const handleSubmit = () => {
+  const payload = {
+    ...form,
+    scheduledAt: form.scheduledAt ? `${form.scheduledAt}:00` : "", // raw string, no Date()
+    durationMinutes: Number(form.durationMinutes),
+    topics: form.topics ? form.topics.split(",").map((t) => t.trim()).filter(Boolean) : [],
   };
+  onSubmit(payload);
+};
 
   return (
     <div
@@ -238,20 +239,28 @@ const AdminClassSessions = () => {
     fetchCourses();
   }, []);
 
-  const formatDate = (dateStr) => {
-    if (!dateStr) return "—";
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      weekday: "short", month: "short", day: "numeric", year: "numeric",
-    });
-  };
+const formatDate = (dateStr) => {
+  if (!dateStr) return "—";
+  // Raw UTC parts lo, local conversion na ho
+  const d = new Date(dateStr);
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return `${days[d.getUTCDay()]}, ${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+};
 
-  const formatTime = (dateStr, duration) => {
-    if (!dateStr) return "—";
-    const start = new Date(dateStr);
-    const end = new Date(start.getTime() + duration * 60000);
-    const fmt = (d) => d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-    return `${fmt(start)} - ${fmt(end)}`;
+const formatTime = (dateStr, duration) => {
+  if (!dateStr) return "—";
+  const start = new Date(dateStr);
+  const end = new Date(start.getTime() + duration * 60000);
+  const fmt = (d) => {
+    let h = d.getUTCHours();
+    const m = String(d.getUTCMinutes()).padStart(2, "0");
+    const ampm = h >= 12 ? "PM" : "AM";
+    h = h % 12 || 12;
+    return `${h}:${m} ${ampm}`;
   };
+  return `${fmt(start)} - ${fmt(end)}`;
+};
 
   const handleSave = async (payload) => {
     setSaving(true);
