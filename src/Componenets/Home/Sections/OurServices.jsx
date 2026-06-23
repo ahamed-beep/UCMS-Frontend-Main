@@ -30,8 +30,8 @@ const OurServices = () => {
              onClick={() => handleServiceClick(service)}
                 className='flex flex-col gap-2 p-5 border border-[0.8px] border-[#F3F4F6] shadow-xl rounded-[14px] transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'
               >
-                <div className='flex justify-center items-center w-[48px] h-[48px] rounded-[10px] bg-[#DBEAFE]'>
-                  <img src={service.iconUrl} alt={service.title} width={24} height={24} />
+                <div className='flex justify-center items-center w-[60px] h-[60px] rounded-[10px] bg-[#DBEAFE]'>
+                  <img src={service.iconUrl} alt={service.title} width={40} height={40} />
                 </div>
                 <h4 className='font-inter font-semibold text-[15px] md:text-[18px] text-[#0A0A0A] wrap-break-word'>{service.title}</h4>
                 <p className='font-inter font-normal text-[12px] md:text-[14px] text-[#4A5565] wrap-break-word'>{service.description}</p>

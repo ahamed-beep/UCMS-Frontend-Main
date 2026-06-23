@@ -1,8 +1,8 @@
 @import "tailwindcss";
+
 @font-face {
   font-family: Inter;
   src: url('../public/Fonts/Inter-VariableFont_opsz\,wght.ttf');
-  
 }
 @font-face {
   font-family: Libre;
@@ -21,36 +21,18 @@
   src: url('../public/Fonts/Poppins-Regular.ttf');
 }
 
-
-@theme{
-    --font-inter: Inter, sans-serif;
-    --font-libre: Libre, sans-serif;
-    --font-praise: Praise, sans-serif;
-    --font-arimo: Arimo, sans-serif;
-    --font-poppins: Poppins, sans-serif;
+@theme {
+  --font-inter: Inter, sans-serif;
+  --font-libre: Libre, sans-serif;
+  --font-praise: Praise, sans-serif;
+  --font-arimo: Arimo, sans-serif;
+  --font-poppins: Poppins, sans-serif;
 }
 
-button,
-a,
-[role="button"],
-[onclick],
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-select,
-.clickable {
-  cursor: pointer;
-}
-
-button:hover,
-a:hover,
-[role="button"]:hover {
-  cursor: pointer;
-}
-
-button:disabled,
-input:disabled,
-select:disabled,
-[disabled] {
-  cursor: not-allowed;
+@layer utilities {
+  .page-banner {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }
 }

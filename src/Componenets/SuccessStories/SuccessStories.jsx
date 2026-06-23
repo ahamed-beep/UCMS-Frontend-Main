@@ -210,6 +210,7 @@ const SuccessStories = () => {
         title="Turning Dreams Into Destinations "
         subtitle="Explore real success stories of students who achieved their study abroad goals with 
 UCMS. "
+        bgImage="/Images/SuccessStories.webp"
       />
 
       <div className="min-h-screen px-4">

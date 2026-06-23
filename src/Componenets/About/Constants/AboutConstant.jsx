@@ -64,14 +64,28 @@ export const teamMembers = [
   },
   {
     id: 3,
-    image: "/Images/about/team3.webp",
+    image: "/Images/about/team3.jpeg",
     title: "Amjad Hussain",
     description: "Director - Sales & Marketing",
     exp: ""
   },
   {
     id: 4,
-    image: "/Images/about/team4.webp",
+    image: "/Images/about/team4.png",
+    title: "Hussain Raza",
+    description: "Head of IT Department",
+    exp: ""
+  },
+    {
+    id: 5,
+    image: "/Images/about/team5.jpeg",
+    title: "Amna Anshra",
+    description: " Manager Sales & Marketing",
+    exp: ""
+  },
+     {
+    id: 6,
+    image: "/Images/about/team6.jpeg",
     title: "Miss Mubeen Akhtar",
     description: "Operations Manager",
     exp: ""

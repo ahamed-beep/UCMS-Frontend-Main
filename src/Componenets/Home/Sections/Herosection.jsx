@@ -9,19 +9,19 @@ const Herosection = () => {
 
   const slides = [
     {
-      heading: "Guiding You Towards Success Through Education, Training & Expert Counselling",
+      heading: "Building Brighter Futures Every Day",
       highlight: "Building Brighter Futures Every Day",
       sub: "Empowering individuals to achieve academic excellence, professional growth, and personal success through expert guidance and quality training.",
       img: "/Images/1stbanner.webp"
     },
     {
-      heading: "Let's Master the Skills That Employers Are Looking For",
+      heading: "Develop Skills Today, Build a Better Tomorrow.",
       highlight: "Develop Skills Today, Build a Better Tomorrow.",
       sub: "Empowering students, professionals, and entrepreneurs to build successful careers and businesses through practical IT and digital skills training.",
       img: "/Images/2ndbanner.webp"
     },
     {
-      heading: "Let's Achieve Academic Excellence Through Quality Education & Training",
+      heading: "Building Knowledge, Developing Skills, Shaping Successful Futures",
       highlight: "Building Knowledge, Developing Skills, Shaping Successful Futures",
       sub: "Empowering students and professionals to achieve academic excellence and career success through quality education, practical learning, and expert guidance.",
       img: "/Images/3rdbanner.webp"
@@ -68,7 +68,7 @@ const Herosection = () => {
 
         <div className='flex flex-col items-start gap-3 px-5 pt-14 pb-6'>
           <h1
-            className='font-poppins font-medium text-[24px] leading-[34px] text-white tracking-[1px] break-words text-left w-full'
+            className='font-poppins font-bold text-[24px] leading-[34px] text-white tracking-[1px] break-words text-left w-full'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           >
             {slide.heading}{" "}
@@ -85,9 +85,9 @@ const Herosection = () => {
           </p>
 
           <div className='flex gap-3 mt-1'>
-            <button className='font-arimo text-[14px] bg-[#FF6B35] px-5 py-3 text-white rounded-[10px] hover:bg-[#e05a28] transition-colors duration-200'>
+            <Link to="/contact" className='font-arimo text-[14px] bg-[#FF6B35] px-5 py-3 text-white rounded-[10px] hover:bg-[#e05a28] transition-colors duration-200'>
               Apply Now
-            </button>
+            </Link>
             <Link
               to="/consultation"
               className='font-arimo text-[14px] text-[#FF6B35] px-4 py-3 border border-[#FF6B35] rounded-[10px] hover:bg-[#FF6B35] hover:text-white transition-all duration-200'
@@ -119,7 +119,7 @@ const Herosection = () => {
         <div className='w-[55%] flex flex-col items-start justify-center gap-3 lg:gap-6 px-8 py-10 lg:px-15 lg:py-10'>
 
           <h1
-            className='font-poppins font-medium text-[40px] leading-[50px] text-white tracking-[3px] break-words text-left w-full'
+            className='font-poppins font-bold text-[40px] leading-[50px] text-white tracking-[3px] break-words text-left w-full'
             style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
           >
             {slide.heading}{" "}
@@ -136,9 +136,9 @@ const Herosection = () => {
           </p>
 
           <div className='flex gap-3 mt-2'>
-            <button className='font-arimo text-[16px] bg-[#FF6B35] px-5 py-4 text-white rounded-[10px] hover:bg-[#e05a28] transition-colors duration-200'>
+            <Link to="/contact" className='font-arimo text-[16px] bg-[#FF6B35] px-5 py-4 text-white rounded-[10px] hover:bg-[#e05a28] transition-colors duration-200'>
               Apply Now
-            </button>
+            </Link>
             <Link
               to="/consultation"
               className='font-arimo text-[16px] text-[#FF6B35] px-5 py-4 border border-[#FF6B35] rounded-[10px] hover:bg-[#FF6B35] hover:text-white transition-all duration-200'

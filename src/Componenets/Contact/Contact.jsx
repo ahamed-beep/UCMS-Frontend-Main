@@ -48,6 +48,7 @@ const Contact = () => {
       <Head
         title="Contact Us"
         subtitle="Talk to our experts and take the first step toward your education and career goals."
+            bgImage="/Images/contactus.webp"
       />
       <div className="bg-background">
         <div className="px-10 md:px-22 pt-10 md:pt-20">
