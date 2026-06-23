@@ -216,7 +216,7 @@ const EditDestinationModal = ({ destination, onClose, onUpdated }) => {
           </div>
 
           {/* Universities */}
-          <div>
+          {/* <div>
             <label className="block text-xs font-semibold text-[#64748b] mb-2 uppercase tracking-wide">
               Universities
             </label>
@@ -245,7 +245,7 @@ const EditDestinationModal = ({ destination, onClose, onUpdated }) => {
                 </span>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Footer */}
