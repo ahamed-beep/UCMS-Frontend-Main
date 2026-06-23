@@ -80,6 +80,7 @@ const FacultyPage = () => {
         title="Build Your Career with UCMS"
         subtitle="Join a dynamic team committed to transforming lives through quality education, 
 professional development, and expert guidance."
+ bgImage="/Images/contactus.webp"
       />
 
       <div className="bg-[#F9FAFB] font-inter">

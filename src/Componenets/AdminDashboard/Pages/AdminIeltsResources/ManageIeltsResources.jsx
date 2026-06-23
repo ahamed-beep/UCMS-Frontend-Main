@@ -157,7 +157,7 @@ const ManageIeltsResources = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
         <div>
           <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a]">
-            IELTS / PTE Resources
+             Resources
           </h1>
           <p className="mt-1 text-sm text-[#64748b]">Manage downloadable resources for students</p>
         </div>
@@ -177,7 +177,7 @@ const ManageIeltsResources = () => {
         columns={columns}
         rows={resources}
         loading={loading}
-        emptyText="No IELTS resources found."
+        emptyText="No  resources found."
       />
 
       {totalPages > 1 && (

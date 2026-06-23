@@ -504,7 +504,7 @@ const adminMenuItems = [
     ),
   },
   {
-    label: "IELTS Resources",
+    label: "Resources",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -632,7 +632,7 @@ const adminPages = {
   "Quizzes":             QuizzesPage,
   "Gallery":             AnalyticsPage,
   "Contact Us":          ContactUsPage,
-  "IELTS Resources":     IeltsResourcesPage,
+  "Resources":     IeltsResourcesPage,
   "Upcoming Classes":    UpcomingClassesPage,
   "Courses":             CoursesPage,
   "Class Sessions": ClassSessionsPage,

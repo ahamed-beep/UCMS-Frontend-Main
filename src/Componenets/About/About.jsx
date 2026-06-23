@@ -30,16 +30,16 @@ const TeamSection = ({ title, subtitle, members }) => (
         <div className='w-full md:mt-16 mt-10 py-3 bg-[#F9FAFB]'>
             <h3 className='font-inter font-bold text-[24px] md:text-[36px] text-[#0A0A0A] text-center'>{title}</h3>
             {subtitle && <p className='font-inter font-normal text-[16px] md:text-[20px] text-[#4A5565] text-center mt-2'>{subtitle}</p>}
-            <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-10 px-4 md:px-10'>
+            <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-10 px-4 md:px-10'>
                 {members.map((item, index) => (
-                    <div key={index} className='flex flex-col bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-[#E5E7EB]'>
-                        <div className='w-full h-110 md:h-110 overflow-hidden'>
-                            <img
-                                src={item.image}
-                                alt={item.title}
-                                className='w-full h-full object-cover object-center'
-                            />
-                        </div>
+                    <div key={index} className='flex p-1 flex-col bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-[#E5E7EB]'>
+                     <div className='w-full h-110 md:h-110 overflow-hidden rounded-full aspect-square'>
+    <img
+        src={item.image}
+        alt={item.title}
+        className='w-full  h-full object-cover object-top'
+    />
+</div>
                         <div className='flex flex-col items-center gap-1 py-4 px-4 bg-white w-full'>
                             <h3 className='font-inter font-bold text-[16px] md:text-[18px] text-[#0A0A0A] text-center'>{item.title}</h3>
                             <p className='font-inter font-medium text-[13px] text-[#0F4C8A] text-center'>{item.description}</p>
@@ -56,7 +56,8 @@ const About = () => {
     return (
         <div>
             <Navbar />
-            <Head title="About Upskills" subtitle="Empowering students to achieve their international education dreams since 2022" />
+            <Head title="About Upskills" subtitle="Empowering students to achieve their international education dreams since 2022"
+             bgImage="/Images/contactus.webp" />
             <div className='font-inter text-gray-900 bg-[#FFFFFF]'>
                 <div className='px-5 pt-5 md:px-19 md:pt-19'>
                     <div className='space-y-2 md:space-y-6'>

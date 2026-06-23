@@ -16,7 +16,7 @@ const IeltsPreparation = () => {
         });
         setResources(res.data.data.data);
       } catch (error) {
-        console.error("Failed to fetch IELTS resources", error);
+        console.error("Failed to fetch  resources", error);
       } finally {
         setLoading(false);
       }
@@ -68,7 +68,7 @@ const IeltsPreparation = () => {
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-6 wrap-break-word">
-          IELTS / PTE Preparation Center
+           Preparation Center
         </h2>
 
         {loading ? (
@@ -124,7 +124,7 @@ const IeltsPreparation = () => {
             to="/consultation"
             className="text-sm text-[#0F4C8A] hover:underline font-semibold inline-flex items-center gap-1"
           >
-            Enroll in IELTS/PTE Classes <ArrowRight className="w-3 h-3" />
+            Enroll in  Classes <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
       </div>

@@ -18,6 +18,7 @@ const LearningHub = () => {
         subtitle="Learn smarter, prepare better, and achieve your academic and career goals with expert 
 resources.  "
         icon={<BookOpen size={64}/>}
+        bgImage="/Images/learninghub.webp"
       />
 
       <div className="font-inter">

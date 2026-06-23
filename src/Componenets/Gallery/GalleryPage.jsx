@@ -88,6 +88,7 @@ const GalleryPage = () => {
       <Head
         title="Gallery"
         subtitle="Explore our office spaces, certifications, achievements, and the vibrant life at UCMS."
+            bgImage="/Images/contactus.webp"
       />
 
       <div className="px-6 py-10 space-y-16">

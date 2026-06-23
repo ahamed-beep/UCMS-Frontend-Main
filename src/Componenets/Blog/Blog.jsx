@@ -77,6 +77,7 @@ const Blog = () => {
       <Head
         title="Blog & Resources"
         subtitle="Expert insights, tips, and guides for your study abroad journey"
+            bgImage="/Images/contactus.webp"
       />
 
       <div className="py-10 px-4">

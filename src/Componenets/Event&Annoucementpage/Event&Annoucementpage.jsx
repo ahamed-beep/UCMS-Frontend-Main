@@ -38,7 +38,10 @@ const EventPage = () => {
   return (
     <div>
       <Navbar />
-      <Head title="Events & Announcements" subtitle="Join our free seminars, workshops, and university fairs to accelerate your study abroad journey" icon={<Calendar size={64} />}/>
+      <Head title="Events & Announcements" subtitle="Join our free seminars, workshops, and university fairs to accelerate your study abroad journey"
+       icon={<Calendar size={64} />}
+           bgImage="/Images/eventandannoucment.webp"
+       />
       <div className="min-h-screen bg-gray-50 py-10 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold font-inter text-[#0A0A0A] mb-9 wrap-break-word">Upcoming Events</h2>

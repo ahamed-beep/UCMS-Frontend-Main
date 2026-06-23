@@ -46,16 +46,7 @@ export const footerData = [
       { name: "Gallery", url: "/gallery" },
     ],
   },
-  {
-    title: "Our Services",
-    links: [
-      { name: "Career Counseling", url: "/career" },
-      { name: "Student Admissions", url: "/student-admissions" },
-      { name: "Visa Support", url: "/contact" },
-      { name: "IELTS/PTE Preparation", url: "/contact" },
-      { name: "Financial Advice", url: "/contact" },
-    ],
-  },
+
 ];
 
 export const contactData = [
