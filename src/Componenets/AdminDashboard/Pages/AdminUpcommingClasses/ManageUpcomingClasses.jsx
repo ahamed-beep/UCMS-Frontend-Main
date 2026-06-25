@@ -169,7 +169,7 @@ const ManageUpcomingClasses = () => {
           <h1 className="text-[28px] font-bold tracking-[-0.03em] text-[#0f172a]">
             Upcoming Classes
           </h1>
-          <p className="mt-1 text-sm text-[#64748b]">Manage IELTS / PTE upcoming classes</p>
+          <p className="mt-1 text-sm text-[#64748b]">Manage upcoming classes</p>
         </div>
         <div>
 <div className=" flex mt-3 md:mt-0" >
