@@ -225,7 +225,7 @@ const CreateDestinationModal = ({ open, onClose, onCreated }) => {
           </div>
 
           {/* Universities */}
-          {/* <div>
+          <div>
             <label className="block text-xs font-semibold text-[#64748b] mb-2 uppercase tracking-wide">
               Universities
             </label>
@@ -254,7 +254,7 @@ const CreateDestinationModal = ({ open, onClose, onCreated }) => {
                 </span>
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
 
         {/* Footer */}

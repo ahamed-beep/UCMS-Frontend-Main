@@ -211,7 +211,7 @@ place. "
                           />
                         </div>
                         <div className="flex-1">
-                          <h2 className="text-base font-inter font-bold break-all mb-1 text-orange-500">
+                          <h2 className="text-base font-inter font-bold break-all mb-1 text-[#003F9C]">
                             {s.title}
                           </h2>
                           <p className="text-[13.5px] text-[#364153] break-all mb-2.5 leading-relaxed">

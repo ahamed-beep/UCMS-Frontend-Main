@@ -33,7 +33,7 @@ const OurServices = () => {
                 <div className='flex justify-center items-center w-[60px] h-[60px] rounded-[10px] bg-[#DBEAFE]'>
                   <img src={service.iconUrl} alt={service.title} width={40} height={40} />
                 </div>
-                <h4 className='font-inter font-semibold text-[15px] md:text-[18px] text-[#0A0A0A] wrap-break-word'>{service.title}</h4>
+                <h4 className='font-inter font-semibold text-[15px] md:text-[18px] text-[#003F9C] wrap-break-word'>{service.title}</h4>
                 <p className='font-inter font-normal text-[12px] md:text-[14px] text-[#4A5565] wrap-break-word'>{service.description}</p>
               </div>
             ))}

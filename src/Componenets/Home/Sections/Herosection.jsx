@@ -10,19 +10,16 @@ const Herosection = () => {
   const slides = [
     {
       heading: "Building Brighter Futures Every Day",
-      highlight: "Building Brighter Futures Every Day",
       sub: "Empowering individuals to achieve academic excellence, professional growth, and personal success through expert guidance and quality training.",
       img: "/Images/1stbanner.webp"
     },
     {
       heading: "Develop Skills Today, Build a Better Tomorrow.",
-      highlight: "Develop Skills Today, Build a Better Tomorrow.",
       sub: "Empowering students, professionals, and entrepreneurs to build successful careers and businesses through practical IT and digital skills training.",
       img: "/Images/2ndbanner.webp"
     },
     {
       heading: "Building Knowledge, Developing Skills, Shaping Successful Futures",
-      highlight: "Building Knowledge, Developing Skills, Shaping Successful Futures",
       sub: "Empowering students and professionals to achieve academic excellence and career success through quality education, practical learning, and expert guidance.",
       img: "/Images/3rdbanner.webp"
     }
