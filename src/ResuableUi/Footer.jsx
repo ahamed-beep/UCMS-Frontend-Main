@@ -102,6 +102,12 @@ const Footer = () => {
                   225-Y, Level-1, Commercial Block, Phase-3, DHA, Lahore
                 </p>
               </div>
+                  <div className="flex gap-2 items-start">
+                <MapPin className='w-5 h-5 mt-0.5 text-blue-600 shrink-0' />
+                <p className="font-inter font-normal text-[12px] md:text-[14px] text-[#D1D5DC]">
+                 Unit-1/88, Bathurst Street, Liverpool NSW 2170, Australia
+                </p>
+              </div>
             </div>
           </div>
 
