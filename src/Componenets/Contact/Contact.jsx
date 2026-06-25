@@ -201,15 +201,8 @@ const Contact = () => {
       </span>
     </div>
     <div className="flex items-center gap-2.5">
-      <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
-        <Phone color="#0F4C8A" className="h-4 w-4 text-primary" />
-      </div>
-      <a
-        href="tel:+924235692472"
-        className="text-sm text-[#364153] font-inter hover:text-[#0F4C8A] transition-colors"
-      >
-        +92 42 3569 2472
-      </a>
+   
+    
     </div>
     <div className="flex items-center gap-2.5">
       <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/10">
