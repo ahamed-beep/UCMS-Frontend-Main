@@ -30,11 +30,10 @@ setDestinations(data);
   return (
     <div>
       <Navbar />
-      {console.log('passing bgImage:', "/Images/banner/studydestination.webp")}
       <Head
         title="Study Destinations"
-        subtitle="Your journey to world-class education starts with the right destination.  "
-        bgImage="/Images/studydestination.webp"
+        subtitle="Choose from the world's top education destinations and unlock your potential"
+          bgImage="/Images/studydestination.webp"
       />
       <div className="bg-[#FFFFFF] py-12 px-4">
         <div className="md:px-22 mx-auto">
@@ -47,7 +46,7 @@ setDestinations(data);
               {destinations.map((d) => (
                 <div
                   key={d._id}
-                  className="grid grid-cols-1 md:grid-cols-[280px_1fr_1fr] bg-white border-[#193CB8] rounded-xl shadow-sm overflow-hidden border-2 "
+                  className="grid grid-cols-1 md:grid-cols-[280px_1fr_1fr] bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100"
                 >
                   <div
                     style={{ background: "linear-gradient(to right, #0F4C8A, #193CB8)" }}

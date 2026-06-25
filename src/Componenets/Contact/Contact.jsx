@@ -180,10 +180,11 @@ const Contact = () => {
                   )}
                 </button>
               </form>
+                <MapSection />
             </section>
 
             {/* ── Contact Info Sidebar ── */}
-            <aside className="space-y-6 lg:col-span-2">
+            <aside className="space-y-6 mb-6 lg:col-span-2">
               <h2 className="text-2xl text-[#0A0A0A] font-bold text-foreground">Our Offices</h2>
 
               {/* ── Main Office (Australia) ── */}
@@ -374,9 +375,10 @@ const Contact = () => {
                 </div>
               </div>
             </aside>
+           
           </div>
 
-          <MapSection />
+         
         </div>
       </div>
       <Footer />

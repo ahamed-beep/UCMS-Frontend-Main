@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { contactData, footerData } from '../Constants/constant'
 import { FaTiktok, FaYoutube } from 'react-icons/fa'
+import { MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import axiosInstance from "../Api/axiosInstance";
 
@@ -18,7 +19,6 @@ const Footer = () => {
       <div className='w-full bg-[#101828]'>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 py-5 md:py-10 mx-4 md:mx-10'>
           
-          {/* Logo + description */}
           <div className='col-span-2 md:col-span-1 mt-2'>
             <div>
               <img className="h-12 md:h-15" src="/Images/footer.webp" alt="" />
@@ -45,7 +45,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links — footerData[0] only */}
           <div>
             <h3 className='font-inter font-semibold text-[16px] lg:text-[18px] text-white'>
               {footerData[0].title}
@@ -59,7 +58,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Our Services — dynamic */}
           <div>
             <h3 className='font-inter font-semibold text-[16px] lg:text-[18px] text-white'>
               Our Services
@@ -77,7 +75,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className='font-inter font-semibold text-[16px] lg:text-[18px] text-white'>Contact Us</h3>
             <div className='flex flex-col gap-1 md:gap-2 md:mt-2 mt-1'>
@@ -99,6 +96,12 @@ const Footer = () => {
                   )}
                 </div>
               ))}
+              <div className="flex gap-2 items-start">
+                <MapPin className='w-5 h-5 mt-0.5 text-blue-600 shrink-0' />
+                <p className="font-inter font-normal text-[12px] md:text-[14px] text-[#D1D5DC]">
+                  225-Y, Level-1, Commercial Block, Phase-3, DHA, Lahore
+                </p>
+              </div>
             </div>
           </div>
 
