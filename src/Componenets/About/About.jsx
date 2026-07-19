@@ -86,11 +86,11 @@ const About = () => {
 
             <SectionGrid title="Our Process" services={processSteps} />
 
-            <TeamSection
+            {/* <TeamSection
                 title="Our Expert Team"
                 subtitle="Meet our certified advisors with extensive experience in international education"
                 members={teamMembers}
-            />
+            /> */}
 
             <SectionGrid title="Our Values" services={Values} />
 
