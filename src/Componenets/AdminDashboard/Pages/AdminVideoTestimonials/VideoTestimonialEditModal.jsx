@@ -90,7 +90,7 @@ const VideoTestimonialEditModal = ({ selected, setSelected, onUpdated }) => {
             <input type="file" accept="video/mp4,video/webm,video/mov,video/avi"
               onChange={(e) => setVideoFile(e.target.files[0])}
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-[#64748b] outline-none focus:border-[#155DFC] transition-colors" />
-            <p className="text-xs text-[#94a3b8] mt-1">Sirf naya video replace karna ho to upload karein</p>
+            <p className="text-xs text-[#94a3b8] mt-1">Upload only if you want to replace the video</p>
           </div>
 
           <div className="flex gap-3 mt-2">

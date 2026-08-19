@@ -129,7 +129,7 @@ const ConsultationSlotsPage = () => {
     toast(
       ({ closeToast }) => (
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-medium">Is slot ko delete karna chahte ho?</p>
+          <p className="text-sm font-medium">Are you sure you want to delete this slot?</p>
           <div className="flex gap-2">
             <button
               className="bg-red-500 text-white px-3 py-1 rounded text-sm"
@@ -168,14 +168,14 @@ const ConsultationSlotsPage = () => {
       <div>
         <h1 className="text-xl font-semibold text-[#1e293b]">Consultation Slots</h1>
         <p className="text-sm text-[#64748b]">
-          Admin ki add ki gayi dates aur times booking form mein dikhti hain
+         Dates and times added by admin appear on the booking form
         </p>
       </div>
 
       {/* Create Slot Form */}
       <div className="bg-white border border-[#e2e8f0] rounded-xl p-5 space-y-5">
         <h2 className="text-sm font-semibold text-[#1e293b] flex items-center gap-2">
-          <Plus className="w-4 h-4" /> Naya Slot Add Karo
+          <Plus className="w-4 h-4" /> Add New Slot
         </h2>
 
         <div>
@@ -193,7 +193,7 @@ const ConsultationSlotsPage = () => {
 
         <div>
           <label className="block text-xs font-medium text-[#64748b] mb-2">
-            Times Select Karo <span className="text-red-500">*</span>
+           Select Times  <span className="text-red-500">*</span>
           </label>
           <div className="flex flex-wrap gap-2">
             {TIME_OPTIONS.map((time) => (
@@ -223,7 +223,7 @@ const ConsultationSlotsPage = () => {
           className="flex items-center gap-2 bg-[#0F4C8A] text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-[#0d3f73] disabled:opacity-50 transition-colors"
         >
           <Plus className="w-4 h-4" />
-          {saving ? "Saving..." : "Slot Create Karo"}
+          {saving ? "Saving..." : "Create Slot"}
         </button>
       </div>
 
@@ -233,7 +233,7 @@ const ConsultationSlotsPage = () => {
           <div className="text-sm text-[#64748b]">Loading...</div>
         ) : slots.length === 0 ? (
           <div className="text-sm text-[#64748b] bg-white border border-[#e2e8f0] rounded-xl p-6 text-center">
-            Koi slot nahi mila. Upar se add karo.
+              No slots found. Add one above.
           </div>
         ) : (
           slots.map((slot) => (
