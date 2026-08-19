@@ -121,37 +121,39 @@ const ManageUsers = () => {
         </span>
       ),
     },
-    {
-      key: "status",
-      label: "Status",
-      width: "25%",
-      render: (u) => (
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => handleToggle(u)}
-            disabled={togglingId === (u.id || u._id)}
-            className={`relative w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none disabled:opacity-50 ${
-              !u.isDisabled ? "bg-emerald-500" : "bg-gray-300"
-            }`}
-          >
-            <span
-              className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200 ${
-                !u.isDisabled ? "translate-x-4" : "translate-x-0"
-              }`}
-            />
-          </button>
+  {
+  key: "status",
+  label: "Status",
+  width: "25%",
+  render: (u) => (
+    <div className="flex items-center gap-2">
+      {u.role !== "admin" && (
+        <button
+          onClick={() => handleToggle(u)}
+          disabled={togglingId === (u.id || u._id)}
+          className={`relative w-9 h-5 rounded-full transition-colors duration-200 focus:outline-none disabled:opacity-50 ${
+            !u.isDisabled ? "bg-emerald-500" : "bg-gray-300"
+          }`}
+        >
           <span
-            className={`text-[12px] font-medium px-2 py-0.5 rounded-full ${
-              !u.isDisabled
-                ? "bg-emerald-50 text-emerald-700"
-                : "bg-red-50 text-red-600"
+            className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200 ${
+              !u.isDisabled ? "translate-x-4" : "translate-x-0"
             }`}
-          >
-            {!u.isDisabled ? "Active" : "Inactive"}
-          </span>
-        </div>
-      ),
-    },
+          />
+        </button>
+      )}
+      <span
+        className={`text-[12px] font-medium px-2 py-0.5 rounded-full ${
+          !u.isDisabled
+            ? "bg-emerald-50 text-emerald-700"
+            : "bg-red-50 text-red-600"
+        }`}
+      >
+        {!u.isDisabled ? "Active" : "Inactive"}
+      </span>
+    </div>
+  ),
+},
     {
       key: "actions",
       label: "Actions",
