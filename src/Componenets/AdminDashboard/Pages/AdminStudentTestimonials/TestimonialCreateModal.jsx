@@ -156,7 +156,7 @@ const TestimonialCreateModal = ({ open, onClose, onCreated }) => {
               value={form.quote}
               onChange={handleChange}
               rows={3}
-              placeholder="Student ka review yahan likhein..."
+              placeholder="Write the student's review here..."
               className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-[#0f172a] outline-none focus:border-[#155DFC] transition-colors resize-none"
             />
           </div>

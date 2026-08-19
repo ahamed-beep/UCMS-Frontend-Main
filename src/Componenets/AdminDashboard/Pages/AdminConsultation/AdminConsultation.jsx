@@ -53,7 +53,7 @@ const ConsultationsPage = () => {
     toast(
       ({ closeToast }) => (
         <div className="flex flex-col gap-3">
-          <p>Is consultation ko delete karna chahte ho?</p>
+          <p>Are you sure you want to delete this consultation?</p>
           <div className="flex gap-2">
             <button
               className="bg-red-500 text-white px-3 py-1 rounded"
@@ -257,7 +257,7 @@ const ConsultationsPage = () => {
                   Manage Booking Slots
                 </h2>
                 <p className="text-xs text-[#64748b]">
-                  Dates aur times add/remove karo
+                Add or remove dates and times
                 </p>
               </div>
               <button
@@ -321,7 +321,7 @@ const ConsultationsPage = () => {
             columns={columns}
             rows={consultations.map((c) => ({ ...c, _key: c.id }))}
             loading={loading}
-            emptyText="Koi consultation nahi mili."
+            emptyText="No consultations found."
           />
         </div>
       </div>

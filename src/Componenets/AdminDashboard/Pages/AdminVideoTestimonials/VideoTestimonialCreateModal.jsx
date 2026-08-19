@@ -26,7 +26,7 @@ const VideoTestimonialCreateModal = ({ open, onClose, onCreated }) => {
   const handleSubmit = async () => {
     setError("");
     if (!videoFile) {
-      setError("Video file required hai.");
+      setError("Video file is required.");
       return;
     }
 

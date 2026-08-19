@@ -109,7 +109,7 @@ const AdminVideoTestimonials = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0f172a]">Video Testimonials</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Student video reviews manage karein</p>
+          <p className="text-sm text-[#64748b] mt-0.5">Manage student video reviews</p>
         </div>
         <button
           onClick={() => setCreateOpen(true)}
@@ -124,7 +124,7 @@ const AdminVideoTestimonials = () => {
         columns={columns}
         rows={videos}
         loading={loading}
-        emptyText="Koi video testimonial nahi mila."
+        emptyText="No video testimonial found."
       />
 
       <VideoTestimonialCreateModal

@@ -129,7 +129,7 @@ const AdminTestimonials = () => {
       <div className="flex md:flex-row flex-col md:items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-[#0f172a]">Student Testimonials</h1>
-          <p className="text-sm text-[#64748b] mt-0.5">Student reviews manage karein</p>
+          <p className="text-sm text-[#64748b] mt-0.5">Manage student testimonials</p>
         </div>
         <button
           onClick={() => setCreateOpen(true)}
@@ -144,7 +144,7 @@ const AdminTestimonials = () => {
         columns={columns}
         rows={testimonials}
         loading={loading}
-        emptyText="Koi testimonial nahi mila."
+        emptyText="No testimonial found."
       />
 
       <TestimonialCreateModal
