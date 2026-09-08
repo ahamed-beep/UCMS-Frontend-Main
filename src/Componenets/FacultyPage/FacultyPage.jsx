@@ -6,6 +6,7 @@ import WhyJionUcms from "./WhyJionUcms";
 import CtaSection from "./CtaSection";
 import { ArrowUpFromLine, Loader2 } from "lucide-react";
 import axiosInstance from "../../Api/axiosInstance";
+import AboutUsResources from "../About/AboutUsResources";
 
 const INITIAL_FORM = {
   fullName: "",
@@ -316,7 +317,7 @@ professional development, and expert guidance."
             )}
           </div>
         </section>
-
+<AboutUsResources />
         <CtaSection />
       </div>
 

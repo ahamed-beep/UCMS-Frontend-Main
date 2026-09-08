@@ -3,6 +3,7 @@ import Head from '../../ResuableUi/Head'
 import Navbar from '../../ResuableUi/Navbar'
 import { aboutData, processSteps, success, teamMembers, Values } from './Constants/AboutConstant'
 import Footer from '../../ResuableUi/Footer'
+import AboutUsResources from './AboutUsResources'
 
 const SectionGrid = ({ title, subtitle, services, bgColor = 'bg-white' }) => (
     <section>
@@ -93,7 +94,7 @@ const About = () => {
             /> */}
 
             <SectionGrid title="Our Values" services={Values} />
-
+       <AboutUsResources />
             <div className='relative grid grid-cols-2 md:grid-cols-4 w-full bg-[#0F4C8A] bg-cover bg-center'>
                 <div className='absolute inset-0 bg-[url("/Images/bg.png")] opacity-20'></div>
                 {success.map((item, index) => (
@@ -103,6 +104,7 @@ const About = () => {
                     </div>
                 ))}
             </div>
+     
             <Footer />
         </div>
     )

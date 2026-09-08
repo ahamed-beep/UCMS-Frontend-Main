@@ -39,6 +39,8 @@ import AdminUserDocuments from "./Pages/AdminUserDocuments/AdminUserDocuments";
 import AdminApplications from "./Pages/AdminApplications/AdminApplications";
 import AdminSupport from "./Pages/AdminSupport/AdminSupport";
 import AdminNotifications from "./Pages/AdminNotifications/AdminNotifications";
+import AdminAboutUsResources from "./Pages/AdminAboutUsResources/AdminAboutUsResources";
+import AdminCareerResources from "./Pages/AdminCareerResources/AdminCareerResources";
 
 
 const UsersPage = () => (
@@ -188,6 +190,16 @@ const SupportPage = () => (
 const NotificationsPage = () => (
   <div className="px-5 py-7 sm:px-8">
     <AdminNotifications />
+  </div>
+);
+const AboutUsResourcesPage = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminAboutUsResources />
+  </div>
+);
+const CareerResources = () => (
+  <div className="px-5 py-7 sm:px-8">
+    <AdminCareerResources />
   </div>
 );
 
@@ -612,6 +624,16 @@ const adminMenuItems = [
     </svg>
   ),
 }, 
+{ label: "About Us Resources", icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+    </svg>
+  ) },
+  { label: "Career Resources", icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+      <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+    </svg>
+  ) },
 ];
 
 const adminPages = {
@@ -642,6 +664,8 @@ const adminPages = {
   "Applications": ApplicationsPage,
   "Support": SupportPage,
   "Notifications": NotificationsPage,
+  "About Us Resources": AboutUsResourcesPage,
+  "Career Resources": CareerResources,   
 };
 
 export default function AdminDashboard() {
