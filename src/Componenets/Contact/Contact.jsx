@@ -290,7 +290,7 @@ const Contact = () => {
                   </div>
 
                   {/* IT Department */}
-                  <div>
+                  {/* <div>
                     <p className="text-xs font-semibold text-[#0F4C8A] font-inter uppercase tracking-wide mb-1">
                       IT Department
                     </p>
@@ -305,7 +305,7 @@ const Contact = () => {
                         +92 322 900 8855
                       </a>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Academic & Training */}
                   <div>

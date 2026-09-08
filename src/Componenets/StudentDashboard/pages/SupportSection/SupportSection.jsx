@@ -13,11 +13,11 @@ const supportCards = [
   },
   {
     title: "Phone Support",
-    info: "+92 322 900 8855",
-    sub: "IT Department",
+    // info: "+92 322 900 8855",
+    // sub: "IT Department",
     icon: "/Images/greenphone.webp",
     color: "bg-green-100 text-green-600",
-    href: "tel:+923229008855",
+    // href: "tel:+923229008855",
   },
 ];
 const faqs = [
