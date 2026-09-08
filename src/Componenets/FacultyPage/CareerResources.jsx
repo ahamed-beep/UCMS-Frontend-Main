@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, FileText, Download, Loader2 } from "lucide-react";
-import axiosInstance from "../../../Api/axiosInstance";
-import { Link } from "react-router-dom";
+import axiosInstance from "../../Api/axiosInstance";
 
 const CareerResources = () => {
   const [resources, setResources] = useState([]);
