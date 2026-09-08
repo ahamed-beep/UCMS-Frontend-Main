@@ -68,7 +68,7 @@ const AboutUsResources = () => {
     <section className="py-10">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-2xl font-bold text-[#0A0A0A] font-inter mb-6 wrap-break-word">
-          About Us Resources
+          Resources
         </h2>
 
         {loading ? (
