@@ -125,14 +125,7 @@ const CareerResources = () => {
           </div>
         )}
 
-        <div className="text-center mt-6">
-          <Link
-            to="/consultation"
-            className="text-sm text-[#0F4C8A] hover:underline font-semibold inline-flex items-center gap-1"
-          >
-            Get Career Guidance <ArrowRight className="w-3 h-3" />
-          </Link>
-        </div>
+     
       </div>
     </section>
   );
