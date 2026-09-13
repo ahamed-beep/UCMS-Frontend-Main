@@ -78,7 +78,7 @@ const AboutUsResources = () => {
         ) : resources.length === 0 ? (
           <p className="text-center text-[#4A5565] py-16">No resources available.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
             {resources.map((r) => (
               <div key={r.id} className="bg-white border border-gray-200 rounded-lg p-5">
                 <div className="flex items-start justify-between mb-4">
