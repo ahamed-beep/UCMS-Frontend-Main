@@ -29,9 +29,9 @@ const EmailVerification = () => {
         localStorage.setItem('resetEmail', email);
         navigate('/codeverification');
       }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong. Try again.');
-    } finally {
+    }  catch (err) {
+  setError(err.response?.data?.message || 'Something went wrong. Try again.');
+} finally {
       setLoading(false);
     }
   };
